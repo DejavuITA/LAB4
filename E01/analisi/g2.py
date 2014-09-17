@@ -8,7 +8,7 @@ from mpl_toolkits.axes_grid1 import host_subplot
 import mpl_toolkits.axisartist as AA
 
 #### dati ####
-data01 = np.genfromtxt("../dati/scope_0.csv", delimiter=',')
+data01 = np.genfromtxt("../dati/scope_1.csv", delimiter=',')
 t_01 = data01[2:,0]
 VS_01 = data01[2:,1]
 #data02 = np.genfromtxt("../dati/scope_1.csv", delimiter=',')
@@ -19,7 +19,7 @@ rcParams['font.size'] = 15
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(15, 7), dpi=65)
 # Titolo del grafico
-fig1.suptitle("Circuito sommatore: onde sinusoidali", y=0.97, fontsize=17)
+fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, fontsize=17)
 
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
@@ -39,7 +39,7 @@ f1.set_xlim((-10.5,10.5))
 f1.grid(True)
 
 # plotta la legenda
-f1.legend([out1, in2, in1], ['Output sommatore', 'Generatore 1', 'Generatore 2'])
+f1.legend([out1, in1, in2], ['Output sommatore', 'Generatore 1', 'Generatore 2'])
 
 # questo imposta i bordi del grafico
 fig1.subplots_adjust(left=0.05, right=0.98,
