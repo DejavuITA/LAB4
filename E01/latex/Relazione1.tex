@@ -36,7 +36,7 @@ Queste regole verranno utilizzate durante questa sessione per valutare la rispos
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=6cm]{alimentazione.pdf}}
+   {\includegraphics[width=6cm]{../E01/latex/alimentazione.pdf}}
  \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=C_2=0.1 \mu F$. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
  \label{gr:costante}
 \end{figure}
@@ -49,7 +49,7 @@ In questo circuito montiamo un generatore di corrente costante, cioè un disposi
 
 \begin{wrapfigure}[21]{r}{0.55\textwidth}
   \begin{center}
-    \includegraphics[width=0.40\textwidth]{c1.pdf}
+    \includegraphics[width=0.40\textwidth]{../E01/latex/c1.pdf}
   \end{center}
   \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=3.85 \pm 0.01 k\Omega$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è utilizzato il multimetro, mentre per alimentare l'OPAMP e come generatore di tensione costante in figura, abbiamo utillizzato il generatore di tensione continua.}
 \end{wrapfigure}
@@ -80,7 +80,7 @@ Valutiamo ora il sommatore pesato, cioè un circuito che dati due segnali in ing
 
 \begin{wrapfigure}[21]{l}{0.55\textwidth}
   \begin{center}
-    \includegraphics[width=0.40\textwidth]{c2.pdf}
+    \includegraphics[width=0.40\textwidth]{../E01/latex/c2.pdf}
   \end{center}
   \caption{Schema del sommatore pesato. Come valori abbiamo utilizzato $R_f \approx R_1=(99.9 \pm 0.1) k \Omega$ e $R_2=(49.8 \pm 0.1) k \Omega$, dove per $R_2$ è stato necessario utilizzare un parallelo di due resistenza da $100 k\Omega$. Come GEN 1 abbiamo utilizzato l'oscilloscopio, mentre per GEN 2 il generatore di forme d'onda. Infine, per valutare la tensione in uscita abbiamo utilizzato l'oscilloscopio.}
 \end{wrapfigure}
@@ -100,14 +100,14 @@ Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{sinsin.pdf}}
+   {\includegraphics[width=18cm]{../E01/latex/sinsin.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=800 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda sinusoidale di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
  \label{gr:costante}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{sinquad.pdf}}
+   {\includegraphics[width=18cm]{../E01/latex/sinquad.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=900 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che anche in questo caso l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
  \label{gr:costante}
 \end{figure}
