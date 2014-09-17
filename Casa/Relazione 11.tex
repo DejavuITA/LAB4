@@ -48,7 +48,7 @@ In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori
 
 \begin{itemize} [noitemsep]
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth $70 MHz$, sample rate $2 GSa/s$);
-\item Generatore di tensione continua (max $\pm 25 V$);
+\item Generatore di tensione continua Agilent E3631A (max $\pm 25 V$ o $\pm 6V$);
 \item Generatore di tensione Agilent 33120A con range di frequenza da $100 \mu Hz$ a $15 Mhz$;
 \item Multimetro Agilent 34410A (utilizzato come amperometro e per verificare i valori delle resistenze);
 \item Un amplificatore operazionale UA741;
@@ -104,10 +104,38 @@ Per (\ref{eq:regola_I}) e la legge di Kirkhhoff sui nodi, avremo invece che la c
 Otteniamo dunque che la tensione di output si modificherà, ad opera dell'OPAMP, in modo da far passare sempre lo stesso valore di corrente attraverso $R_2$; ciò avviene per il fenomeno di retroazione negativa, che ci permette di controllare la tensione di output tramite la resistenza di feedback, che in questo caso è proprio $R_2$, e di ottenere dunque una corrente costante passante per il circuito di feedback. Imponendo l'uguaglianza della corrente possiamo inoltre trovare il valore della tensione di uscita
 $$V_{out}=\frac{R_2}{R_1} V_{gen}$$
 
-Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1 mA$ in modo da discostarci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20 mA$); e avendo a disposizione una resistenza $R_1=3.85 \pm 0.01 k\Omega$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$.
+Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1 mA$ in modo da discostarci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20 mA$); e avendo a disposizione una resistenza $R_1=3.85 \pm 0.01 k\Omega$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1 mA$ (considerando gli errori sull'ultima cifra come unitari).
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+Resistenza variabile [$\Omega$] & 0.54 & 35.1 & 412 & 1021 & 1996 & 3068 & 4170 & 4719 \\ 
+\hline 
+Corrente nel carico [$mA$] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 \\ 
+\end{tabular}
+\end{center}
 
 \section{Sommatore Pesato}
 
+Valutiamo ora il sommatore pesato, cioè un circuito che dati due segnali in ingresso li somma con relativi pesi dati dal rapporto fra la resistenza di feedback ($R_f$) e quella a loro associata ($R_1$ e $R_2$). Lo schema circuitale è in figura.
 
+\begin{wrapfigure}[21]{l}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{c2.pdf}
+  \end{center}
+  \caption{Schema del sommatore pesato. Come valori abbiamo utilizzato $R_f \approx R_1=(99.9 \pm 0.1) k \Omega$ e $R_2=(49.8 \pm 0.1) k \Omega$, dove per $R_2$ è stato necessario utilizzare un parallelo di due resistenza da $100 k\Omega$. Come GEN 1 abbiamo utilizzato l'oscilloscopio, mentre per GEN 2 il generatore di forme d'onda. Infine, per valutare la tensione in uscita abbiamo utilizzato l'oscilloscopio.}
+\end{wrapfigure}
+
+Per risolvere il circuito consideriamo, definendo le tensioni dei generatori 1 e 2 rispettivamente $V_1$ e $V_2$, le seguenti equazioni derivanti dalle leggi di Kirkhhoff e dalla (\ref{eq:regola_I})
+$$V_1 - V_A =I_1 R_1 \qquad V_2 - V_A =I_2 R_2$$
+$$V_A - V_{out} =(I_1+I_2) R_f$$
+Per (\ref{eq:regola_V}) vale inoltre che $V_A=V_B=0$; dunque otteniamo, sostituendo le correnti nell'ultima equazione sopra
+$$V_{out}=-R_f \left( \frac{V_1}{R_1}+\frac{V_2}{R_2}\right)$$
+
+Si potrebbe dunque definire un peso relativo $\phi_i$ ad ogni segnale dato dal rapporto fra $R_f$ ed $R_{i}$ (con $i=1,2$) e scrivere una formula del tipo
+$$V_{out}=-\sum^{2}_{i=1} \frac{R_f}{R_{i}}V_{i}=-\sum^{2}_{i=1} \phi_i V_{i}$$
+
+Durante l'esperienza abbiamo optato per valori semplici dei rapporti fra le resistenze. Abbiamo dunque utilizzato i seguenti valori di resistenza: $R_f=R_1=100 k\Omega$ e $R_2=50 k\Omega$; si ottengono dunque $\phi_1=1$ e $\phi_2=2$.
+
+Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
 \end{document}
