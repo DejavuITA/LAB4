@@ -1,0 +1,5 @@
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+Resistenza variabile [\si{\ohm}] & 0.54 & 35.1 & 412 & 1021 & 1996 & 3068 & 4170 & 4719 \\ 
+\hline 
+Corrente nel carico [\si{\milli\ampere}] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 \\ 
+\end{tabular}
