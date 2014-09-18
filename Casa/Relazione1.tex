@@ -7,7 +7,6 @@ In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori
 \section{Materiali}
 
 \begin{itemize} [noitemsep]
-\item \si{\ampere\per\second}
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth $70 MHz$, sample rate $2 GSa/s$);
 \item Generatore di tensione continua Agilent E3631A (max $\pm 25 V$ o $\pm 6V$);
 \item Generatore di tensione Agilent 33120A con range di frequenza da $100 \mu Hz$ a $15 Mhz$;
@@ -38,7 +37,7 @@ Queste regole verranno utilizzate durante questa sessione per valutare la rispos
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=6cm]{../E01/latex/alimentazione.pdf}}
- \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=C_2=0.1 \mu F$. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
+ \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=(0.112 \pm 0.001)$ \si{\micro\farad} $C_2=(0.095\pm0.001)$ \si{\micro\farad}. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
  \label{gr:costante}
 \end{figure}
 
@@ -68,7 +67,7 @@ Otteniamo dunque che la tensione di output si modificherà, ad opera dell'OPAMP,
 
 $$V_{out}=-\frac{R_2}{R_1} V_{gen}$$
 
-Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1 mA$, discostandoci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20 mA$); e avendo a disposizione una resistenza $R_1=3.85 \pm 0.01 k\Omega$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1 mA$ (considerando gli errori sull'ultima cifra come unitari).
+Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1 mA$, discostandoci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20 mA$); e avendo a disposizione una resistenza $R_1=3.85 \pm 0.01 k\Omega$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1 mA$.
 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -77,6 +76,8 @@ Resistenza variabile [$\Omega$] & 0.54 & 35.1 & 412 & 1021 & 1996 & 3068 & 4170 
 Corrente nel carico [$mA$] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 \\ 
 \end{tabular}
 \end{center}
+
+Gli errori sulla tabella sono uguali, cioè unitari sull'ultima cifra del valore, sia per le resistenza che per le correnti.
 
 \section{Sommatore Pesato}
 
@@ -99,20 +100,24 @@ $$V_{out}=-R_f \left( \frac{V_1}{R_1}+\frac{V_2}{R_2}\right)$$
 Si potrebbe dunque definire un peso relativo $\phi_i$ ad ogni segnale dato dal rapporto fra $R_f$ ed $R_{i}$ (con $i=1,2$) e scrivere una formula del tipo
 $$V_{out}=-\sum^{2}_{i=1} \frac{R_f}{R_{i}}V_{i}=-\sum^{2}_{i=1} \phi_i V_{i}$$
 
-Durante l'esperienza abbiamo optato per valori semplici dei rapporti fra le resistenze. Abbiamo dunque utilizzato i seguenti valori di resistenza: $R_f=R_1=100 k\Omega$ e $R_2=50 k\Omega$; si ottengono dunque $\phi_1=1$ e $\phi_2=2$.
+Durante l'esperienza abbiamo optato per valori semplici dei rapporti fra le resistenze, utilizzando i seguenti valori: $R_f=R_1=100 k\Omega$ e $R_2=50 k\Omega$. Si ottengono dunque $\phi_1=1$ e $\phi_2=2$.
 
 Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
+$$$$
+
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinsin.pdf}}
+   {\includegraphics[width=16.5cm]{../E01/latex/sinsin.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=800 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda sinusoidale di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
  \label{gr:onde1}
 \end{figure}
 
+$$$$
+
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinquad.pdf}}
+   {\includegraphics[width=16.5cm]{../E01/latex/sinquad.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=900 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che anche in questo caso l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
  \label{gr:onde2}
 \end{figure}
