@@ -4,6 +4,8 @@
 *.aux
 *.toc
 *relazione.pdf
+*quaderno.pdf
+*Quaderno/ di/ laboratorio.pdf
 *.synctex.gz
 *~
 *.out
