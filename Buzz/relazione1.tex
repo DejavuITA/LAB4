@@ -1,26 +1,27 @@
 \section{Amplificatori Operazionali Ideali - 16.09.2014}
 
-\subsection{Introduzione}
-
-In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori operazionali e valutato la loro tensione di output.
+In questa prima sessione di laboratorio abbiamo preparato la breadboard con il circuito di alimentazione per l'amplificatore operazionale (opamp) che useremo anche nelle successive esperienze.
+Una volta preparata l'alimentazione, abbiamo montato due circuiti con amplificatori operazionali e valutato il loro funzionamento misurando la loro tensione di output.
 
 \subsection{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
-\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate 2 GSa/s);
+\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
 \item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
 \item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
 \item Multimetro Agilent 34410A (utilizzato come amperometro e per verificare i valori delle resistenze);
-\item Un amplificatore operazionale UA741;
+\item Un amplificatore operazionale $\mu$A741;
 \item Resistenze di vari valori;
-\item Due capacità da \SI{0.1}{\micro\farad};
+\item Due capacità da \SI{100}{\nano\farad};
 \item un trimmer (potenziometro);
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
 \subsection{Premessa sugli amplificatori operazionali ideali}
 
-Durante l'esperienza valuteremo l'amplificatore operazionale considerandolo come ideale. Infatti, in questa approssimazione (peraltro non eccessivamente limitante visti i valori di corrente in gioco nel nostro caso), valgono (considerando come A e B rispettivamente gli ingressi invertente e non invertente):
+Nelle nostre esperienze tratteremo gli amplificatori operazionali considerandoli componenti ideali. Tale approssimazione non è limitante visti i valori di corrente e gli errori in gioco nel nostro caso.
+Nel modello ideale il guadagno è infinito, così come anche l'impedenza di ingresso, mentre l'impedenza di uscita è nulla e pure il guadagno di modo comune.
+Infine per un amplificatore operazionale ideale provvisto di circuito di retroazione negativo valgono le seguenti \textit{regole d'oro} (siano A e B rispettivamente gli ingressi invertente e non invertente):
 
 \begin{equation}
 \Delta V_{AB}=0
@@ -31,86 +32,106 @@ I_{AB}=0
 \label{eq:regola_I}
 \end{equation}
 
-cioè la ddp fra l'ingresso invertente e non invertente è portato ad essere nullo dall'amplificatore operazionale modificando il valore di tensione in output (il cosiddetto \textit{ground virtuale} dato che nei nostri casi l'ingresso non invertente è collegato alla comune del circuito); e la corrente assorbita dall'amplificatore è nulla.
-Queste regole verranno utilizzate durante questa sessione per valutare la risposta del circuito a segnali in ingresso, e si intendono utilizzate per tutte le sessioni in cui l'amplificatore è considerato ideale.
+Di queste due equazioni, la (\ref{eq:regola_V}) asserisce che la differenza di potenziale fra l'ingresso invertente e il non invertente è resa nulla dall'amplificatore tramite il circuito di retroazione negativo.
+La seconda equazione, invece, afferma che la corrente assorbita dai terminali di ingresso dell'amplificatore è nulla.
 
-\begin{figure}[ht]
+Queste \textit{regole d'oro} sono indispensabili per l'analisi della risposta in uscita del circuito ad un segnale in entrata e verranno utilizzate ogniqualvolta verrà applicato il modello di opamp ideale.
+
+\begin{SCfigure}[][ht]
  \centering
-   {\includegraphics[width=6cm]{../E01/latex/alimentazione.pdf}}
- \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=C_2=0.1 \mu F$. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
+	\includegraphics[width=6.5cm]{../E01/latex/alimentazione.pdf}
+	\caption{In questo grafico è mostrato lo schema di alimentazione dell'opamp. Le capacità hanno un valore nominale di $C_1=C_2= \SI{100}{\nano\farad}$. La tensione di alimentazione è impostata a $V^+ = \SI{15}{\volt}$ e a $V^- = \SI{-15}{\volt}$ ed è fornita dal generatore di tensione costante.\\
+\newline\newline\newline}
  \label{gr:costante}
-\end{figure}
+\end{SCfigure}
 
-Inoltre, per maggiore chiarezza degli schemi circuitali, l'amplificatore si intende collegato all'alimentazione ($\pm 15 V$); e, al fine di evitare problemi di noise durante l'alimentazione, abbiamo collegato l'alimentazione a due capacità come nello schema.
+Per quanto riguarda l'alimentazione del circuito, abbiamo collegato i terminali $V^+$ e $V^-$ ad alimentazioni rispettivamente di \SI{+15}{\volt} e \SI{-15}{\volt}. Inoltre, in quanto immersi in un ambiente elettronicamente rumoroso, abbiamo inserito nel circuito due capacitori con lo scopo di evitare problemi di noise elettronico.
+Per maggiore chiarezza di esposizione, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.
 
-\newpage
+%\newpage
 \subsection{Generatore di corrente}
 
-In questo circuito montiamo un generatore di corrente costante, cioè un dispositivo in grado di erogare una corrente costante indipendentemente dal carico a cui è sottoposto. Per valutare la risposta a diverse resistenze di carico abbiamo dunque utilizzato come $R_f$ una resistenza variabile di tipo \textit{trimmer}. Lo schema circuitale è in figura.
+Come primo circuito abbiamo montato un generatore di corrente costante, ossia un dispositivo in grado di erogare una corrente costante indipendentemente dal carico a cui è collegato.
+Poiché il nostro interesse era osservare il comportamento del circuito per diversi valori della resistenza di carico $R_2$, abbiamo utilizzato \textit{trimmer} come resistenza variabile. In Figura \ref{fig:gen_continua} è riportato lo schema circuitale.
 
-\begin{wrapfigure}[21]{r}{0.55\textwidth}
+\begin{wrapfigure}[18]{r}{0.52\textwidth}
   \begin{center}
-    \includegraphics[width=0.40\textwidth]{../E01/latex/c1.pdf}
+    \includegraphics[width=0.42\textwidth]{../E01/latex/c1.pdf}
   \end{center}
-  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=3.85 \pm 0.01 k\Omega$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è utilizzato il multimetro, mentre per alimentare l'OPAMP e come generatore di tensione costante in figura, abbiamo utillizzato il generatore di tensione continua.}
+  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=3.85 \pm 0.01 \,\si{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utillizzato il generatore DC Agilent E3631A.}
+\label{fig:gen_continua}
 \end{wrapfigure}
 
-Risolviamo ora il circuito. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo. Dunque varrà
+Utilizzeremo ora le \textit{regole d'oro} per risolvere il circuito. B si trova a potenziale di comune, quindi per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo. Dunque è verificato
 \begin{equation}
 V_{gen}=I R_1
 \label{eq:gen_1}
 \end{equation}
-Per (\ref{eq:regola_I}) e la legge di Kirkhhoff sui nodi, avremo invece che la corrente passante per la resistenza di carico è uguale alla corrente $I$ di (\ref{eq:gen_1}).
+Per la legge di Kirkhhoff sui nodi e dalla eq. (\ref{eq:regola_I}), si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq:gen_1}).
 
-Otteniamo dunque che la tensione di output si modificherà, ad opera dell'OPAMP, in modo da far passare sempre lo stesso valore di corrente attraverso $R_2$; ciò avviene per il fenomeno di retroazione negativa, che ci permette di controllare la tensione di output tramite la resistenza di feedback, che in questo caso è proprio $R_2$, e di ottenere dunque una corrente costante passante per il circuito di feedback. Imponendo l'uguaglianza della corrente possiamo inoltre trovare il valore della tensione di uscita
-$$V_{out}=\frac{R_2}{R_1} V_{gen}$$
+Come possiamo osservare, l'intensità di corrente passante per la resistenza $R_2$ è indipendente dal valore della resistenza stessa. Infatti la tensione di output dell'opamp verrà da esso stesso modificata in modo da far passare sempre lo stesso valore di corrente attraverso il carico.
+Ciò avviene grazie al fenomeno di \textit{negative feedback}, o retroazione negativa, che permette all'opamp di controllare la tensione di output in modo tale da verificare l'eq. (\ref{eq:regola_V}).
+Conoscendo la corrente attraversante $R_2$, possiamo inoltre ricavare il valore di tensione in uscita:
 
-Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1 mA$ in modo da discostarci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20 mA$); e avendo a disposizione una resistenza $R_1=3.85 \pm 0.01 k\Omega$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1 mA$ (considerando gli errori sull'ultima cifra come unitari).
+$$V_{out}=-\frac{R_2}{R_1} V_{gen}$$
 
-\begin{center}
+Per quanto riguarda le misure da noi ricavate, abbiamo deciso di misurare la corrente $I$ passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'opamp e la resistenza di carico $R_2$.
+Abbiamo scelto di progettare il circuito affinché fornisse \SI{1}{\milli\ampere}, in modo da rimanere nel range di funzionamento ideale dell'opamp (\SIrange{10}{20}{\milli\ampere}).
+Avendo a disposizione una resistenza $R_1=3.85 \pm 0.01\,\si{\kilo\ohm}$, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. A seguire sono riportati i valori sperimentali da noi ricavati (gli errori sono sottointesi essere unitari sull'ultima cifra significativa).
+
+\begin{table}[H]
+\center
+\caption{Dati da noi registrati con relativi errori.}
+{\renewcommand{\arraystretch}{1.4}%
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
-Resistenza variabile [$\Omega$] & 0.54 & 35.1 & 412 & 1021 & 1996 & 3068 & 4170 & 4719 \\ 
+$R_2$ [\si{\ohm}] & 0.54 & 35.1 & 412 & 1021 & 1996 & 3068 & 4170 & 4719 \\ 
 \hline 
-Corrente nel carico [$mA$] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 \\ 
-\end{tabular}
-\end{center}
+$I$ [\si{\milli\ampere}] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 \\ 
+\end{tabular}}
+\end{table}
+
+
+È evidente che il circuito da noi creato fornisce un valore di corrente indipendente dal carico ad esso collegato, quantomeno nel range da noi testato.
 
 \subsection{Sommatore Pesato}
 
-Valutiamo ora il sommatore pesato, cioè un circuito che dati due segnali in ingresso li somma con relativi pesi dati dal rapporto fra la resistenza di feedback ($R_f$) e quella a loro associata ($R_1$ e $R_2$). Lo schema circuitale è in figura.
+Il secondo circuito che abbiamo preso in esame è un sommatore pesato: nel nostro caso il circuito aquisiva due segnali in ingresso e produceva in uscita un unico segnale ottenuto dalla somma pesata dei due ingressi. In particolare si osserva che il peso di ciascun segnale è dato dal rapporto tra la resistenza di feedback $R_f$ e la resistenza associata al canale di ingresso, $R_1$ e $R_2$. In Figura \ref{fig:sommatore_pesato} è riportato lo schema del circuito.
 
 \begin{wrapfigure}[21]{l}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E01/latex/c2.pdf}
   \end{center}
-  \caption{Schema del sommatore pesato. Come valori abbiamo utilizzato $R_f \approx R_1=(99.9 \pm 0.1) k \Omega$ e $R_2=(49.8 \pm 0.1) k \Omega$, dove per $R_2$ è stato necessario utilizzare un parallelo di due resistenza da $100 k\Omega$. Come GEN 1 abbiamo utilizzato l'oscilloscopio, mentre per GEN 2 il generatore di forme d'onda. Infine, per valutare la tensione in uscita abbiamo utilizzato l'oscilloscopio.}
+  \caption{Schema del sommatore pesato. Come valori abbiamo utilizzato $R_f \approx R_1=(99.9 \pm 0.1)\,\si{\kilo\ohm}$ e $R_2=(49.8 \pm 0.1)\,\si{\kilo\ohm}$, dove per $R_2$ è stato necessario utilizzare un parallelo di due resistenze da \SI{100}{\kilo\ohm}. Come GEN 1 abbiamo utilizzato l'oscilloscopio, mentre per GEN 2 il generatore di forme d'onda. Infine, per valutare la tensione in uscita abbiamo utilizzato l'oscilloscopio.}
+\label{fig:sommatore_pesato}
 \end{wrapfigure}
 
-Per risolvere il circuito consideriamo, definendo le tensioni dei generatori 1 e 2 rispettivamente $V_1$ e $V_2$, le seguenti equazioni derivanti dalle leggi di Kirkhhoff e dalla (\ref{eq:regola_I})
+Per risolvere il circuito utilizziamo ancora una volta le \textit{regole d'oro} e le leggi di Kirchhoff. Definendo le tensioni dei generatori 1 e 2 relativamente $V_1$ e $V_2$, si ricavano le seguenti equazioni:
 $$V_1 - V_A =I_1 R_1 \qquad V_2 - V_A =I_2 R_2$$
 $$V_A - V_{out} =(I_1+I_2) R_f$$
-Per (\ref{eq:regola_V}) vale inoltre che $V_A=V_B=0$; dunque otteniamo, sostituendo le correnti nell'ultima equazione sopra
-$$V_{out}=-R_f \left( \frac{V_1}{R_1}+\frac{V_2}{R_2}\right)$$
+Essendo però B connesso al potenziale di comune, da (\ref{eq:regola_V}) si ottiene che $V_A = V_B = 0$ che sostituita nelle equazioni precedenti porta a:
+\begin{equation}
+V_{out}=-R_f \left( \frac{V_1}{R_1}+\frac{V_2}{R_2}\right)
+\label{eq:sum_v_out}
+\end{equation}
 
-Si potrebbe dunque definire un peso relativo $\phi_i$ ad ogni segnale dato dal rapporto fra $R_f$ ed $R_{i}$ (con $i=1,2$) e scrivere una formula del tipo
-$$V_{out}=-\sum^{2}_{i=1} \frac{R_f}{R_{i}}V_{i}=-\sum^{2}_{i=1} \phi_i V_{i}$$
+Analizzando il caso generale di sommatore a cui sono connessi \textit{n} canali in ingresso si può riscrivere la formula (\ref{eq:sum_v_out}) più elegantemente. Definendo il peso relativo di ogni segnale come $\phi_i = \frac{R_f}{R_i}$:
+\begin{equation*}
+V_{out}=-\sum^{n}_{i=1} \frac{R_f}{R_{i}}V_{i}=-\sum^{n}_{i=1} \phi_i V_{i}
+\end{equation*}
 
-Durante l'esperienza abbiamo optato per valori semplici dei rapporti fra le resistenze. Abbiamo dunque utilizzato i seguenti valori di resistenza: $R_f=R_1=100 k\Omega$ e $R_2=50 k\Omega$; si ottengono dunque $\phi_1=1$ e $\phi_2=2$.
-
+Noi abbiamo optato per valori semplici dei pesi: $\phi_1=1$ e $\phi_2=2$. Per ottenere questi valori abbiamo utilizzato i seguenti valori di resistenza: $R_f=R_1=\SI{100}{\kilo\ohm}$ e $R_2=\SI{50}{\kilo\ohm}$.
 Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinsin.pdf}}
- \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=800 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda sinusoidale di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
+   {\includegraphics[width=16.5cm]{../E01/latex/sinsin.pdf}}
+ \caption{Grafico della tensione in uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=800$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda sinusoidale di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Si può verificare facilmente che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=2500$ \si{\milli\volt}.}
  \label{gr:onde1}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinquad.pdf}}
- \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=900 Hz$ e $V^1_{pp}=250 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=100 Hz$ e $V^2_{pp}=500 mV$. Notiamo inoltre che anche in questo caso l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
+   {\includegraphics[width=16.5cm]{../E01/latex/sinquad.pdf}}
+ \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=900$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda quadra di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Anche in questo caso si può verificare facilmente che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=2500$ \si{\milli\volt}.}
  \label{gr:onde2}
 \end{figure}
-
-%\clearpage

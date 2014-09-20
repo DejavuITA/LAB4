@@ -25,8 +25,8 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 f1 = host_subplot(111, axes_class=AA.Axes)
 
 out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
-in1 = f1.errorbar(x=t_01*1000, y=0.25*np.sin(t_01*2*pi*900), fmt='-', c='red', linewidth=2)
-in2 = f1.errorbar(x=t_01*1000, y=1*np.sign(np.sin(t_01*2*pi*100)), fmt='-', c='green', linewidth=2)
+in1 = f1.errorbar(x=t_01*1000, y=0.25*np.sin(t_01*2*pi*900), fmt='--', c='green', linewidth=2)
+in2 = f1.errorbar(x=t_01*1000, y=0.5*np.sign(np.sin(t_01*2*pi*100)), fmt=':', c='red', linewidth=2)
 
 f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
