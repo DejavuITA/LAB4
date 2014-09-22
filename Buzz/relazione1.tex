@@ -1,7 +1,7 @@
 \section{Amplificatori Operazionali Ideali - 16.09.2014}
 
 In questa prima sessione di laboratorio abbiamo preparato la breadboard con il circuito di alimentazione per l'amplificatore operazionale (opamp) che useremo anche nelle successive esperienze.
-Una volta preparata l'alimentazione, abbiamo montato due circuiti con amplificatori operazionali e valutato il loro funzionamento misurando la loro tensione di output.
+Una volta preparata l'alimentazione, abbiamo montato due circuiti con opamp e valutato il loro funzionamento misurando la loro tensione di output.
 
 \subsection{Strumenti e materiali}
 
@@ -53,20 +53,20 @@ Per maggiore chiarezza di esposizione, questa configurazione sarà nascosta negl
 
 Come primo circuito abbiamo montato un generatore di corrente costante, ossia un dispositivo in grado di erogare una corrente costante indipendentemente dal carico a cui è collegato.
 Poiché il nostro interesse era osservare il comportamento del circuito per diversi valori della resistenza di carico $R_2$, abbiamo utilizzato \textit{trimmer} come resistenza variabile. In Figura \ref{fig:gen_continua} è riportato lo schema circuitale.
-
-\begin{wrapfigure}[18]{r}{0.52\textwidth}
-  \begin{center}
-    \includegraphics[width=0.42\textwidth]{../E01/latex/c1.pdf}
-  \end{center}
-  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=3.85 \pm 0.01 \,\si{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utillizzato il generatore DC Agilent E3631A.}
-\label{fig:gen_continua}
-\end{wrapfigure}
-
 Utilizzeremo ora le \textit{regole d'oro} per risolvere il circuito. B si trova a potenziale di comune, quindi per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo. Dunque è verificato
 \begin{equation}
 V_{gen}=I R_1
 \label{eq:gen_1}
 \end{equation}
+
+\begin{wrapfigure}[18]{r}{0.52\textwidth}
+  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=3.85 \pm 0.01 \,\si{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utillizzato il generatore DC Agilent E3631A.}
+  \begin{center}
+    \includegraphics[width=0.42\textwidth]{../E01/latex/c1.pdf}
+  \end{center}
+\label{fig:gen_continua}
+\end{wrapfigure}
+
 Per la legge di Kirkhhoff sui nodi e dalla eq. (\ref{eq:regola_I}), si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq:gen_1}).
 
 Come possiamo osservare, l'intensità di corrente passante per la resistenza $R_2$ è indipendente dal valore della resistenza stessa. Infatti la tensione di output dell'opamp verrà da esso stesso modificata in modo da far passare sempre lo stesso valore di corrente attraverso il carico.
@@ -124,16 +124,21 @@ Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=16.5cm]{../E01/latex/sinsin.pdf}}
- \caption{Grafico della tensione in uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=800$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda sinusoidale di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Si può verificare facilmente che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=2500$ \si{\milli\volt}.}
+   {\includegraphics[width=14.8cm]{../E01/latex/sinsin.pdf}}
+ \caption{Grafico della tensione in uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=800$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda sinusoidale di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Si può verificare facilmente per l'ampiezza massima che $V_{out} = \phi_1 V^1_{pp}+\phi_2 V^2_{pp}$.}
  \label{gr:onde1}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=16.5cm]{../E01/latex/sinquad.pdf}}
- \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=900$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda quadra di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Anche in questo caso si può verificare facilmente che l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=2500$ \si{\milli\volt}.}
+   {\includegraphics[width=14.8cm]{../E01/latex/sinquad.pdf}}
+ \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) produce un'onda sinusoidale di $\nu=900$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) produce un'onda quadra di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Anche in questo caso si può verificare facilmente per l'ampiezza massima che $V_{out} = \phi_1 V^1_{pp}+\phi_2 V^2_{pp}$.}
  \label{gr:onde2}
 \end{figure}
 
-Da entrambi i grafici si osserva facilmente come le previsioni teoriche siano state rispettate dai dati sperimentali.
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=14.8cm]{../E01/latex/battimenti_ideali.pdf}}
+ \caption{In questo grafico il generatore 1 (oscilloscopio) produce un'onda sinusoidale di $\nu_1=550$ \si{\hertz} e $V^1_{pp}=1000$ \si{\milli\volt}, mentre il generatore 2 (Agilent 33120A) produce un'onda sinusoidale di $\nu_2=500$ \si{\hertz} e $V^2_{pp}=500$ \si{\milli\volt}. In questa condizione si può notare che la somma di due onde sinusoidali di ugual ampiezza ma con frequenza simile produce un'onda sinusoidale la cui ampiezza è modulata da un coseno secondo la legge $V_{out} = 2Acos\left[\pi(\nu_1 - \nu_2)t\right]sin\left[\pi(\nu_1 + \nu_2)t\right]$. Si può notare che nel grafico in Figura \ref{gr:onde1} l'effetto dei battimenti non è osservabile poiché le frequenze delle due onde non sono simili} 
+ \label{gr:battimenti}
+\end{figure}
