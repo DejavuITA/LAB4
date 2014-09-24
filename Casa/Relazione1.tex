@@ -1,10 +1,10 @@
-\part*{16.09.2014 - Amplificatori Operazionali Ideali}
+\section{16.09.2014 - Amplificatori Operazionali Ideali}
 
-\section{Introduzione}
+\subsection{Introduzione}
 
 In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori operazionali: un generatore di corrente costante e un sommatore pesato. Nel primo caso abbiamo controllato se la corrente rimanesse costante al variare della resistenza di carico; nel secondo caso abbiamo valutato la tensione di uscita.
 
-\section{Materiali}
+\subsection{Materiali}
 
 \begin{itemize} [noitemsep]
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth $70$ \si{\mega\hertz}, sample rate $2$ GSa/s);
@@ -17,7 +17,7 @@ In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
-\section{Premessa sugli amplificatori operazionali ideali}
+\subsection{Premessa sugli amplificatori operazionali ideali}
 
 Durante l'esperienza valuteremo l'amplificatore operazionale considerandolo come ideale. Infatti, in questa approssimazione (peraltro non eccessivamente limitante visti i valori di corrente in gioco nel nostro caso), valgono (considerando come A e B rispettivamente gli ingressi invertente e non invertente):
 
@@ -42,7 +42,7 @@ Queste regole verranno utilizzate durante questa sessione per valutare la rispos
 
 Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo collegato l'alimentazione a due capacità come nello schema in Figura \ref{gr:costante}.
 
-\section{Generatore di corrente}
+\subsection{Generatore di corrente}
 
 In questo circuito abbiamo assemblato un generatore di corrente costante, cioè un dispositivo in grado di erogare una corrente costante ai capi di una resistenza (che definiremo \textit{resistenza di carico} $R_c$), indipendentemente dal valore di quest'ultima. Per valutare questa caratteristica abbiamo dunque utilizzato come $R_c=R_2$ una resistenza variabile di tipo \textit{trimmer}. Lo schema circuitale è in Figura \ref{gen_continua}.
 
@@ -78,9 +78,9 @@ Corrente nel carico [\si{\milli\ampere}] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002
 
 Gli errori sulla tabella sono uguali, cioè unitari sull'ultima cifra del valore, sia per le resistenza che per le correnti.
 
-\section{Sommatore Pesato}
+\subsection{Sommatore Pesato}
 
-\subsection{Circuito}
+\subsubsection{Circuito}
 
 Valutiamo ora il sommatore pesato, cioè un circuito che dati alcuni segnali in ingresso (due nel nostro caso) li somma con relativi pesi dati dal rapporto fra la resistenza di feedback ($R_f$) e quella a loro associata ($R_1$ e $R_2$). Lo schema circuitale è in Figura \ref{sommatore_pesato}.
 
@@ -103,7 +103,7 @@ $$V_{out}=-\sum^{2}_{i=1} \frac{R_f}{R_{i}}V_{i}=-\sum^{2}_{i=1} \phi_i V_{i}$$
 
 Durante l'esperienza abbiamo optato per valori semplici dei rapporti fra le resistenze, utilizzando i seguenti valori: $R_f=R_1=100 k\Omega$ e $R_2=50 k\Omega$. Si ottengono dunque $\phi_1=1$ e $\phi_2=2$.
 
-\subsection{Grafici}
+\subsubsection{Grafici}
 
 Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
@@ -125,7 +125,7 @@ $$$$
  \label{gr:onde2}
 \end{figure}
 
-\subsection{Battimenti}
+\subsubsection{Battimenti}
 
 Utilizzando due forme d'onda sinusoidali con il sommatore, abbiamo potuto il battimento, fenomeno che si verifica quando la differenza fra le frequenze delle onde in ingresso è sufficientemente bassa.
 
