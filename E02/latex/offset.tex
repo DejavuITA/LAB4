@@ -1,5 +1,3 @@
-\subsection{Obiettivo}
-Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu a 741$ reale. Ne analizzeremo l'offset e le correnti di bias cercando di stimarne un valore costruendo dei circuiti ad hoc. Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti. 
 
 
 
@@ -47,16 +45,18 @@ Riportiamo nella seguente tabella i valori di offset calcolati nei due casi:
 
 
 \begin{savenotes}
-\begin{tabular}{c|c|c|c|c}
-$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) \footnote{Abbiamo riportato solo il valore per il circuito invertente in quanto il guadagno del non invertente differisce di 1.} & $V_{out}$ & $V_{off}$ \\ 
+\begin{tabular}{c|c|c|c|c|c|c}
+$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) & Gain (non inv) &$V_{out}$ & $V_{off}$(inv) &$V_{off}$(non inv) \\ 
 \hline 
-$119.8\pm0.1$ & $9.911\pm0.001$  & $-82.7\pm??$ & $-103.5 \pm 0.5$ & $-1.25 \pm??$\\
+$119.8\pm0.1$ & $9.911\pm0.001$  & $-82.7\pm??$ &$83.7\pm??$&  $-103.5 \pm 0.5$ & $-1.25 \pm??$ &\\
 \hline
-$119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1025 \pm 2$ & $-1.23 \pm ??$ \\
+$119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ & $830.2\pm??$ &$ -1025 \pm 2$ & $-1.23 \pm ??$ & \\
 
 \end{tabular}
 \end{savenotes}
 
+
+Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$
 
 Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
 
