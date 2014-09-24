@@ -14,7 +14,108 @@ $$FIGURA$$
 
 
 
-Con il circuito sopra riportato non abbiamo però una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore (invertente o non invertente). Trattiamo per primo il caso INVERTENTE. 
+Con il circuito sopra riportato non abbiamo però una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore (invertente o non invertente).
+
+$$FIGURA$$
+
+
+Trattiamo per primo il caso INVERTENTE. Assumiamo che la tensione nel punto A sia $V_A=V_{off}$ e $V_B=0$. L'analisi del circuito è ora banale e risulta immediatamente $V_{out}=-\frac{R_2}{R_1}V_{off}$. Ovviamente, visto che il punto A è collegato al comune, la sua tensione sarà identica a quella del punto A. La tensione $V_{off}$ è infatti un valore che concerne la struttura stessa dell'op-amp. Assumere che il punto A sia alla tensione $V_{off}$ permette dunque di analizzare il circuito. 
+
+Ora analogamente tratteremo il caso NON INVERTENTE. per fare ciò assumiamo $V_B=-V_{off}$ e $V_A=0$. L'analisi risulta dunque identica a quella di un amplificatore non invertente, ovvero $V_{out}=(1+\frac{R_2}{R_1})V_{off}$. 
+
+I valori nominali delle componenti circuitali utilizzate sono: $R_1=\SI{120}{\ohm}$ e $R_2=\SI{10/100}{\kilo\ohm}$.
+
+
+
+Riportiamo nella seguente tabella i valori di offset calcolati nei due casi:
+
+
+
+\begin{tabular}{c|c|c|c|c}
+$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain & $V_{out}$ & $V_{off}$ \\ 
+\hline 
+ & & & &\\
+\hline
+ & & & &\\
+
+\end{tabular}
+
+
+Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
+
+Il datasheet dell'amplificatore consiglia di utilizzare un circuito a maglia aperta senza resistenze. Tale configurazione è consigliata sia per la simmetria prima dei due ingressi (entrambi vedono la stessa impedenza $\approx 0$) sia per il fatto che il guadagno a maglia aperta molto grande ci permette praticamente di azzerare l'offset. 
+
+Durante l'esperienza abbiamo provato ad utilizzare un circuito amplificatore per amplificare l'offset ma la presenza delle resistenze, ovviamente, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
