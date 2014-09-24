@@ -42,9 +42,9 @@ $$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
 
 Dato che l'amplificatore operazionale è considerato già stabilizzato per quanto riguarda la tensione di offset, possiamo considerare la tensione all'ingresso invertente uguale all'ingresso non invertente. Vale dunque che $V_{in}=V_{-}=0$ e si trova (considerando $I_{b^-} R_B = V^*$):
 
-$$I_{b^-}=\frac{V_{out}}{R_2}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}}$$
+$$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}}$$
 
-Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare. Dunque abbiamo optato per una resistenza $R_B$ ($V^*=I_{b^-} R_B$) e un rapporto di amplificazione $R_2/R_1 \approx R_B/ \Omega$ tali da rendere leggibile la tensione date le scale possibili del multimetro.
+Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare e considerando il risultato sopra ottenuto: volevamo che $V_{out}$ fosse almeno $10^7\approx10^8$ volte più grande della corrente, per poter utilizzare il multimetro, che ha scale di misura limitate.
 
 La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.6 \pm 0.1)$ \si{\nano\ampere}.
 
@@ -52,7 +52,7 @@ La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ott
 
 \begin{wrapfigure}[15]{r}{0.55\textwidth}
   \begin{center}
-    \includegraphics[width=0.30\textwidth]{../E02/latex/ninv_current.pdf}
+    \includegraphics[width=0.25\textwidth]{../E02/latex/ninv_current.pdf}
   \end{center}
   \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^+}$. Le resistenze utilizzate sono le medesime del circuito precedente: $R_1=100\pm1$\si{\ohm}, $R_2=99.8\pm0.1$\si{\kilo\ohm} e $R_B=99.9\pm0.1$\si{\kilo\ohm}.}
   \label{circuito:rel2_correnti_retroazione_inv}
@@ -66,4 +66,4 @@ e con considerazioni analoghe al paragrafo precedente
 
 $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}$$
 
-La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = (3.7 \pm 0.1)$ \si{\nano\ampere}.
+Anche in questo caso le resistenze sono state dimensionate come sopra. La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = (3.7 \pm 0.1)$ \si{\nano\ampere}.
