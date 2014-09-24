@@ -1,1 +1,35 @@
-\subsection{offset}
+\subsection{Obiettivo}
+Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu a 741$ reale. Ne analizzeremo l'offset e le correnti di bias cercando di stimarne un valore costruendo dei circuiti ad hoc. Premettiamo che il circuito di polarizazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti. 
+
+
+
+\subsection{Stima e correzione dell'offset}
+
+In questa prima parte dell'esperienza tratteremo il problema dell'offset. In un amplificatore ideale sappiamo quando sia ingresso invertente che ingresso non invertente sono collegati a comune il segnale in uscita è nullo. Ciò è dovuto alla perfetta simmetria interna dell'op-amp. Ovviamente nel mondo reale non è possibile realizzare tale fatto in quanto non si riescono a costruire transistor BJT con le stesse specifiche. 
+
+Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una differenza di potenziale (che ovviamente tra gli ingressi non c'è in quanto collegati entrambi a comune!) la quale viene amplificata dal guadagno a maglia aperta. Come $V_{out}$ avremo dunque un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-12.9}{\volt}). Ricordando il funzionamento di un amplificatore operazionale, possiamo dire che il circuito si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso dai \SI{-15}{\volt} utilizzati come alimentazione in quanto, come visto a lezione, il valore di tensione massimo $|V_{out}|$ è leggermente inferiore a $|V^-|$. In Fig.(??) è riportato lo schema del circuito utilizzato.
+
+
+$$FIGURA$$
+
+
+
+Con il circuito sopra riportato non abbiamo però una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore (invertente o non invertente). Trattiamo per primo il caso INVERTENTE. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
