@@ -130,16 +130,20 @@ $$$$
 Utilizzando due forme d'onda sinusoidali con il sommatore, abbiamo potuto il battimento, fenomeno che si verifica quando la differenza fra le frequenze delle onde in ingresso è sufficientemente bassa.
 
 Con due onde abbiamo che:
-$$V_{out}=\phi_1 A_1 \sin [2 \pi \nu_1 t + \theta_1] + \phi_2 A_2 \sin [2 \pi \nu_2 t + \theta_2]$$
+\begin{equation}
+V_{out}=\phi_1 A_1 \sin [2 \pi \nu_1 t + \theta_1] + \phi_2 A_2 \sin [2 \pi \nu_2 t + \theta_2]
+\label{eq: battimenti1}
+\end{equation}
 
-Supponiamo che $A=\phi_1 A_1=\phi_2 A_2$, come nel caso del grafico sotto riportato. Utilizzando le formule di prostaferesi otteniamo che
+Supponiamo che $A=\phi_1 A_1=\phi_2 A_2$, come nel caso del grafico sotto riportato, in modo da poter applicare le formule di prostaferesi. Otteniamo che
 
-$$V_{out}=2A \sin \left[4 \pi (\nu_1 + \nu_2) t + \frac{\theta_1+\theta_2}{2}\right] \cos \left[4 \pi (\nu_1 - \nu_2)t + \frac{\theta 1-\theta_2}{2}\right]$$
+$$V_{out}=2A \cos \left[\pi (\nu_1 - \nu_2)t + \frac{\theta_1-\theta_2}{2}\right] \sin \left[\pi (\nu_1 + \nu_2) t + \frac{\theta_1+\theta_2}{2}\right]$$
 
+Dunque, se consideriamo $\nu_1 + \nu_2 >> |\nu_1 - \nu_2|$, otteniamo il battimento. Notiamo inoltre che, nel grafico in Figura \ref{gr:onde1} (caso in cui non vale la condizione sopra), non si osserva il fenomeno del battimento.
 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=17.5cm]{../E01/latex/battimenti_ideali.pdf}}
- \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=900$ \si{\hertz} e $V^1_{pp}=500$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=100$ \si{\hertz} e $V^2_{pp}=1000$ \si{\milli\volt}. Notiamo inoltre che anche in questo caso l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=2500$ \si{\milli\volt}.}
+ \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=550$ \si{\hertz} e $V^1_{pp}=1000$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=500$ \si{\hertz} e $V^2_{pp}=250$ \si{\milli\volt}. Notiamo inoltre che l'ampiezza massima è data da $A = 2 \phi_1 A_1 = 2 \phi_2 A_2 = 1000$ \si{\milli\volt}, coerentemente con la teoria sopra esposta. L'output teorico è stato valutato con un fit sulla legge (\ref{eq: battimenti1}).}
  \label{gr:battimenti}
 \end{figure}
