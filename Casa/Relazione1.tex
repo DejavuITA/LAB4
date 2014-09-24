@@ -59,8 +59,8 @@ Risolviamo ora il circuito, considerando la tensione fornita dal generatore di t
 V_{gen} - V_A = V_{gen} = I_1 R_1
 \label{eq:gen_1}
 \end{equation}
-$$V_A-V_{out} = -V_{out} = I_2 R_2$$
-Per (\ref{eq:regola_I}) e la legge di Kirkhhoff sui nodi, avremo invece che la corrente passante per la resistenza di carico è uguale alla corrente di (\ref{eq:gen_1}). Dunque $I=I_1=I_2$.
+$$V_{out} - V_A = V_{out} = I_2 R_2$$
+Per (\ref{eq:regola_I}) e la legge di Kirkhhoff sui nodi, avremo invece che la corrente passante per la resistenza di carico è uguale alla corrente di (\ref{eq:gen_1}) in modulo e varrà: $I=I_1=-I_2$.
 
 Otteniamo dunque che la tensione di output si modificherà, ad opera dell'OPAMP, in modo da far passare sempre lo stesso valore di corrente attraverso $R_2$; ciò avviene per il fenomeno di retroazione negativa, che ci permette di controllare la tensione di output tramite la resistenza di feedback, che in questo caso è $R_2$, e di ottenere dunque una corrente costante passante per il circuito di feedback. Imponendo l'uguaglianza della corrente possiamo inoltre trovare il valore della tensione di uscita
 
