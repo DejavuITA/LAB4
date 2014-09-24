@@ -7,16 +7,32 @@ Scopo di questa esperienza è quello di studiare un amplificatore operazionale $
 
 In questa prima parte dell'esperienza tratteremo il problema dell'offset. In un amplificatore ideale sappiamo quando sia ingresso invertente che ingresso non invertente sono collegati a comune il segnale in uscita è nullo. Ciò è dovuto alla perfetta simmetria interna dell'op-amp. Ovviamente nel mondo reale non è possibile realizzare tale fatto in quanto non si riescono a costruire transistor BJT con le stesse specifiche. 
 
-Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una differenza di potenziale (che ovviamente tra gli ingressi non c'è in quanto collegati entrambi a comune!) la quale viene amplificata dal guadagno a maglia aperta. Come $V_{out}$ avremo dunque un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-12.9}{\volt}). Ricordando il funzionamento di un amplificatore operazionale, possiamo dire che il circuito si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso dai \SI{-15}{\volt} utilizzati come alimentazione in quanto, come visto a lezione, il valore di tensione massimo $|V_{out}|$ è leggermente inferiore a $|V^-|$. In Fig.(??) è riportato lo schema del circuito utilizzato.
+Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una differenza di potenziale (che ovviamente tra gli ingressi non c'è in quanto collegati entrambi a comune!) la quale viene amplificata dal guadagno a maglia aperta. Come $V_{out}$ avremo dunque un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-12.9}{\volt}). Ricordando il funzionamento di un amplificatore operazionale, possiamo dire che il circuito si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso dai \SI{-15}{\volt} utilizzati come alimentazione in quanto, come visto a lezione, il valore di tensione massimo $|V_{out}|$ è leggermente inferiore a $|V^-|$. In Fig.(\ref{cir:open_loop}) è riportato lo schema del circuito utilizzato.
 
 
-$$FIGURA$$
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.35\textwidth}
+                 \includegraphics[width=0.70\textwidth]{../E02/latex/open_loop.pdf}
+                \caption{A gull}
+                \label{cir:open_loop}
+        \end{subfigure}%
+    \quad
+        \begin{subfigure}[b]{0.35\textwidth}
+               \includegraphics[width=0.70\textwidth]{../E02/latex/inv.pdf}
+                \caption{A tiger}
+                \label{cir:inv}
+        \end{subfigure}
+     
+\end{figure}
 
 
 
-Con il circuito sopra riportato non abbiamo però una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore (invertente o non invertente).
 
-$$FIGURA$$
+
+Con il circuito (\ref{cir:open_loop}) non abbiamo però una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore Fig.(\ref{cir:inv}) (invertente o non invertente).
+
+
 
 
 Trattiamo per primo il caso INVERTENTE. Assumiamo che la tensione nel punto A sia $V_A=V_{off}$ e $V_B=0$. L'analisi del circuito è ora banale e risulta immediatamente $V_{out}=-\frac{R_2}{R_1}V_{off}$. Ovviamente, visto che il punto A è collegato al comune, la sua tensione sarà identica a quella del punto A. La tensione $V_{off}$ è infatti un valore che concerne la struttura stessa dell'op-amp. Assumere che il punto A sia alla tensione $V_{off}$ permette dunque di analizzare il circuito. 
@@ -30,15 +46,16 @@ I valori nominali delle componenti circuitali utilizzate sono: $R_1=\SI{120}{\oh
 Riportiamo nella seguente tabella i valori di offset calcolati nei due casi:
 
 
-
+\begin{savenotes}
 \begin{tabular}{c|c|c|c|c}
-$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) & $V_{out}$ & $V_{off}$ \\ 
+$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) \footnote{Abbiamo riportato solo il valore per il circuito invertente in quanto il guadagno del non invertente differisce di 1.} & $V_{out}$ & $V_{off}$ \\ 
 \hline 
 $119.8\pm0.1$ & $9.911\pm0.001$  & $-82.7\pm??$ & $-103.5 \pm 0.5$ & $-1.25 \pm??$\\
 \hline
 $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1025 \pm 2$ & $-1.23 \pm ??$ \\
 
 \end{tabular}
+\end{savenotes}
 
 
 Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
@@ -60,7 +77,7 @@ $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1038 \pm 5$ 
 
 \end{tabular}
 
-Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei nano ampere che scorre nella resistenza $R_C$.
+Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei nano ampere che scorre nella resistenza $R_C$: $\Delta V \simeq R_C * 10^{-9} \simeq ?? \si{\micro\volt}$.
 
 
 
