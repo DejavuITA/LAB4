@@ -18,10 +18,26 @@ Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore de
 
 Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura.
 
-\subsubsection{Invertente}
+\subsubsection{Misura di $I_{b^-}$}
 
-Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V^*$ la tensione al capo di $R_B$ opposto a quello collegato all'OPAMP, vale in quel punto la legge di Kirchhoff sui nodi
+Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V_{-}$ la tensione al capo di $R_B$ collegato all'OPAMP e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
 
-$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_T}{R_B}=0$$
+$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
 
-Dato che l'amplificatore operazionale è considerato già stabilizzato per quanto riguarda la tensione di offset, possiamo considerare la tensione all'ingresso invertente uguale all'ingresso non invertente.
+Dato che l'amplificatore operazionale è considerato già stabilizzato per quanto riguarda la tensione di offset, possiamo considerare la tensione all'ingresso invertente uguale all'ingresso non invertente. Vale dunque che $V_{in}=V_{-}=0$ e si trova (considerando $I_{b^-} R_B = V^*$:
+
+$$I_{b^-}=\frac{V_{out}}{R_2}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}}$$
+
+Il valore ottenuto è dunque $I_{b^-} = (3.6 \pm 0.2)$ \si{\nano\ampere}.
+
+\subsubsection{Misura di $I_{b^-}$}
+
+Similmente a quanto visto per la configurazione prima, troviamo che, data la legge di Kirchhoff
+
+$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
+
+e con considerazioni analoghe al paragrafo precedente
+
+$$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}$$
+
+Il valore ottenuto è dunque $I_{b^-} = (3.6 \pm 0.2)$ \si{\nano\ampere}.
