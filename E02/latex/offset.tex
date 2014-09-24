@@ -1,5 +1,5 @@
 \subsection{Obiettivo}
-Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu a 741$ reale. Ne analizzeremo l'offset e le correnti di bias cercando di stimarne un valore costruendo dei circuiti ad hoc. Premettiamo che il circuito di polarizazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti. 
+Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu a 741$ reale. Ne analizzeremo l'offset e le correnti di bias cercando di stimarne un valore costruendo dei circuiti ad hoc. Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti. 
 
 
 
@@ -32,11 +32,11 @@ Riportiamo nella seguente tabella i valori di offset calcolati nei due casi:
 
 
 \begin{tabular}{c|c|c|c|c}
-$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain & $V_{out}$ & $V_{off}$ \\ 
+$R_1[\si{\kilo\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) & $V_{out}$ & $V_{off}$ \\ 
 \hline 
- & & & &\\
+$119.8\pm0.1$ & $9.911\pm0.001$  & $-82.7\pm??$ & $-103.5 \pm 0.5$ & $-1.25 \pm??$\\
 \hline
- & & & &\\
+$119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1025 \pm 2$ & $-1.23 \pm ??$ \\
 
 \end{tabular}
 
@@ -45,14 +45,22 @@ Come sappiamo la tensione di offset non è però l'unico problema che incontriam
 
 Il datasheet dell'amplificatore consiglia di utilizzare un circuito a maglia aperta senza resistenze. Tale configurazione è consigliata sia per la simmetria prima dei due ingressi (entrambi vedono la stessa impedenza $\approx 0$) sia per il fatto che il guadagno a maglia aperta molto grande ci permette praticamente di azzerare l'offset. 
 
-Durante l'esperienza abbiamo provato ad utilizzare un circuito amplificatore per amplificare l'offset ma la presenza delle resistenze, ovviamente, 
+Durante l'esperienza abbiamo provato ad utilizzare $Trimmer$ ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-13}{\volt} a $\approx$\SI{+13}{\volt}). Abbiamo dunque utilizzato un $Trimmer$ multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}= (2.3\pm0.3)\si{\volt}$. Se ricordiamo che il guadagno a maglia aperta è di 100-120dB vediamo subito che siamo praticamente riusciti a bilanciare la tensione di offset.
+
+Come già accennato le correnti di bias, per quanto piccole (\si{\nano\ampere}) giocano comunque un ruolo non indifferente sull'offset totale. Se assumiamo che $I_B^- \simeq I_B^+ $, allora basterà fare in modo che i due ingressi vedano la stessa impedenza. Così facendo il contributo delle due correnti si bilancia e abbiamo una stima più precisa dell'offset. Abbiamo dunque ripetuto le misure. Riportiamo nella seguente tabella i nuovi valori:
 
 
 
+\begin{tabular}{c|c|c|c|c|c|c}
+$R_C [\si{\ohm}]$& $R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain (inv) & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
+\hline 
+$119.4\pm0.1$ & $119.8\pm0.1$ & $9.911\pm0.001$  & $-82.7\pm??$ & $-105.5 \pm 0.5$ & $-1.27 \pm??$ & ?? \\
+\hline
+$119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1038 \pm 5$ & $-1.25 \pm ??$ & ?? 	\\
 
+\end{tabular}
 
-
-
+Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei nano ampere che scorre nella resistenza $R_C$.
 
 
 
