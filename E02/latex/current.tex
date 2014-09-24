@@ -4,6 +4,14 @@ In questa parte dell'esperienza abbiamo progettato diversi circuiti per misurare
 
 \subsection{Configurazione senza retroazione}
 
+\begin{wrapfigure}[21]{r}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{../E02/latex/direct_measure.pdf}
+  \end{center}
+  \caption{Schema del circuito utilizzato per stimare la corrente di polarizzazione. La resistenza utilizzata è di $10.36\pm0.01$\si{\mega\ohm}; la capacità $102 \pm 1$ \si{\nano\farad}.}
+  \label{gen_continua}
+\end{wrapfigure}
+
 Nel circuito mostrato in figura abbiamo posto la resistenza all'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e, misurando la caduta di potenziale ai capi della stessa con il multimetro, possiamo ottenere il valore di corrente desiderato applicando semplicemente la legge di Ohm
 
 $$V=I_{b^+} R$$
@@ -28,7 +36,7 @@ Dato che l'amplificatore operazionale è considerato già stabilizzato per quant
 
 $$I_{b^-}=\frac{V_{out}}{R_2}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}}$$
 
-Il valore ottenuto è dunque $I_{b^-} = (3.6 \pm 0.2)$ \si{\nano\ampere}.
+La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.62 \pm 0.02)$ \si{\nano\ampere}.
 
 \subsubsection{Misura di $I_{b^-}$}
 
@@ -40,4 +48,4 @@ e con considerazioni analoghe al paragrafo precedente
 
 $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}$$
 
-Il valore ottenuto è dunque $I_{b^-} = (3.6 \pm 0.2)$ \si{\nano\ampere}.
+La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = (3.70 \pm 0.03)$ \si{\nano\ampere}.
