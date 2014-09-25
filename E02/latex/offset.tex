@@ -12,13 +12,13 @@ Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una
         \centering
         \begin{subfigure}[b]{0.35\textwidth}
                  \includegraphics[width=0.70\textwidth]{../E02/latex/open_loop.pdf}
-                \caption{A gull}
+                \caption{Circuito a maglia aperta}
                 \label{cir:open_loop}
         \end{subfigure}%
     \quad
         \begin{subfigure}[b]{0.35\textwidth}
                \includegraphics[width=0.70\textwidth]{../E02/latex/inv.pdf}
-                \caption{A tiger}
+                \caption{Circuito amplificatore}
                 \label{cir:inv}
         \end{subfigure}
      
@@ -56,7 +56,7 @@ $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ & $830.2\pm??$ &$ -1025 \pm 2$ &
 \end{savenotes}
 
 
-Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$
+Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi i casi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$.
 
 Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
 
@@ -77,9 +77,10 @@ $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.2\pm??$ &$ -1038 \pm 5$ 
 
 \end{tabular}
 
-Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei nano ampere che scorre nella resistenza $R_C$: $\Delta V \simeq R_C * 10^{-9} \simeq ?? \si{\micro\volt}$.
 
+Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei \si{\nano\ampere} che scorre nella resistenza $R_C$: $\Delta V \simeq R_C * 10^{-9} \simeq ?? \si{\micro\volt}$.
 
+Anche nel caso non invertente $\Delta V$ risulta compatibile con la caduta di potenziale data da una corrente di base di alcuni \si{\nano\ampere}.
 
 
 
