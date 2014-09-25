@@ -1,8 +1,8 @@
-\section{Correnti di polarizzazione}
+\subsection{Correnti di polarizzazione}
 
 In questa parte dell'esperienza abbiamo progettato diversi circuiti per misurare la corrente di polarizzazione per entrambi gli ingressi, avendo già stabilizzato la tensione di offset dall'esterno. Di seguito proponiamo due modalità.
 
-\subsection{Configurazione senza retroazione}
+\subsubsection{Configurazione senza retroazione}
 
 \begin{wrapfigure}[16]{r}{0.55\textwidth}
   \begin{center}
@@ -22,11 +22,11 @@ Durante la procedura abbiamo però notato che, a causa di rumori ambientali, il 
 
 Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogno considerare che il rumore non permette di avere una stima qualitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Nel paragrafo successivo progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
 
-\subsection{Configurazione con retroazione negativa}
+\subsubsection{Configurazione con retroazione negativa}
 
 Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
 
-\subsubsection{Misura di $I_{b^-}$}
+\paragraph{Misura di $I_{b^-}$}
 
 \begin{wrapfigure}[15]{l}{0.55\textwidth}
   \begin{center}
@@ -48,7 +48,7 @@ Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grande
 
 La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.7 \pm 0.1)$ \si{\nano\ampere}.
 
-\subsubsection{Misura di $I_{b^+}$}
+\paragraph{Misura di $I_{b^+}$}
 
 \begin{wrapfigure}[15]{r}{0.55\textwidth}
   \begin{center}
@@ -58,20 +58,20 @@ La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore otte
   \label{circuito:rel2_correnti_retroazione_noninv}
 \end{wrapfigure}
 
-Similmente a quanto visto per la configurazione prima, troviamo che, data la legge di Kirchhoff
+Similmente a quanto visto per la configurazione prima, troviamo che, data la legge di Kirchhoff (con $V^*$ la tensione all'ingresso non invertente, che per quanto detto sopra è uguale a quella all'ingresso invertente)
 
-$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
+$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2}=0$$
 
-e con considerazioni analoghe al paragrafo precedente
+e considerando $V^*=I_{b^+} R_B$, otteniamo
 
 \begin{equation}
 I_{b^+}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}
 \label{eq2:corrente_noninv}
 \end{equation}
 
-Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere}.
+Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
 
-\subsubsection{Calcolo di $I_{b^+}$ data $I_{b^-}$}
+\paragraph{Calcolo di $I_{b^+}$ data $I_{b^-}$}
 
 Consideriamo ora un altro modo per trovare la corrente di polarizzazione $I_{b^+}$ supponendo di aver già effettuato la misura di $I_{b^-}$ nel primo circuito (Figura \ref{circuito:rel2_correnti_retroazione_inv}). Successivamente controlleremo che il valore 'sperimentale' calcolato con (\ref{eq2:corrente_noninv}) è compatibile con quello calcolato in questo paragrafo.
 
