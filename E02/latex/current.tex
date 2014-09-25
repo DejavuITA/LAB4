@@ -46,7 +46,7 @@ $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R
 
 Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare e considerando il risultato sopra ottenuto: volevamo che $V_{out}$ fosse almeno $10^7\approx10^8$ volte più grande della corrente, per poter utilizzare il multimetro, che ha scale di misura limitate. I valori sono in Figura \ref{circuito:rel2_correnti_retroazione_inv}.
 
-La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.7 \pm 0.1)$ \si{\nano\ampere}.
+La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.7 \pm 0.5)$ \si{\nano\ampere}.
 
 \subsubsection*{Misura di $I_{b^+}$}
 
@@ -88,11 +88,13 @@ $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-}-V_{out})$$
 
 ed inserendo i valori otteniamo $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
-\subsection{Correzioni a posteriori}
+\subsection{Calcolo di $V_{off}$ a posteriori}
 
 Dopo aver misurato i valori delle correnti di polarizzazione, possiamo procedere ad una stima più consistente del valore della tensione di offset.
 
-Nel prima parte dell'esperienza abbiamo tentato di misurarla dapprima non considerando le correnti (circuito in Figura \ref{cir:inv}) e poi tentando di minimizzarle sfruttando una resistenza posta fra comune ed ingresso non invertente data dall'annullamento di (\ref{eq2:Vout_currents}) (circuito in Figura ?????????).
 Supponiamo che la corrente di offset
-$$I_{of} = |I_{b^+}|-|I_{b^-}| \approx 0$$
-Vale dunque che l'approssimazione fatta per trovare la resistenza
+$$I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$$
+Vale dunque che l'approssimazione fatta per trovare la resistenza di compensazione ??????????, con l'annullamento di (\ref{eq2:Vout_currents}), elimina completamente gli effetti delle correnti di polarizzazione sul valore di tensione misurata nel circuito in Figura ??????????; questi effetti sono invece presenti nel circuito in Figura \ref{cir:inv}, dove non è presente la resistenza di compensazione. Dunque, la differenza fra i valori misurati delle tensioni deve coincidere con il contributo delle correnti di polarizzazione.
+Questo contributo può essere calcolato considerando il circuito in Figura \ref{cir:inv} (non possiamo utilizzare quello con la resistenza di compensazione, in quanto le correnti di polarizzazione nulle): l'unica corrente che contribuisce alla caduta di potenziale è la $I_{b^-}$. Infatti su $R_1$ non scorre corrente, perché la caduta ai capi di tale resistenza è nulla; all'ingresso non invertente non vi è una resistenza, quindi non vi è ddp; l'unico contributo è dato quindi da $\Delta V_{off} = I_{b^-} R_2$. Inserendo i valori ottengo $\Delta V_{off} = $ ?????????????. Possiamo ora confrontare questo risultato con quello ricavato al paragrafo ????????? direttamente dalle misurazioni.
+
+Data la compatibilità dei valori otteniamo un riscontro sulla bontà dell'approssimazione effettuata $I_{of} \approx 0$, in quanto la resistenza di compensazione ha eliminato, entro gli errori di misura e la sensibilità della strumentazione, gli effetti delle correnti di polarizzazione nella misura di $V_{off}$. Inoltre, si può notare come il contributo delle correnti, che è diverso per ogni OPAMP e richiederebbe dunque una nuova procedura di misurazione per ogni esperimento, potrà essere invece trascurato dati i valori di tensione in gioco nelle nostre misurazioni.
