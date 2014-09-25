@@ -32,7 +32,7 @@ Sfruttando un modello simile a quello utilizzato per trovare la tensione di offs
   \begin{center}
     \includegraphics[width=0.30\textwidth]{../E02/latex/inv_current.pdf}
   \end{center}
-  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=100\pm1$\si{\ohm}, $R_2=99.8\pm0.1$\si{\kilo\ohm} e $R_B=99.9\pm0.1$\si{\kilo\ohm}.}
+  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=99.62\pm0.01$\si{\ohm}, $R_2=99.350\pm0.01$\si{\kilo\ohm} e $R_B=99.540\pm0.01$\si{\kilo\ohm}.}
   \label{circuito:rel2_correnti_retroazione_inv}
 \end{wrapfigure}
 
@@ -46,7 +46,7 @@ $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R
 
 Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare e considerando il risultato sopra ottenuto: volevamo che $V_{out}$ fosse almeno $10^7\approx10^8$ volte più grande della corrente, per poter utilizzare il multimetro, che ha scale di misura limitate. I valori sono in Figura \ref{circuito:rel2_correnti_retroazione_inv}.
 
-La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.7 \pm 0.5)$ \si{\nano\ampere}.
+La misura di tensione di uscita è di $(370\pm2)$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.72 \pm 0.05)$ \si{\nano\ampere}.
 
 \subsubsection*{Misura di $I_{b^+}$}
 
@@ -69,7 +69,7 @@ I_{b^+}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}
 \label{eq2:corrente_noninv}
 \end{equation}
 
-Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
+Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-(363 \pm 2)$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.65 \pm 0.02)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
 
 \subsubsection*{Calcolo di $I_{b^+}$ data $I_{b^-}$}
 
@@ -86,7 +86,7 @@ da cui è possibile ricavare
 
 $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 
-ed inserendo i valori otteniamo $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere}, compatibile con il risultato precedente.
+ed inserendo i valori otteniamo $I_{b^+} = - (3.65 \pm 0.02)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
 \subsection{Calcolo di $V_{off}$ a posteriori}
 
