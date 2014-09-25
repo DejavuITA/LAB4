@@ -54,7 +54,7 @@ La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore otte
   \begin{center}
     \includegraphics[width=0.25\textwidth]{../E02/latex/ninv_current.pdf}
   \end{center}
-  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^+}$. Le resistenze utilizzate sono le medesime del circuito precedente: $R_1=100\pm1$\si{\ohm}, $R_2=99.8\pm0.1$\si{\kilo\ohm} e $R_B=99.9\pm0.1$\si{\kilo\ohm}.}
+  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^+}$. Le resistenze utilizzate sono le medesime del circuito precedente: $R_1=98.9\pm0.1$\si{\ohm}, $R_2=99.82\pm0.01$\si{\kilo\ohm} e $R_B=99.90\pm0.01$\si{\kilo\ohm}.}
   \label{circuito:rel2_correnti_retroazione_noninv}
 \end{wrapfigure}
 
@@ -84,7 +84,7 @@ V_{out} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2
 
 da cui è possibile ricavare
 
-$$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-}-V_{out})$$
+$$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 
 ed inserendo i valori otteniamo $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
@@ -95,6 +95,7 @@ Dopo aver misurato i valori delle correnti di polarizzazione, possiamo procedere
 Supponiamo che la corrente di offset
 $$I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$$
 Vale dunque che l'approssimazione fatta per trovare la resistenza di compensazione ??????????, con l'annullamento di (\ref{eq2:Vout_currents}), elimina completamente gli effetti delle correnti di polarizzazione sul valore di tensione misurata nel circuito in Figura ??????????; questi effetti sono invece presenti nel circuito in Figura \ref{cir:inv}, dove non è presente la resistenza di compensazione. Dunque, la differenza fra i valori misurati delle tensioni deve coincidere con il contributo delle correnti di polarizzazione.
-Questo contributo può essere calcolato considerando il circuito in Figura \ref{cir:inv} (non possiamo utilizzare quello con la resistenza di compensazione, in quanto le correnti di polarizzazione nulle): l'unica corrente che contribuisce alla caduta di potenziale è la $I_{b^-}$. Infatti su $R_1$ non scorre corrente, perché la caduta ai capi di tale resistenza è nulla; all'ingresso non invertente non vi è una resistenza, quindi non vi è ddp; l'unico contributo è dato quindi da $\Delta V_{off} = I_{b^-} R_2$. Inserendo i valori ottengo $\Delta V_{off} = $ ?????????????. Possiamo ora confrontare questo risultato con quello ricavato al paragrafo ????????? direttamente dalle misurazioni.
+
+Questo contributo può essere calcolato considerando il circuito in Figura \ref{cir:inv} (non possiamo utilizzare quello con la resistenza di compensazione, in quanto le correnti di polarizzazione non influiscono sulla tensione di uscita): l'unica corrente che contribuisce alla caduta di potenziale è la $I_{b^-}$. Infatti su $R_1$ non scorre corrente, perché la caduta ai capi di tale resistenza è nulla; all'ingresso non invertente non vi è una resistenza, quindi non vi è ddp; l'unico contributo è dato quindi da $\Delta V_{off} = I_{b^-} R_2$. Inserendo i valori ottengo $\Delta V_{off} = $ ?????????????. Possiamo ora confrontare questo risultato con quello ricavato al paragrafo ????????? direttamente dalle misurazioni.
 
 Data la compatibilità dei valori otteniamo un riscontro sulla bontà dell'approssimazione effettuata $I_{of} \approx 0$, in quanto la resistenza di compensazione ha eliminato, entro gli errori di misura e la sensibilità della strumentazione, gli effetti delle correnti di polarizzazione nella misura di $V_{off}$. Inoltre, si può notare come il contributo delle correnti, che è diverso per ogni OPAMP e richiederebbe dunque una nuova procedura di misurazione per ogni esperimento, potrà essere invece trascurato dati i valori di tensione in gioco nelle nostre misurazioni.
