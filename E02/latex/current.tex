@@ -26,7 +26,7 @@ Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore de
 
 Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
 
-\paragraph{Misura di $I_{b^-}$}
+\subsubsection*{Misura di $I_{b^-}$}
 
 \begin{wrapfigure}[15]{l}{0.55\textwidth}
   \begin{center}
@@ -48,7 +48,7 @@ Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grande
 
 La misura di tensione di uscita è di $370.3$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.7 \pm 0.1)$ \si{\nano\ampere}.
 
-\paragraph{Misura di $I_{b^+}$}
+\subsubsection*{Misura di $I_{b^+}$}
 
 \begin{wrapfigure}[15]{r}{0.55\textwidth}
   \begin{center}
@@ -71,16 +71,28 @@ I_{b^+}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}
 
 Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-362.7$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
 
-\paragraph{Calcolo di $I_{b^+}$ data $I_{b^-}$}
+\subsubsection*{Calcolo di $I_{b^+}$ data $I_{b^-}$}
 
 Consideriamo ora un altro modo per trovare la corrente di polarizzazione $I_{b^+}$ supponendo di aver già effettuato la misura di $I_{b^-}$ nel primo circuito (Figura \ref{circuito:rel2_correnti_retroazione_inv}). Successivamente controlleremo che il valore 'sperimentale' calcolato con (\ref{eq2:corrente_noninv}) è compatibile con quello calcolato in questo paragrafo.
 
 Analizziamo dunque il secondo circuito (Figura \ref{circuito:rel2_correnti_retroazione_noninv}) per cercare di trovare la dipendenza di $I_{b^+}$ da $I_{b^-}$. Vale, dalla teoria
 
-$$V_{out} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_B\right]$$
+\begin{equation}
+V_{out} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_B\right]
+\label{eq2:Vout_currents}
+\end{equation}
 
 da cui è possibile ricavare
 
 $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-}-V_{out})$$
 
 ed inserendo i valori otteniamo $I_{b^+} = - (3.6 \pm 0.1)$ \si{\nano\ampere}, compatibile con il risultato precedente.
+
+\subsection{Correzioni a posteriori}
+
+Dopo aver misurato i valori delle correnti di polarizzazione, possiamo procedere ad una stima più consistente del valore della tensione di offset.
+
+Nel prima parte dell'esperienza abbiamo tentato di misurarla dapprima non considerando le correnti (circuito in Figura \ref{cir:inv}) e poi tentando di minimizzarle sfruttando una resistenza posta fra comune ed ingresso non invertente data dall'annullamento di (\ref{eq2:Vout_currents}) (circuito in Figura ?????????).
+Supponiamo che la corrente di offset
+$$I_{of} = |I_{b^+}|-|I_{b^-}| \approx 0$$
+Vale dunque che l'approssimazione fatta per trovare la resistenza
