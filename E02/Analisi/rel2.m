@@ -78,12 +78,14 @@ DeltaVcompatibile=R_C*10^-9;
 
 
 
-DeltaV_post=R2*38*10^-9
-sDeltaV_post=sqrt((38*10^-9)^2 *sR2^2 + (R2)^2 * (5*10^-9)^2)
+DeltaV_post=-(R2*38*10^-9)/Ginv1
+sDeltaV_post=(sqrt((38*10^-9/Ginv1)^2 *sR2^2 + (R2/Ginv1)^2 * (5*10^-9)^2 +((R2*38*10^-9)/(Ginv1)^2)^2 * (sG_INV1)^2))
 
 
 
+DeltaV_post2=-(R3*38*10^-9)/Ginv2
+sDeltaV_post2=(sqrt((38*10^-9/Ginv2)^2 *sR3^2 + (R3/Ginv2)^2 * (5*10^-9)^2 +((R3*38*10^-9)/(Ginv2)^2)^2 * (sG_INV2)^2))
 
 
-
-
+media_pesata= ((sDeltaV_INV1)^-2 *DeltaV_INV1 + (sDeltaV_INV2)^-2 *DeltaV_INV2)/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2)
+err_media_pesata=sqrt(1/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2))
