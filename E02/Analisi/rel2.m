@@ -54,21 +54,26 @@ sV_INV2RC= sqrt( (R1 * Vout2RC / R3^2)^2 * sR3^2 + (-Vout2RC/R3)^2 * sR1^2 + (-R
 sV_NINV1RC = sqrt( (R2*Vout1RC/(R1+R2)^2)^2 * sR2^2 + (-R1*Vout1RC/(R1+R2)^2)^2 * sR1^2 + (R1/(R1+R2))^2 * sVout1RC^2 );
 sV_NINV2RC = sqrt( (R3*Vout2RC/(R1+R3)^2)^2 * sR3^2 + (-R1*Vout2RC/(R1+R3)^2)^2 * sR1^2 + (R1/(R1+R3))^2 * sVout2RC^2 );
 
+V_NINV1RC
+V_NINV2RC
+sV_NINV1RC
+sV_NINV2RC
 
 
 
 
-DeltaV_INV1 = -V_INV1+V_INV1RC
-sDeltaV_INV1 =sqrt(sV_INV1^2+sV_INV1RC^2)
 
-DeltaV_INV2 = -V_INV2+V_INV2RC
-sDeltaV_INV2 =sqrt(sV_INV2^2+sV_INV2RC^2)
+DeltaV_INV1 = -V_INV1+V_INV1RC;
+sDeltaV_INV1 =sqrt(sV_INV1^2+sV_INV1RC^2);
 
-DeltaV_NINV1 =- V_INV1+V_INV1RC;
-sDeltaV_NINV1 =sqrt(sV_INV1^2+sV_INV1RC^2);
+DeltaV_INV2 = -V_INV2+V_INV2RC;
+sDeltaV_INV2 =sqrt(sV_INV2^2+sV_INV2RC^2);
 
-DeltaV_NINV2 = -V_INV2+V_INV2RC;
-sDeltaV_NINV2 =sqrt(sV_INV2^2+sV_INV2RC^2);
+DeltaV_NINV1 =- V_NINV1+V_NINV1RC
+sDeltaV_NINV1 =sqrt(sV_NINV1^2+sV_NINV1RC^2)
+
+DeltaV_NINV2 = -V_NINV2+V_NINV2RC
+sDeltaV_NINV2 =sqrt(sV_NINV2^2+sV_NINV2RC^2)
 
 R_C=100000;
 sR_C=0.1;
@@ -78,14 +83,14 @@ DeltaVcompatibile=R_C*10^-9;
 
 
 
-DeltaV_post=-(R2*38*10^-9)/Ginv1
-sDeltaV_post=(sqrt((38*10^-9/Ginv1)^2 *sR2^2 + (R2/Ginv1)^2 * (5*10^-9)^2 +((R2*38*10^-9)/(Ginv1)^2)^2 * (sG_INV1)^2))
+DeltaV_post=-(R2*38*10^-9)/Ginv1;
+sDeltaV_post=(sqrt((38*10^-9/Ginv1)^2 *sR2^2 + (R2/Ginv1)^2 * (5*10^-9)^2 +((R2*38*10^-9)/(Ginv1)^2)^2 * (sG_INV1)^2));
 
 
 
-DeltaV_post2=-(R3*38*10^-9)/Ginv2
-sDeltaV_post2=(sqrt((38*10^-9/Ginv2)^2 *sR3^2 + (R3/Ginv2)^2 * (5*10^-9)^2 +((R3*38*10^-9)/(Ginv2)^2)^2 * (sG_INV2)^2))
+DeltaV_post2=-(R3*38*10^-9)/Ginv2;
+sDeltaV_post2=(sqrt((38*10^-9/Ginv2)^2 *sR3^2 + (R3/Ginv2)^2 * (5*10^-9)^2 +((R3*38*10^-9)/(Ginv2)^2)^2 * (sG_INV2)^2));
 
 
-media_pesata= ((sDeltaV_INV1)^-2 *DeltaV_INV1 + (sDeltaV_INV2)^-2 *DeltaV_INV2)/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2)
-err_media_pesata=sqrt(1/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2))
+media_pesata= ((sDeltaV_INV1)^-2 *DeltaV_INV1 + (sDeltaV_INV2)^-2 *DeltaV_INV2)/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2);
+err_media_pesata=sqrt(1/((sDeltaV_INV1)^-2+(sDeltaV_INV2)^-2));
