@@ -27,28 +27,31 @@ Con il circuito in Figura (\ref{cir:open_loop}) non possiamo quindi ricavare una
 
 \subsubsection{Configurazione con retroazione}
 
-Trattiamo per primo il caso \textbf{invertente}. Assumiamo che la tensione nel punto A sia $V_A=V_{off}$ e $V_B=0$. L'analisi del circuito è ora banale e risulta immediatamente $V_{out}=-\frac{R_2}{R_1}V_{off}$. Ovviamente, visto che il punto A è collegato al comune, la sua tensione sarà identica a quella del punto A. La tensione $V_{off}$ è infatti un valore che concerne la struttura stessa dell'op-amp. Assumere che il punto A sia alla tensione $V_{off}$ permette dunque di analizzare il circuito. 
+Trattiamo per primo il caso \textbf{invertente}. Assumiamo che la tensione nel punto A sia $V_A=V_{off}$ e $V_B=0$. Vale allora che, uguagliando le correnti
 
-Ora analogamente tratteremo il caso \textbf{non invertente}. Per far ciò assumiamo $V_B=-V_{off}$ e $V_A=0$. L'analisi risulta dunque identica a quella di un amplificatore non invertente, ovvero $V_{out}=(1+\frac{R_2}{R_1})V_{off}$. 
+$$\frac{V_{off}}{R_1} + \frac{V_{off}-V_{out}}{R_2} = 0$$
+
+da cui si ricava che
+$$V_{out}=\left(1+\frac{R_2}{R_1}\right) V_{off}$$
+
+Analogamente si tratta il caso \textbf{non invertente}. Per far ciò assumiamo $V_B=-V_{off}$ e $V_A=0$. L'analisi risulta dunque identica a quella di un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente. 
 
 %I valori nominali delle componenti circuitali utilizzate sono: $R_1=\SI{120}{\ohm}$ e $R_2=\SI{10/100}{\kilo\ohm}$.
 
-Riportiamo nella seguente tabella i valori di offset calcolati nei due casi:
+Riportiamo nella seguente tabella i valori di offset calcolati, definendo il guadagno come Gain$=1+R_2/R_1$. 
 
 \begin{center}
 \begin{savenotes}
 \begin{tabular}{c|c|c|c|c|c|c}
-$R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain(inv) & Gain (ninv) &$V_{out} [\si{\milli\volt}]$ & $V_{off}$(inv)[\si{\milli\volt}] &$V_{off}$(ninv) [\si{\milli\volt}]\\ 
+$R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain &$V_{out} [\si{\milli\volt}]$ & $V_{off}$ [\si{\milli\volt}]\\ 
 \hline 
-$119.8\pm0.1$ & $9.911\pm0.001$  & $-82.73\pm0.07$ &$83.73\pm0.07$&  $-103.5 \pm 0.5$ & $-1.251 \pm0.006$ & $-1.23 \pm0.01$\\
+$119.8\pm0.1$ & $9.911\pm0.001$ & $83.73\pm0.07$&  $-103.5 \pm 0.5$ & $-1.23 \pm0.01$\\
 \hline
-$119.8\pm0.1$ & $99.35\pm0.01$  & $-829.3\pm0.7$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.236 \pm 0.002$ & $-1.2 \pm0.1$\\
+$119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
 
 \end{tabular}
 \end{savenotes}
 \end{center}
-
-Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi i casi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$.
 
 \begin{wrapfigure}[17]{l}{0.55\textwidth}
   \begin{center}
@@ -85,18 +88,20 @@ $$R_C=\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}} $$
 
 cioè il parallelo fra $R_1$ ed $R_2$.
 
-%Se assumiamo che $I_B^- \simeq I_B^+ $, allora basterà fare in modo che i due ingressi vedano la stessa impedenza. Così facendo il contributo delle due correnti si bilancia e abbiamo una stima più precisa dell'offset. Abbiamo dunque ripetuto le misure.
-
 Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione (circuito in Figura \ref{cir2:current_correction}):
 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c}
-$R_C [\si{\ohm}]$& $R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain (inv) & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
+$R_C [\si{\ohm}]$& $R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
 \hline 
-$119.4\pm0.1$ & $119.8\pm0.1$ & $9.911\pm0.001$  & $-82.73\pm0.07$ & $-105.5 \pm 0.5$ & $-1.275 \pm0.006$ & $0.024\pm0.008$ \\
+$119.4\pm0.1$ & $119.8\pm0.1$ & $9.911\pm0.001$  & $83.73 \pm 0.07$ & $-105.5 \pm 0.5$ & $-1.26 \pm0.01$ & $0.02\pm0.01$ \\
 \hline
-$119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.3\pm0.7$ &$ -1038 \pm 5$ & $-1.251 \pm 0.002$ & $0.015 \pm 0.003 $	\\
+$119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $830.3\pm0.7$ &$ -1038 \pm 5$ & $-1.2 \pm 0.1$ & $\approx 0$\\
 \end{tabular}
 \end{center}
 
-Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sembrerebbe compatibile con il contributo di una corrente $I^*$ dell'ordine dei \si{\nano\ampere} che scorre nella resistenza $R_C$: $\Delta V \simeq R_C  I^* \simeq 10\div100 \si{\micro\volt}$. Anche nel caso non invertente $\Delta V$ risulta compatibile con la caduta di potenziale data da una corrente di base di alcuni \si{\nano\ampere}. Rimandiamo al paragrafo \ref{par2:v_off} per ulteriori analisi su queste considerazioni.
+Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale di fondo (qualche decina di \si{\micro\volt} di ampiezza).
+
+%Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sembrerebbe compatibile con il contributo di una corrente $I^*$ dell'ordine dei \si{\nano\ampere} che scorre nella resistenza $R_C$: $\Delta V \simeq R_C  I^* \simeq 10\div100 \si{\micro\volt}$. Anche nel caso non invertente $\Delta V$ risulta compatibile con la caduta di potenziale data da una corrente di base di alcuni \si{\nano\ampere}. Bisogna però tener conto anche del rumore ambientale, che raggiunge qualche decina di \si{\micro\volt}, e che dunque rende poco chiaro se la differenza tra le tensioni di offset sia dovuta ad un contributo delle correnti di polarizzazione o unicamente al rumore.
+
+%Rimandiamo al paragrafo \ref{par2:v_off} per ulteriori analisi su queste considerazioni.

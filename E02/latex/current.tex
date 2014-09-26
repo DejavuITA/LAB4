@@ -20,7 +20,25 @@ Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere
 
 Durante la procedura abbiamo però notato che, a causa di rumori ambientali, il valore di tensione sul multimetro fluttuava sulla prima cifra, rendendo nostra misurazione ovviamente non quantitativa (al massimo poteva stimarci l'ordine di grandezza della corrente). Per ovviare, abbiamo inserito in parallelo alla resistenza un condensatore che caricandosi si portava alla stessa ddp dei capi della resistenza. In questo modo abbiamo potuto ottenere un valore meno fluttuante, che si attestava a $V=(-80 \pm 2)$ \si{\milli\volt}, cioè $I_{b^+}=(7.7 \pm 0.2)$ \si{\nano\ampere}.
 
-Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogno considerare che il rumore non permette di avere una stima qualitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Nel paragrafo successivo progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
+Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogno considerare che il rumore non permette di avere una stima qualitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Successivamente progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
+
+Analizziamo ora una possibile causa della  fluttuazione della misura.
+
+\subsubsection*{Rumore termico}
+
+Abbiamo considerato che la fluttuazione della misura sia dovuta ad un possibile effetto del rumore termico sulla nostra resistenza da \SI{10}{\mega\ohm}. Considerando la larghezza di banda del multimetro $\Delta f = \SI{1}{\hertz}$ e siano $k_B = \SI{1.38e-23}{\joule\per\kelvin}$ la costante di Boltzmann, $T$ la temperatura assoluta e $R$ il valore della resistenza presa in considerazione
+
+\begin{equation}
+	V_{eff}^2 = 4 k_B T R \Delta f
+\end{equation}
+
+da cui, ovviamente, si ottiene che il possibile rumore termico è 5 ordini di grandezza inferiore della tensione misurata
+
+\begin{equation}
+	V_{eff} = \sqrt{4 k_B T R \Delta f} \simeq 4 \times 10^{-7} \si{\volt}
+\end{equation}
+
+ed è pertanto ininfluente. Dunque il rumore presente è sicuramente imputabile ad altre cause ambientali.
 
 \subsubsection{Configurazione con retroazione negativa}
 
@@ -81,17 +99,17 @@ $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 
 ed inserendo i valori otteniamo $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
-\subsection{Calcolo di $V_{off}$ a posteriori}
-\label{par2:v_off}
-
-Dopo aver misurato i valori delle correnti di polarizzazione, possiamo procedere ad una stima più consistente del valore della tensione di offset.
-
-Supponiamo che la corrente di offset
-$$I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$$
-Vale dunque che l'approssimazione fatta per trovare la resistenza di compensazione $R_C$, con l'annullamento di (\ref{eq2:Vout_currents}), elimina completamente gli effetti delle correnti di polarizzazione sul valore di tensione misurata nel circuito in Figura \ref{cir2:trimmer}; questi effetti sono invece presenti nel circuito in Figura \ref{cir:inv}, dove non è presente la resistenza di compensazione. Dunque, la differenza fra i valori misurati delle tensioni deve coincidere con il contributo delle correnti di polarizzazione.
-
-Questo contributo può essere calcolato considerando il circuito in Figura \ref{cir:inv} (non possiamo utilizzare quello con la resistenza di compensazione, in quanto le correnti di polarizzazione non influiscono sulla tensione di uscita): l'unica corrente che contribuisce alla caduta di potenziale è la $I_{b^-}$. Infatti su $R_1$ non scorre corrente, perché la caduta ai capi di tale resistenza è nulla; all'ingresso non invertente non vi è una resistenza, quindi non vi è ddp; l'unico contributo è dato quindi da $\Delta V_{off} = I_{b^-} R_2 / Gain$. Lo stesso risultato può essere ottenuto ponendo $R_C=0$ in (\ref{eq2:Vout_currents}).
-
-Inserendo i valori: per la resistenza da $10$ \si{\kilo\ohm}, ottengo $\Delta V_{off} = (0.0045 \pm 0.0006)$ \si{\milli\volt}; per quella da $100$ \si{\kilo\ohm} il valore è identico. Possiamo ora confrontare questo risultato con la media pesata di quelli ricavati al paragrafo \ref{par2:offset} direttamente dalle misurazioni: $(0.017 \pm 0.005)$ \si{\milli\volt}.
-
-I risultati sembrerebbero dunque non compatibili. Bisogna però considerare che i valori ottenuti dalle misurazioni hanno l'errore dovuto ai rumori ambientali, che sono sull'ordine delle decine di \si{\milli\volt} picco picco. Un confronto con gli apparati e le misure a nostra disposizione è dunque impossibile.
+%\subsection{Calcolo di $V_{off}$ a posteriori}
+%\label{par2:v_off}
+%
+%Dopo aver misurato i valori delle correnti di polarizzazione, possiamo procedere ad una stima più consistente del valore della tensione di offset.
+%
+%Supponiamo che la corrente di offset
+%$$I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$$
+%Vale dunque che l'approssimazione fatta per trovare la resistenza di compensazione $R_C$, con l'annullamento di (\ref{eq2:Vout_currents}), elimina completamente gli effetti delle correnti di polarizzazione sul valore di tensione misurata nel circuito in Figura \ref{cir2:trimmer}; questi effetti sono invece presenti nel circuito in Figura \ref{cir:inv}, dove non è presente la resistenza di compensazione. Dunque, la differenza fra i valori misurati delle tensioni deve coincidere con il contributo delle correnti di polarizzazione.
+%
+%Questo contributo può essere calcolato considerando il circuito in Figura \ref{cir:inv} (non possiamo utilizzare quello con la resistenza di compensazione, in quanto le correnti di polarizzazione non influiscono sulla tensione di uscita): l'unica corrente che contribuisce alla caduta di potenziale è la $I_{b^-}$. Infatti su $R_1$ non scorre corrente, perché la caduta ai capi di tale resistenza è nulla; all'ingresso non invertente non vi è una resistenza, quindi non vi è ddp; l'unico contributo è dato quindi da $\Delta V_{off} = I_{b^-} R_2 / Gain$. Lo stesso risultato può essere ottenuto ponendo $R_C=0$ in (\ref{eq2:Vout_currents}).
+%
+%Inserendo i valori: per la resistenza da $10$ \si{\kilo\ohm}, ottengo $\Delta V_{off} = (0.0045 \pm 0.0006)$ \si{\milli\volt}; per quella da $100$ \si{\kilo\ohm} il valore è identico. Possiamo ora confrontare questo risultato con la media pesata di quelli ricavati al paragrafo \ref{par2:offset} direttamente dalle misurazioni: $(0.017 \pm 0.005)$ \si{\milli\volt}.
+%
+%I risultati sembrerebbero dunque non compatibili. Bisogna però considerare che i valori ottenuti dalle misurazioni hanno l'errore dovuto ai rumori ambientali, che sono sull'ordine delle decine di \si{\milli\volt} picco picco. Un confronto con gli apparati e le misure a nostra disposizione è dunque impossibile.
