@@ -50,31 +50,53 @@ $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.3\pm0.7$ & $830.3\pm0.7$ &$ -1025 \pm 2$
 
 Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi i casi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$.
 
-Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
-
 \begin{wrapfigure}[17]{l}{0.55\textwidth}
   \begin{center}
-    \includegraphics[width=0.260\textwidth]{../E02/latex/trimmer_correction.pdf}
+    \includegraphics[width=0.280\textwidth]{../E02/latex/trimmer_correction.pdf}
   \end{center}
-  \caption{Circuito con trimmer per compensare l'offset.}
+  \caption{Circuito a guadagno unitario, con trimmer sui piedini 1 e 5 dell'OPAMP per compensare l'offset.}
   \label{cir2:trimmer}
 \end{wrapfigure}
 
-Il datasheet dell'amplificatore consiglia di utilizzare un circuito a maglia aperta senza resistenze per regolare il trimmer. Tale configurazione è consigliata sia per la simmetria dei due ingressi (entrambi vedono la stessa impedenza $\approx 0$) sia per il fatto che il guadagno a maglia aperta molto grande ci permette praticamente di azzerare l'offset. 
+Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Il circuito utilizzato per verificare il bilanciamento dell'offset è quello in Figura \ref{cir2:trimmer}.
 
 Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-13}{\volt} a $\approx$\SI{+13}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
 
-Come già accennato le correnti di bias, per quanto piccole (\si{\nano\ampere}) giocano comunque un ruolo non indifferente sull'offset totale. Se assumiamo che $I_B^- \simeq I_B^+ $, allora basterà fare in modo che i due ingressi vedano la stessa impedenza. Così facendo il contributo delle due correnti si bilancia e abbiamo una stima più precisa dell'offset. Abbiamo dunque ripetuto le misure. Riportiamo nella seguente tabella i nuovi valori:
+\begin{wrapfigure}[17]{r}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.280\textwidth]{../E02/latex/current_correction.pdf}
+  \end{center}
+  \caption{Circuito utilizzato per la stima di $V_{off}$ con la correzione sulle correnti data da $R_C$.}
+  \label{cir2:current_correction}
+\end{wrapfigure}
 
+Come già accennato le correnti di bias, per quanto piccole (\si{\nano\ampere}) giocano comunque un ruolo sull'offset totale. Per minimizzare il loro impatto sul valore della tensione di offset abbiamo inserito fra l'ingresso non invertente e ground una resistenza di compensazione $R_C$ tale da annullare il contributo delle correnti di offset sulla tensione di uscita.
+
+Il contributo alla tensione di uscita data dalle correnti di polarizzazione è
+
+\begin{equation}
+V_{out}^{C} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_B\right]
+\label{eq2:Vout_currents}
+\end{equation}
+
+dalla quale si ricava che, supponendo $I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$ e ponendo $V_{out}^{C}=0$,
+
+$$R_C=\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}} $$
+
+cioè il parallelo fra $R_1$ ed $R_2$.
+
+%Se assumiamo che $I_B^- \simeq I_B^+ $, allora basterà fare in modo che i due ingressi vedano la stessa impedenza. Così facendo il contributo delle due correnti si bilancia e abbiamo una stima più precisa dell'offset. Abbiamo dunque ripetuto le misure.
+
+Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione (circuito in Figura \ref{cir2:current_correction}):
+
+\begin{center}
 \begin{tabular}{c|c|c|c|c|c|c}
 $R_C [\si{\ohm}]$& $R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain (inv) & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
 \hline 
 $119.4\pm0.1$ & $119.8\pm0.1$ & $9.911\pm0.001$  & $-82.73\pm0.07$ & $-105.5 \pm 0.5$ & $-1.275 \pm0.006$ & $0.024\pm0.008$ \\
 \hline
 $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.3\pm0.7$ &$ -1038 \pm 5$ & $-1.251 \pm 0.002$ & $0.015 \pm 0.003 $	\\
-
 \end{tabular}
+\end{center}
 
-Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sono compatibili al contributo di una corrente $I^*$ dell'ordine dei \si{\nano\ampere} che scorre nella resistenza $R_C$: $\Delta V \simeq R_C * 10^{-9} \simeq 10\div100 \si{\micro\volt}$.
-
-Anche nel caso non invertente $\Delta V$ risulta compatibile con la caduta di potenziale data da una corrente di base di alcuni \si{\nano\ampere}.
+Come vediamo, le differenze tra i due valori di $V_{off}$ calcolati con e senza resistenza $R_C$ sembrerebbe compatibile con il contributo di una corrente $I^*$ dell'ordine dei \si{\nano\ampere} che scorre nella resistenza $R_C$: $\Delta V \simeq R_C  I^* \simeq 10\div100 \si{\micro\volt}$. Anche nel caso non invertente $\Delta V$ risulta compatibile con la caduta di potenziale data da una corrente di base di alcuni \si{\nano\ampere}. Rimandiamo al paragrafo \ref{par2:v_off} per ulteriori analisi su queste considerazioni.
