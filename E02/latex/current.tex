@@ -21,7 +21,7 @@ Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere
 Durante la procedura abbiamo però notato che, a causa di rumori ambientali, il valore di tensione sul multimetro fluttuava sulla prima cifra, rendendo nostra misurazione ovviamente non quantitativa (al massimo poteva stimarci l'ordine di grandezza della corrente). Per ovviare, abbiamo inserito in parallelo alla resistenza un condensatore che caricandosi si portava alla stessa ddp dei capi della resistenza. In questo modo abbiamo potuto ottenere un valore meno fluttuante, che si attestava a $V=(-80 \pm 2)$ \si{\milli\volt}, cioè $I_{b^+}=(7.7 \pm 0.2)$ \si{\nano\ampere}.
 
 Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogno considerare che il rumore non permette di avere una stima qualitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Nel paragrafo successivo progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
-
+\newpage
 \subsubsection{Configurazione con retroazione negativa}
 
 Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
@@ -32,7 +32,7 @@ Sfruttando un modello simile a quello utilizzato per trovare la tensione di offs
   \begin{center}
     \includegraphics[width=0.30\textwidth]{../E02/latex/inv_current.pdf}
   \end{center}
-  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=99.62\pm0.01$\si{\ohm}, $R_2=99.350\pm0.01$\si{\kilo\ohm} e $R_B=99.540\pm0.01$\si{\kilo\ohm}.}
+  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=(98.9\pm0.1)$ \si{\ohm}, $R_2=(99.4\pm0.1)$ \si{\kilo\ohm} e $R_B=(99.4\pm0.1)$ \si{\kilo\ohm}.}
   \label{circuito:rel2_correnti_retroazione_inv}
 \end{wrapfigure}
 
@@ -46,7 +46,7 @@ $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R
 
 Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare e considerando il risultato sopra ottenuto: volevamo che $V_{out}$ fosse almeno $10^7\approx10^8$ volte più grande della corrente, per poter utilizzare il multimetro, che ha scale di misura limitate. I valori sono in Figura \ref{circuito:rel2_correnti_retroazione_inv}.
 
-La misura di tensione di uscita è di $(370\pm2)$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^-} = (3.72 \pm 0.05)$ \si{\nano\ampere}.
+La misura di tensione di uscita è di $(3.89\pm0.02)$ \si{\volt} ed il valore ottenuto è dunque $I_{b^-} = (38 \pm 5)$ \si{\nano\ampere}.
 
 \subsubsection*{Misura di $I_{b^+}$}
 
@@ -54,7 +54,7 @@ La misura di tensione di uscita è di $(370\pm2)$ \si{\milli\volt} ed il valore 
   \begin{center}
     \includegraphics[width=0.25\textwidth]{../E02/latex/ninv_current.pdf}
   \end{center}
-  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^+}$. Le resistenze utilizzate sono le medesime del circuito precedente: $R_1=98.9\pm0.1$\si{\ohm}, $R_2=99.82\pm0.01$\si{\kilo\ohm} e $R_B=99.90\pm0.01$\si{\kilo\ohm}.}
+  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^+}$. Le resistenze utilizzate sono le medesime del circuito precedente in Figura \ref{circuito:rel2_correnti_retroazione_inv}.}
   \label{circuito:rel2_correnti_retroazione_noninv}
 \end{wrapfigure}
 
@@ -69,7 +69,7 @@ I_{b^+}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}
 \label{eq2:corrente_noninv}
 \end{equation}
 
-Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-(363 \pm 2)$ \si{\milli\volt} ed il valore ottenuto è dunque $I_{b^+} = - (3.65 \pm 0.02)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
+Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-(3.72 \pm 0.02)$   \si{\volt} ed il valore ottenuto è dunque $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
 
 \subsubsection*{Calcolo di $I_{b^+}$ data $I_{b^-}$}
 
@@ -86,7 +86,7 @@ da cui è possibile ricavare
 
 $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 
-ed inserendo i valori otteniamo $I_{b^+} = - (3.65 \pm 0.02)$ \si{\nano\ampere}, compatibile con il risultato precedente.
+ed inserendo i valori otteniamo $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
 \subsection{Calcolo di $V_{off}$ a posteriori}
 
