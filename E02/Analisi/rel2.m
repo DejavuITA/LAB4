@@ -35,7 +35,6 @@ sV_NINV2 = sqrt( (R3*Vout2/(R1+R3)^2)^2 * sR3^2 + (-R1*Vout2/(R1+R3)^2)^2 * sR1^
 
 %%%%%%%
 
-
 Vout1RC=-105.5;
 Vout2RC=-1038;
 sVout1RC=0.5;
@@ -75,3 +74,16 @@ R_C=100000;
 sR_C=0.1;
 
 DeltaVcompatibile=R_C*10^-9;
+
+
+
+
+DeltaV_post=R2*38*10^-9
+sDeltaV_post=sqrt((38*10^-9)^2 *sR2^2 + (R2)^2 * (5*10^-9)^2)
+
+
+
+
+
+
+

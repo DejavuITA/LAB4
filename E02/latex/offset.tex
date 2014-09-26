@@ -58,7 +58,22 @@ $119.8\pm0.1$ & $99.35\pm0.01$  & $-829.3\pm0.7$ & $830.3\pm0.7$ &$ -1025 \pm 2$
 
 Ricordiamo che i valori di tensione di offset ottenuti per configurazione invertente e non invertente differiscono nel segno in quanto è necessario che in entrambi i casi sia rispettata la condizione $|V_{inv}|>|V_{ninv}|$.
 
-Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. 
+Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($Trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset \ref{cir:trimmer}. 
+
+
+
+
+\begin{wrapfigure}[17]{l}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.30\textwidth]{../E02/latex/trimmer_correction.pdf}
+  \end{center}
+  \caption{Circuito con trimmer per compensare l'offset.}
+        \label{cir:trimmer}
+\end{wrapfigure}
+
+
+
+
 
 Il datasheet dell'amplificatore consiglia di utilizzare un circuito a maglia aperta senza resistenze. Tale configurazione è consigliata sia per la simmetria prima dei due ingressi (entrambi vedono la stessa impedenza $\approx 0$) sia per il fatto che il guadagno a maglia aperta molto grande ci permette praticamente di azzerare l'offset. 
 
