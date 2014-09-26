@@ -117,14 +117,14 @@ Presentiamo ora i grafici di alcune forme d'onda in uscita.
 
 \begin{figure}[H]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinsin.pdf}}
+   {\includegraphics[width=15cm]{../E01/latex/sinsin.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=800 Hz$ e $V^1_{pp}=500 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda sinusoidale di $\nu=100 Hz$ e $V^2_{pp}=1000 mV$.}
  \label{gr:onde1}
 \end{figure}
 
 Se ricordiamo la formula $V_{out}=\sum^{2}_{i=1} \varphi_i V_{i}$, risulta immediato riscrivere 
 \begin{equation}
-V_{out}=\frac{V^1_{pp}}{2}\sin(2 \pi \nu_1+ \delta_1)+2\frac{V^2_{pp}}{2}\sin(2 \pi \nu_2+ \delta_2)
+V_{out}=\frac{V^1_{pp}}{2}\sin(2 \pi \nu_1t+ \delta_1)+2\frac{V^2_{pp}}{2}\sin(2 \pi \nu_2t+ \delta_2)
 \label{eq:batt}
 \end{equation}
 dove $\delta_1$ e $\delta_2$ sono delle fasi che sono da determinare imponendo $V_{out} \vert_{t=0}=\frac{V^1_{pp}}{2}\sin(\delta_1)+2\frac{V^2_{pp}}{2}\sin(\delta_2)$. 
@@ -132,7 +132,7 @@ dove $\delta_1$ e $\delta_2$ sono delle fasi che sono da determinare imponendo $
 
 \begin{figure}[H]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/sinquad.pdf}}
+   {\includegraphics[width=15cm]{../E01/latex/sinquad.pdf}}
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=900 Hz$ e $V^1_{pp}=500 mV$; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=100 Hz$ e $V^2_{pp}=1000 mV$. Notiamo inoltre che anche in questo caso l'ampiezza massima è pari a $\phi_1 V^1_{pp}+\phi_2 V^2_{pp}=1250 mV$.}
  \label{gr:onde2}
 \end{figure}
@@ -140,7 +140,7 @@ dove $\delta_1$ e $\delta_2$ sono delle fasi che sono da determinare imponendo $
 
 \subsection{Fenomeno dei battimenti}
 
-Come ultima parte dell'esperienza abbiamo analizzato il fenomeno dei battimenti. Tale effetto avviene quando si ha la sovrapposizione di sue segnali con frequenza leggermente diversa. Per avere una trattazione particolarmente semplice, come primo esempio abbiamo usato usato dei segnali soddisfacenti la seguente condizione: $V^1_{pp}=2*V^2_{pp}$. Così facendo Eq. \ref{eq:batt} si semplifica nella seguente forma:
+Come ultima parte dell'esperienza abbiamo analizzato il fenomeno dei battimenti. Tale effetto avviene quando si ha la sovrapposizione di sue segnali con frequenza leggermente diversa. Per avere una trattazione particolarmente semplice, come primo esempio abbiamo usato usato dei segnali soddisfacenti la seguente condizione: $V^1_{pp}=2 \cdot tV^2_{pp}$. Così facendo Eq. \ref{eq:batt} si semplifica nella seguente forma:
 
 $$V_{out}=A_0 (\sin(2 \pi \nu_1t+ \delta_1)+\sin(2 \pi \nu_2t+ \delta_2))$$
 
@@ -148,27 +148,34 @@ Possiamo dunque applicare le formule di prostaferesi per ottenere la seguente fo
 
 $$V_{out}(t)=2A_0\sin(2\pi\frac{\nu_2+\nu_1}{2}t+\frac{\delta_2+\delta_1}{2})\cos(2\pi\frac{\nu_2-\nu_1}{2}t+\frac{\delta_2-\delta_1}{2})$$
 
-Come si può facilmente vedere dal grafico, il termine $\cos$ è quello che modula l'ampiezza di $V_{out}$. Le fasi che compaiono nella formula sono state calcolate numericamente in modo da soddisfare le condizioni a $t=0$ come già fatto nella precedente sezione.
+Come si può facilmente vedere dal grafico \ref{gr:batt1}, il termine $\cos$ è quello che modula l'ampiezza di $V_{out}$. Le fasi che compaiono nella formula sono state calcolate numericamente in modo da soddisfare le condizioni a $t=0$ come già fatto nella precedente sezione.
 
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=18cm]{../E01/latex/battimenti_ideali.pdf}}
- \caption{...}
- \label{gr:onde1}
+   {\includegraphics[width=15cm]{../E01/latex/battimenti_ideali.pdf}}
+ \caption{Grafico dei battimenti ottenuti utilizzando due onde sinusoidali di frequenza $\nu_1=500 \si{\hertz}$ e $\nu_2=550 \si{\hertz}$. Come già detto l'ampiezza picco picco è stata scelta $V^1_{pp}=\SI{1}{\volt}_{pp} =2 \cdot V^2_{pp}$ }
+ \label{gr:batt1}
 \end{figure}
 
 
 
-\begin{figure}[H]
- \centering
-   {\includegraphics[width=18cm]{../E01/latex/battimenti.pdf}}
- \caption{...}
- \label{gr:onde1}
-\end{figure}
+%Come ultima parte dell'esperienza abbiamo analizzato il fenomeno dei battimenti tra due sinusoidali di frequenza rispettivamente \SI{5}{\hertz} e \SI{5}{\hertz} ma di ampiezza diversa. In questo caso non possiamo ovviamente avvalerci dell'aiuto delle formule di prostaferesi in quanto i coefficienti davanti ai seni sono diversi tra loro. Come vediamo dal grafico \ref{gr:batt2}
 
 
 
+
+%\begin{figure}[H]
+ %\centering
+  % {\includegraphics[width=18cm]{../E01/latex/battimenti.pdf}}
+ %\caption{...}
+ %\label{gr:batt2}
+%\end{figure}
+
+
+\subsection{Conclusione}
+
+L'approssimzione di op-amp ''ideale`` non ha influenzato, come ci aspettavamo, i dati da noi ottenuti. \'E dunque molto probabile che i problemi di non idealità siano riscontrabili qualora si lavorasse con tensioni molto piccole (dell'ordine dei pochi \si{\milli\volt}). 
 
 
 
