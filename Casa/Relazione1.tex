@@ -1,10 +1,10 @@
 \section{16.09.2014 - Amplificatori Operazionali Ideali}
 
-\subsection{Introduzione}
+\subsection{Scopo}
 
 In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori operazionali: un generatore di corrente costante e un sommatore pesato. Nel primo caso abbiamo controllato se la corrente rimanesse costante al variare della resistenza di carico; nel secondo caso abbiamo valutato la tensione di uscita.
 
-\subsection{Materiali}
+\subsection{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth $70$ \si{\mega\hertz}, sample rate $2$ GSa/s);
@@ -147,3 +147,7 @@ Dunque, se consideriamo $\nu_1 + \nu_2 >> |\nu_1 - \nu_2|$, otteniamo il battime
  \caption{Grafico della tensione di uscita. Il generatore 1 (generatore dell'oscilloscopio) crea un'onda sinusoidale di $\nu=550$ \si{\hertz} e $V^1_{pp}=1000$ \si{\milli\volt}; il generatore 2 (generatore di forme d'onda) crea invece un'onda quadra di $\nu=500$ \si{\hertz} e $V^2_{pp}=250$ \si{\milli\volt}. Notiamo inoltre che l'ampiezza massima è data da $A = 2 \phi_1 A_1 = 2 \phi_2 A_2 = 1000$ \si{\milli\volt}, coerentemente con la teoria sopra esposta. L'output teorico è stato valutato con un fit sulla legge (\ref{eq: battimenti1}).}
  \label{gr:battimenti}
 \end{figure}
+
+\subsection{Conclusioni}
+
+In questa esperienza siamo riusciti a valutare il comportamento dell'OPAMP considerandolo ideale, in configurazione di generatore di corrente e sommatore pesato. In entrambi i casi, dati i valori di corrente e tensione, e avendo retrozionato l'OPAMP, abbiamo notato l'idealità dell'amplificatore.

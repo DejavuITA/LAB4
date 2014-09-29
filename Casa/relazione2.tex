@@ -1,9 +1,11 @@
 \section{24.09.2014 - Amplificatori Operazionali Reali}
 
-Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu$A$741$ considerandolo reale.
-Ne analizzeremo l'offset e le correnti di polarizzazione (\textit{bias currents}) cercando di stimarne un valore, tramite circuiti progettati ad hoc.
-Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti.
-Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nascosta per facilitarne la comprensione.
+\subsection{Scopo}
+
+In questa esperienza studieremo un amplificatore operazionale $\mu$A$741$ considerandolo reale, quindi ne analizzeremo la tensione di offset e le correnti di polarizzazione (\textit{bias currents}).
+Ricordiamo che il circuito di alimentazione e di riduzione dei rumori (Figura \ref{gr:costante}) è il medesimo dell'esperienza precedente: negli schemi circuitali è dunque nascosta per facilitarne la comprensione.
+%Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti.
+%Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nascosta per facilitarne la comprensione.
 
 \subsection{Strumenti e materiali}
 
@@ -12,12 +14,12 @@ Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nas
 \item Multimetro Agilent 34410A a sei cifre e mezza;
 \item Un amplificatore operazionale $\mu$A741;
 \item Resistenze e capacità di vari valori;
-\item un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
+\item un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm}, utilizzati per una prima prova;
 \item un trimmer multigiro da \SI{10}{\kilo\ohm};
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
-\subsection{Stima e correzione dell'offset}
+\subsection{Tensione di offset}
 \label{par2:offset}
 
 In questa prima parte dell'esperienza tratteremo il problema dell'offset. In un amplificatore ideale sappiamo che quando sia ingresso invertente che ingresso non invertente sono collegati a comune il segnale in uscita è nullo. Ciò è dovuto alla perfetta simmetria interna dell'op-amp. Ovviamente nel mondo reale non è possibile realizzare tale fatto in quanto non si riescono a costruire transistor BJT con specifiche identiche. 
@@ -82,7 +84,7 @@ $119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
 
 Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Il circuito utilizzato per verificare il bilanciamento dell'offset è quello in Figura \ref{cir2:trimmer}.
 
-Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\approx 0$. Abbiamo poi controllato che l'offset fosse effettivamente stato minimizzato riutilizzando il circuito in Figura \ref{cir:open_loop} e ottenendo $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
+Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} (oltre che uno da \SI{5}{\kilo\ohm}, che è risultato di valore troppo basso) ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\approx 0$. Abbiamo poi controllato che l'offset fosse effettivamente stato minimizzato riutilizzando il circuito in Figura \ref{cir:open_loop} e ottenendo $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
 
 \begin{wrapfigure}[13]{r}{0.55\textwidth}
   \begin{center}
@@ -119,7 +121,7 @@ $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $830.3\pm0.7$ &$ -1038 \pm 5$ 
 \end{tabular}
 \end{center}
 
-Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale di fondo (qualche decina di \si{\micro\volt} di ampiezza), quindi il contributo delle correnti di polarizzazione (che come da considerazioni ai paragrafi successivi generano una tensione confrontabile con quella del rumore) è comunque trascurabile con la strumentazione a nostra disposizione.
+Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale di fondo (qualche decina di \si{\micro\volt} di ampiezza), quindi il contributo delle correnti di polarizzazione (che come da misure ai paragrafi successivi generano una tensione confrontabile con quella del rumore) è comunque trascurabile con la strumentazione a nostra disposizione.
 
 \newpage
 
