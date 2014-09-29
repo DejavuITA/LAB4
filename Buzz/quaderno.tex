@@ -24,8 +24,12 @@
 %pacchetti aggiunti da poco
 \usepackage{footnote}
 
-\begin{document}
+% COMANDI PER PREMETTERE AL NUMERO DELLE FORMULE E DELLE FIGURE IL NUMERO DELLA SEZIONE
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 
+\begin{document}
 
 \title{Quaderno di laboratorio}
 \date{A.A. 2014 - 2015}
@@ -40,6 +44,6 @@
 \clearpage
 %\input{../E02/latex/relazione.tex}
 \input{relazione2.tex}
-\clearpage
-\input{relazione3.tex}
+%\clearpage
+%\input{relazione3.tex}
 \end{document}

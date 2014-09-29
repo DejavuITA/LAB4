@@ -23,4 +23,8 @@ circuiti
 
 	cir#:titolo_sottotitolo
 
+tabelle
+
+	tab#:titolo_sottotitolo
+
 dove # è il numero della relazione.
