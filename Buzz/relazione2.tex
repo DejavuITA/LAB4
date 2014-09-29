@@ -1,9 +1,9 @@
-\section{24.09.2014 - Amplificatori reali}
+\section{Amplificatori Operazionali Reali - 24.09.2014}
 
-Scopo di questa esperienza è quello di studiare un amplificatore operazionale $\mu a 741$ reale.
-Ne analizzeremo l'offset e le correnti di polarizzazione (\textit{bias currents}) cercando di stimarne un valore, tramite circuiti progettati ad hoc.
-Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti.
-Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nascosta per facilitarne la comprensione.
+In questa esperienza analizzeremo le principali caratteristiche che distinguono un amplificatore operazionale \si{\micro}A741 reale dal suo modello ideale.
+In particolare andremo a studiare la tensione di offset e le correnti di polarizzazione - o \textit{bias currents} - cercando di stimare un valore per entrambe, tramite circuiti progettati ad hoc.
+
+Prima di tutto, osserviamo che la circuiteria di alimentazione dell'opamp è la medesima della precedente esperienza e pertanto essa sarà nascosta negli schemi per facilitarne la comprensione.
 
 \subsection{Strumenti e materiali}
 
@@ -20,11 +20,23 @@ Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nas
 \subsection{Stima e correzione dell'offset}
 \label{par2:offset}
 
-In questa prima parte dell'esperienza tratteremo il problema dell'offset. In un amplificatore ideale sappiamo che quando sia ingresso invertente che ingresso non invertente sono collegati a comune il segnale in uscita è nullo. Ciò è dovuto alla perfetta simmetria interna dell'op-amp. Ovviamente nel mondo reale non è possibile realizzare tale fatto in quanto non si riescono a costruire transistor BJT con specifiche identiche. 
+Un opamp ideale possiede una risposta in uscita perfettamente simmetrica rispetto al caso in cui i due terminali invertente e non invertente sono allo stesso potenziale.
+In un opamp reale però, a causa dell'impossibilità di costruire transistor BJT con caratteristiche identiche in modo tale che la circuteria interna dell'integrato risulti simmetrica, è verificata l'esistenza di uno sbilanciamento della risposta in uscita.
+La tensione di \textit{offset} $V_{os}$ è definita come la differenza di potenziale tra i terminali di entrata necessaria affinché l'uscita dell'opamp sia nulla.
 
 \subsubsection{Configurazione senza retroazione}
 
-Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una differenza di potenziale (ovviamente, fra gli ingressi non c'è, in quanto collegati entrambi a comune) la quale viene amplificata dal guadagno a maglia aperta: come $V_{out}$ avremo dunque un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-12.9}{\volt}). Ricordando il funzionamento di un amplificatore operazionale, possiamo dire che il circuito si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso da \SI{-15}{\volt} utilizzati come alimentazione in quanto il valore di tensione massimo $|V_{out}|$ è leggermente inferiore a $|V^-|$. In Figura(\ref{cir:open_loop}) è riportato lo schema del circuito utilizzato.
+La cosa più semplice da fare per osservare questa imperfezione dell'integrato è collegare entrambi i terminali di ingresso a comune (vedi Figura \ref{cir:open_loop}) e osservare grazie al multimetro la tensione in uscita.
+Essa sarà data dalla tensione di offset, amplificata dal guadagno a maglia aperta $A_{ol}$ dell'opamp.
+Poiché $A_{ol}$ è un valore particolarmente alto, sebbene $V_{os}$ sia relativamente piccola, spesso accade che l'opamp vada in saturazione.
+
+Nel nostro caso l'opamp andava in saturazione negativa (\SI{-12.9}{\volt}).
+Da questo dato si possono trarre due considerazioni: la prima è che il circuito si comporta come se la la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente.
+La configurazione a maglia aperta non permette però una stima efficace del valore di $V_{os}$.
+
+La seconda osservazione consiste nel fatto che il modulo della tensione in uscita è inferiore a quello dell'alimentazione usata (\SI{\pm15}{\volt}).
+Ciò può essere dovuto alla caratteristica dell'integrato di avere il valore di tensione massimo $|V_{out,max}|$ leggermente inferiore a quello di alimentazione oppure al fatto che $V_{os}$ non è sufficiente per far andare il circuito completamente in saturazione.
+Altri gruppi di laboratorio hanno infatti ricavato tensioni di molto inferiori alla tensione di alimentazione del circuito ($\lesssim \SI{10}{\volt}$).
 
 \begin{figure}[ht]
         \centering
@@ -42,27 +54,36 @@ Quando colleghiamo entrambi gli ingressi a comune l'op-amp vede all'ingresso una
      
 \end{figure}
 
-Con il circuito in Figura (\ref{cir:open_loop}) non possiamo quindi ricavare una stima del valore di offset. Per fare ciò dobbiamo ricorrere a un circuito amplificatore come quello in Figura(\ref{cir:inv}) (invertente o non invertente), che ci permetta di controllare il guadagno.
+Con il circuito in Figura (\ref{cir:open_loop}) ci è pertanto impossibile ricavare una stima del valore di offset.
+Dobbiamo perciò ricorrere a un circuito amplificatore che ci permetta di avere un controllo preciso sul guadagno.
 
 \subsubsection{Configurazione con retroazione}
 
-Trattiamo per primo il caso \textbf{invertente}. Assumiamo che la tensione nel punto A sia $V_A=V_{off}$ e $V_B=0$. Vale allora che, uguagliando le correnti
+Lo schema in Figura (\ref{cir:inv}) rappresenta il circuito da noi usato per stimare il valore di $V_{os}$.
 
-$$\frac{V_{off}}{R_1} + \frac{V_{off}-V_{out}}{R_2} = 0$$
+Trattiamo per primo il caso del circuito di amplificazione invertente.
+L'idea è quella di assumere la presenza di un generatore di tensione che crei una d.d.p. $V_{os}$ tra il terminale invertente e il punto A (l'orientamento del generatore è ininfluente).
+In tal modo abbiamo $V_B=0$ e quindi $V^-=V_B=0$, pertanto $V_A = V_{os}$.
 
-da cui si ricava che
+Vale allora che, uguagliando le correnti nel nodo A
+
+$$\frac{V_{os}}{R_1} + \frac{V_{os}-V_{out}}{R_2} = 0$$
+
+da cui si ottiene
 $$V_{out}=\left(1+\frac{R_2}{R_1}\right) V_{off}$$
 
-Analogamente si tratta il caso \textbf{non invertente}. Per far ciò assumiamo $V_B=-V_{off}$ e $V_A=0$. L'analisi risulta dunque identica a quella di un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente. 
+Analogamente si tratta il caso non invertente, cioè si assume l'esistenza di un generatore di tensione che crei una d.d.p. $V_{os}$ tra comune (B) e il terminale non invertente.
+Anche in questo caso l'orientamento è ininfluente.
 
-%I valori nominali delle componenti circuitali utilizzate sono: $R_1=\SI{120}{\ohm}$ e $R_2=\SI{10/100}{\kilo\ohm}$.
+Si avrà pertanto $V_B=0$, $V^+=V_{os}$ e pertanto $V_A=V^+=V_{os}$.
+L'analisi risulta dunque identica a quella del circuito un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente, a meno di un fattore $-1$ derivante appunto dall'orientamento del generatore.
 
 Riportiamo nella seguente tabella i valori di offset calcolati, definendo il guadagno come Gain$=1+R_2/R_1$. 
 
 \begin{center}
 \begin{savenotes}
-\begin{tabular}{c|c|c|c|c|c|c}
-$R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain &$V_{out} [\si{\milli\volt}]$ & $V_{off}$ [\si{\milli\volt}]\\ 
+\begin{tabular}{c|c|c|c|c}
+$R_1$ [\si{\ohm}] & $R_2$ [\si{\kilo\ohm}] & Gain &$V_{out}$ [\si{\milli\volt}] & $V_{off}$ [\si{\milli\volt}]\\ 
 \hline 
 $119.8\pm0.1$ & $9.911\pm0.001$ & $83.73\pm0.07$&  $-103.5 \pm 0.5$ & $-1.23 \pm0.01$\\
 \hline
@@ -76,13 +97,17 @@ $119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E02/latex/trimmer_correction.pdf}
   \end{center}
-  \caption{Circuito a guadagno unitario, con trimmer sui piedini 1 e 5 dell'OPAMP per compensare l'offset.}
+  \caption{Circuito a guadagno unitario. Il trimmer è collegato ai piedini 1 e 5 dell'opamp per compensare l'offset.}
   \label{cir2:trimmer}
 \end{wrapfigure}
 
-Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Il circuito utilizzato per verificare il bilanciamento dell'offset è quello in Figura \ref{cir2:trimmer}.
+%Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo opamp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva.
+Per risolvere il problema della tensione di offset, si può agire collegando una resistenza variabile ai piedini 1 e 5 dell'integrato e all'alimentazione negativa $V^- = \SI{-15}{\volt}$, come mostrato in Figura \ref{cir2:trimmer}.
+L'integrato è stato progettato in modo tale che, regolando questa resistenza variabile data nel nostro caso da un \textit{trimmer resistivo}, si vada a generare una tensione che bilanci l'offset.
 
-Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-13}{\volt} a $\approx$\SI{+13}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
+Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-13}{\volt} a $\approx$\SI{+13}{\volt}) troppo velocemente.
+Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}= (1.3\pm0.2)\si{\volt}$.
+Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
 
 \begin{wrapfigure}[17]{r}{0.55\textwidth}
   \begin{center}
