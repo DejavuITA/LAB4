@@ -1,23 +1,28 @@
 \subsection{Guadagno Open Loop}
 
-In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale. Come sappiamo, tale guadagno è una funzione della frequenza. Dobbiamo dunque trovare un modo per misurarlo.
+In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
+Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
 
 \subsubsection{Misura per basse frequenze}
 
-\begin{wrapfigure}[17]{r}{0.55\textwidth}
+\begin{wrapfigure}[15]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
   \end{center}
-  \caption{...}
+  \caption{Circuito utilizzato per stimare il guadagno $A_{ol}$ a basse frequenze. I valori delle resistenze utilizzate sono $R_1 = (\pm) \si{\kilo\ohm}$, $R_2 = (\pm) \si{\kilo\ohm}$, $R_3 = (\pm) \si{\kilo\ohm}$ e $R_4 = (\pm) \si{\kilo\ohm}$.}
   \label{cir3:low_frequency}
 \end{wrapfigure}
 
+Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{3E5}.
+Oltre tale frequenza abbiamo una caduta di circa \SI{20}{\decibel}/decade.
+Non risulta dunque possibile effettuare misure a loop aperto in quanto piccolissime variazioni di tensione ai due ingressi causerebbero grandi effetti in uscita.
 
-Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un op-amp $\mu$A741 è di circa $3\times 10^5$. Oltre tale frequenza abbiamo una caduta di circa 20dB/decade. Non risulta dunque possibile effettuare misure a loop aperto in quanto piccolissime variazioni di tensione ai due ingressi causerebbero grandi effetti in uscita. Abbiamo dunque progettato un circuito per ridurre il guadagno in uscita così da non mandare in saturazione il nostro op-amp. In figura (\ref{cir3:low_frequency}) è riportato lo schema circuitale.  
-
+Abbiamo dunque progettato un circuito per ridurre il guadagno in uscita così da non mandare in saturazione il nostro opamp.
+In Figura \ref{cir3:low_frequency} è riportato lo schema circuitale da noi utilizzato.
 Utilizzando l'oscilloscopio abbiamo misurato i valori di tensione $V_A$ e $V_{out}$. Cerchiamo dunque di legare il guadagno a tali quantità.
 
-Nel caso dell'amplificatore operazionale sappiamo che vale (\ref{eq3:regola_opamp}) Ma $V_+-V_-$ non è altro che la differenza di potenziale presente tra i due ingressi, che sarà ovviamente $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia nulla.}. Possiamo immediatamente stimare tale corrente conoscendo la tensione $V_A$, ovvero $I_3=\frac{V_A}{R_3+R_4}$. 
+Nel caso dell'amplificatore operazionale sappiamo che vale l'eq. (\ref{eq3:regola_opamp}), dove $(V_+-V_-)$ è semplicemente la differenza di potenziale presente tra i due ingressi, che sarà ovviamente data da $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia trascurabile.}.
+È quindi facile stimare $I_3=\frac{V_A}{R_3+R_4}$ conoscendo $V_A$.
 
 Trivialmente si ottiene dunque:
 \begin{equation}
@@ -25,14 +30,14 @@ A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}} \frac{R_4+R_3}{R_4}
 \label{eq3:lfgain}
 \end{equation}
 
-Osserviamo come in Eq.\ref{eq3:lfgain} non compaia il termine $V_{in}$. Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che in nostro op-amp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande in modo da essere poco influenzato dal rumore di fondo. 
+Osserviamo come in eq. (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
+Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo.
 
 I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
 
-Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001. Dunque, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1500000000}{\kilo\hertz}] \Rightarrow {V_A}^{pp} \approx {V_{out}}^{pp}$. Se $\nu >> \SI{1500000000}{\kilo\hertz}$ avremo ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore. Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze
-
-
-
+Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001.
+Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
+Se invece la frequenza del segnale in input è molto maggiore di$\nu >> \SI{1.5E9}{\zepto\hertz}$ avremo ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore. Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze
 
 \subsubsection{Misura per alte frequenze}
 
@@ -49,19 +54,5 @@ Come primo approccio abbiamo provato ad effettuare le misure direttamente a open
 
 Per risolverli possiamo utilizzare il circuito (\ref{cir3:low_frequency}) e semplicemente rimuovere la resistenza $R_4$ e sostituire $R_3$ con un filo (Fig. (\ref{cir3:high_frequency}). Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di Eq.\ref{eq3:lfgain} per $R_4 \rightarrow \infty$. I dati ottenuti sono riportati nel seguente grafico. 
 
-
-
-
 $$****GRAFICO****$$
-
-
-
-
-
-
-
-
-
-
-
 
