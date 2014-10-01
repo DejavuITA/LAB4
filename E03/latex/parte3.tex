@@ -3,6 +3,13 @@
 In questa parte dell'esperienza vogliamo valutare la banda passante di un circuito amplificatore (non invertente) considerando che il guadagno a maglia aperta dell'amplificatore operazionale dipende della frequenza.
 
 Esaminiamo dapprima il circuito, calcolandone la funzione di trasferimento. Per ogni amplificatore operazionale vale
+\begin{wrapfigure}[20]{l}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.30\textwidth]{../E03/latex/bandwidth.pdf}
+  \end{center}
+  \caption{Schema del circuito utilizzato per valutare la banda passante. La resistenza $R_1=997\pm1$\si{\ohm} è fissa; mentre $R_2$ è stata cambiata con valori $R_2^{11x}=9.91 \pm 0.01$ \si{\kilo\ohm} e $R_2^{11x}=99.1 \pm 0.1$ \si{\kilo\ohm} a seconda del guadagno desiderato.}
+  \label{cir3:banda}
+\end{wrapfigure}
 \begin{equation}
 V_{out}=A(s) (V^+-V^-)
 \label{eq3:regola_opamp}
@@ -22,6 +29,7 @@ da cui è facile notare che per $A(s) \rightarrow + \infty$ (approssimazione di 
 
 Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
 $$A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}$$
-con $\omega_0$ la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
+con $\omega_0 \approx 8$ \si{\hertz} la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
 $$H(s)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}$$
-da cui si nota che la nuova frequenza di taglio è data da $\omega_f=(1+A_{ol}\beta)\omega_0$.
+da cui si nota che la nuova frequenza di taglio è data da $\omega_f=(1+A_{ol}\beta)\omega_0$. Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$.
+
