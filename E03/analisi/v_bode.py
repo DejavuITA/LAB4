@@ -47,11 +47,11 @@ f1.text(100, 38, 'G=101x', #r'$\nu_0$',
 f1.text(100, 23, 'G=11x', size=12, va='center', ha='center')
 
 f1.grid(True)
-#f1.set_ylim((-21, 21))
+f1.set_ylim((6,44))
 #f1.set_xlim((80,4E6))
     
 ######
-# GRAFICO 2 - grafico R-Scarti
+# GRAFICO 2
 f2 = fig1.add_subplot(2, 1, 2, sharex=f1)
 f2.set_xscale('log')
 
@@ -62,13 +62,13 @@ fase100 = f2.errorbar(x=f100, y=ph100, fmt='.:', c='green')
 f2.set_ylabel(u'Fase [$^\circ$]', labelpad=0, fontsize=14)
 f2.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
 
-#f2.set_ylim((-0, 190))
-#f2.set_yticks(np.arange(0, 181, 45))
-#f2.set_xlim((80,4E6))
+f2.set_ylim((-96, 6))
+f2.set_yticks(np.arange(-90, 1, 15))
+f2.set_xlim((5,6E5))
 plt.setp(f2.get_xticklabels(), visible=False)
 
 f2.grid(True)
-f2.legend((fase10, fase100), ("Gain = 11x", "Gain = 101x"), 'upper right', prop={'size': 12})
+#f2.legend((fase10, fase100), ("Gain = 11x", "Gain = 101x"), 'upper right', prop={'size': 12})
     
 ######
 
