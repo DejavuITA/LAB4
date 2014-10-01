@@ -17,7 +17,7 @@ Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un op-amp $\mu$A741 �
 
 Utilizzando l'oscilloscopio abbiamo misurato i valori di tensione $V_A$ e $V_{out}$. Cerchiamo dunque di legare il guadagno a tali quantità.
 
-Nel caso dell'amplificatore operazionale sappiamo che vale \ref{eq3:regola_opamp} Ma $V_+-V_-$ non è altro che la differenza di potenziale presente tra i due ingressi, che sarà ovviamente $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia nulla.}. Possiamo immediatamente stimare tale corrente conoscendo la tensione $V_A$, ovvero $I_3=\frac{V_A}{R_3+R_4}$. 
+Nel caso dell'amplificatore operazionale sappiamo che vale (\ref{eq3:regola_opamp}) Ma $V_+-V_-$ non è altro che la differenza di potenziale presente tra i due ingressi, che sarà ovviamente $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia nulla.}. Possiamo immediatamente stimare tale corrente conoscendo la tensione $V_A$, ovvero $I_3=\frac{V_A}{R_3+R_4}$. 
 
 Trivialmente si ottiene dunque:
 \begin{equation}
@@ -29,12 +29,37 @@ Osserviamo come in Eq.\ref{eq3:lfgain} non compaia il termine $V_{in}$. Dovremo 
 
 I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
 
-Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001. Dunque, alla frequenza in cui $A_{ol} \approx 1000 \Rightarrow {V_A}^{pp} \approx {V_{out}}^{pp}$. 
+Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001. Dunque, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1500000000}{\kilo\hertz}] \Rightarrow {V_A}^{pp} \approx {V_{out}}^{pp}$. Se $\nu >> \SI{1500000000}{\kilo\hertz}$ avremo ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore. Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze
 
 
 
 
 \subsubsection{Misura per alte frequenze}
+
+\begin{wrapfigure}[17]{r}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.280\textwidth]{../E03/latex/HF_ol.pdf}
+  \end{center}
+  \caption{...}
+  \label{cir3:high_frequency}
+\end{wrapfigure}
+
+Come primo approccio abbiamo provato ad effettuare le misure direttamente a open-loop visto che ad alte frequenze il guadagno è contenuto (<1000). Tuttavia il generatore di forme d'onda non può emettere solo un segnale alla frequenza voluta in quanto anch'esso è uno strumento reale e dunque affetto da errori. Esso potrebbe dunque emettere un piccolo offset o segnali a frequenze basse. Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene distorto da tali rumori indesiderati. Non è da sottovalutare poi la presenza dei residui dell'offset. Esso infatti dipende dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta. A open-loop abbiamo dunque molti problemi. 
+
+
+Per risolverli possiamo utilizzare il circuito (\ref{cir3:low_frequency}) e semplicemente rimuovere la resistenza $R_4$ e sostituire $R_3$ con un filo (Fig. (\ref{cir3:high_frequency}). Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di Eq.\ref{eq3:lfgain} per $R_4 \rightarrow \infty$. I dati ottenuti sono riportati nel seguente grafico. 
+
+
+
+
+$$****GRAFICO****$$
+
+
+
+
+
+
+
 
 
 
