@@ -28,10 +28,8 @@ out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
 in1 = f1.errorbar(x=t_01*1000, y=0.5*np.sin(t_01*627.4+0.2488), fmt=':', c='red', linewidth=2)
 in2 = f1.errorbar(x=t_01*1000, y=0.25*np.sin(t_01*5026+0.5808), fmt='--', c='green', linewidth=2)
 
-f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal',
-	ha='center', va='center', fontsize=15)
-f1.text(-11.2, 0, r'd.d.p. [$V$]', rotation='vertical',
-	ha='center', va='center', fontsize=15)
+f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal', ha='center', va='center', fontsize=15)
+f1.text(-11.2, 0, r'd.d.p. [$V$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 
 f1.set_xlim((-10.5,10.5))
 #f1.set_ylim((-1.6,1.6))
