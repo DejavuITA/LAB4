@@ -1,10 +1,8 @@
 \section{16.09.2014 - Amplificatori Operazionali Ideali}
 
-\subsection{Scopo}
-
 In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori operazionali: un generatore di corrente costante e un sommatore pesato. Nel primo caso abbiamo controllato se la corrente rimanesse costante al variare della resistenza di carico; nel secondo caso abbiamo valutato la tensione di uscita.
 
-\subsection{Strumenti e materiali}
+\subsection*{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth $70$ \si{\mega\hertz}, sample rate $2$ GSa/s);
@@ -46,6 +44,8 @@ Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo 
 
 In questo circuito abbiamo assemblato un generatore di corrente costante, cioè un dispositivo in grado di erogare una corrente costante ai capi di una resistenza (che definiremo \textit{resistenza di carico} $R_c$), indipendentemente dal valore di quest'ultima. Per valutare questa caratteristica abbiamo dunque utilizzato come $R_c=R_2$ una resistenza variabile di tipo \textit{trimmer}. Lo schema circuitale è in Figura \ref{gen_continua}.
 
+Risolviamo ora il circuito, considerando la tensione fornita dal generatore di tensione continua come $V_{gen}$ e la tensione in uscita dall'OPAMP come $V_{out}$. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo.
+
 \begin{wrapfigure}[21]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E01/latex/c1.pdf}
@@ -54,7 +54,7 @@ In questo circuito abbiamo assemblato un generatore di corrente costante, cioè 
   \label{gen_continua}
 \end{wrapfigure}
 
-Risolviamo ora il circuito, considerando la tensione fornita dal generatore di tensione continua come $V_{gen}$ e la tensione in uscita dall'OPAMP come $V_{out}$. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo. Dunque varranno
+Dunque varranno
 \begin{equation}
 V_{gen} - V_A = V_{gen} = I_1 R_1
 \label{eq:gen_1}

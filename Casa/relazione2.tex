@@ -1,13 +1,11 @@
 \section{24.09.2014 - Amplificatori Operazionali Reali - Prima Parte}
 
-\subsection{Scopo}
-
 In questa esperienza studieremo un amplificatore operazionale $\mu$A$741$ considerandolo reale, quindi ne analizzeremo la tensione di offset e le correnti di polarizzazione (\textit{bias currents}).
 Ricordiamo che il circuito di alimentazione e di riduzione dei rumori (Figura \ref{gr:costante}) è il medesimo dell'esperienza precedente: per facilitare la comprensione degli schemi circuitali è dunque nascosto.
 %Premettiamo che il circuito di alimentazione è lo stesso utilizzato nella precedente esperienza e dunque non ripeteremo le considerazioni e gli schemi circuitali già proposti.
 %Inoltre ricordiamo che la circuiteria di alimentazione sugli schemi è stata nascosta per facilitarne la comprensione.
 
-\subsection{Strumenti e materiali}
+\subsection*{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
 \item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
@@ -120,27 +118,25 @@ $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $830.3\pm0.7$ &$ -1038 \pm 5$ 
 
 Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale di fondo (qualche decina di \si{\micro\volt} di ampiezza), quindi il contributo delle correnti di polarizzazione (che come da misure ai paragrafi successivi generano una tensione confrontabile con quella del rumore) è comunque trascurabile con la strumentazione a nostra disposizione.
 
-\newpage
-
 \subsection{Correnti di polarizzazione}
 
 In questa parte dell'esperienza abbiamo progettato diversi circuiti per misurare la corrente di polarizzazione per entrambi gli ingressi, avendo già stabilizzato la tensione di offset dall'esterno. Di seguito proponiamo due modalità.
 
 \subsubsection{Configurazione senza retroazione}
 
-\begin{wrapfigure}[16]{r}{0.55\textwidth}
+Nel circuito mostrato in figura abbiamo posto la resistenza all'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e, misurando la caduta di potenziale ai capi della stessa con il multimetro, possiamo ottenere il valore di corrente desiderato applicando semplicemente la legge di Ohm
+
+$$V=I_{b^+} R$$
+
+Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere}, abbiamo utilizzato una resistenza molto grande in modo da poter leggere il valore della tensione su una scala accettabile per il multimetro.
+
+\begin{wrapfigure}[15]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.30\textwidth]{../E02/latex/direct_measure.pdf}
   \end{center}
   \caption{Schema del circuito non retro-azionato utilizzato per stimare la corrente di polarizzazione. La resistenza utilizzata è $R_B=10.36\pm0.01$\si{\mega\ohm}; la capacità $C_B=102 \pm 1$ \si{\nano\farad}.}
   \label{circuito:rel2_correnti_senzaretroazione}
 \end{wrapfigure}
-
-Nel circuito mostrato in figura abbiamo posto la resistenza all'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e, misurando la caduta di potenziale ai capi della stessa con il multimetro, possiamo ottenere il valore di corrente desiderato applicando semplicemente la legge di Ohm
-
-$$V=I_{b^+} R$$
-
-Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere}, abbiamo utilizzato una resistenza molto grande in modo da poter leggere il valore della tensione su una scala accettabile per il multimetro.
 
 Durante la procedura abbiamo però notato che, a causa di rumori ambientali, il valore di tensione sul multimetro fluttuava sulla prima cifra, rendendo nostra misurazione ovviamente non quantitativa (al massimo poteva stimarci l'ordine di grandezza della corrente). Per ovviare, abbiamo inserito in parallelo alla resistenza un condensatore che caricandosi si portava alla stessa ddp dei capi della resistenza. In questo modo abbiamo potuto ottenere un valore meno fluttuante, che si attestava a $V=(-80 \pm 2)$ \si{\milli\volt}, cioè $I_{b^+}=(7.7 \pm 0.2)$ \si{\nano\ampere}.
 
