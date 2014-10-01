@@ -25,20 +25,27 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
 
-out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
-out2 = f1.errorbar(x=t_01*1000, y=VS_02+1.7, fmt='-', c='green', linewidth=2)
+out1 = f1.errorbar(x=t_01*1E6, y=VS_01, fmt='-', c='black', linewidth=2)
+out2 = f1.errorbar(x=t_01*1E6, y=VS_02+1.7, fmt='-', c='green', linewidth=2)
 
 p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p10v = f1.axvline(x=0.0589, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
-p90v = f1.axvline(x=0.03555, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=0.0589E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=0.03555E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-f1.text(0.11/2-0.01, -16.8, r'tempo [$ms$]', rotation='horizontal',
+points = f1.plot([0.0589E3, 0.03555E3], [-8, 8], c='black', marker='o', ls='')
+
+p10t = f1.text(0.0589E3+0.0002E3, -8+0.2, r'$P_{10\%}$', rotation='horizontal',
+	ha='left', va='bottom', fontsize=22)
+p90t = f1.text(0.03555E3+0.0004E3, 8+0.2, r'$P_{90\%}$', rotation='horizontal',
+	ha='left', va='bottom', fontsize=22)
+
+f1.text(0.11E3/2-0.01E3, -16.8, r'tempo [$\mu s$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
-f1.text(-0.0125, 0, r'd.d.p. [$V$]', rotation='vertical',
+f1.text(-0.0125E3, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
-f1.set_xlim((-0.01,0.1))
+f1.set_xlim((-0.01E3,0.1E3))
 #f1.set_ylim((-1.6,1.6))
 
 f1.grid(True)

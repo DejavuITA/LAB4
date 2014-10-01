@@ -25,31 +25,31 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
 
-out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='0.1', linewidth=1)
-out2 = f1.errorbar(x=t_01*1000, y=VS_02, fmt='-', c='red', linewidth=1)
+out1 = f1.errorbar(x=t_01*1E6, y=VS_01, fmt='-', c='0.1', linewidth=1)
+out2 = f1.errorbar(x=t_01*1E6, y=VS_02, fmt='-', c='red', linewidth=1)
 
-points = f1.plot([0.00048, 0.00208, 0.0163], [-8, -5, 8], c='black', marker='o', ls='')
+points = f1.plot([0.00048E3, 0.00208E3, 0.0163E3], [-8, -5, 8], c='black', marker='o', ls='')
 
 p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p25h = f1.axhline(y=-5, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p10v = f1.axvline(x=0.00048, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
-p25v = f1.axvline(x=0.00208, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
-p90v = f1.axvline(x=0.0163, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=0.00048E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p25v = f1.axvline(x=0.00208E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=0.0163E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-p10t = f1.text(0.00048+0.0002, -8-0.2, r'$P_{10\%}$', rotation='horizontal',
+p10t = f1.text((0.00048+0.0002)*1E3, -8-0.2, r'$P_{10\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
-p25t = f1.text(0.00208+0.0002, -5-0.2, r'$P_{25\%}$', rotation='horizontal',
+p25t = f1.text((0.00208+0.0002)*1E3, -5-0.2, r'$P_{25\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
-p90t = f1.text(0.0163+0.0002, 8-0.2, r'$P_{90\%}$', rotation='horizontal',
+p90t = f1.text((0.0163+0.0002)*1E3, 8-0.2, r'$P_{90\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
 
-f1.text(0.022/2-0.002, -16.8, r'tempo [$ms$]', rotation='horizontal',
+f1.text(0.022E3/2-0.002E3, -16.8, r'tempo [$\mu s$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
-f1.text(-0.0025, 0, r'd.d.p. [$V$]', rotation='vertical',
+f1.text(-0.0025E3, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
-f1.set_xlim((-0.002,0.02))
+f1.set_xlim((-0.002E3,0.02E3))
 #f1.set_ylim((-1.6,1.6))
 
 f1.grid(True)
