@@ -20,7 +20,7 @@ rcParams['font.size'] = 15
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(15, 7), dpi=65)
 # Titolo del grafico
-fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, fontsize=17)
+fig1.suptitle("Slew Rate", y=0.97, fontsize=17)
 
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)

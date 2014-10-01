@@ -20,7 +20,7 @@ rcParams['font.size'] = 15
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(15, 7), dpi=65)
 # Titolo del grafico
-fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, fontsize=17)
+fig1.suptitle("Slew Rate", y=0.97, fontsize=17)
 
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
@@ -58,7 +58,7 @@ f1.grid(True)
 #f1.legend([out1, in1, in2], ['Output sommatore', 'Generatore 1', 'Generatore 2'])
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.05, right=0.98,
+fig1.subplots_adjust(left=0.04, right=0.98,
     top=0.92, bottom=0.08, hspace=0.18, wspace=0.03)
 
 # mostra grafico

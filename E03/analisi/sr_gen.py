@@ -24,19 +24,25 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
 
-out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
-linea1 = f1.axhline(y=-8, xmin=0, xmax=1)
-linea2 = f1.axvline(x=-9E-6, ymin=0, ymax=1)
-linea3 = f1.axhline(y=8, xmin=0, xmax=1)
-linea4 = f1.axvline(x=16E-6, ymin=0, ymax=1)
-#in2 = f1.errorbar(x=t_01*1000, y=0.5*np.sign(np.sin(t_01*2*pi*100)), fmt=':', c='red', linewidth=2)
+out1 = f1.errorbar(x=t_01*1E9, y=VS_01, fmt='-', c='black', linewidth=2)
+p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=-9, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=16, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal',
+points = f1.plot([-9, 16], [-8, 8], c='red', marker='o', ls='')
+
+p10t = f1.text(-9-2, -8+0.2, r'$P_{10\%}$', rotation='horizontal',
+	ha='right', va='bottom', fontsize=22)
+p90t = f1.text(16+2, 8-0.2, r'$P_{90\%}$', rotation='horizontal',
+	ha='left', va='top', fontsize=22)
+
+f1.text(380/2-90, -16.7, r'tempo [$ns$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
-f1.text(-11.2, 0, r'd.d.p. [$V$]', rotation='vertical',
+f1.text(-11.2E3, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
-f1.set_xlim((-0.0004,0.0004))
+f1.set_xlim((-0.09E3,0.29E3))
 #f1.set_ylim((-1.6,1.6))
 
 f1.grid(True)
