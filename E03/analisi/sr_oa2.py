@@ -26,15 +26,16 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 f1 = host_subplot(111, axes_class=AA.Axes)
 
 out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
-
 out2 = f1.errorbar(x=t_01*1000, y=VS_02+1.7, fmt='-', c='green', linewidth=2)
 
+p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=0.00048, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=0.0163, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-#in2 = f1.errorbar(x=t_01*1000, y=0.5*np.sign(np.sin(t_01*2*pi*100)), fmt=':', c='red', linewidth=2)
-
-f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal',
+f1.text(0.11/2-0.01, -16.8, r'tempo [$ms$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
-f1.text(-11.2, 0, r'd.d.p. [$V$]', rotation='vertical',
+f1.text(-0.0125, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
 f1.set_xlim((-0.01,0.1))
@@ -46,7 +47,7 @@ f1.grid(True)
 #f1.legend([out1, in1, in2], ['Output sommatore', 'Generatore 1', 'Generatore 2'])
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.05, right=0.98,
+fig1.subplots_adjust(left=0.045, right=0.98,
     top=0.92, bottom=0.08, hspace=0.18, wspace=0.03)
 
 # mostra grafico

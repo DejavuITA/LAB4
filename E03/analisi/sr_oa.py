@@ -25,16 +25,20 @@ fig1.suptitle("Circuito sommatore: onda sinusoidale e onda quadra", y=0.97, font
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
 
-out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='black', linewidth=2)
+out1 = f1.errorbar(x=t_01*1000, y=VS_01, fmt='-', c='0.1', linewidth=1)
 
-out2 = f1.errorbar(x=t_01*1000, y=VS_02, fmt='-', c='green', linewidth=2)
+out2 = f1.errorbar(x=t_01*1000, y=VS_02, fmt='-', c='red', linewidth=1)
 
+p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p25h = f1.axhline(y=-5, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=0.00048, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p25v = f1.axvline(x=0.00208, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=0.0163, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-#in2 = f1.errorbar(x=t_01*1000, y=0.5*np.sign(np.sin(t_01*2*pi*100)), fmt=':', c='red', linewidth=2)
-
-f1.text(0, -1.67, r'tempo [$ms$]', rotation='horizontal',
+f1.text(0.022/2-0.002, -16.8, r'tempo [$ms$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
-f1.text(-11.2, 0, r'd.d.p. [$V$]', rotation='vertical',
+f1.text(-0.0025, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
 f1.set_xlim((-0.002,0.02))
