@@ -44,10 +44,11 @@ f2.text(2E5, -37.5, 'G=11x', size=12, va='center', ha='center')
 f2.set_ylim((-96, 6))
 f2.set_yticks(np.arange(-90, 1, 15))
 f2.set_xlim((5,6E5))
+
 #plt.setp(f2.get_xticklabels(), visible=False)
 
 f2.grid(True)
-f2.legend((fase10, fase100), ("Gain = 11x", "Gain = 101x"), 'lower left', prop={'size': 12})  
+#f2.legend((fase10, fase100), ("Gain = 11x", "Gain = 101x"), 'lower left', prop={'size': 12})  
 ######
 
 # questo imposta i bordi del grafico
