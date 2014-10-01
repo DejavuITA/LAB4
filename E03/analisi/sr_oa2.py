@@ -30,8 +30,8 @@ out2 = f1.errorbar(x=t_01*1000, y=VS_02+1.7, fmt='-', c='green', linewidth=2)
 
 p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p10v = f1.axvline(x=0.00048, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
-p90v = f1.axvline(x=0.0163, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p10v = f1.axvline(x=0.0589, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
+p90v = f1.axvline(x=0.03555, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
 f1.text(0.11/2-0.01, -16.8, r'tempo [$ms$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
