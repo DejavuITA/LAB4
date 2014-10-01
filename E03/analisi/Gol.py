@@ -7,9 +7,9 @@ import numpy as np
 	####  Qui vanno i dati 	####
 dataG1 = np.genfromtxt("../dati/4.1.csv", delimiter=',')
 
-f_1	= dataG1[2:,0]
-V_A1	= dataG1[2:,1]
-V_out1	= dataG1[2:,2]
+f_1	= dataG1[1:,0]
+V_A1	= dataG1[1:,1]
+V_out1	= dataG1[1:,2]
 
 dataG2 = np.genfromtxt("../dati/4.2.csv", delimiter=',')
 
@@ -41,13 +41,13 @@ f1.set_ylabel(u'Gain [$dB$]', labelpad=0, fontsize=14)
 #f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)
 #f1.text(-11.2, 0, r'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 
-f1.text(100, 38, 'G=101x', #r'$\nu_0$',
-	size=12, va='center', ha='center')
-f1.text(100, 23, 'G=11x', size=12, va='center', ha='center')
+#f1.text(100, 38, 'G=101x', #r'$\nu_0$',
+#	size=12, va='center', ha='center')
+#f1.text(100, 23, 'G=11x', size=12, va='center', ha='center')
 
 f1.grid(True)
-f1.set_ylim((-5, 120))
-f1.set_xlim((-2, 2E6))
+f1.set_ylim((-10, 120))
+f1.set_xlim((1, 2E6))
 
 f1.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
 
