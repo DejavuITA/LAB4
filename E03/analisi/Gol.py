@@ -7,13 +7,13 @@ import numpy as np
 	####  Qui vanno i dati 	####
 dataG1 = np.genfromtxt("../dati/4.1.csv", delimiter=',')
 
-f1	= dataG1[2:,0]
+f_1	= dataG1[2:,0]
 V_A1	= dataG1[2:,1]
 V_out1	= dataG1[2:,2]
 
 dataG2 = np.genfromtxt("../dati/4.2.csv", delimiter=',')
 
-f2	= dataG2[2:,0]#[2:7,0]
+f_2	= dataG2[2:,0]#[2:7,0]
 V_A2	= dataG2[2:,1]#[2:7,1]
 V_out2	= dataG2[2:,2]#[2:7,2]
 
@@ -26,14 +26,14 @@ fig1.suptitle("Gain open-loop", y=0.985, fontsize=15)
 
 ######
 # GRAFICO 1
-f1 = fig1.add_subplot(2, 1, 1)
+f1 = fig1.add_subplot(1, 1, 1)
 f1.set_xscale('log')
 
-db10 = f1.errorbar(x=f1, #x=np.logspace(70,6E6,500),
+db10 = f1.errorbar(x=f_1, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_out1/V_A1*1001),
 	fmt='.:', c='black')
 
-db100 = f1.errorbar(x=f2, #x=np.logspace(70,6E6,500),
+db100 = f1.errorbar(x=f_2, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_out2/V_A2),
 	fmt='.:', c='green')
     
@@ -46,32 +46,16 @@ f1.text(100, 38, 'G=101x', #r'$\nu_0$',
 f1.text(100, 23, 'G=11x', size=12, va='center', ha='center')
 
 f1.grid(True)
-#f1.set_ylim((-21, 21))
-#f1.set_xlim((80,4E6))
-    
-######
-# GRAFICO 2 - grafico R-Scarti
-#f2 = fig1.add_subplot(2, 1, 2, sharex=f1)
-#f2.set_xscale('log')
+f1.set_ylim((-5, 120))
+f1.set_xlim((-2, 2E6))
 
-#fase10 = f2.errorbar(x=f10, y=ph10, fmt='.:', c='black')
+f1.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
 
-#fase100 = f2.errorbar(x=f100, y=ph100, fmt='.:', c='green')
-
-#f2.set_ylabel(u'Fase [$^\circ$]', labelpad=0, fontsize=14)
-#f2.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
-
-#f2.set_ylim((-0, 190))
-#f2.set_yticks(np.arange(0, 181, 45))
-#f2.set_xlim((80,4E6))
-#plt.setp(f2.get_xticklabels(), visible=False)
-
-#f2.grid(True)
-#f2.legend((fase10, fase100), ("Gain = 11x", "Gain = 101x"), 'upper right', #prop={'size': 12})
+#f1.legend((db10, db100), ("Gain = 11x", "Gain = 101x"), 'lower left', prop={'size': 12})
     
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.09, right=0.98, top=0.955, bottom=0.045, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.11, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
