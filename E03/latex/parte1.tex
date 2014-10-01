@@ -8,9 +8,9 @@
   \label{cir3:slew_rate}
 \end{wrapfigure}
 
-L'amplificatore operazionale ha una capacità limitata di ricorrere segnali: ciò significa che, data una funzione in entrata nell'OP-AMP, quest'ultimo non sarà in grado di restituire in uscita il segnale amplificato con la stessa forma d'onda. In altre parole, l'amplificatore ha un valore
+Uno dei parametri che caratterizzano l'amplificatore operazionale è lo Slew Rate, definito come
 $$SR = \frac{\Delta V}{\Delta t}$$
-costante. Questo fenomeno è dunque visibile a valori di tensione e frequenza che superino lo $SR$.
+che indica la velocità massima con cui l'amplificatore operazionale può far variare la tensione in uscita nell'unità di tempo. Ciò significa che, per segnali in entrata con derivata temporale superiore ad SR dell'OPAMP, avremo un segnale distorto in uscita.
 
 Nel nostro caso abbiamo utilizzato il generatore, caratterizzato da uno Slew Rate di $SR_{gen}=315$ \si{\volt\per\micro\second}, per creare il segnale in ingresso (onda quadra) e valutato la forma d'onda del segnale in uscita utilizzando il circuito in Figura \ref{cir3:slew_rate} quando aveva derivata $dV/dt > 0$. La capacità è utilizzata come serbatoio di cariche per attenuare fenomeni di rumore nel segnale creati dal generatore.
 
@@ -23,6 +23,6 @@ Inizialmente abbiamo posto la frequenza a $f=1$\si{\kilo\hertz} e la tensione pi
  \label{gr3:slew_rate}
 \end{figure}
 
-Come però si può vedere dal grafico in Figura \ref{cir3:slew_rate} si nota che nella parte vicina al 10\% è presente una parte di segnale affetta da rumore che potrebbe rendere poco precisa la nostra misura. Infatti siamo interessati al rapporto fra i $\Delta$; dunque portare il limite inferiore ad un valore percentuale più alto, dato il rumore, rende più precisa la misura. Portando dunque la percentuale del limite inferiore al 25\% abbiamo ottenuto i seguenti valori: $\Delta V = 6.4813$ \si{\volt} e $\Delta t = 14.5$ \si{\micro\second}, dunque $SR = 0.447$ \si{\volt\per\micro\second}. Durante l'esperienza utilizzeremo questo valore come riferimento per lo Slew Rate del nostro amplificatore.
+Come però si può vedere dal grafico in Figura \ref{gr3:slew_rate} si nota che nella parte vicina al 10\% è presente una parte di segnale affetta da rumore che potrebbe rendere poco precisa la nostra misura. Infatti siamo interessati al rapporto fra i $\Delta$; dunque portare il limite inferiore ad un valore percentuale più alto, dato il rumore, rende più precisa la misura. Portando dunque la percentuale del limite inferiore al 25\% abbiamo ottenuto i seguenti valori: $\Delta V = 6.4813$ \si{\volt} e $\Delta t = 14.5$ \si{\micro\second}, dunque $SR = 0.447$ \si{\volt\per\micro\second}. Durante l'esperienza utilizzeremo questo valore come riferimento per lo Slew Rate del nostro amplificatore.
 
-Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abbia derivata $dV/dt$ positiva o negativa. In questo secondo caso, infatti, abbiamo ottenuto i seguenti valori: $\Delta V = 7.975$ \si{\volt} e $\Delta t = 11.42$ \si{\micro\second}, quindi $SR = 0.698$ \si{\volt\per\micro\second}.
+Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abbia derivata $dV/dt$ positiva o negativa. Nel secondo caso, infatti, abbiamo ottenuto i seguenti valori: $\Delta V = 7.975$ \si{\volt} e $\Delta t = 11.42$ \si{\micro\second}, quindi $SR = 0.698$ \si{\volt\per\micro\second}.
