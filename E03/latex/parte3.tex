@@ -2,6 +2,8 @@
 
 In questa parte dell'esperienza vogliamo valutare la banda passante di un circuito amplificatore (non invertente) considerando che il guadagno a maglia aperta dell'amplificatore operazionale dipende della frequenza.
 
+\subsubsection{Funzione di trasferimento e frequenza di taglio}
+
 Esaminiamo dapprima il circuito, calcolandone la funzione di trasferimento. Per ogni amplificatore operazionale vale
 \begin{wrapfigure}[20]{l}{0.55\textwidth}
   \begin{center}
@@ -31,7 +33,14 @@ Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a mag
 $$A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}$$
 con $\omega_0 \approx 8$ \si{\hertz} la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
 $$H(s)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}$$
-da cui si nota che la nuova frequenza di taglio è data da $\omega_f=(1+A_{ol}\beta)\omega_0$. Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare il BWP $= 2 \pi \omega_f G$, costante dell'amplificatore operazionale.
+da cui si nota che la nuova frequenza di taglio è data da
+\begin{equation}
+\omega_t=(1+A_{ol}\beta)\omega_0
+\label{eq3:freq_taglio}
+\end{equation}
+Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare il BWP $= 2 \pi \omega_t G$, costante dell'amplificatore operazionale.
+
+\subsubsection{Effetto dello Slew Rate}
 
 Ovviamente, durante la misurazione bisogna minimizzare l'effetto dello Slew Rate che, come visto nel paragrafo precedente, distorce la forma d'onda in uscita. Bisogna quindi scegliere valori di tensione del segnale in ingresso appropriati.
 Supponiamo dunque di avere una forma d'onda in uscita del tipo $V_{out} \sin (2 \pi f_0 t) = V_{in} G \sin (2 \pi f_0 t)$. Vale, affinché non si raggiunga lo SR
@@ -43,11 +52,21 @@ V_{in}<\frac{0.35 \si{\volt\per\micro\second}}{2 \pi G f_0} = \frac{0.35 \si{\vo
 \end{equation}
 Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i valori di tensione da usare nei due casi è di circa $V_{in}^{11\mathrm{x}} = 100$ \si{\milli\volt}$= V_{in}^{101\mathrm{x}}$. Si nota che la regola \ref{eq3:tensione_max} è valida quando il guadagno non dipende dalla frequenza: infatti dopo la frequenza di taglio il guadagno del circuito $G$ cala e dunque i valori di tensione ammessi risultano di valore maggiore.
 
+\subsubsection{Grafici di Bode}
+
 Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i grafici di Bode (Figura \ref{gr3:bode}).
 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=16.5cm]{../E03/latex/bode.pdf}}
- \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=(0.112 \pm 0.001)$ \si{\micro\farad} $C_2=(0.095\pm0.001)$ \si{\micro\farad}. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
+ \caption{Diagrammi di Bode per il guadagno del circuito in Figura \ref{cir3:banda}. Per trovare la frequenza di taglio abbiamo utilizzato il grafico relativo alla fase e stimato i parametri di una retta passante fra i due punti più vicini alla fase di $45^{\circ}$. Ovviamente gli errori con tali parametri non sono indicativi (i parametri della retta sono uguali al numero di dati a disposizione), quindi abbiamo optato per un errore stimato tenendo in considerazione la vicinanza delle due misure di fase al valore cercato (5 \% della distanza di frequenza fra le misure).}
  \label{gr3:bode}
 \end{figure}
+
+I valori di frequenza di taglio, calcolati per interpolazione con una retta congiungente i due punti più vicini alla fase di taglio ($45^{\circ}$) sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, compatibili con gli ordini di grandezza stimati in precedenza. Gli errori sono stimati come descritto nella didascalia di Figura \ref{gr3:bode}.
+
+\subsubsection{Calcolo di $A_{ol}$}
+
+Proviamo ora ad applicare la relazione \ref{eq3:freq_taglio} per trovare una stima di $A_{ol}$. Vale dunque
+$$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
+che nei due casi (amplificazione $11\mathrm{x}$ e $101\mathrm{x}$) ci restituisce i valori di $A_{ol}^{11\mathrm{x}} = ??????$ e $A_{ol}^{101\mathrm{x}} = ?????? CON ERRORI RESISTENZE!!!$. Nel paragrafo successivo verificheremo la compatibilità fra questi risultati e quelli misurati direttamente.

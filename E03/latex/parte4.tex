@@ -37,22 +37,34 @@ I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\ki
 
 Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001.
 Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
-Se invece la frequenza del segnale in input è molto maggiore di$\nu >> \SI{1.5E9}{\zepto\hertz}$ avremo ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore. Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze
+Invece a frequenze molto maggiori di $\nu_{tajo} >> \SI{1.5E9}{\zepto\hertz}$ avremo che le tensioni da noi misurate saranno ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore.
+Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze.
 
 \subsubsection{Misura per alte frequenze}
 
-\begin{wrapfigure}[17]{r}{0.55\textwidth}
+\begin{wrapfigure}[15]{r}{0.45\textwidth}
   \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E03/latex/HF_ol.pdf}
+    \includegraphics[width=0.32\textwidth]{../E03/latex/HF_ol.pdf}
   \end{center}
-  \caption{...}
+  \caption{Circuito utilizzato per stimare il guadagno $A_{ol}$ a basse frequenze. I valori delle resistenze utilizzate sono le stesse del circuito in Figura \ref{cir3:low_frequency}.}
   \label{cir3:high_frequency}
 \end{wrapfigure}
 
-Come primo approccio abbiamo provato ad effettuare le misure direttamente a open-loop visto che ad alte frequenze il guadagno è contenuto (<1000). Tuttavia il generatore di forme d'onda non può emettere solo un segnale alla frequenza voluta in quanto anch'esso è uno strumento reale e dunque affetto da errori. Esso potrebbe dunque emettere un piccolo offset o segnali a frequenze basse. Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene distorto da tali rumori indesiderati. Non è da sottovalutare poi la presenza dei residui dell'offset. Esso infatti dipende dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta. A open-loop abbiamo dunque molti problemi. 
+Come primo approccio abbiamo provato ad effettuare le misure direttamente ad open-loop visto che ad alte frequenze il guadagno è contenuto (\num{<1000}).
+Tuttavia il generatore di forme d'onda non emette un segnale pulito alla sola frequenza voluta, in quanto anch'esso è uno strumento reale e dunque affetto da errori.
+Esso potrebbe dunque emettere segnali a frequenze basse o addirittura un piccolo offset.
+Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
+Non è da sottovalutare poi la presenza dei residui dell'offset dell'opamp.
+Esso infatti dipende anche dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta ad ogni temperatura.
+Misurare il guadagno $A_{ol}$ effettivamente a open-loop è particolarmente problematico.
 
+Per aggirare tali ostacoli possiamo utilizzare il circuito riportato in Figura \ref{cir3:low_frequency}, rimuovendo la resistenza $R_4$ e sostituendo $R_3$ con un filo partendo dalla configurazione di Figura \ref{cir3:high_frequency}.
+Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di eq. (\ref{eq3:lfgain}) per $R_4 \rightarrow \infty$.
+I dati ottenuti sono riportati nel seguente grafico. 
 
-Per risolverli possiamo utilizzare il circuito (\ref{cir3:low_frequency}) e semplicemente rimuovere la resistenza $R_4$ e sostituire $R_3$ con un filo (Fig. (\ref{cir3:high_frequency}). Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di Eq.\ref{eq3:lfgain} per $R_4 \rightarrow \infty$. I dati ottenuti sono riportati nel seguente grafico. 
-
-$$****GRAFICO****$$
-
+\begin{SCfigure}[][ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../E03/latex/gol.pdf}
+	\caption{Il Grafico è da cambiare!}
+  \label{cir3:gain_open_loop}
+\end{SCfigure}
