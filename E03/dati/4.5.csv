@@ -1,4 +1,4 @@
-%R1=R2=100k, R4=infty
+%R1=R2=100k, R4=infty,
 [Hz],	[V],	[V]
 Freq,	V_A,	V_out
 100000,	0.512,	3.28
