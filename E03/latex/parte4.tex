@@ -1,4 +1,5 @@
 \subsection{Guadagno Open Loop}
+\label{par3:open}
 
 In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
 Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
@@ -64,7 +65,17 @@ I dati ottenuti sono riportati nel seguente grafico.
 
 \begin{SCfigure}[][ht]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../E03/latex/figure_1.png}
+	\includegraphics[width=0.7\textwidth]{../E03/latex/gol.pdf}
 	\caption{Il Grafico è da cambiare!}
   \label{cir3:gain_open_loop}
 \end{SCfigure}
+
+\subsection{Calcolo di $A_{ol}$}
+
+Al paragrafo \ref{par3:bode} abbiamo calcolato le frequenze di taglio con diversi valori di guadagno del circuito $G$. Al paragrafo \ref{par3:open} abbiamo invece calcolato la prima frequenza di taglio dell'amplificatore operazionale in configurazione open loop, che si attesta ad essere $\approx 6$ \si{\hertz}.
+
+Utilizzando \ref{eq3:freq_taglio} otteniamo che
+$$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
+dove $G$ ($11\mathrm{x}$ e $101\mathrm{x}$) e le frequenze di taglio sono quelle calcolate al paragrafo \ref{par3:bode}.
+
+Otteniamo i seguenti valori: $A_{ol}^{11\mathrm{x}} = 169000 \pm 3000$ e $A_{ol}^{101\mathrm{x}} = 173000 \pm 4000$. Questi valori possono essere confrontati con il guadagno del primo dato trovato al paragrafo \ref{par3:open}, che si attesta essere a $200000 \pm 30000$. I dati risultano dunque compatibili entro gli errori sperimentali.

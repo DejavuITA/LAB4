@@ -1,4 +1,5 @@
 \subsection{Verifica della banda passante}
+\label{par3:bode}
 
 In questa parte dell'esperienza vogliamo valutare la banda passante di un circuito amplificatore (non invertente) considerando che il guadagno a maglia aperta dell'amplificatore operazionale dipende della frequenza.
 
@@ -64,9 +65,3 @@ Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di 
 \end{figure}
 
 I valori di frequenza di taglio, calcolati per interpolazione con una retta congiungente i due punti più vicini alla fase di taglio ($45^{\circ}$) sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, compatibili con gli ordini di grandezza stimati in precedenza. Gli errori sono stimati come descritto nella didascalia di Figura \ref{gr3:bode}.
-
-\subsubsection{Calcolo di $A_{ol}$}
-
-Proviamo ora ad applicare la relazione \ref{eq3:freq_taglio} per trovare una stima di $A_{ol}$. Vale dunque
-$$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
-che nei due casi (amplificazione $11\mathrm{x}$ e $101\mathrm{x}$) ci restituisce i valori di $A_{ol}^{11\mathrm{x}} = ??????$ e $A_{ol}^{101\mathrm{x}} = ?????? CON ERRORI RESISTENZE!!!$. Nel paragrafo successivo verificheremo la compatibilità fra questi risultati e quelli misurati direttamente.
