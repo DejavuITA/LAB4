@@ -20,6 +20,14 @@ V_ou100	= dataG100[2:,2]
 ph100	= dataG100[2:,3]
 	####	####	####	####
 
+Ax = log10(20E3)
+Bx = log10(100E3)
+Ay = 20*log10(9.07/0.199)
+By = 20*log10(1.8/0.2)
+m= (By-Ay)/(Bx-Ax)
+
+	####	####	####	####
+
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 8))
 # Titolo del grafico
@@ -28,7 +36,14 @@ fig1.suptitle("Risposta in frequenza dell'opamp µA741", y=0.985, fontsize=15)
 ######
 # GRAFICO 1
 f1 = fig1.add_subplot(2, 1, 1)
+
+
 f1.set_xscale('log')
+
+slope = f1.errorbar(x=[i for i in range(800, 600000)],
+			y=[0.43*m*log(i)+120 for i in range(800, 600000)],
+	fmt='--', c='0.5')
+f1.text(50000, 33, u' approx slope:\n$-20\,dB/decade$', size=13, va='center', ha='left')
 
 db10 = f1.errorbar(x=f10, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_ou10/V_in10),
