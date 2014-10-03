@@ -6,7 +6,7 @@ Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque t
 
 \subsubsection{Misura per basse frequenze}
 
-\begin{wrapfigure}[15]{r}{0.55\textwidth}
+\begin{wrapfigure}[16]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
   \end{center}
@@ -25,18 +25,22 @@ Utilizzando l'oscilloscopio abbiamo misurato i valori di tensione $V_A$ e $V_{ou
 Nel caso dell'amplificatore operazionale sappiamo che vale l'eq. (\ref{eq3:regola_opamp}), dove $(V_+-V_-)$ è semplicemente la differenza di potenziale presente tra i due ingressi, che sarà ovviamente data da $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia trascurabile.}.
 È quindi facile stimare $I_3=\frac{V_A}{R_3+R_4}$ conoscendo $V_A$.
 
-Trivialmente si ottiene dunque:
+Si ottiene dunque:
 \begin{equation}
 A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}} \frac{R_4+R_3}{R_4}
 \label{eq3:lfgain}
 \end{equation}
 
-Osserviamo come in eq. (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
+Osserviamo come in equazione (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
 Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo.
 
-I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
+%I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
 
-Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ vale circa 1001.
+Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; abbiamo scelto tale resistenza in funzione del range di frequenze. Per ogni resistenza, all'aumentare della frequenza, diminuivano i valori di $V_A$ e $V_{out}$, e per rimanere nella sensibilità dello strumento abbiamo dovuto cambiare $R_4$.
+
+\qquad \qquad DA RIVEDERE!!!!!
+
+Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ variava da .
 Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
 Invece a frequenze molto maggiori di $\nu_{tajo} >> \SI{1.5E9}{\zepto\hertz}$ avremo che le tensioni da noi misurate saranno ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore.
 Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze.
@@ -63,12 +67,12 @@ Per aggirare tali ostacoli possiamo utilizzare il circuito riportato in Figura \
 Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di eq. (\ref{eq3:lfgain}) per $R_4 \rightarrow \infty$.
 I dati ottenuti sono riportati nel seguente grafico. 
 
-\begin{SCfigure}[][ht]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../E03/latex/gol.pdf}
-	\caption{Il Grafico è da cambiare!}
+	\caption{Grafico semilogaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}).}
   \label{cir3:gain_open_loop}
-\end{SCfigure}
+\end{figure}
 
 \subsection{Calcolo di $A_{ol}$}
 
