@@ -35,7 +35,7 @@ VA_4	= dataG4[3:,1]#[2:7,1]
 Vout_4	= dataG4[3:,2]#[2:7,2]
 R_4 = 1000
 
-dataG5 = np.genfromtxt("../dati/4.5.csv", delimiter=',')
+dataG5 = np.genfromtxt("../dati/4.2_old.csv", delimiter=',')
 
 f_5	= dataG5[3:,0]#[2:7,0]
 VA_5	= dataG5[3:,1]#[2:7,1]
