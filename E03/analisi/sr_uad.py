@@ -27,26 +27,26 @@ fig1.suptitle("Slew Rate: salita e discesa", y=0.97, fontsize=17)
 # GRAFICO 1
 f1 = host_subplot(121, axes_class=AA.Axes)
 
-out1 = f1.errorbar(x=t_01*1E6, y=VS_01, fmt='-', c='0.1', linewidth=1)
-out2 = f1.errorbar(x=t_01*1E6, y=VS_02, fmt='-', c='red', linewidth=1)
+out1 = f1.errorbar(x=t_01*1E6, y=VS_01/2, fmt='-', c='0.1', linewidth=1)
+out2 = f1.errorbar(x=t_01*1E6, y=VS_02/2, fmt='-', c='red', linewidth=1)
 
-points = f1.plot([0.00048E3, 0.00208E3, 0.0163E3], [-8, -5, 8], c='black', marker='o', ls='')
+points = f1.plot([0.00048E3, 0.00208E3, 0.0163E3], [-8/2, -5/2, 8/2], c='black', marker='o', ls='')
 
-p10h = f1.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p25h = f1.axhline(y=-5, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p90h = f1.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p10h = f1.axhline(y=-8/2, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p25h = f1.axhline(y=-5/2, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p90h = f1.axhline(y=8/2, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p10v = f1.axvline(x=0.00048E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 p25v = f1.axvline(x=0.00208E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 p90v = f1.axvline(x=0.0163E3, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-p10t = f1.text((0.00048+0.0002)*1E3, -8-0.2, r'$P_{10\%}$', rotation='horizontal',
+p10t = f1.text((0.00048+0.0002)*1E3, -8/2-0.2/2, r'$P_{10\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
-p25t = f1.text((0.00208+0.0002)*1E3, -5-0.2, r'$P_{25\%}$', rotation='horizontal',
+p25t = f1.text((0.00208+0.0002)*1E3, -5/2-0.2/2, r'$P_{25\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
-p90t = f1.text((0.0163+0.0002)*1E3, 8-0.2, r'$P_{90\%}$', rotation='horizontal',
+p90t = f1.text((0.0163+0.0002)*1E3, 8/2-0.2/2, r'$P_{90\%}$', rotation='horizontal',
 	ha='left', va='top', fontsize=22)
 
-f1.text(25/2-3, -17.3, r'tempo [$\mu s$]', rotation='horizontal',
+f1.text(25/2-3, -6.9, r'tempo [$\mu s$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
 f1.text(-4, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
@@ -62,22 +62,22 @@ f2 = host_subplot(122, axes_class=AA.Axes)
 A=-13.5
 B=38.5
 
-out1 = f2.errorbar(x=t_02*1E6-500, y=VS_11, fmt='-', c='0.1', linewidth=1)
-out2 = f2.errorbar(x=t_02*1E6-500, y=VS_12, fmt='-', c='red', linewidth=1)
+out1 = f2.errorbar(x=t_02*1E6-500, y=VS_11/2, fmt='-', c='0.1', linewidth=1)
+out2 = f2.errorbar(x=t_02*1E6-500, y=VS_12/2, fmt='-', c='red', linewidth=1)
 
-points = f2.plot([25.6, 2.6], [-8, 8], c='black', marker='o', ls='')
+points = f2.plot([25.6, 2.6], [-8/2, 8/2], c='black', marker='o', ls='')
 
-p10h = f2.axhline(y=-8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
-p90h = f2.axhline(y=8, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p10h = f2.axhline(y=-8/2, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
+p90h = f2.axhline(y=8/2, xmin=0, xmax=1, c='gray', ls='-.', lw=1.5)
 p10v = f2.axvline(x=25.6, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 p90v = f2.axvline(x=2.6, ymin=0, ymax=1, c='gray', ls='-.', lw=1.5)
 
-p10t = f2.text(25.6+0.5, -8+0.2, r'$P_{10\%}$', rotation='horizontal',
+p10t = f2.text(25.6+0.5, -8/2+0.2/2, r'$P_{10\%}$', rotation='horizontal',
 	ha='left', va='bottom', fontsize=22)
-p90t = f2.text(2.6+0.5, 8+0.2, r'$P_{90\%}$', rotation='horizontal',
+p90t = f2.text(2.6+0.5, 8/2+0.2/2, r'$P_{90\%}$', rotation='horizontal',
 	ha='left', va='bottom', fontsize=22)
 
-f2.text((B-A)/2+A, -17.3, r'tempo [$\mu s$]', rotation='horizontal',
+f2.text((B-A)/2+A, -6.9, r'tempo [$\mu s$]', rotation='horizontal',
 	ha='center', va='center', fontsize=15)
 f2.text(41, 0, r'd.d.p. [$V$]', rotation='-90',
 	ha='center', va='center', fontsize=15)

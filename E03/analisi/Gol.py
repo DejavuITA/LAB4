@@ -17,6 +17,8 @@ R_1 = 5
 #print(VA_1)
 #print(Vout_1)
 #print(" ")
+print(20*log10(Vout_1[1]/VA_1[1]*(R+R_1)/R_1))
+print((Vout_1[1]/VA_1[1]*(R+R_1)/R_1))
 
 dataG2 = np.genfromtxt("../dati/4.2.csv", delimiter=',')
 

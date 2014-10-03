@@ -8,19 +8,16 @@ from mpl_toolkits.axes_grid1 import host_subplot
 import mpl_toolkits.axisartist as AA
 
 #### dati ####
-data01 = np.genfromtxt("../dati/scope_11.csv", delimiter=',')
+data01 = np.genfromtxt("../dati/nuovi/tt_0210_05.csv", delimiter=',')
 t_01 = data01[2:,0]
 VS_01 = data01[2:,1]
 VS_02 = data01[2:,2]
-#data02 = np.genfromtxt("../dati/scope_1.csv", delimiter=',')
-#t_02 = data02[2:,0]
-#VS_02 = data02[2:,1]
 
 rcParams['font.size'] = 15
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(15, 7), dpi=65)
 # Titolo del grafico
-fig1.suptitle("Slew Rate", y=0.97, fontsize=17)
+fig1.suptitle("Co", y=0.97, fontsize=17)
 
 # GRAFICO
 f1 = host_subplot(111, axes_class=AA.Axes)
@@ -45,7 +42,7 @@ f1.text(0.11E3/2-0.01E3, -16.8, r'tempo [$\mu s$]', rotation='horizontal',
 f1.text(-0.0125E3, 0, r'd.d.p. [$V$]', rotation='vertical',
 	ha='center', va='center', fontsize=15)
 
-f1.set_xlim((-0.01E3,0.1E3))
+#f1.set_xlim((-0.01E3,0.1E3))
 #f1.set_ylim((-1.6,1.6))
 
 f1.grid(True)
