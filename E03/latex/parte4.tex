@@ -4,21 +4,21 @@
 In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
 Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
 
-\subsubsection{Misura per basse frequenze}
+
 
 \begin{wrapfigure}[16]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
   \end{center}
-  \caption{Circuito utilizzato per stimare il guadagno $A_{ol}$ a basse frequenze. I valori delle resistenze utilizzate sono $R_1 = (\pm) \si{\kilo\ohm}$, $R_2 = (\pm) \si{\kilo\ohm}$, $R_3 = (\pm) \si{\kilo\ohm}$ e $R_4 = (\pm) \si{\kilo\ohm}$.}
+  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$.}
   \label{cir3:low_frequency}
 \end{wrapfigure}
 
-Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{3E5}.
+Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{2E5}.
 Oltre tale frequenza abbiamo una caduta di circa \SI{20}{\decibel}/decade.
 Non risulta dunque possibile effettuare misure a loop aperto in quanto piccolissime variazioni di tensione ai due ingressi causerebbero grandi effetti in uscita.
 
-Abbiamo dunque progettato un circuito per ridurre il guadagno in uscita così da non mandare in saturazione il nostro opamp.
+Abbiamo dunque progettato un circuito per controllare la tensione in uscita così da non mandare in saturazione il nostro opamp.
 In Figura \ref{cir3:low_frequency} è riportato lo schema circuitale da noi utilizzato.
 Utilizzando l'oscilloscopio abbiamo misurato i valori di tensione $V_A$ e $V_{out}$. Cerchiamo dunque di legare il guadagno a tali quantità.
 
@@ -32,20 +32,18 @@ A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}} \frac{R_4+R_3}{R_4}
 \end{equation}
 
 Osserviamo come in equazione (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
-Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo.
+Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo e sia stabile il più possibile.
 
 %I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
 
-Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; abbiamo scelto tale resistenza in funzione del range di frequenze. Per ogni resistenza, all'aumentare della frequenza, diminuivano i valori di $V_A$ e $V_{out}$, e per rimanere nella sensibilità dello strumento abbiamo dovuto cambiare $R_4$.
+Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; questa strategia ci ha permesso di mantenere i valori di $V_A$ e $V_{out}$ sempre nell'ordine del volt. 
 
-\qquad \qquad DA RIVEDERE!!!!!
+I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)\si{\ohm}$,  $(9.6\pm0.1)\si{\ohm}$, $(101.3\pm 0.1) \si{\ohm}$ e $(998.2\pm 0.1 ) \si{\ohm}$ mentre $R_1=(\pm)$, $R_2=(\pm)$ e $R_3=(\pm)$
+%Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
+%Invece a frequenze molto maggiori di $\nu_{tajo} >> \SI{1.5E9}{\zepto\hertz}$ avremo che le tensioni da noi misurate saranno ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore.
+%Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze.
 
-Con le resistenze da noi scelte il fattore $\frac{R_4+R_3}{R_4}$ variava da .
-Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
-Invece a frequenze molto maggiori di $\nu_{tajo} >> \SI{1.5E9}{\zepto\hertz}$ avremo che le tensioni da noi misurate saranno ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore.
-Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze.
-
-\subsubsection{Misura per alte frequenze}
+\subsubsection*{Misura per alte frequenze}
 
 \begin{wrapfigure}[15]{r}{0.45\textwidth}
   \begin{center}
@@ -55,7 +53,7 @@ Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze
   \label{cir3:high_frequency}
 \end{wrapfigure}
 
-Come primo approccio abbiamo provato ad effettuare le misure direttamente ad open-loop visto che ad alte frequenze il guadagno è contenuto (\num{<1000}).
+Per non dover utilizzare resistenze $R_4$ troppo grandi ad alte frequenze ($>$ \SI{70}{\kilo\hertz}), abbiamo provato ad effettuare le misure direttamente ad open-loop, dato che il guadagno è contenuto (\num{<100}).
 Tuttavia il generatore di forme d'onda non emette un segnale pulito alla sola frequenza voluta, in quanto anch'esso è uno strumento reale e dunque affetto da errori.
 Esso potrebbe dunque emettere segnali a frequenze basse o addirittura un piccolo offset.
 Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
@@ -74,6 +72,10 @@ I dati ottenuti sono riportati nel seguente grafico.
   \label{cir3:gain_open_loop}
 \end{figure}
 
+
+Come vediamo, per frequenze inferiori alla prima frequenza di taglio ($\simeq 6 \si{\hertz}$), il guadagno open-loop vale circa $A_{ol}=(2.1\pm0.1)\times 10^5$.
+
+
 \subsection{Calcolo di $A_{ol}$}
 
 Al paragrafo \ref{par3:bode} abbiamo calcolato le frequenze di taglio con diversi valori di guadagno del circuito $G$. Al paragrafo \ref{par3:open} abbiamo invece calcolato la prima frequenza di taglio dell'amplificatore operazionale in configurazione open loop, che si attesta ad essere $\approx 6$ \si{\hertz}.
@@ -82,4 +84,4 @@ Utilizzando \ref{eq3:freq_taglio} otteniamo che
 $$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
 dove $G$ ($11\mathrm{x}$ e $101\mathrm{x}$) e le frequenze di taglio sono quelle calcolate al paragrafo \ref{par3:bode}.
 
-Otteniamo i seguenti valori: $A_{ol}^{11\mathrm{x}} = 169000 \pm 3000$ e $A_{ol}^{101\mathrm{x}} = 173000 \pm 4000$. Questi valori possono essere confrontati con il guadagno del primo dato trovato al paragrafo \ref{par3:open}, che si attesta essere a $200000 \pm 30000$. I dati risultano dunque compatibili entro gli errori sperimentali.
+Otteniamo i seguenti valori: $A_{ol}^{11\mathrm{x}} = (1.68\pm 0.06)\times 10^5$ e $A_{ol}^{101\mathrm{x}} = (1.73\pm 0.06)\times 10^5$. Questi valori possono essere confrontati con il guadagno del primo dato trovato al paragrafo \ref{par3:open}. I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad errori parassiti non ben identificati.
