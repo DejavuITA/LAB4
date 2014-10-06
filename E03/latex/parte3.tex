@@ -33,7 +33,7 @@ da cui è facile notare che per $A(s) \rightarrow + \infty$ (approssimazione di 
 Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
 $$A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}$$
 con $\omega_0 \approx 8$ \si{\hertz} la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
-$$H(s)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}$$
+$$H(j\omega)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}$$
 da cui si nota che la nuova frequenza di taglio è data da
 \begin{equation}
 \omega_t=(1+A_{ol}\beta)\omega_0
