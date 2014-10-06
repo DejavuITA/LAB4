@@ -21,7 +21,7 @@ con il guadagno, come detto sopra, che in generale dipende da $s=j\omega$ (e qui
 $$V^+ = V_{in} \qquad V^-=V_{out} \frac{R_1}{R_1+R_2}$$
 dove $V^-$ è ricavato dalla solita formula per l'amplificatore non invertente $(V^+-V^-)/R_1 + (V_{out}-V^-)/R_2 =0$. Definiamo
 $$\beta = \frac{R_1}{R_1+R_2} = \frac{1}{G}$$
-dove $G$ è il guadagno di un amplificatore non invertente. Sostituendo questi valori in (\ref{eq3:regola_opamp}) otteniamo
+Si noti che $G$ è il guadagno circuitale di un amplificatore non invertente. Sostituendo questi valori in (\ref{eq3:regola_opamp}) otteniamo
 $$A(s) V_{in} = V_{out} + V_{out} A(s) \beta$$
 Calcoliamo ora la funzione di trasferimento $H$
 \begin{equation}
@@ -64,4 +64,4 @@ Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i va
 
 Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i grafici di Bode (Figura \ref{gr3:bode}).
 
-I valori di frequenza di taglio, calcolati per interpolazione con una retta congiungente i due punti più vicini alla fase di taglio ($45^{\circ}$) sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, compatibili con gli ordini di grandezza stimati in precedenza. Gli errori sono stimati come descritto nella didascalia di Figura \ref{gr3:bode}.
+I valori di frequenza di taglio, calcolati per interpolazione con una retta congiungente i due punti più vicini alla frequenza di taglio ($45^{\circ}$) sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, compatibili con gli ordini di grandezza stimati in precedenza. Gli errori sono stimati come descritto nella didascalia di Figura \ref{gr3:bode}.
