@@ -34,6 +34,8 @@ fase10 = f2.errorbar(x=f10, y=ph10, fmt='.:', c='black')
 
 fase100 = f2.errorbar(x=f100, y=ph100, fmt='.:', c='green')
 
+teo = f2.errorbar(x=np.logspace(10,6E5,500), y=180/pi*np.arctan(np.logspace(10,6E5,500)/(1+200000*11)/8), fmt='.:', c='green')
+
 f2.set_ylabel(u'Fase [$^\circ$]', labelpad=0, fontsize=14)
 f2.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
 
@@ -41,9 +43,9 @@ f2.text(2E4, -37.5, 'G=101x', #r'$\nu_0$',
 	size=12, va='center', ha='center')
 f2.text(2E5, -37.5, 'G=11x', size=12, va='center', ha='center')
 
-f2.set_ylim((-96, 6))
-f2.set_yticks(np.arange(-90, 1, 15))
-f2.set_xlim((5,6E5))
+#f2.set_ylim((-96, 6))
+#f2.set_yticks(np.arange(-90, 1, 15))
+#f2.set_xlim((5,6E5))
 
 #plt.setp(f2.get_xticklabels(), visible=False)
 

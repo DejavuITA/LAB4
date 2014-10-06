@@ -3,14 +3,14 @@
 
 In questa parte dell'esperienza vogliamo valutare la banda passante di un circuito amplificatore (non invertente) considerando che il guadagno a maglia aperta dell'amplificatore operazionale dipende della frequenza.
 
-\subsubsection{Funzione di trasferimento e frequenza di taglio}
+\subsubsection*{Funzione di trasferimento e frequenza di taglio}
 
 Esaminiamo dapprima il circuito, calcolandone la funzione di trasferimento. Per ogni amplificatore operazionale vale
-\begin{wrapfigure}[20]{l}{0.55\textwidth}
+\begin{wrapfigure}[20]{l}{0.45\textwidth}
   \begin{center}
-    \includegraphics[width=0.30\textwidth]{../E03/latex/bandwidth.pdf}
+    \includegraphics[width=0.32\textwidth]{../E03/latex/bandwidth.pdf}
   \end{center}
-  \caption{Schema del circuito utilizzato per valutare la banda passante. La resistenza $R_1=997\pm1$\si{\ohm} è fissa; mentre $R_2$ è stata cambiata con valori $R_2^{11\mathrm{x}}=9.91 \pm 0.01$ \si{\kilo\ohm} e $R_2^{101\mathrm{x}}=99.1 \pm 0.1$ \si{\kilo\ohm} a seconda del guadagno desiderato.}
+  \caption{Schema del circuito utilizzato per valutare la banda passante. La resistenza $R_1=997\pm1$ \si{\ohm} è fissa; mentre $R_2$ è stata cambiata con valori $R_2^{11\mathrm{x}}=9.91 \pm 0.01$ \si{\kilo\ohm} e $R_2^{101\mathrm{x}}=99.1 \pm 0.1$ \si{\kilo\ohm} a seconda del guadagno desiderato.}
   \label{cir3:banda}
 \end{wrapfigure}
 \begin{equation}
@@ -39,21 +39,21 @@ da cui si nota che la nuova frequenza di taglio è data da
 \omega_t=(1+A_{ol}\beta)\omega_0
 \label{eq3:freq_taglio}
 \end{equation}
-Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare il BWP $= 2 \pi \omega_t G$, costante dell'amplificatore operazionale.
+Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare la costante \textit{gain-bandwidth product} GBWP $= 2 \pi \omega_t G$, costante dell'amplificatore operazionale.
 
-\subsubsection{Effetto dello Slew Rate}
+\subsubsection*{Effetto dello Slew Rate}
 
 Ovviamente, durante la misurazione bisogna minimizzare l'effetto dello Slew Rate che, come visto nel paragrafo precedente, distorce la forma d'onda in uscita. Bisogna quindi scegliere valori di tensione del segnale in ingresso appropriati.
 Supponiamo dunque di avere una forma d'onda in uscita del tipo $V_{out} \sin (2 \pi f_0 t) = V_{in} G \sin (2 \pi f_0 t)$. Vale, affinché non si raggiunga lo SR
 $$\mathrm{max}\left[ \frac{dV_{out}}{dt} \right] = \mathrm{max} \left[ 2 \pi V_{in} G f_0 \cos (2 \pi f_0 t) \right]= 2 \pi V_{in} G f_0 < 0.35 \si{\volt\per\micro\second}$$
 dove l'ultimo valore è stato scelto per tenerci sempre abbastanza distanti dal valore reale di SR. Dunque vale che
 \begin{equation}
-V_{in}<\frac{0.35 \si{\volt\per\micro\second}}{2 \pi G f_0} = \frac{0.35 \si{\volt\per\micro\second}}{2 \pi \mathrm{BWP}}
+V_{in}<\frac{0.35 \si{\volt\per\micro\second}}{2 \pi G f_0} = \frac{0.35 \si{\volt\per\micro\second}}{2 \pi \mathrm{GBWP}}
 \label{eq3:tensione_max}
 \end{equation}
 Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i valori di tensione da usare nei due casi è di circa $V_{in}^{11\mathrm{x}} = 100$ \si{\milli\volt}$= V_{in}^{101\mathrm{x}}$. Si nota che la regola \ref{eq3:tensione_max} è valida quando il guadagno non dipende dalla frequenza: infatti dopo la frequenza di taglio il guadagno del circuito $G$ cala e dunque i valori di tensione ammessi risultano di valore maggiore.
 
-\subsubsection{Grafici di Bode}
+\subsubsection*{Grafici di Bode}
 
 \begin{figure}[ht]
  \centering
