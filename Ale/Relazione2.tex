@@ -80,9 +80,11 @@ $119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
   \label{cir2:trimmer}
 \end{wrapfigure}
 
-Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Il circuito utilizzato per verificare il bilanciamento dell'offset è quello in Figura \ref{cir2:trimmer}.
+%Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo op-amp reali. Infatti ingresso invertente e non invertente sono collegati alle basi di transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset. Tale argomento sarà comunque trattato approfonditamente nella sezione successiva. 
 
-Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\simeq 0\si{\volt}$. Come verifica abbiamo misurato la tensione $V_{out}$ a maglia aperta, ottenendo il valore $V_{out}=1.3\pm0.2$. Ricordando che il guadagno $A_{ol}$ è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
+Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp, collegandola a $V^-$. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Il circuito utilizzato per verificare il bilanciamento dell'offset è quello in Figura \ref{cir2:trimmer}.
+
+Durante l'esperienza abbiamo utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\simeq 0\si{\volt}$. Come verifica abbiamo misurato la tensione $V_{out}$ a maglia aperta, ottenendo il valore $V_{out}=1.3\pm0.2$. Ricordando che il guadagno $A_{ol}$ è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
 
 \begin{wrapfigure}[17]{r}{0.55\textwidth}
   \begin{center}
@@ -92,20 +94,20 @@ Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}
   \label{cir2:current_correction}
 \end{wrapfigure}
 
-Come già accennato le correnti di bias, per quanto piccole (\si{\nano\ampere}) giocano comunque un ruolo sull'offset totale. Per minimizzare il loro impatto sul valore della tensione di offset abbiamo inserito fra l'ingresso non invertente e comune una resistenza di compensazione $R_C$ tale da annullare il contributo delle correnti di offset sulla tensione di uscita.
+Come sappiamo attraverso gli ingressi invertente e non invertente dell'amplificatore operazionale reale scorrono delle correnti, dette di bias. Queste, per quanto piccole (\si{\nano\ampere}), hanno comunque un contributo sull'offset totale. Per minimizzare il loro impatto sul valore della tensione di offset abbiamo inserito fra l'ingresso non invertente e comune una resistenza di compensazione $R_C$ tale da annullare il contributo delle correnti di offset sulla tensione di uscita.
 
-Il contributo alla tensione di uscita data dalle correnti di polarizzazione è
+Il contributo alla tensione di uscita data dalle correnti di polarizzazione, supponendo già l'offset compensato, è
 
 \begin{equation}
-V_{out}^{C} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_B\right]
+V_{out}^{C} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_C\right]
 \label{eq2:Vout_currents}
 \end{equation}
 
-dalla quale si ricava che, supponendo $I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$ e ponendo $V_{out}^{C}=0$,
+dalla quale, se $|I_{b^+}|\simeq|I_{b^-}|$ e $V_{out}^{C}=0$, banalmente otteniamo
 
 $$R_C=\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}} $$
 
-cioè il parallelo fra $R_1$ ed $R_2$.
+
 
 Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione (circuito in Figura \ref{cir2:current_correction}):
 
@@ -119,25 +121,31 @@ $119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $830.3\pm0.7$ &$ -1038 \pm 5$ 
 \end{tabular}
 \end{center}
 
-Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale (qualche decina di \si{\micro\volt} di ampiezza). Se osserviamo la tensione $V_{out}$ nei casi con e senza resistenza $R_C$, notiamo una differenza di circa $13\si{\milli\volt}$. Nel successivo paragrafo stimeremo una corrente di bias di $37\si{\nano\ampere}$. Possiamo dunque osservare che la caduta di potenziale su tale resistenza dovuta alla corrente di polarizzazione è $\Delta V \simeq 3 \si{\milli\volt}$. Tale valore è circa 4 volte più piccolo della differenza delle tensioni in uscita misurate. Nella stima dell'offset abbiamo dunque il contributo delle correnti di bias ma essendo dello stesso ordine di grandezza del rumore ambientale (o addirittura inferiori) non possiamo valutarne quantitativamente gli effetti. 
+Notiamo che le differenze fra i valori della tensione di offset con e senza $R_C$ sono compatibili con il rumore ambientale (qualche decina di \si{\micro\volt} di ampiezza). Se osserviamo la tensione $V_{out}$ nei casi con e senza resistenza $R_C$, notiamo una differenza di circa $13\si{\milli\volt}$. Nel successivo paragrafo stimeremo una corrente di bias di $37\si{\nano\ampere}$. Possiamo dunque osservare che la caduta di potenziale su tale resistenza dovuta alla corrente di polarizzazione è $\Delta V \simeq 3 \si{\milli\volt}$. Tale valore è circa 4 volte più piccolo della differenza delle tensioni in uscita misurate. Nella stima dell'offset abbiamo dunque il contributo delle correnti di bias ma essendo dello stesso ordine di grandezza del rumore ambientale (o addirittura inferiore) non possiamo valutarne quantitativamente gli effetti. 
 
 \subsection{Correnti di polarizzazione}
 
-Nella seconda parte dell'esperienza abbiamo misurato le correnti di polarizzazione che scorrono nei due ingressi. Ricordiamo che la tensione di offset è già stata compensata dall'esterno con l'utilizzo di un \textbf{trimmer}. 
-
-\subsubsection{Misura diretta}
-
-Come primo approccio abbiamo tentato una misura diretta della corrente $I_{b^+}$.
-Abbiamo utilizzato una resistenza molto grande (10\si{\mega\ohm}) prima dell'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e abbiamo misurato la tensione ai suoi capi. La legge di ohm ci assicura che $I_{b^+}=\frac{V}{R}$. A causa del rumore di fondo però il valore misurato non era stabile. Si è dunque pensato di aggiungere in parallelo alla resistenza un condensatore, così da stabilizzare la tensione.
-
-
-\begin{wrapfigure}[16]{r}{0.55\textwidth}
+\begin{wrapfigure}[12]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.30\textwidth]{../E02/latex/direct_measure.pdf}
   \end{center}
   \caption{Schema del circuito non retro-azionato utilizzato per stimare la corrente di polarizzazione. La resistenza utilizzata è $R_B=10.36\pm0.01$\si{\mega\ohm}; la capacità $C_B=102 \pm 1$ \si{\nano\farad}.}
   \label{circuito:rel2_correnti_senzaretroazione}
 \end{wrapfigure}
+
+
+Nella seconda parte dell'esperienza abbiamo misurato le correnti di polarizzazione che scorrono nei due ingressi. Ricordiamo che la tensione di offset è già stata compensata dall'esterno con l'utilizzo di un \textbf{trimmer}. 
+
+\subsubsection{Misura diretta}
+
+
+
+
+
+Come primo approccio abbiamo tentato una misura diretta della corrente $I_{b^+}$.
+Abbiamo utilizzato una resistenza molto grande (10\si{\mega\ohm}) prima dell'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e abbiamo misurato la tensione ai suoi capi. La legge di ohm ci assicura che $I_{b^+}=\frac{V}{R}$. A causa del rumore di fondo però il valore misurato non era stabile. Si è dunque pensato di aggiungere in parallelo alla resistenza un condensatore, così da stabilizzare la tensione.
+
+
 
 
 %Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere}, abbiamo utilizzato una resistenza molto grande in modo da poter leggere il valore della tensione su una scala accettabile per il multimetro.
@@ -153,25 +161,7 @@ I difetti di tale metodo di misura sono molteplici. Anzitutto la resistenza si s
 
 
 
-\subsubsection*{Rumore termico}
 
-Abbiamo considerato che la fluttuazione della misura sia dovuta ad un possibile effetto del rumore termico sulla nostra resistenza da \SI{10}{\mega\ohm}. Considerando la larghezza di banda del multimetro $\Delta f = \SI{1}{\hertz}$ e siano $k_B = \SI{1.38e-23}{\joule\per\kelvin}$ la costante di Boltzmann, $T$ la temperatura assoluta e $R$ il valore della resistenza presa in considerazione
-
-\begin{equation}
-	V_{eff}^2 = 4 k_B T R \Delta f
-\end{equation}
-
-da cui, ovviamente, si ottiene che il possibile rumore termico è 5 ordini di grandezza inferiore della tensione misurata
-
-\begin{equation}
-	V_{eff} = \sqrt{4 k_B T R \Delta f} \simeq 4 \times 10^{-7} \si{\volt}
-\end{equation}
-
-ed è pertanto ininfluente. Dunque il rumore presente è sicuramente imputabile ad altre cause ambientali.
-
-\subsubsection{Configurazione con retroazione negativa}
-
-Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
 
 \subsubsection*{Misura di $I_{b^-}$}
 
@@ -183,17 +173,24 @@ Sfruttando un modello simile a quello utilizzato per trovare la tensione di offs
   \label{circuito:rel2_correnti_retroazione_inv}
 \end{wrapfigure}
 
-Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V_{-}$ la tensione al capo di $R_B$ collegato all'OPAMP e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
+Come secondo approccio abbiamo dunque provato una misura indiretta della corrente $I_{b^-}$. Per fare ciò abbiamo utilizzato il circuito in Fig. \ref{circuito:rel2_correnti_retroazione_inv}. Ricordiamo che la tensione di offset è già stata compensata esternamente.
 
-$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
+%Chiamiamo $V_{-}$ la tensione al capo di $R_B$ collegato all'OPAMP e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
+Chiamiamo $V_{inv}$ la tensione all'ingresso invertente e $V_{nodo}$ la tensione nel nodo in cui sono collegate tra loro $R_B$,$R_1$ e $R_2$. Basta ora risovere il seguente sistema 
 
-Dato che l'amplificatore operazionale è considerato già stabilizzato per quanto riguarda la tensione di offset, possiamo considerare la tensione all'ingresso invertente uguale all'ingresso non invertente. Vale dunque che $V_{in}=V_{-}=0$ e si trova (considerando $I_{b^-} R_B = V^*$):
+
+$\begin{cases} \frac{V_{nodo} - V_{in}}{R_1} + \frac{V_{nodo}-V_{out}}{R_2} + \frac{V_{nodo}-V_{inv}}{R_B}=0 \\ V_{in}=V_{inv}=0  \\I_{b^-} = \frac{V_{nodo}}{R_B} \end{cases} $
+
+Da cui segue dopo alcuni calcoli algebrici
+
+%$$\frac{V_{nodo} - V_{in}}{R_1} + \frac{V_{nodo}-V_{out}}{R_2} + \frac{V_{nodo}-V_{inv}}{R_B}=0$$
+
+%Per la struttura del circuito e la compensazione dell'offset è immediato vedere che $V_{in}=V_{inv}=0$ e, se definiamo la corrente $I_{b^-} = \frac{V_{nodo}}{R_B}$):
 
 $$I_{b^-}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}}$$
 
-Le resistenze sono state dimensionate tenendo invece conto dell'ordine di grandezza della corrente da misurare e considerando il risultato sopra ottenuto: volevamo che $V_{out}$ fosse almeno $10^7\approx10^8$ volte più grande della corrente, per poter utilizzare il multimetro, che ha scale di misura limitate. I valori sono in Figura \ref{circuito:rel2_correnti_retroazione_inv}.
-
-La misura di tensione di uscita è di $(3.89\pm0.02)$ \si{\volt} ed il valore ottenuto è dunque $I_{b^-} = (38 \pm 5)$ \si{\nano\ampere}.
+Le resistenze sono state dimensionate in modo da ottenere tensioni $V_{out}$ dell'ordine del Volt.
+La misura di tensione di uscita è di $(3.89\pm0.02)\si{\volt} \Rightarrow I_{b^-} = (38 \pm 5)$ \si{\nano\ampere}.
 
 \subsubsection*{Misura di $I_{b^+}$}
 
@@ -205,31 +202,63 @@ La misura di tensione di uscita è di $(3.89\pm0.02)$ \si{\volt} ed il valore ot
   \label{circuito:rel2_correnti_retroazione_noninv}
 \end{wrapfigure}
 
-Similmente a quanto visto per la configurazione prima, troviamo che, data la legge di Kirchhoff (con $V^*$ la tensione all'ingresso non invertente, che per quanto detto sopra è uguale a quella all'ingresso invertente)
+%Similmente a quanto visto per la configurazione prima, troviamo che, data la legge di Kirchhoff (con $V^*$ la tensione all'ingresso non invertente, che per quanto detto sopra è uguale a quella all'ingresso invertente)
 
-$$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2}=0$$
+In questo secondo caso riportato in Fig. \ref{circuito:rel2_correnti_retroazione_noninv} chiamiamo $V_{ninv}$ la tensione all'ingresso non invertente.
 
-e considerando $V^*=I_{b^+} R_B$, otteniamo
+
+$\begin{cases}\frac{V_{ninv} - V_{in}}{R_1} + \frac{V_{ninv}-V_{out}}{R_2}=0 \\ I_{b^+}=\frac{V_{ninv}}{R_B}\\ V_{in}=0 \end{cases}$
+
+Risolvendo il sistema otteniamo
+
 
 \begin{equation}
 I_{b^+}=\frac{V_{out}}{R_2 R_B}\frac{1}{\frac{1}{R_1}+\frac{1}{R_2}}
 \label{eq2:corrente_noninv}
 \end{equation}
 
-Anche in questo caso le resistenze sono state dimensionate come sopra e i valori sono in Figura \ref{circuito:rel2_correnti_retroazione_noninv}. La misura di tensione di uscita è di $-(3.72 \pm 0.02)$   \si{\volt} ed il valore ottenuto è dunque $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere} \footnote{La negatività della corrente va intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
+Anche in questo caso le resistenze sono state dimensionatein modo da ottenere un $V_{out}$ dell'ordine dei Volt. La misura di tensione di uscita è di $-(3.72 \pm 0.02) \si{\volt} \Rightarrow I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}
+
+Ricordiamo che il segno della corrente dipende dalla convenzione scelta. Abbiamo deciso di assumere nei calcoli segno positivo per correnti entranti e segno negativo per correnti uscenti. La corrente $I_{b^-}$ sarà dunque entrante nell'ingresso inverntente mentre $I_{b^+}$ sarà uscente dall'ingresso invertente.
+
+%\footnote{ La negatività della corrente è intesa rispetto all'ingresso non invertente, ed è quindi uscente rispetto a tale ingresso. Al contrario, nel paragrafo precedente, la corrente è intesa entrante nel punto di $V^*$, e quindi è entrante rispetto all'ingresso invertente.}.
 
 \subsubsection*{Calcolo di $I_{b^+}$ data $I_{b^-}$}
 
-Consideriamo ora un altro modo per trovare la corrente di polarizzazione $I_{b^+}$ supponendo di aver già effettuato la misura di $I_{b^-}$ nel primo circuito (Figura \ref{circuito:rel2_correnti_retroazione_inv}). Successivamente controlleremo che il valore 'sperimentale' calcolato con (\ref{eq2:corrente_noninv}) è compatibile con quello calcolato in questo paragrafo.
-
-Analizziamo dunque il secondo circuito (Figura \ref{circuito:rel2_correnti_retroazione_noninv}) per cercare di trovare la dipendenza di $I_{b^+}$ da $I_{b^-}$. Vale, dalla teoria, l'equazione (\ref{eq2:Vout_currents}), da cui è possibile ricavare
+Proviamo a calcolare $I_{b^+}$ utilizzando il valore di $I_{b^-}$ calcolato sopra e avvalendoci di Eq. (\ref{eq2:Vout_currents}). \'E triviale ricavare la seguente identità: 
 
 $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 
-ed inserendo i valori otteniamo $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}, compatibile con il risultato precedente.
+Inserendo i valori numerici otteniamo $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}, compatibile con il risultato precedente.
+
+
+\subsubsection*{Cenni sul rumore termico}
+Nel paragrafo sulla misura diretta della corrente di bias abbiamo ottenuto un valore non compatibile con quello stimato utilizzando la procedura indiretta. Proviamo a vedere se tale discrepanza può essere dovuta al rumore termico.
+ 
+Consideriamo la larghezza di banda del multimetro $\Delta f = \SI{1}{\hertz}$ e siano $k_B = \SI{1.38e-23}{\joule\per\kelvin}$ la costante di Boltzmann, $T$ la temperatura assoluta e $R$ il valore della resistenza presa in considerazione
+
+\begin{equation}
+	V_{eff}^2 = 4 k_B T R \Delta f
+\end{equation}
+
+Inserendo i valori numerici e il valore di resistenza $R=\SI{10}{\mega\ohm}$ si ottiene che il rumore termico è 5 ordini di grandezza inferiore alla tensione misurata.
+
+\begin{equation}
+	V_{eff} = \sqrt{4 k_B T R \Delta f} \simeq 4 \times 10^{-7} \si{\volt}
+\end{equation}
+
+
+
+
+
 
 \subsection{Conclusioni}
-In questa esperienza abbiamo potuto osservare come gli OPAMP, sebbene siano dei circuiti abbastanza precisi, abbiano delle imperfezioni, date dalla loro composizione circuitale (sono presenti dei transistor BJT al loro interno).
-Le discrepanze tra il modello ideale e l'OPAMP reale sono date principalmente dallo sbilanciamento della risposta dello stesso ($V_{offset}$) e dalle correnti di polarizzazione (\textit{bias currents}).
-Per nostra fortuna spesso gli OPAMP presentano dei connettori predisposti a minimizzare la tensione di offset con circuiti di compensazione: nel nostro caso un trigger collegato ai piedini di offset e all'alimentazione negativa.
-Una volta bilanciato l'opamp, abbiamo misurato le correnti di polarizzazione e abbiamo potuto osservare che esse sono dell'ordine dei \si{\nano\ampere}, quindi trascurabili per gli utilizzi più comuni.
+In questa esperienza abbiamo studiato le caratteristiche di un OPAMP, misurandone tensione di offset e correnti di polarizzazione. La presenza dell'offset può essere bilanciata utilizzando semplicemente un trimmer collegato a 2 piedini dell'amplificatore operazionale. Così facendo possiamo creare una contro-tensione interna che bilancia automaticamente l'offset. Le correnti di polarizzazione, invece, possono essere bilanciate ottimizzando le impedenze in ingresso. Tuttavia, essendo dell'ordine dei \si{\nano\ampere}, giocano un ruolo solo nel caso si lavori con tensioni di pochi millivolt. Negli utilizzi più comuni (con tensioni dell'ordine dei Volt) possono essere trascurate.
+
+
+
+
+%In questa esperienza abbiamo potuto osservare come gli OPAMP, sebbene siano dei circuiti abbastanza precisi, abbiano delle imperfezioni, date dalla loro composizione circuitale (sono presenti dei transistor BJT al loro interno).
+%Le discrepanze tra il modello ideale e l'OPAMP reale sono date principalmente dallo sbilanciamento della risposta dello stesso ($V_{offset}$) e dalle correnti di polarizzazione (\textit{bias currents}).
+%Per nostra fortuna spesso gli OPAMP presentano dei connettori predisposti a minimizzare la tensione di offset con circuiti di compensazione: nel nostro caso un trigger collegato ai piedini di offset e all'alimentazione negativa.
+%Una volta bilanciato l'opamp, abbiamo misurato le correnti di polarizzazione e abbiamo potuto osservare che esse sono dell'ordine dei \si{\nano\ampere}, quindi trascurabili per gli utilizzi più comuni.
