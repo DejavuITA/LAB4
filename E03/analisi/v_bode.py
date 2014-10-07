@@ -43,7 +43,15 @@ f1.set_xscale('log')
 slope = f1.errorbar(x=[i for i in range(800, 600000)],
 			y=[0.43*m*log(i)+120 for i in range(800, 600000)],
 	fmt='--', c='0.5')
-f1.text(50000, 33, u' approx slope:\n$-20\,dB/decade$', size=13, va='center', ha='left')
+f1.text(50000, 33, u' approx slope:\n$-20\,dB/decade$\n$-8\,dB/ottava$', size=13, va='center', ha='left')
+
+teo_db10 = f1.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
+	y=[20,19],#f100(np.logspace(70,6E6,500)),
+	fmt='-', c='black', lw=1)
+
+teo_db100 = f1.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
+	y=[40,38],#f100(np.logspace(70,6E6,500)),
+	fmt='-', c='green', lw=1)
 
 db10 = f1.errorbar(x=f10, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_ou10/V_in10),
@@ -69,6 +77,14 @@ f1.set_ylim((6,44))
 # GRAFICO 2
 f2 = fig1.add_subplot(2, 1, 2, sharex=f1)
 f2.set_xscale('log')
+
+teo_fase10 = f2.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
+	y=[-45,-37],#f100(np.logspace(70,6E6,500)),
+	fmt='-', c='black', lw=1)
+
+teo_fase100 = f2.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
+	y=[-40,-38],#f100(np.logspace(70,6E6,500)),
+	fmt='-', c='green', lw=1)
 
 fase10 = f2.errorbar(x=f10, y=ph10, fmt='.:', c='black')
 
