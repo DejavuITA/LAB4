@@ -1,21 +1,82 @@
 load 'BW_G10.csv';
+load 'BW_G100.csv';
+
+% PLOT DELLE FASI
 
 figure();
 
-grid on
-
-plot(Freq,Phase,'*');
+plot(BW_G10(1:length(BW_G10),1),BW_G10(1:length(BW_G10),4),'*');
 
 hold on
 
-x=0:100:10^6;
+plot(BW_G100(1:length(BW_G100),1),BW_G100(1:length(BW_G100),4),'*r');
 
-A=160000;
-b=11;
+grid on
 
-w0=8;
+% PRIMO PLOT
 
-y=180*pi*arctan(x/(1+A*b)*w0);
+x1=0:100:10^6;
 
-plot(x,y);
+A1=160000;
+b1=1/11;
 
+w01=6;
+
+y1=180/pi * atan(-x1/((1+A1*b1)*w01));
+
+plot(x1,y1,'y');
+
+% SECONDO PLOT
+
+x2=0:100:10^6;
+
+A2=160000;
+b2=1/101;
+
+w02=6;
+
+y2=180/pi * atan(-x1/((1+A2*b2)*w02));
+
+plot(x2,y2,'g');
+
+% PLOT DEL GUADAGNO
+
+figure();
+
+semilogx(BW_G10(1:length(BW_G10),1),20*log10(BW_G10(1:length(BW_G10),3)/BW_G10(1:length(BW_G10),2)),'*');
+
+hold on
+
+semilogx(BW_G100(1:length(BW_G100),1),20*log10(BW_G100(1:length(BW_G100),3)/BW_G100(1:length(BW_G100),2)),'*r');
+
+grid on
+
+% TEORICA: (A^2 u^2)/((u + A b u)^2 + x^2)
+
+% PRIMO PLOT
+
+x3=0:100:10^6;
+
+A3=160000;
+b3=1/11;
+
+w03=8;
+
+y3=20*log10((A3^2 * w03^2)./((w03 + A3*b3*w03)^2 + x3.^2));
+
+semilogx(x3,y3,'y');
+
+% SECONDO PLOT
+
+x4=0:100:10^6;
+
+A4=160000;
+b4=1/101;
+
+w04=6;
+
+y4=20*log10((A4^2 * w04^2)./((w04 + A4*b4*w04)^2 + x4.^2));
+
+semilogx(x4,y4,'y');
+
+clear
