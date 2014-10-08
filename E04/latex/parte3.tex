@@ -1,0 +1,23 @@
+\subsection{Oscillatore a rilassamento}
+In questa parte dell'esperienza studieremo il funzionamento di un oscillatore a rilassamento. Tale circuito sfrutta l'instabilità della retroazione positiva per generare un segnale oscillante con una frequenza determinata dai componenti stessi del circuito. In Fig.(\ref{suca}) è riportato lo schema circuitale. 
+
+L'elemento circuitale fondamentale per il funzionamento dell'oscillatore a rilassamento è il condensatore C. Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro swich della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato analiticamente risolvendo il circuito. Il valore che si ottiene è $T=2RCln(1+\frac{2R_1}{R_2})$.  
+
+Nei seguenti grafici sono riportati i risultati ottenuti per valori di $R=(9.99\pm0.01)\si{\kilo\ohm}$ e $R=(99.93\pm0.01)\si{\kilo\ohm}$.
+
+
+$$GRAFICO$$
+
+$$GRAFICO$$
+
+Nella seguente tabella riportiamo i valori teorici e sperimentali di periodo dell'oscillatore a rilassamento.
+
+\begin{tabular}{|l|l|l|}
+\hline
+$R [\si{\kilo\ohm}]$	&  $T_{exp} [\si{\milli\second}]$          & $T_{teo} [\si{\milli\second}]$       \\
+\hline
+$9.99\pm0.01 $ & $2.22\pm0.01$ & \\
+\hline
+$99.93\pm0.01 $ & $22.16\pm0.01$ & \\
+\hline
+\end{tabular} 
