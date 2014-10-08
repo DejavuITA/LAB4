@@ -1,2 +1,3 @@
 \subsection{Trigger di Schmidt non-invertente}
 
+Quando nel segnale è presente un rumore è possibile che il valore di tensione restituito dal comparatore cambi più volte da $0$ a $V_{CC}$. Infatti, l'ampiezza in tensione del rumore può essere tale da passare sopra e sotto la tensione di soglia, invertendo la $V_{out}$ più volte secondo la \ref{eq4:comparatore}. Per ovviare a questo problema si sfrutta la retroazione positiva dell'amplificatore operazionale per riportare parte della $V_{out}$ sull'ingresso non invertente: ciò permette di cambiare la tensione di riferimento a seconda 
