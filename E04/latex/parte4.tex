@@ -1,0 +1,9 @@
+\subsection{Interruttore crepuscolare}
+
+Nell'ultima parte dell'esperienza abbiamo assemblato un interruttore crepuscolare, cioè un circuito elettronico che alimenta un carico (LED) in condizioni di bassa luminosità ambientale e interrompe l'alimentazione in condizioni di alta luminosità ambientale.
+
+Un circuito di questo tipo necessità di almeno due componenti: il sensore di luminosità (fototransistor OP550) che fornisce la variabile circuitale collegata alla luminosità ambientale e un blocco di comparazione che \textit{decide} se alimentare o meno il carico confrontando il segnale dato dal primo blocco con un segnale di riferimento.
+
+Il componente principale del primo blocco è il fototransistor OP550 che agisce come una sorgente di corrente.
+Infatti, se esposto alla luce, l'OP550 fa passare attraverso sè stesso una corrente dell'ordine del \si{\uA}.
+Tale corrente è però difficilmente manipolabile, pertanto abbiamo deciso di utilizzare un convertitore corrente-tensione per trasformare e amplificare il segnale in modo tale da poter essere utilizzata come segnale di ingresso del comparatore.
