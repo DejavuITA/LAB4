@@ -13,7 +13,7 @@ V_in	= 1000*dataG1[2:,1]
 	####	####	####	####
 
 # Creo un grafico la dimensione è in pollici
-fig1 = plt.figure(figsize=(8, 5.5))
+fig1 = plt.figure(figsize=(8*0.8, 0.8*5.5))
 # Titolo del grafico
 fig1.suptitle("Rumore dovuto alla luce al neon", y=0.97, fontsize=15)
 
@@ -41,18 +41,18 @@ g1 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 f1.grid(True)
 
 
-f1.text(-60.7, 0, u'Tensione [$mV$]', size=12, va='center', ha='center',rotation='90')
+f1.text(-63.7, 0, u'Tensione [$mV$]', size=14, va='center', ha='center',rotation='90')
 
 f1.set_ylim((-160, 160))
 f1.set_xlim((-55,55))
 
-f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=12)
+f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=14)
 
 #f1.legend((g1,), (r'$$',), 'lower left', prop={'size': 13})
     
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.11, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.105, right=0.98, top=0.92, bottom=0.115, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
