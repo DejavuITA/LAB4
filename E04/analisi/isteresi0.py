@@ -29,9 +29,12 @@ g1 = f1.errorbar(x=V_in, #x=np.logspace(70,6E6,500),
 	marker='o', ms=2.5,
 	c='black')
 
-#g2 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
-	#y=V_ou,
-	#fmt='-', c='green')
+points = f1.plot([25.6, 2.6], [-8/2, 8/2], c='black', marker='o', ls='')
+
+p10t = f1.text(25.6+0.5, -8/2+0.2/2, r'$P_{10\%}$', rotation='horizontal',
+	ha='left', va='bottom', fontsize=22)
+p90t = f1.text(2.6+0.5, 8/2+0.2/2, r'$P_{90\%}$', rotation='horizontal',
+	ha='left', va='bottom', fontsize=22)
 
 f1.text(-1.19, 2, u'$V_{out} $[$V$]', size=14, va='center', ha='center',rotation='90')    
 #f1.set_ylabel(u'$V_{out} $[$V$]', labelpad=0, fontsize=14)
