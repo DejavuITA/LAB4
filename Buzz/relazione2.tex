@@ -40,18 +40,20 @@ Altri gruppi di laboratorio hanno infatti ricavato tensioni di molto inferiori a
 
 \begin{figure}[ht]
         \centering
-	\caption{}
         \begin{subfigure}[b]{0.35\textwidth}
-                 \includegraphics[width=0.70\textwidth]{../E02/latex/open_loop.pdf}
+		\centering
+                    \includegraphics[width=0.70\textwidth]{../E02/latex/open_loop.pdf}
                 \caption{Circuito a maglia aperta}
                 \label{cir:open_loop}
         \end{subfigure}%
     \quad
         \begin{subfigure}[b]{0.35\textwidth}
-               \includegraphics[width=0.70\textwidth]{../E02/latex/inv.pdf}
+		\centering
+		    \includegraphics[width=0.70\textwidth]{../E02/latex/inv.pdf}
                 \caption{Circuito amplificatore}
                 \label{cir:inv}
         \end{subfigure}
+	\caption{}
 \end{figure}
 
 Con il circuito in Figura (\ref{cir:open_loop}) ci è pertanto impossibile ricavare una stima del valore di offset.
@@ -189,7 +191,7 @@ Per ovviare a questo inconveniente, abbiamo aggiunto in parallelo alla resistenz
 In questo modo abbiamo potuto ottenere un valore meno fluttuante, che si attestava a $V=(-80 \pm 2)$ \si{\milli\volt}, da cui $I_{b^+}=(7.7 \pm 0.2)$ \si{\nano\ampere}.
 
 Con questo semplice metodo abbiamo potuto ottenere una prima stima del valore della corrente.
-Di contro si deve considerare che il valore misurato è particolarmente piccolo ($\approx$\si{\milli\volt}) e quindi è facilmente affetto da rumore ambientale e dalla variazione della resistenza in funzione della temperatura, quindi non è un valore affidabile.
+Di contro si deve considerare che il valore misurato è particolarmente piccolo ($\approx$ \si{\milli\volt}) e quindi è facilmente affetto da rumore ambientale e dalla variazione della resistenza in funzione della temperatura, quindi non è un valore affidabile.
 
 \subsubsection*{Rumore termico}
 

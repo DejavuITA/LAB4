@@ -5,8 +5,8 @@ Nell'ultima parte dell'esperienza abbiamo assemblato un interruttore crepuscolar
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=12.5cm]{../E04/latex/c_crepuscolare.pdf}}
- \caption{DIDASCALIA!! $R_F = \SI{1}{\Mohm}$}
- \label{gr4:crepuscolare}
+ \caption{DIDASCALIA!! $R_F = \SI{1}{\Mohm}$, $R_1 = \SI{50}{\kohm}$ è formato da un parallelo di due resistenze da \SI{100}{\kohm}, $R_2 = \SI{100}{\kohm}$, $R_P = \SI{1}{\kohm}$, $R_S = \SI{10}{\kohm}$ è un trimmer resistivo}
+ \label{cir4:crepuscolare}
 \end{figure}
 
 Un circuito di questo tipo necessità di almeno due componenti: il sensore di luminosità (fototransistor OP550) che fornisce la variabile circuitale collegata alla luminosità ambientale e un blocco di comparazione che \textit{decide} se alimentare o meno il carico confrontando il segnale dato dal primo blocco con un segnale di riferimento.
@@ -22,7 +22,7 @@ In questo modo, la tensione in uscita dell'opamp sarà legata alla corrente che 
 \end{equation}
 dove $R_F$ è la resistenza posta sul ramo di retroazione (nel nostro caso $R_F = \SI{1}{\Mohm}$) e $I_{OP550}$ è il modulo della corrente passante nel fototransistor.
 
-Il secondo blocco del circuito è invece composto da un opamp LM311 utilizzato come comparatore con isteresi (o trigger di Schmidt).
+Il secondo blocco del circuito è invece composto da un opamp LM311 utilizzato come comparatore con isteresi (o trigger di Schmitt).
 Sul ramo di retroazione e tra il terminale positivo e l'ingresso del segnale - che corrisponde all'uscita dell'opamp $\mu$A741 - sono state poste due resistenze per creare l'isteresi affinché eventuali rumori di fondo non disturbassero il funzionamento del circuito.
 Nel nostro caso abbiamo utilizzato due resistenze $R_1 =$ \SI{5}{\kohm} e $R_2=$ \SI{100}{\kohm} in modo da avere un ampio margine di sicurezza.
 
