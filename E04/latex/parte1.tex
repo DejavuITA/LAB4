@@ -1,6 +1,14 @@
 \subsection{Verifica del funzionamento di un comparatore}
 
-In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale DN331 come comparatore. Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$741, questo alto valore del parametro permette di confrontare più velocemente i segnali. Inoltre, questo operazionale è necessario valutarlo in configurazione a collettore aperto, cioè schematizzandone il funzionamento con un transistor il cui collettore rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura ??????). Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa
+\begin{wrapfigure}[18]{r}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.280\textwidth]{../E04/latex/C_LM311.pdf}
+  \end{center}
+  \caption{Schema a collettore aperto dell'amplificatore operazionale LM311.}
+  \label{cir4:open_collector}
+\end{wrapfigure}
+
+In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale DN331 come comparatore. Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$741, questo alto valore del parametro permette di confrontare più velocemente i segnali. Inoltre, questo operazionale è necessario valutarlo in configurazione a collettore aperto, cioè schematizzandone il funzionamento con un transistor il cui collettore rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}). Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa
 
 \begin{equation}
 V_{out} = \bigg \{
