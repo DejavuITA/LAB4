@@ -31,7 +31,7 @@ g2 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 	y=V_ou,
 	fmt='-', c='green')
     
-f1.text(-3.1, 6.4/2-1.2, u'Tensione [$mV$]', size=14, va='center', ha='center',rotation='90')
+f1.text(-3.1, 6.4/2-1.2, u'Tensione [$V$]', size=14, va='center', ha='center',rotation='90')
 #f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)
 #f1.text(-11.2, 0, r'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 
