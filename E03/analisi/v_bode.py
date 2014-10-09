@@ -43,14 +43,24 @@ f1.set_xscale('log')
 slope = f1.errorbar(x=[i for i in range(800, 600000)],
 			y=[0.43*m*log(i)+120 for i in range(800, 600000)],
 	fmt='--', c='0.5')
-f1.text(50000, 33, u' approx slope:\n$-20\,dB/decade$\n$-8\,dB/ottava$', size=13, va='center', ha='left')
+f1.text(140000, 34, u'approx slope:', size=13, va='center', ha='center')
+f1.text(140000, 32, u'$-20\,dB/decade$', size=13, va='center', ha='center')
+f1.text(140000, 30, u'$-8\,dB/ottava$', size=13, va='center', ha='center')
 
-teo_db10 = f1.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
-	y=[20,19],#f100(np.logspace(70,6E6,500)),
+A3=160000;
+b3=1/11;
+w03=8;
+
+teo_db10 = f1.errorbar(x=[i for i in range(1, 600000)],
+	y=[20*log10(sqrt((A3*A3 * w03*w03)/((w03 + A3*b3*w03)*(w03 + A3*b3*w03) + i*i))) for i in range(1, 600000)],
 	fmt='-', c='black', lw=1)
 
-teo_db100 = f1.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
-	y=[40,38],#f100(np.logspace(70,6E6,500)),
+A4=160000;
+b4=1/101;
+w04=6;
+
+teo_db100 = f1.errorbar(x=[i for i in range(1, 600000)],
+	y=[20*log10(sqrt((A4*A4 * w04*w04)/((w04 + A4*b4*w04)*(w04 + A4*b4*w04) + i*i))) for i in range(1, 600000)],
 	fmt='-', c='green', lw=1)
 
 db10 = f1.errorbar(x=f10, #x=np.logspace(70,6E6,500),
@@ -78,12 +88,20 @@ f1.set_ylim((6,44))
 f2 = fig1.add_subplot(2, 1, 2, sharex=f1)
 f2.set_xscale('log')
 
-teo_fase10 = f2.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
-	y=[-45,-37],#f100(np.logspace(70,6E6,500)),
+A1=160000;
+b1=1/11;
+w01=6;
+
+teo_fase10 = f2.errorbar(x=[i for i in range(1, 600000)],
+	y=[180/pi*np.arctan(-i/((1+A1*b1)*w01)) for i in range(1, 600000)],
 	fmt='-', c='black', lw=1)
 
-teo_fase100 = f2.errorbar(x=[100,10000],#x=np.logspace(70,6E6,500),
-	y=[-40,-38],#f100(np.logspace(70,6E6,500)),
+A2=160000;
+b2=1/101;
+w02=6;
+
+teo_fase100 = f2.errorbar(x=[i for i in range(1, 600000)],
+	y=[180/pi*np.arctan(-i/((1+A2*b2)*w02)) for i in range(1, 600000)],
 	fmt='-', c='green', lw=1)
 
 fase10 = f2.errorbar(x=f10, y=ph10, fmt='.:', c='black')
