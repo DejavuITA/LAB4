@@ -27,17 +27,17 @@ Il secondo blocco del circuito è invece composto da un opamp LM311 utilizzato c
 Sul ramo di retroazione e tra il terminale positivo e l'ingresso del segnale - che corrisponde all'uscita dell'opamp $\mu$A741 - sono state poste due resistenze per creare l'isteresi affinché eventuali rumori di fondo non disturbassero il funzionamento del circuito.
 Nel nostro caso abbiamo utilizzato due resistenze $R_1 =$ \SI{5}{\kohm} e $R_2=$ \SI{100}{\kohm} in modo da avere un ampio margine di sicurezza.
 
-Come si può notare dal grafico in Figura \ref{gr4:neon} il rumore ambientale dato dalle lampade al neon ha una forma d'onda sinusoidale di frequenza \SI{100}{\hertz} e ampiezza picco-picco \SI{80}{\mV}
+\begin{wrapfigure}[16]{r}{0.6\textwidth}
+	\begin{center}
+		\includegraphics[width=0.54\textwidth]{../E04/latex/neon.pdf}
+	\end{center}
+	\caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
+	\label{gr4:neon}
+\end{wrapfigure}
+
+Come si può notare dal grafico in Figura \ref{gr4:neon} il rumore ambientale dato dalle lampade al neon ha una forma d'onda sinusoidale di frequenza \SI{100}{\hertz} e ampiezza picco-picco \SI{80}{\mV}, pertanto sarebbe stata sufficiente un'isteresi di appena $\frac{V_{CC}}{100} \approx \SI{150}{\mV}$
 
 Per impostare la tensione di soglia, invece, abbiamo creato un partitore collegando i due connettori esterni di un trimmer resistivo da \SI{10}{\kohm} a +\SI{15}{\V} e a comune, mentre abbiamo collegato il terminale centrale del trimmer all'ingresso invertente del LM311.
 In questo modo potevamo scegliere la tensione di soglia girando semplicemente un cacciavite.
 
 Infine abbiamo posto il carico da alimentare tra l'alimentazione positiva +\SI{15}{\V} e la resistenza di pull-up ($R_P=$ \SI{1}{\kohm})
-
-\begin{wrapfigure}[16]{c}{0.7\textwidth}
-	\begin{center}
-		\includegraphics[width=0.7\textwidth]{../E04/latex/neon.pdf}
-	\end{center}
-	\caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
-	\label{gr4:neon}
-\end{wrapfigure}
