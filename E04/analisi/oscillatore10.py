@@ -23,6 +23,11 @@ fig1.suptitle(u'Risposta dell'"'"'oscillatore a rilassamento con $R=10k\Omega$',
 f1 = fig1.add_subplot(1, 1, 1)
 #f1.set_xscale('log')
 
+f1.text(-27.5, 6.9, '6.9', rotation='horizontal', ha='right', va='center', fontsize=12)
+f1.axhline(y=6.9, xmin=0, xmax=1, lw=1, ls=':',c="0")
+f1.text(-27.4, -6.6, r'$-$6.6', rotation='horizontal', ha='right', va='center', fontsize=12)
+f1.axhline(y=-6.6, xmin=0, xmax=1, lw=1, ls=':',c="0")
+
 g1 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 	y=V_in,
 	fmt='--', c='black')
