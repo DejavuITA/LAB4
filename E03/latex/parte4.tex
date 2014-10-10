@@ -1,16 +1,16 @@
 \subsection{Guadagno Open Loop}
 \label{par3:open}
 
-In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
-Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
-
-\begin{wrapfigure}[15]{r}{0.45\textwidth}
+\begin{wrapfigure}[17]{r}{0.45\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
   \end{center}
-  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$.}
+  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$. I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)$ \si{\ohm},  $(9.6\pm0.1)$ \si{\ohm}, $(101.3\pm 0.1)$ \si{\ohm} e $(998.2\pm 0.1)$ \si{\ohm} mentre $R_1=\SI{98\pm1}{\kohm}$, $R_2=\SI{97\pm1}{\kohm}$ e $R_3=\SI{98\pm1}{\kohm}$.}
   \label{cir3:low_frequency}
 \end{wrapfigure}
+
+In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
+Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
 
 Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{2E5}.
 Oltre tale frequenza abbiamo una caduta di circa \SI{20}{\decibel}/decade.
@@ -33,8 +33,6 @@ Osserviamo come in equazione (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
 Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo e sia stabile il più possibile.
 
 Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; questa strategia ci ha permesso di mantenere i valori di $V_A$ e $V_{out}$ sempre nell'ordine del volt. 
-
-I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)\si{\ohm}$,  $(9.6\pm0.1)\si{\ohm}$, $(101.3\pm 0.1) \si{\ohm}$ e $(998.2\pm 0.1 ) \si{\ohm}$ mentre $R_1=(\pm)$, $R_2=(\pm)$ e $R_3=(\pm)$
 
 \subsubsection*{Misura per alte frequenze}
 

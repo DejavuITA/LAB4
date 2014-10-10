@@ -1,6 +1,269 @@
-\input{../E03/latex/equipment.tex}
-\input{../E03/latex/parte1.tex}
-\input{../E03/latex/parte2.tex}
-\input{../E03/latex/parte3.tex}
-\input{../E03/latex/parte4.tex}
-\input{../E03/latex/conclusion.tex}
+\section{30.09.2014 - Amplificatori Operazionali Reali - Seconda Parte}
+
+In questa esperienza abbiamo studiato ulteriori caratteristiche che distinguono l'opamp reale dal modello ideale.
+Più precisamente abbiamo analizzato e misurato lo \textit{slew rate}, la massima corrente pilotabile, la larghezza di banda passante e il guadagno a maglia aperta $A_{ol}$ di un opamp $\mu$A741.
+
+Ricordiamo che in ogni schema sono stati sottintesi la circuitazione di alimentazione (cavi e capacitori) e quella dedicata al bilanciamento dell'offset (cavi e trimmer).
+
+\subsection*{Strumenti e materiali}
+
+\begin{itemize} [noitemsep]
+\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
+\item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
+\item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
+\item Multimetro Agilent 34410A;
+\item Un amplificatore operazionale $\mu$A741;
+\item Resistenze e capacità di vari valori;
+%\item un trimmer (potenziometro);
+\item Breadboard e cablaggi vari.
+\end{itemize}
+
+\subsection{Misura dello Slew Rate}
+
+\begin{wrapfigure}[15]{r}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.30\textwidth]{../E03/latex/slew_rate.pdf}
+  \end{center}
+  \caption{Schema del circuito utilizzato per stimare lo Slew Rate. La resistenza utilizzata è $R=(2.17\pm0.01)$ \si{\kilo\ohm}; la capacità $C=(200 \pm 10)$ \si{\pico\farad}.}
+  \label{cir3:slew_rate}
+\end{wrapfigure}
+
+Uno dei parametri che caratterizzano l'amplificatore operazionale è lo Slew Rate, definito come
+$$SR = \mathrm{max}\left[\frac{\Delta V}{\Delta t}\right]$$
+che indica la velocità massima con cui l'amplificatore operazionale può far variare la tensione in uscita nell'unità di tempo. Ciò significa che, per segnali in entrata con derivata temporale superiore ad SR dell'OPAMP, avremo un segnale distorto in uscita.
+
+Nel nostro caso abbiamo utilizzato un generatore caratterizzato da uno Slew Rate di $SR_{gen}=\SI{315}{\volt\per\micro\second}$ per creare il segnale in ingresso (onda quadra) e valutato la forma d'onda del segnale in uscita utilizzando il circuito in Figura \ref{cir3:slew_rate}.
+Dati i diversi ordini di grandezza fra $SR_{gen}$ e il valore atteso di $SR$ ($\approx \SI{0.5}{\volt\per\micro\second} $) possiamo considerare il generatore come avente uno slew rate pressoché infinito.
+La capacità è utilizzata come serbatoio di cariche per attenuare fenomeni di rumore nel segnale creati dal generatore.
+
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=\textwidth]{../E03/latex/sr_uad.pdf}}
+ \caption{Grafico della tensione in uscita (rosso) ed in entrata (nero) in funzione del tempo. I $\Delta$ sono relativi alle differenze fra le coordinate dei punti segnati.}
+ \label{gr3:slew_rate}
+\end{figure}
+
+Inizialmente abbiamo posto la frequenza a $f=1$\si{\kilo\hertz} e la tensione picco picco a $V_{pp}=10$ \si{\volt}; con la funzione cursore dell'oscilloscopio abbiamo poi misurato $\Delta V = (8.07 \pm 0.01)$ \si{\volt} fra il 10\% e il 90\% del valore di tensione picco picco in uscita e la relativa $\Delta t = (15.9 \pm 0.1)$ \si{\micro\second}, ottenendo uno $SR=(0.507 \pm 0.003)$ \si{\volt\per\micro\second}.
+
+Come però si può vedere dal grafico in Figura \ref{gr3:slew_rate} si nota che nella parte vicina al 10\% è presente una parte di segnale affetta da rumore che potrebbe rendere poco precisa la nostra misura. Infatti siamo interessati al rapporto fra i $\Delta$; dunque portare il limite inferiore ad un valore percentuale più alto, dato il rumore, rende più precisa la misura. Portando dunque la percentuale del limite inferiore al 25\% abbiamo ottenuto i seguenti valori: $\Delta V = (6.48 \pm 0.01)$ \si{\volt} e $\Delta t = (14.5 \pm 0.1)$ \si{\micro\second}, dunque $SR = (0.447 \pm 0.003)$ \si{\volt\per\micro\second}. Durante l'esperienza utilizzeremo questo valore come riferimento per lo Slew Rate del nostro amplificatore.
+
+Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abbia derivata $dV/dt$ positiva o negativa (grafico in Figura \ref{gr3:slew_rate}, immagine di destra). Nel secondo caso, infatti, abbiamo ottenuto i seguenti valori: $\Delta V = (8.00 \pm 0.01)$ \si{\volt} e $\Delta t = (23.2 \pm 0.1)$ \si{\micro\second}, quindi $SR = (0.345 \pm 0.004)$ \si{\volt\per\micro\second}.
+
+\subsection{Misura della capacità di pilotaggio}
+
+\begin{wrapfigure}[16]{l}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.26\textwidth]{../E03/latex/max_current.pdf}
+  \end{center}
+  \caption{Schema del circuito utilizzato per misurare la corrente massima. La resistenza utilizzata è $R=98.47\pm0.01$\si{\ohm}; il generatore fornisce un'onda triangolare di $f=1$ \si{\kilo\hertz} e $5 V_{pp}$.}
+  \label{cir3:max_current}
+\end{wrapfigure}
+
+L'amplificatore operazionale ha un valore massimo di corrente erogabile in uscita. Dunque, se montiamo un circuito di feedback come in Figura \ref{cir3:max_current}, la tensione massima ai capi di $R$ sarà fissata dalla corrente massima e dal valore della resistenza stessa, da questa relazione:
+\begin{equation*}
+	I_{max} = \frac{V_{clip}}{R}
+\end{equation*}
+dove $V_{clip}$ è la tensione in cui il segnale in uscita risulta tagliato rispetto a quello in ingresso (fenomeno del \textit{clipping}).
+
+Per misurare $I_{max}$ abbiamo dunque sfruttato questo fatto, ponendo una resistenza di carico fra l'uscita dell'operazionale e terra\footnote{Si noti che, data l'alta impedenza in ingresso dell'oscilloscopio (\SI{1}{\mega\ohm}), non era possibile misurare la corrente massima con questo strumento (attesa, come da specifiche del costruttore, sui \SI{15}{\milli\ampere}): sarebbe servita una tensione di \SI{15000}{\volt}!}, con l'oscilloscopio ai capi di tale resistenza per la misura di tensione (circuito in Figura \ref{cir3:max_current}).
+
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=\textwidth]{../E03/latex/clip.pdf}}
+ \caption{Grafico della tensione in uscita (verde) ed in entrata (nero) in funzione del tempo. Si nota subito che il clip a tensioni negative avviene a tensioniin modulo maggiori.}
+ \label{gr3:clip}
+\end{figure}
+
+Bisogna però considerare che la corrente, ponendo il segnale in entrata in alternata, risulta oscillare fra valori negativi e positivi (corrente rispettivamente entrante o uscente dal punto A). Inoltre, tali valori sono differenti (si nota dal grafico in Figura \ref{gr3:clip} l'asimmetria della tensione di clip). Infatti, se consideriamo $V^+ = (1.92 \pm 0.01)$ \si{\volt} la tensione di clip positiva e $V^- = (3.45 \pm 0.01)$ \si{\volt} quella negativa, otteniamo
+
+$$I_{V^+} = \frac{V^+}{R} = (19.5 \pm 0.1) \si{\milli\volt}  \qquad I_{V^-} = \frac{V^-}{R} = (35.2 \pm 0.2) \si{\milli\volt}$$
+
+Entrambi i valori sono compatibili quelli del costruttore (valori di corrente fino a $\pm 40$ \si{\milli\volt}). Questo fatto può essere spiegato considerando che la circuiteria interna dell'opamp è composta, come già più volte ribadito, da diversi transistor che solo idealmente possono essere tutti delle medesime ed identiche caratteristiche: ciò comporta una asimmetria che può spiegare il fenomeno.
+
+\subsection{Verifica della banda passante}
+\label{par3:bode}
+
+In questa parte dell'esperienza vogliamo valutare la banda passante di un circuito amplificatore (non invertente) considerando che il guadagno a maglia aperta dell'amplificatore operazionale dipende della frequenza.
+
+\subsubsection*{Funzione di trasferimento e frequenza di taglio}
+
+Esaminiamo dapprima il circuito, calcolandone la funzione di trasferimento. Per ogni amplificatore operazionale vale
+\begin{wrapfigure}[20]{l}{0.45\textwidth}
+  \begin{center}
+    \includegraphics[width=0.32\textwidth]{../E03/latex/bandwidth.pdf}
+  \end{center}
+  \caption{Schema del circuito utilizzato per valutare la banda passante. La resistenza $R_1=997\pm1$ \si{\ohm} è fissa; mentre $R_2$ è stata cambiata con valori $R_2^{11\mathrm{x}}=9.91 \pm 0.01$ \si{\kilo\ohm} e $R_2^{101\mathrm{x}}=99.1 \pm 0.1$ \si{\kilo\ohm} a seconda del guadagno desiderato.}
+  \label{cir3:banda}
+\end{wrapfigure}
+\begin{equation}
+V_{out}=A(s) (V^+-V^-)
+\label{eq3:regola_opamp}
+\end{equation}
+con il guadagno, come detto sopra, che in generale dipende da $s=j\omega$ (e quindi dalla frequenza). Consideriamo
+$$V^+ = V_{in} \qquad V^-=V_{out} \frac{R_1}{R_1+R_2}$$
+dove $V^-$ è ricavato dalla solita formula per l'amplificatore non invertente $(V^+-V^-)/R_1 + (V_{out}-V^-)/R_2 =0$. Definiamo
+$$\beta = \frac{R_1}{R_1+R_2} = \frac{1}{G}$$
+Si noti che $G$ è il guadagno circuitale di un amplificatore non invertente. Sostituendo questi valori in (\ref{eq3:regola_opamp}) otteniamo
+$$A(s) V_{in} = V_{out} + V_{out} A(s) \beta$$
+Calcoliamo ora la funzione di trasferimento $H$
+\begin{equation}
+H(s)=\frac{V_{out}}{V_{in}}=\frac{1}{\beta}\frac{1}{1+\frac{1}{A(s) \beta}}
+\label{eq3:funz_trasfe}
+\end{equation}
+da cui è facile notare che per $A(s) \rightarrow + \infty$ (approssimazione di amplificatore ideale), $H(s)=\frac{1}{\beta}=1+\frac{R_2}{R_1}=G$, equazione che diventa indipendente dal guadagno a maglia aperta.
+
+Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
+\begin{equation}
+A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}
+\label{eq3:passa_basso}
+\end{equation}
+con $\omega_0 \approx 8$ \si{\hertz} la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
+\begin{equation}
+H(j\omega)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}
+\label{eq3:funzione_trasferimento}
+\end{equation}
+da cui si nota che la nuova frequenza di taglio è data da
+\begin{equation}
+\omega_t=(1+A_{ol}\beta)\omega_0
+\label{eq3:freq_taglio}
+\end{equation}
+Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare la costante \textit{gain-bandwidth product} GBWP $= 2 \pi \omega_t G$, costante dell'amplificatore operazionale.
+
+\subsubsection*{Effetto dello Slew Rate}
+
+Ovviamente, durante la misurazione bisogna minimizzare l'effetto dello Slew Rate che, come visto nel paragrafo precedente, distorce la forma d'onda in uscita. Bisogna quindi scegliere valori di tensione del segnale in ingresso appropriati.
+Supponiamo dunque di avere una forma d'onda in uscita del tipo $V_{out} \sin (2 \pi f_0 t) = V_{in} G \sin (2 \pi f_0 t)$. Vale, affinché non si raggiunga lo SR
+$$\mathrm{max}\left[ \frac{dV_{out}}{dt} \right] = \mathrm{max} \left[ 2 \pi V_{in} G f_0 \cos (2 \pi f_0 t) \right]= 2 \pi V_{in} G f_0 < 0.35 \si{\volt\per\micro\second}$$
+dove l'ultimo valore è stato scelto per tenerci sempre abbastanza distanti dal valore reale di SR. Dunque vale che
+\begin{equation}
+V_{in}<\frac{0.35 \si{\volt\per\micro\second}}{2 \pi G f_0} = \frac{0.35 \si{\volt\per\micro\second}}{2 \pi \mathrm{GBWP}}
+\label{eq3:tensione_max}
+\end{equation}
+Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i valori di tensione da usare nei due casi è di circa $V_{in}^{11\mathrm{x}} = 100$ \si{\milli\volt}$= V_{in}^{101\mathrm{x}}$. Si nota che la regola \ref{eq3:tensione_max} è valida quando il guadagno non dipende dalla frequenza: infatti dopo la frequenza di taglio il guadagno del circuito $G$ cala e dunque i valori di tensione ammessi risultano di valore maggiore.
+
+\subsubsection*{Grafici di Bode}
+\label{par3:sub_bode}
+
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=0.75\textwidth]{../E03/latex/bode.pdf}}
+ \caption{Diagrammi di Bode per il guadagno del circuito in Figura \ref{cir3:banda}. Le leggi plottate sono (\ref{eq3:fit_gain}) e (\ref{eq3:fit_fase}), con i rispettivi guadagni $G$ del circuito.}
+ \label{gr3:bode}
+\end{figure}
+
+Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i grafici di Bode (Figura \ref{gr3:bode}).
+
+Dalla funzione di trasferimento (\ref{eq3:funzione_trasferimento}) possiamo inoltre trovare le relazioni fra il guadagno e la fase con la frequenza. Sappiamo infatti che il guadagno è dato $V_{out}/V_{in}$, ed in generale queste due tensioni possono essere considerate come complesse. Se siamo dunque interessati al guadagno dobbiamo considerare piuttosto il rapporto dei moduli, ed otteniamo la seguente relazione
+\begin{equation}
+\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=|H(j\omega)|=\sqrt{\frac{A_{ol}^2 \omega_0^2}{(\omega_0 + A_{ol} G \omega_0)^2 + \omega^2}}
+\label{eq3:fit_gain}
+\end{equation}
+mentre, per la fase utilizziamo la solita formula della fase per un numero complesso (nel nostro caso $V_{out}/V_{in}$), ed otteniamo
+\begin{equation}
+\varphi=\arctan\left[{\frac{\mathrm{Im}[H(j\omega)]}{\mathrm{Re}[H(j\omega)]}}\right]= - \arctan\left[\frac{\omega}{(1+A_{ol}G)\omega_0}\right]
+\label{eq3:fit_fase}
+\end{equation}
+
+Date queste leggi è possibile stimare $A_{ol}$ e $\omega_0$ dell'operazionale: rimandiamo al paragrafo \ref{par3:A_ol} per questi calcoli, dove saranno confrontati i valori ottenuti con questi dati e quelli presi al paragrafo \ref{par3:open}.
+
+Infine, i valori di frequenza di taglio possono essere calcolati dalla legge al valore di fase del flesso ($45^{\circ}$). Questi sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, in accordo con gli ordini di grandezza stimati in precedenza.
+
+\subsection{Guadagno Open Loop}
+\label{par3:open}
+
+\begin{wrapfigure}[17]{r}{0.45\textwidth}
+  \begin{center}
+    \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
+  \end{center}
+  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$. I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)$ \si{\ohm},  $(9.6\pm0.1)$ \si{\ohm}, $(101.3\pm 0.1)$ \si{\ohm} e $(998.2\pm 0.1)$ \si{\ohm} mentre $R_1=\SI{98\pm1}{\kohm}$, $R_2=\SI{97\pm1}{\kohm}$ e $R_3=\SI{98\pm1}{\kohm}$.}
+  \label{cir3:low_frequency}
+\end{wrapfigure}
+
+In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
+Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
+
+Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{2E5}.
+Oltre tale frequenza abbiamo una caduta di circa \SI{20}{\decibel}/decade.
+Non risulta dunque possibile effettuare misure a loop aperto in quanto piccolissime variazioni di tensione ai due ingressi causerebbero grandi effetti in uscita.
+
+Abbiamo dunque progettato un circuito per controllare la tensione in uscita così da non mandare in saturazione il nostro opamp.
+In Figura \ref{cir3:low_frequency} è riportato lo schema circuitale da noi utilizzato.
+Utilizzando l'oscilloscopio abbiamo misurato i valori di tensione $V_A$ e $V_{out}$. Cerchiamo dunque di legare il guadagno a tali quantità.
+
+Nel caso dell'amplificatore operazionale sappiamo che vale l'eq. (\ref{eq3:regola_opamp}), dove $(V_+-V_-)$ è semplicemente la differenza di potenziale presente tra i due ingressi, che sarà ovviamente data da $\Delta V = I_3R_4$, dove $I_3$ è la corrente che scorre attraverso $R_3$ ed $R_4$\footnote{Assumiamo che la corrente assorbita dagli ingressi sia trascurabile.}.
+È quindi facile stimare $I_3=\frac{V_A}{R_3+R_4}$ conoscendo $V_A$.
+
+Si ottiene dunque:
+\begin{equation}
+A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}} \frac{R_4+R_3}{R_4}
+\label{eq3:lfgain}
+\end{equation}
+
+Osserviamo come in equazione (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
+Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo e sia stabile il più possibile.
+
+Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; questa strategia ci ha permesso di mantenere i valori di $V_A$ e $V_{out}$ sempre nell'ordine del volt. 
+
+\subsubsection*{Misura per alte frequenze}
+
+\begin{wrapfigure}[13]{r}{0.45\textwidth}
+  \begin{center}
+    \includegraphics[width=0.28\textwidth]{../E03/latex/HF_ol.pdf}
+  \end{center}
+  \caption{Circuito utilizzato per stimare il guadagno $A_{ol}$ a basse frequenze. I valori delle resistenze utilizzate sono le stesse del circuito in Figura \ref{cir3:low_frequency}.}
+  \label{cir3:high_frequency}
+\end{wrapfigure}
+
+Per non dover utilizzare resistenze $R_4$ troppo grandi ad alte frequenze ($>$ \SI{70}{\kilo\hertz}), abbiamo provato ad effettuare le misure direttamente ad open-loop, dato che il guadagno è contenuto (\num{<100}).
+Tuttavia il generatore di forme d'onda non emette un segnale pulito alla sola frequenza voluta, in quanto anch'esso è uno strumento reale e dunque affetto da errori.
+Esso potrebbe dunque emettere segnali a frequenze basse o addirittura un piccolo offset.
+Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
+Non è da sottovalutare poi la presenza dei residui dell'offset dell'opamp.
+Esso infatti dipende anche dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta ad ogni temperatura.
+Misurare il guadagno $A_{ol}$ effettivamente a open-loop è particolarmente problematico.
+
+Per aggirare tali ostacoli possiamo utilizzare il circuito riportato in Figura \ref{cir3:low_frequency}, rimuovendo la resistenza $R_4$ e sostituendo $R_3$ con un filo partendo dalla configurazione di Figura \ref{cir3:high_frequency}.
+Cosi facendo otteniamo la semplice relazione $A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}}$, che possiamo anche vedere come limite di eq. (\ref{eq3:lfgain}) per $R_4 \rightarrow \infty$.
+I dati ottenuti sono riportati nel seguente grafico. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../E03/latex/gol.pdf}
+	\caption{Grafico semilogaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}). La legge plottata è la (\ref{eq3:fit_gain_ol}).}
+  \label{cir3:gain_open_loop}
+\end{figure}
+
+Anche in questo caso, considerando l'operazionale come un semplice passa basso, possiamo utilizzare l'equazione (\ref{eq3:passa_basso}) e trovare la relazione fra il guadagno e la frequenza. Otteniamo
+\begin{equation}
+\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=\sqrt{\frac{A_{ol}^2 \omega_0^2}{\omega^2 + \omega_0^2}}
+\label{eq3:fit_gain_ol}
+\end{equation}
+
+Per un fit e i parametri si veda il paragrafo successivo.
+
+\subsection{Calcolo di $A_{ol}$}
+\label{par3:A_ol}
+
+\subsubsection{$A_{ol}$ da circuiti retroazionati}
+
+Con un fit sulle leggi (\ref{eq3:fit_gain}) e (\ref{eq3:fit_fase}) abbiamo ottenuto una stima dei parametri di $A_{ol}$ e $\omega_0$. Abbiamo deciso, dato che l'opamp utilizzato era lo stesso per tutte le misurazioni, di procedere con una media pesata sui valori ottenuti con i 4 fit (due con (\ref{eq3:fit_gain}) e due con (\ref{eq3:fit_fase})), ottenendo i seguenti valori sperimentali
+$$A_{ol}=(1.8\pm0.1)\times 10^5 \qquad f_0=(5.9\pm0.2)\si{\hertz}$$
+
+Ovviamente possiamo ottenere un valore di $A_{ol}$ anche utilizzando la (\ref{eq3:freq_taglio})
+$$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
+e considerando la frequenza $f_0$ ricavata dal fit. Si ottiene un valore teorico (media dei valori con i due guadagni del circuito) di $A_{ol} = (1.71\pm 0.06)\times 10^5$, compatibile con il valore sperimentale.
+
+\subsubsection{$A_{ol}$ da open loop}
+
+Con il fit dalla (\ref{eq3:fit_gain_ol}) otteniamo i seguenti valori
+$$A_{ol}=(2.0\pm0.1)\times 10^5 \qquad f_0=(5.8\pm0.2)\si{\hertz}$$
+
+I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad errori parassiti non ben identificati.
+
+\subsection*{Conclusioni}
+
+In questa esperienza siamo riusciti a stimare lo "slew rate" di un amplificatore operazionale $\mu$A741 e la massima corrente erogata. Tali valori sono risultati compatibili con quelli riportati sul datasheet del costruttore. 
+
+Successivamente abbiamo verificato la banda passante per un circuito non invertente retroazionato negativamente con guadagno G=11 e G=101. Dai diagrammi di Bode abbiamo visto come aumentando il Gain diminuiva la banda passante (ovvero GBWP=const).
+
+Infine abbiamo valutato il guadagno open-loop a diverse frequenze, utilizzando dei circuiti che ci permettevano un controllo del guadagno effettivo e dunque di evitare problemi quali la saturazione dell'amplificatore operazionale. Il guadagno open-loop per tensioni costanti è stato stimato essere un valore compreso fra \num{1.8E5} e \num{2.0E5}, valore compatibile con quelli forniti dal costruttore.

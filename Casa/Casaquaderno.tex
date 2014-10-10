@@ -15,6 +15,7 @@
 \usepackage{enumitem}
 \usepackage{sidecap}
 %\usepackage{subfigure}
+\usepackage[bookmarks, hidelinks]{hyperref}
 \usepackage{subcaption}
 \usepackage{siunitx}
 \usepackage{footnote}
@@ -37,6 +38,10 @@
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
+
+% COMANDO PER SETTARE IN AUTOMATICO LE PARENTESI E IL \pm in \SI{num(inc)ESP}{\unit}
+% esempio (10.00 \pm 0.05) m --> \SI{10.00(5)E0}{\metre}
+\sisetup{separate-uncertainty,bracket-numbers = false}
 
 \begin {document}
 
@@ -66,12 +71,7 @@
 
 \setcounter{footnote}{0}
 
-\input{../E03/latex/equipment.tex}
-\input{../E03/latex/parte1.tex}
-\input{../E03/latex/parte2.tex}
-\input{../E03/latex/parte3.tex}
-\input{../E03/latex/parte4.tex}
-\input{../E03/latex/conclusion.tex}
+\input{Relazione3.tex}
 
 \newpage
 
