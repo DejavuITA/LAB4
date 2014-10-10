@@ -106,8 +106,8 @@ fase10 = f2.errorbar(x=f10, y=ph10, marker='o', ms=3.9, ls='', c='black')
 
 fase100 = f2.errorbar(x=f100, y=ph100, marker='o', ms=3.9, ls='', c='green')
 
-#f2.set_ylabel(r'$\varphi \, \left[^\circ\right]$', labelpad=0, fontsize=16)
-f2.text(2.2, -102/2+6, r'$\varphi \, \left[^\circ\right]$', rotation='vertical',	ha='center', va='center', fontsize=16)
+f2.text(2.2, -102/2+6, r'$\varphi \, \left[^\circ\right]$', rotation='vertical',	ha='center', va='center', fontsize=16, fontweight='bold')
+f2.text(2.19, -102/2+6, r'$\varphi \, \left[^\circ\right]$', rotation='vertical',	ha='center', va='center', fontsize=16, fontweight='bold')
 f2.set_xlabel(u'Frequency [$Hz$]', labelpad=0, fontsize=14)
 
 f2.set_ylim((-96, 6))
