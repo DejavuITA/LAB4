@@ -40,40 +40,38 @@ f1 = fig1.add_subplot(2, 1, 1)
 
 f1.set_xscale('log')
 
-slope = f1.errorbar(x=[i for i in range(800, 600000)],
-			y=[0.43*m*log(i)+120 for i in range(800, 600000)],
+slope = f1.errorbar(x=np.logspace(0,7,num=500),
+			y=0.43*m*np.log(np.logspace(0,7,num=500))+120,
 	fmt='--', c='0.5')
 f1.text(140000, 34, u'approx slope:', size=13, va='center', ha='center')
 f1.text(140000, 32, u'$-20\,dB/decade$', size=13, va='center', ha='center')
 f1.text(140000, 30, u'$-8\,dB/ottava$', size=13, va='center', ha='center')
 
-A3=160000;
+A3=185900;
 b3=1/11;
-w03=8;
+w03=5.9;
 
-teo_db10 = f1.errorbar(x=[i for i in range(1, 600000)],
-	y=[20*log10(sqrt((A3*A3 * w03*w03)/((w03 + A3*b3*w03)*(w03 + A3*b3*w03) + i*i))) for i in range(1, 600000)],
+teo_db10 = f1.errorbar(x=np.logspace(0,7,num=500),
+	y=20*np.log10(np.sqrt((A3*A3 * w03*w03)/((w03 + A3*b3*w03)*(w03 + A3*b3*w03) + np.logspace(0,7,num=500)*np.logspace(0,7,num=500)))),
 	fmt='-', c='black', lw=1)
 
-A4=160000;
+A4=173300;
 b4=1/101;
-w04=6;
+w04=5.9;
 
-teo_db100 = f1.errorbar(x=[i for i in range(1, 600000)],
-	y=[20*log10(sqrt((A4*A4 * w04*w04)/((w04 + A4*b4*w04)*(w04 + A4*b4*w04) + i*i))) for i in range(1, 600000)],
+teo_db100 = f1.errorbar(x=np.logspace(0,7,num=500),
+	y=20*np.log10(np.sqrt((A4*A4 * w04*w04)/((w04 + A4*b4*w04)*(w04 + A4*b4*w04) + np.logspace(0,7,num=500)*np.logspace(0,7,num=500)))),
 	fmt='-', c='green', lw=1)
 
 db10 = f1.errorbar(x=f10, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_ou10/V_in10),
-	fmt='.:', c='black')
+	marker='o', ms=3.9, ls='', c='black')
 
 db100 = f1.errorbar(x=f100, #x=np.logspace(70,6E6,500),
 	y=20*np.log10(V_ou100/V_in100),
-	fmt='.:', c='green')
+	marker='o', ms=3.9, ls='', c='green')
     
-f1.set_ylabel(u'Gain [$dB$]', labelpad=0, fontsize=14)
-#f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)
-#f1.text(-11.2, 0, r'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
+f1.text(2.2, 25-6, u'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 
 f1.text(100, 38, 'G=101x', #r'$\nu_0$',
 	size=12, va='center', ha='center')
@@ -88,28 +86,29 @@ f1.set_ylim((6,44))
 f2 = fig1.add_subplot(2, 1, 2, sharex=f1)
 f2.set_xscale('log')
 
-A1=160000;
+A1=170600;
 b1=1/11;
-w01=6;
+w01=5.9;
 
-teo_fase10 = f2.errorbar(x=[i for i in range(1, 600000)],
-	y=[180/pi*np.arctan(-i/((1+A1*b1)*w01)) for i in range(1, 600000)],
+teo_fase10 = f2.errorbar(x=np.logspace(0,7,num=500),
+	y=180/pi*np.arctan(-np.logspace(0,7,num=500)/((1+A1*b1)*w01)),
 	fmt='-', c='black', lw=1)
 
-A2=160000;
+A2=177500;
 b2=1/101;
-w02=6;
+w02=5.9;
 
-teo_fase100 = f2.errorbar(x=[i for i in range(1, 600000)],
-	y=[180/pi*np.arctan(-i/((1+A2*b2)*w02)) for i in range(1, 600000)],
+teo_fase100 = f2.errorbar(x=np.logspace(0,7,num=500),
+	y=180/pi*np.arctan(-np.logspace(0,7,num=500)/((1+A2*b2)*w02)),
 	fmt='-', c='green', lw=1)
 
-fase10 = f2.errorbar(x=f10, y=ph10, fmt='.:', c='black')
+fase10 = f2.errorbar(x=f10, y=ph10, marker='o', ms=3.9, ls='', c='black')
 
-fase100 = f2.errorbar(x=f100, y=ph100, fmt='.:', c='green')
+fase100 = f2.errorbar(x=f100, y=ph100, marker='o', ms=3.9, ls='', c='green')
 
-f2.set_ylabel(u'Fase [$^\circ$]', labelpad=0, fontsize=14)
-f2.set_xlabel(u'Frequenza [$Hz$]', labelpad=0, fontsize=14)
+#f2.set_ylabel(r'$\varphi \, \left[^\circ\right]$', labelpad=0, fontsize=16)
+f2.text(2.2, -102/2+6, r'$\varphi \, \left[^\circ\right]$', rotation='vertical',	ha='center', va='center', fontsize=16)
+f2.set_xlabel(u'Frequency [$Hz$]', labelpad=0, fontsize=14)
 
 f2.set_ylim((-96, 6))
 f2.set_yticks(np.arange(-90, 1, 15))
