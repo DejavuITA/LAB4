@@ -33,7 +33,10 @@ da cui è facile notare che per $A(s) \rightarrow + \infty$ (approssimazione di 
 Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
 $$A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}$$
 con $\omega_0 \approx 8$ \si{\hertz} la prima frequenza di taglio dell'operazionale data dalla capacità di compensazione nella circuiteria interna e $A_{ol}$ il guadagno dell'operazionale con segnali costanti ($f = 0$). Sostituendo questo valore in (\ref{eq3:funz_trasfe}), abbiamo
-$$H(j\omega)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}$$
+\begin{equation}
+H(j\omega)=\frac{\frac{A_{ol}}{1+A_{ol}\beta}}{1+j \frac{\omega}{(1+A_{ol}\beta)\omega_0}}
+\label{eq3:funzione_trasferimento}
+\end{equation}
 da cui si nota che la nuova frequenza di taglio è data da
 \begin{equation}
 \omega_t=(1+A_{ol}\beta)\omega_0
@@ -58,10 +61,23 @@ Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i va
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=0.75\textwidth]{../E03/latex/bode.pdf}}
- \caption{Diagrammi di Bode per il guadagno del circuito in Figura \ref{cir3:banda}. Per trovare la frequenza di taglio abbiamo utilizzato il grafico relativo alla fase e stimato i parametri di una retta passante fra i due punti più vicini alla fase di $45^{\circ}$. Ovviamente gli errori con tali parametri non sono indicativi (i parametri della retta sono uguali al numero di dati a disposizione), quindi abbiamo optato per un errore stimato tenendo in considerazione la vicinanza delle due misure di fase al valore cercato (5 \% della distanza di frequenza fra le misure).}
+ \caption{Diagrammi di Bode per il guadagno del circuito in Figura \ref{cir3:banda}.}
  \label{gr3:bode}
 \end{figure}
 
 Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i grafici di Bode (Figura \ref{gr3:bode}).
 
-I valori di frequenza di taglio, calcolati per interpolazione con una retta congiungente i due punti più vicini alla frequenza di taglio ($45^{\circ}$) sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, compatibili con gli ordini di grandezza stimati in precedenza. Gli errori sono stimati come descritto nella didascalia di Figura \ref{gr3:bode}.
+Dalla funzione di trasferimento (\ref{eq3:funzione_trasferimento}) possiamo inoltre trovare le relazioni fra il guadagno e la fase con la frequenza. Sappiamo infatti che il guadagno è dato $V_{out}/V_{in}$, ed in generale queste due tensioni possono essere considerate come complesse. Se siamo dunque interessati al guadagno dobbiamo considerare piuttosto il rapporto dei moduli, ed otteniamo la seguente relazione
+\begin{equation}
+\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=|H(j\omega)|=\sqrt{\frac{A_{ol}^2 \omega_0^2}{(\omega_0 + A_{ol} G \omega_0)^2 + \omega^2}}
+\label{eq3:fit_gain}
+\end{equation}
+mentre, per la fase utilizziamo la solita formula della fase per un numero complesso (nel nostro caso $V_{out}/V_{in}$), ed otteniamo
+\begin{equation}
+\varphi=\arctan\left[{\frac{\mathrm{Im}[H(j\omega)]}{\mathrm{Re}[H(j\omega)]}}\right]= - \arctan\left[\frac{\omega}{(1+A_{ol}G)\omega_0}\right]
+\label{eq3:fit_fase}
+\end{equation}
+
+Date queste leggi è possibile stimare $A_{ol}$ e $\omega_0$ dell'operazionale: rimandiamo al paragrafo \ref{par3:A_ol} per questi calcoli, dove saranno confrontati i valori ottenuti con questi dati e quelli presi al paragrafo \ref{par3:open}.
+
+Infine, i valori di frequenza di taglio possono essere calcolati dalla legge al valore di fase del flesso ($45^{\circ}$). Questi sono: $f_t^{101\mathrm{x}} = (10.3 \pm 0.1)$ \si{\kHz} e $f_t^{11\mathrm{x}} = (92 \pm 1)$ \si{\kHz}, in accordo con gli ordini di grandezza stimati in precedenza.
