@@ -4,9 +4,7 @@
 In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
 Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
 
-
-
-\begin{wrapfigure}[16]{r}{0.55\textwidth}
+\begin{wrapfigure}[15]{r}{0.45\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
   \end{center}
@@ -34,20 +32,15 @@ A_{ol}=\frac{{V_{out}}^{pp}}{{V_A}^{pp}} \frac{R_4+R_3}{R_4}
 Osserviamo come in equazione (\ref{eq3:lfgain}) non compaia il termine $V_{in}$.
 Dovremo dunque scegliere per le varie frequenze una tensione picco-picco in ingresso adeguata in modo che il nostro opamp non saturi e allo stesso tempo $V_A$ sia sufficientemente grande da essere poco influenzata dal rumore di fondo e sia stabile il più possibile.
 
-%I valori nominali di resistenza da noi utilizzati sono $R_1=R_2=R_3=\SI{100}{\kilo\ohm}$ e $R_4=\SI{100}{\ohm}$. Per comodità di calcolo abbiamo deciso questa volta di utilizzare il valore nominale con un incertezza del $5\%$. 
-
 Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividendo il procedimento di misura in diversi step; questa strategia ci ha permesso di mantenere i valori di $V_A$ e $V_{out}$ sempre nell'ordine del volt. 
 
 I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)\si{\ohm}$,  $(9.6\pm0.1)\si{\ohm}$, $(101.3\pm 0.1) \si{\ohm}$ e $(998.2\pm 0.1 ) \si{\ohm}$ mentre $R_1=(\pm)$, $R_2=(\pm)$ e $R_3=(\pm)$
-%Pertanto, alla frequenza in cui $A_{ol} \simeq 1000 \quad [\approx\SI{1.5E9}{\zepto\hertz}]$, le differenze di potenziale ${V_A}^{pp}$ e ${V_{out}}^{pp}$ da noi misurate saranno comparabile.
-%Invece a frequenze molto maggiori di $\nu_{tajo} >> \SI{1.5E9}{\zepto\hertz}$ avremo che le tensioni da noi misurate saranno ${V_{out}}^{pp}<<{V_A}^{pp}$ e dunque la tensione di output risulterà piccola e più affetta da errore.
-%Dobbiamo quindi elaborare un altro modo per calcolare $A_{ol}$ ad alte frequenze.
 
 \subsubsection*{Misura per alte frequenze}
 
-\begin{wrapfigure}[15]{r}{0.45\textwidth}
+\begin{wrapfigure}[13]{r}{0.45\textwidth}
   \begin{center}
-    \includegraphics[width=0.32\textwidth]{../E03/latex/HF_ol.pdf}
+    \includegraphics[width=0.28\textwidth]{../E03/latex/HF_ol.pdf}
   \end{center}
   \caption{Circuito utilizzato per stimare il guadagno $A_{ol}$ a basse frequenze. I valori delle resistenze utilizzate sono le stesse del circuito in Figura \ref{cir3:low_frequency}.}
   \label{cir3:high_frequency}
@@ -67,22 +60,34 @@ I dati ottenuti sono riportati nel seguente grafico.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../E03/latex/gol.pdf}
-	\caption{Grafico semilogaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}).}
+	\includegraphics[width=0.9\textwidth]{../E03/latex/gol.pdf}
+	\caption{Grafico semilogaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}). La legge plottata è la (\ref{eq3:fit_gain_ol}).}
   \label{cir3:gain_open_loop}
 \end{figure}
 
+Anche in questo caso, considerando l'operazionale come un semplice passa basso, possiamo utilizzare l'equazione (\ref{eq3:passa_basso}) e trovare la relazione fra il guadagno e la frequenza. Otteniamo
+\begin{equation}
+\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=\sqrt{\frac{A_{ol}^2 \omega_0^2}{\omega^2 + \omega_0^2}}
+\label{eq3:fit_gain_ol}
+\end{equation}
 
-Come vediamo, per frequenze inferiori alla prima frequenza di taglio ($\simeq 6 \si{\hertz}$), il guadagno open-loop vale circa $A_{ol}=(2.1\pm0.1)\times 10^5$.
-
+Per un fit e i parametri si veda il paragrafo successivo.
 
 \subsection{Calcolo di $A_{ol}$}
 \label{par3:A_ol}
 
-Al paragrafo \ref{par3:bode} abbiamo calcolato le frequenze di taglio con diversi valori di guadagno del circuito $G$. Al paragrafo \ref{par3:open} abbiamo invece calcolato la prima frequenza di taglio dell'amplificatore operazionale in configurazione open loop, che si attesta ad essere $\approx 6$ \si{\hertz}.
+\subsubsection{$A_{ol}$ da circuiti retroazionati}
 
-Utilizzando \ref{eq3:freq_taglio} otteniamo che
+Con un fit sulle leggi (\ref{eq3:fit_gain}) e (\ref{eq3:fit_fase}) abbiamo ottenuto una stima dei parametri di $A_{ol}$ e $\omega_0$. Abbiamo deciso, dato che l'opamp utilizzato era lo stesso per tutte le misurazioni, di procedere con una media pesata sui valori ottenuti con i 4 fit (due con (\ref{eq3:fit_gain}) e due con (\ref{eq3:fit_fase})), ottenendo i seguenti valori sperimentali
+$$A_{ol}=(1.8\pm0.1)\times 10^5 \qquad f_0=(5.9\pm0.2)\si{\hertz}$$
+
+Ovviamente possiamo ottenere un valore di $A_{ol}$ anche utilizzando la (\ref{eq3:freq_taglio})
 $$A_{ol} = \frac{G}{\omega_0} (\omega_t - \omega_0)$$
-dove $G$ ($11\mathrm{x}$ e $101\mathrm{x}$) e le frequenze di taglio sono quelle calcolate al paragrafo \ref{par3:bode}.
+e considerando la frequenza $f_0$ ricavata dal fit. Si ottiene un valore teorico (media dei valori con i due guadagni del circuito) di $A_{ol} = (1.71\pm 0.06)\times 10^5$, compatibile con il valore sperimentale.
 
-Otteniamo i seguenti valori: $A_{ol}^{11\mathrm{x}} = (1.68\pm 0.06)\times 10^5$ e $A_{ol}^{101\mathrm{x}} = (1.73\pm 0.06)\times 10^5$. Questi valori possono essere confrontati con il guadagno del primo dato trovato al paragrafo \ref{par3:open}. I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad errori parassiti non ben identificati.
+\subsubsection{$A_{ol}$ da open loop}
+
+Con il fit dalla (\ref{eq3:fit_gain_ol}) otteniamo i seguenti valori
+$$A_{ol}=(2.0\pm0.1)\times 10^5 \qquad f_0=(5.8\pm0.2)\si{\hertz}$$
+
+I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad errori parassiti non ben identificati.
