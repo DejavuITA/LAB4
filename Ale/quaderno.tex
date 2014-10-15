@@ -25,6 +25,15 @@
 %\usepackage{subfigure}
 \usepackage{footnote}
 
+% COMANDI PER PREMETTERE AL NUMERO DELLE FORMULE E DELLE FIGURE IL NUMERO DELLA SEZIONE
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+% COMANDO PER SETTARE IN AUTOMATICO LE PARENTESI E IL \pm in \SI{num(inc)ESP}{\unit}
+% esempio (10.00 \pm 0.05) m --> \SI{10.00(5)E0}{\metre}
+\sisetup{separate-uncertainty,bracket-numbers = false}
+
 \begin{document}
 
 \title{Quaderno di laboratorio}
