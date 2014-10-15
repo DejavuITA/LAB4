@@ -6,7 +6,15 @@ I raddrizzatori sono dei circuiti il cui scopo è quello di effettuare il modulo
 
 \subsubsection{Raddrizzatore con un diodo}
 
-Analizziamo il circuito in Figura ?????. Vogliamo dimostrare che, qualunque sia il segnale in entrata, il contributo alla tensione di uscita dato dalla tensione di soglia del diodo è trascurabile.
+\begin{wrapfigure}[16]{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.350\textwidth]{../E05/latex/c_rectifier_A.pdf}
+  \end{center}
+  \caption{Circuito dell'amplificatore per strumentazione.}
+  \label{cir5:raddrizz_1}
+\end{wrapfigure}
+
+Analizziamo il circuito in Figura \ref{cir5:raddrizz_1}. Vogliamo dimostrare che, qualunque sia il segnale in entrata, il contributo alla tensione di uscita dato dalla tensione di soglia del diodo è trascurabile.
 
 Innanzitutto notiamo che, dato l'alto guadagno dell'operazionale, la tensione in entrata per polarizzare il diodo è un valore molto basso (con un guadagno di $2\times 10^5$ la tensione necessaria è data da $0.6 \si{\volt}/2\times 10^5 \approx 3 \si{\micro\volt}$); dunque non dobbiamo preoccuparci che il segnale in entrata debba avere un valore minimo per far funzionare il circuito.
 
@@ -24,7 +32,7 @@ Nel primo caso, l'OPAMP amplifica il segnale negativo in entrata sull'uscita ris
 
 \paragraph*{Caso $V_{in}>0$}
 
-Nel secondo caso invece il diodo è in conduzione. Consideriamo dunque, come si nota dalla Figura ??????
+Nel secondo caso invece il diodo è in conduzione. Consideriamo dunque, come si nota dalla Figura \ref{cir5:raddrizz_1}
 $$V^+=V_{in} \qquad V^-=V_{out}$$
 Dato che un diodo in conduzione ha una caduta in buona approssimazione costante $V_d$, vale anche che
 $$V_{ol}=V_{out}+V_d$$
@@ -36,11 +44,34 @@ V_{out}=\frac{1}{1+A} (A V_{in} - V_d) \approx V_{in} \qquad V_{ol} \approx V_{i
 
 Di seguito proponiamo i grafici delle leggi sopra ricavate plottate con i dati sperimentali.
 
+\begin{center}
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=\textwidth]{../E05/latex/radd_1.pdf}}
+ \caption{Grafico della tensione in uscita (rosso) ed in entrata (nero) in funzione del tempo. I $\Delta$ sono relativi alle differenze fra le coordinate dei punti segnati.}
+ \label{gr3:slew_rate}
+\end{figure}
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=\textwidth]{../E05/latex/radd_prima_diodo.pdf}}
+ \caption{Grafico della tensione in uscita (rosso) ed in entrata (nero) in funzione del tempo. I $\Delta$ sono relativi alle differenze fra le coordinate dei punti segnati.}
+ \label{gr3:slew_rate}
+\end{figure}
+\end{center}
+
 Dal plot del segnale in entrata ed in uscita in funzione del tempo alla frequenza di ?????? \si{\hertz} (grafico in Figura ???????), possiamo notare un troncamento della forma d'onda del segnale in uscita. Abbiamo ipotizzato che tale fenomeno fosse dovuto alla limitata velocità che i transistor all'interno dell'operazionale hanno di passare dalla saturazione all'interdizione; tale fenomeno è anche amplificato dal fatto che, quando il diodo è interdetto, $V_{ol} \approx -V_{CC}$: il segnale deve quindi passare da una tensione di saturazione negativa alla tensione necessaria per raddrizzare il segnale in uscita in un tempo troppo breve, e ad alte frequenze ciò risulta in un troncamento. Per risolvere tale problema utilizziamo il circuito esposto al sottoparagrafo successivo.
 
 \subsubsection{Raddrizzatore con due diodi}
 
-Per risolvere il problema visto in precedenza, utilizziamo un secondo diodo posto come nel in Figura ?????? e un circuito di retroazione controllata in guadagno. Anche in questo caso dobbiamo valutare la risposta del circuito in casi diversi: $V_{in}=0$, $V_{in}>0$ e $V_{in}<0$.
+\begin{wrapfigure}[15]{l}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.350\textwidth]{../E05/latex/c_rectifier_B.pdf}
+  \end{center}
+  \caption{Circuito dell'amplificatore per strumentazione.}
+  \label{cir5:raddrizz_2}
+\end{wrapfigure}
+
+Per risolvere il problema visto in precedenza, utilizziamo un secondo diodo posto come nel in Figura \ref{cir5:raddrizz_2} e un circuito di retroazione controllata in guadagno. Anche in questo caso dobbiamo valutare la risposta del circuito in casi diversi: $V_{in}=0$, $V_{in}>0$ e $V_{in}<0$.
 
 \paragraph*{Caso $V_{in}=0$}
 
