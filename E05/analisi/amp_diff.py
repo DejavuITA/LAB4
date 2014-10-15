@@ -50,6 +50,6 @@ f1.legend((g1, g2), (r'$V_{noise}$', r'$V_{out}$'), 'lower right', prop={'size':
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.1, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.09, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
