@@ -16,7 +16,7 @@ V_ou	= dataG1[2:,2]
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 5.5))
 # Titolo del grafico
-fig1.suptitle("Segnale del raddrizzatore a mezz'onda in uscita dall'OPAMP", y=0.97, fontsize=15)
+fig1.suptitle("Segnale del raddrizzatore in uscita dall'OPAMP", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
@@ -34,12 +34,12 @@ g2 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 f1.text(-33.5,-6, u'Tensione [$V$]', size=14, va='center', ha='center',rotation='90')
 
 f1.grid(True)
-#f1.set_ylim((-1.2, 5.2))
+f1.set_ylim((-13.8, 1.8))
 #f1.set_xlim((-2.9,2.9))
 
 f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=14)
 
-f1.legend((g1, g2), (r'$V_{A}$', r'$V_{out}$'), 'center right', prop={'size': 13})
+f1.legend((g1, g2), (r'$V_{in}$', r'$V_{A}$'), 'center right', prop={'size': 13})
     
 ######
 
