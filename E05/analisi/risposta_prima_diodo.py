@@ -16,7 +16,7 @@ V_ou	= dataG1[2:,2]
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 5.5))
 # Titolo del grafico
-fig1.suptitle("Risposta del raddrizzatore prima del diodo", y=0.97, fontsize=15)
+fig1.suptitle("Risposta del raddrizzatore in uscita dell'OPAMP", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
@@ -51,6 +51,6 @@ f1.set_xlabel(u'$V_{in} $[$V$]', labelpad=0, fontsize=14)
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.11, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.1, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()

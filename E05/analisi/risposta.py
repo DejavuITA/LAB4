@@ -24,15 +24,15 @@ f1 = fig1.add_subplot(1, 1, 1)
 #f1.set_xscale('log')
 
 g1 = f1.errorbar(x=V_in, #x=np.logspace(70,6E6,500),
-	y=V_ou
-,
+	y=V_ou,
 	fmt='.:', c='black')
 
-x=[i for i in range[1,2]]
-
-
+linea = f1.errorbar(
+	x=np.arange(0, 0.5, 0.01),
+	y=np.arange(0, 0.5, 0.01),
+	fmt='-', c='r')
     
-f1.text(-0.445, 0.2, u'$V_A$ [$V$]', size=14, va='center', ha='center',rotation='90')
+f1.text(-0.455, 0.2, u'$V_{OUT}$ [$V$]', size=14, va='center', ha='center',rotation='90')
 #f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)
 #f1.text(-11.2, 0, r'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 
@@ -51,6 +51,6 @@ f1.set_xlabel(u'$V_{in} $[$V$]', labelpad=0, fontsize=14)
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.11, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.08, right=0.98, top=0.93, bottom=0.1, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
