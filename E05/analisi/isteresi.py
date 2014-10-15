@@ -16,7 +16,7 @@ V_ou	= dataG1[2:,2]
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 5.5))
 # Titolo del grafico
-fig1.suptitle("Ciclo di isteresi", y=0.97, fontsize=15)
+fig1.suptitle("Risposta del raddrizzatore a mezz'onda", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
@@ -32,7 +32,7 @@ g1 = f1.errorbar(x=V_in, #x=np.logspace(70,6E6,500),
 	#y=V_ou,
 	#fmt='-', c='green')
     
-f1.set_ylabel(u'$V_{out} $[$V$]', labelpad=0, fontsize=14)
+f1.text(-0.445, 0.2, u'Tensione [$V$]', size=14, va='center', ha='center',rotation='90')
 #f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)
 #f1.text(-11.2, 0, r'Gain [$dB$]', rotation='vertical',	ha='center', va='center', fontsize=15)
 

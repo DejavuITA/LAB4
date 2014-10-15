@@ -7,7 +7,7 @@ import numpy as np
 	####  Qui vanno i dati 	####
 dataG1 = np.genfromtxt("../dati/scope_0.csv", delimiter=',')
 
-t	=1000* dataG1[2:,0]
+t	=1000* dataG1[2:,0]-0.99
 V_in	= dataG1[2:,1]
 V_ou	= dataG1[2:,2]
 
@@ -16,7 +16,7 @@ V_ou	= dataG1[2:,2]
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 5.5))
 # Titolo del grafico
-fig1.suptitle("Risposta di un comparatore con LM311", y=0.97, fontsize=15)
+fig1.suptitle("Raddrizzatore a mezz'onda", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
@@ -41,10 +41,10 @@ f1.text(-3.1, 6.4/2-1.2, u'Tensione [$V$]', size=14, va='center', ha='center',ro
 
 f1.grid(True)
 #f1.set_ylim((-1.2, 5.2))
-#f1.set_xlim((-2.9,2.9))
+#f1.set_xlim((-25,25))
 
 f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=14)
-
+f1.text(-32.7, 0, u'Tensione [$V$]', size=12, va='center', ha='center',rotation='90')
 f1.legend((g1, g2), (r'$V_{in}$', r'$V_{out}$'), 'center right', prop={'size': 13})
     
 ######
