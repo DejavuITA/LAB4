@@ -60,7 +60,7 @@ Sperimentalmente, si osserva però che una differenza di potenziale è già pres
 
 Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
 $$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
-Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
+Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$ e $R_4/R_1<<1$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
 \begin{equation}
 \Delta V_{out} = - A \frac{\Delta R}{R_1+R_4} V_{b}
 \label{eq5:delta_R}
