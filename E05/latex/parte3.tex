@@ -58,11 +58,31 @@ Una possibile applicazione di questo integrato è di utilizzarlo per individuare
 
 Sperimentalmente, si osserva però che una differenza di potenziale è già presente a temperatura ambiente (cioè senza variare la temperatura della resistenza $R_3$): questo fatto è imputabile al mancato bilanciamento del ponte. Infatti, è impossibile trovare due resistenze che abbiano un valore esattamente identico: dunque vi è un errore sistematico di cui dobbiamo tenere conto prima di effettuare le misure, fissando un valore zero di tensione, che si osserva essere $0.54$\si{\volt}.
 
-Considerando lo zero come sopra, gli altri due valori osservati sono stati di $0.08$ \si{\volt} soffiando sopra la resistenza, e $-0.44$ \si{\volt} con la bomboletta refrigerante.
-
 Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
 $$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
 Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
-$$\Delta V_{out} = - A \frac{\Delta R}{R_1+R_4} V_{b}$$
+\begin{equation}
+\Delta V_{out} = - A \frac{\Delta R}{R_1+R_4} V_{b}
+\label{eq5:delta_R}
+\end{equation}
 dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5:ad622_ponte}). Tenendo conto della relazione fra $\Delta R$ e la variazione di temperatura $\Delta T$, abbiamo che
-$$\Delta T = \frac{\Delta R}{- 20 \si{\milli\ohm/\celsius}} = \frac{1}{20 \si{\milli\ohm/\celsius}} \frac{R_1+R_4}{A} \Delta V$$
+\begin{equation}
+\Delta T = \frac{\Delta R}{- 20 \si{\milli\ohm/\celsius}} = \frac{1}{20 \si{\milli\ohm/\celsius}} \frac{R_1+R_4}{V_b A} \Delta V
+\label{eq5:delta_T}
+\end{equation}
+
+Presentiamo ora la tabella dei valori sperimentali con la modalità di variazione della temperatura. I valori di $\Delta V$ sono osservati, $\Delta R$ e $\Delta T$ sono calcolati rispettivamente con (\ref{eq5:delta_R}) e (\ref{eq5:delta_T}).
+
+\begin{center}
+{\renewcommand{\arraystretch}{1.2}%
+	\begin{tabular}{c|c|c|c}
+    %\hline
+	Modalità & $\Delta V$ [\si{\volt}] & $\Delta R$ [\si{\ohm}] & $\Delta T$ [\si{\celsius}]\\
+    \hline
+	Soffio & $0.08\pm0.01 $ & $0.16\pm0.03$ & $8.1 \pm 0.2$\\
+    \hline
+	Refrigerante & $-0.44\pm0.01 $ & $-0.88\pm0.06$ & $-44 \pm 3$\\
+    %\hline
+	\end{tabular}
+}
+\end{center}
