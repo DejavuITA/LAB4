@@ -60,6 +60,8 @@ Sperimentalmente, si osserva però che una differenza di potenziale è già pres
 
 Considerando lo zero come sopra, gli altri due valori osservati sono stati di $0.08$ \si{\volt} soffiando sopra la resistenza, e $-0.44$ \si{\volt} con la bomboletta refrigerante.
 
-La relazione che lega la variazione di tensione alla resistenza è
-$$\Delta V = A \frac{\Delta R}{R + R_t} V_{b}$$
-dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5:ad622_ponte}), A il guadagno dell'AD622.
+La relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
+$$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
+Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
+$$\Delta V_{out} = A \frac{\Delta R}{R_1+R_4} V_{b}$$
+dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5:ad622_ponte}).
