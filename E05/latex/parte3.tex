@@ -46,7 +46,7 @@ Modificando la resistenza $R_g$ possiamo dunque controllare il guadagno del circ
 In realtà, nell'esperienza abbiamo utilizzato un circuito integrato (più precisamente l'AD622, la cui piedinatura è esposta in Figura \ref{cir5:ad622_piedinatura}) che ha come qualità il fatto di avere un'alta precisione sul valore delle resistenze (abbiamo visto nel precedente circuito che uno squilibrio anche minimo fra i valori di resistenze che dovrebbero essere uguali può portare ad un guadagno diverso da quello teorico). Il suo guadagno è dato dall'equazione, fornita dal costruttore
 $$G=1+\frac{50.5 \si{\kilo\ohm}}{R_g}$$
 
-Una possibile applicazione di questo integrato è di utilizzarlo per individuare variazioni di tensione all'interno di un ponte di resistenze. Allo scopo, utilizziamo il circuito in Figura \ref{cir5:ad622_ponte}, con l'accortezza di portare una resistenza del ponte lontana dalle altre, così da poter modificarne la temperatura senza influenzare anche le altre. Infatti, sappiamo che le resistenze hanno una dipendenza dalla temperatura data dal coefficiente di temperatura, che è di circa $200$ ppm/\si{\celsius}. Nel nostro caso, utilizzando come resistenza lontana dalle una da $100$ \si{\ohm}, la sua variazione per grado di temperatura sarà di $\Delta R = 100 \si{\ohm} (-200 \times 10^{-6}) = -20$ \si{\milli\ohm/\celsius}. Inoltre, per il ponte vale che non vi è differenza di tensione fra gli ingressi dell'integrato se il prodotto delle resistenze $R_1 R_4=R_2 R_3$: dunque, variando la resistenza $R_3$ inizieremo a registrare una tensione di uscita.
+Una possibile applicazione di questo integrato è di utilizzarlo per individuare variazioni di tensione all'interno di un ponte di resistenze. Allo scopo, utilizziamo il circuito in Figura \ref{cir5:ad622_ponte}, con l'accortezza di portare una resistenza del ponte lontana dalle altre, così da poter modificarne la temperatura senza influenzare anche le altre. Infatti, sappiamo che le resistenze hanno una dipendenza dalla temperatura data dal coefficiente di temperatura, che è di circa $200$ ppm/\si{\celsius}. Nel nostro caso, utilizzando come resistenza lontana dalle una da $100$ \si{\ohm}, la sua variazione per grado di temperatura sarà di $\Delta R / \Delta T= 100 \si{\ohm} (-200 \times 10^{-6}) = -20$ \si{\milli\ohm/\celsius}. Inoltre, per il ponte vale che non vi è differenza di tensione fra gli ingressi dell'integrato se il prodotto delle resistenze $R_1 R_4=R_2 R_3$: dunque, variando la resistenza $R_3$ inizieremo a registrare una tensione di uscita.
 
 \begin{wrapfigure}[13]{r}{0.5\textwidth}
   \begin{center}
@@ -60,8 +60,9 @@ Sperimentalmente, si osserva però che una differenza di potenziale è già pres
 
 Considerando lo zero come sopra, gli altri due valori osservati sono stati di $0.08$ \si{\volt} soffiando sopra la resistenza, e $-0.44$ \si{\volt} con la bomboletta refrigerante.
 
-La relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
+Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
 $$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
 Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
-$$\Delta V_{out} = A \frac{\Delta R}{R_1+R_4} V_{b}$$
-dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5:ad622_ponte}).
+$$\Delta V_{out} = - A \frac{\Delta R}{R_1+R_4} V_{b}$$
+dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5:ad622_ponte}). Tenendo conto della relazione fra $\Delta R$ e la variazione di temperatura $\Delta T$, abbiamo che
+$$\Delta T = \frac{\Delta R}{- 20 \si{\milli\ohm/\celsius}} = \frac{1}{20 \si{\milli\ohm/\celsius}} \frac{R_1+R_4}{A} \Delta V$$
