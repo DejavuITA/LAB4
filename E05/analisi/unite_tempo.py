@@ -26,7 +26,7 @@ fig1.suptitle("Segnale del raddrizzatore in uscita dall'OPAMP", y=0.97, fontsize
 
 ######
 # GRAFICO 1
-f1 = fig1.add_subplot(1, 2, 1)
+f1 = fig1.add_subplot(1, 2, 2)
 #f1.set_xscale('log')
 
 g1 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
@@ -48,7 +48,7 @@ f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=14)
 f1.legend((g1, g2), (r'$V_{in}$', r'$V_{A}$'), 'center right', prop={'size': 13})
 
 # GRAFICO 2
-f5 = fig1.add_subplot(1, 2, 2)
+f5 = fig1.add_subplot(1, 2, 1)
 #f5.set_xscale('log')
 
 g1 = f5.errorbar(x=t_1, #x=np.logspace(70,6E6,500),
