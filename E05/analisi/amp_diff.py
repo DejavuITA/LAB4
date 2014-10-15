@@ -45,7 +45,7 @@ f1.set_ylim((-11, 11))
 
 f1.set_xlabel(u'Tempo [$m s$]', labelpad=0, fontsize=14)
 
-f1.legend((g1, g2), (r'$V_{in}$', r'$V_{out}$'), 'lower right', prop={'size': 13})
+f1.legend((g1, g2), (r'$V_{noise}$', r'$V_{out}$'), 'lower right', prop={'size': 13})
     
 ######
 
