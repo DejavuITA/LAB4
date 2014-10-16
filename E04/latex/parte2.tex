@@ -10,6 +10,7 @@
 
 Quando nel segnale è presente un rumore è possibile che il valore di tensione restituito dal comparatore cambi più volte da $0$ a $V_{C}$.
 Infatti, l'ampiezza in tensione del rumore può essere tale da passare sopra e sotto la tensione di soglia, invertendo la $V_{out}$ più volte, in accordo con (\ref{eq4:comparatore}).
+
 Per ovviare a questo problema si sfrutta la retroazione positiva dell'amplificatore operazionale per riportare parte della $V_{out}$ sull'ingresso non invertente: ciò permette di creare un offset positivo sulla tensione all'ingresso non invertente quando $V_{in}>0$ e viceversa.
 Quindi, durante il confronto del segnale con la tensione di riferimento, il segnale in entrata risulterà aumentato o diminuito di una certa quantità a seconda di $V_{out}$.
 
@@ -34,9 +35,9 @@ Tale corrente dipende inoltre dalla tensione in entrata, dunque è spiegata la p
 
 Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha portato, come ci aspettavamo dalla relazione (\ref{eq4:v_in_parte2}) (si ricorda che $V^+=V_{ref}$), ad una traslazione del grafico in Figura \ref{gr4:isteresi} di un valore dato dall'offset impostato. Infine, durante l'esperienza, abbiamo anche variato $R_1$ per valutare diverse tensioni di isteresi.
 
-\begin{SCfigure}[][ht]
+\begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.0cm]{../E04/latex/XY.pdf}}
+   {\includegraphics[width=14.5cm]{../E04/latex/XY.pdf}}
  \caption{Grafico dell'isteresi. Per questi dati le resistenze utilizzate sono $R_1=\SI{9.98(1)}{\kohm}$ e $R_2=\SI{99.6(1)}{\kohm}$. Le varie differenze rispetto al grafico ideale sono spiegate nel paragrafo.}
  \label{gr4:isteresi}
-\end{SCfigure}
+\end{figure}
