@@ -17,12 +17,21 @@ In questa sessione di laboratorio abbiamo montato due circuiti con amplificatori
 
 \subsection{Premessa sugli amplificatori operazionali ideali}
 
+\begin{wrapfigure}[19]{r}{0.4\textwidth}
+  \begin{center}
+    \includegraphics[width=0.260\textwidth]{../E01/latex/UA741.pdf}
+  \end{center}
+  \caption{Piedinatura dell'operazionale $\mu$A741, operazionale utilizzato nelle esperienze.}
+  \label{cir4:open_collector}
+\end{wrapfigure}
+
 Durante l'esperienza valuteremo l'amplificatore operazionale considerandolo come ideale. Infatti, in questa approssimazione (peraltro non eccessivamente limitante visti i valori di corrente in gioco nel nostro caso), valgono (considerando come A e B rispettivamente gli ingressi invertente e non invertente):
 
 \begin{equation}
 \Delta V_{AB}=0
 \label{eq:regola_V}
 \end{equation}
+
 \begin{equation}
 I_{AB}=0
 \label{eq:regola_I}
@@ -31,6 +40,8 @@ I_{AB}=0
 cioè la ddp fra l'ingresso invertente e non invertente è portato ad essere nullo dall'amplificatore operazionale modificando il valore di tensione in output (il cosiddetto \textit{ground virtuale} dato che nei nostri casi l'ingresso non invertente è collegato alla comune del circuito); e la corrente assorbita dall'amplificatore è nulla.
 Queste regole verranno utilizzate durante questa sessione per valutare la risposta del circuito a segnali in ingresso, e si intendono utilizzate per tutte le sessioni in cui l'amplificatore è considerato ideale.
 
+Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo collegato l'alimentazione a due capacità come nello schema in Figura \ref{gr:costante}.
+
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=6cm]{../E01/latex/alimentazione.pdf}}
@@ -38,15 +49,13 @@ Queste regole verranno utilizzate durante questa sessione per valutare la rispos
  \label{gr:costante}
 \end{figure}
 
-Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo collegato l'alimentazione a due capacità come nello schema in Figura \ref{gr:costante}.
-
 \subsection{Generatore di corrente}
 
 In questo circuito abbiamo assemblato un generatore di corrente costante, cioè un dispositivo in grado di erogare una corrente costante ai capi di una resistenza (che definiremo \textit{resistenza di carico} $R_c$), indipendentemente dal valore di quest'ultima. Per valutare questa caratteristica abbiamo dunque utilizzato come $R_c=R_2$ una resistenza variabile di tipo \textit{trimmer}. Lo schema circuitale è in Figura \ref{gen_continua}.
 
 Risolviamo ora il circuito, considerando la tensione fornita dal generatore di tensione continua come $V_{gen}$ e la tensione in uscita dall'OPAMP come $V_{out}$. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo.
 
-\begin{wrapfigure}[21]{r}{0.55\textwidth}
+\begin{wrapfigure}[25]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E01/latex/c1.pdf}
   \end{center}
