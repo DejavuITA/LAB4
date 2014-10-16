@@ -14,6 +14,13 @@ Un circuito di questo tipo necessità di almeno due componenti: il sensore di lu
 Il componente principale del primo blocco è il fototransistor OP550 che agisce come una sorgente di corrente, generando una corrente dell'ordine del \si{\uA} se esposto alla luce.
 Tale corrente è però difficilmente manipolabile, pertanto abbiamo deciso di utilizzare un convertitore corrente-tensione per trasformare e amplificare il segnale in modo tale da poter essere utilizzata come segnale di ingresso del secondo blocco.
 
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=14.5cm]{../E04/latex/neon.pdf}}
+ \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
+ \label{gr4:neon}
+\end{figure}
+
 Un convertitore corrente-tensione può essere implementato facilmente utilizzando un opamp $\mu$A741 in modalità di amplificatore invertente con retroazione negativa (vedi Figura \ref{cir4:crepuscolare}).
 In questo modo, la tensione in uscita dell'opamp sarà legata alla corrente che attraversa il sensore dalla seguente equazione:
 
@@ -32,10 +39,3 @@ Per impostare la tensione di soglia, invece, abbiamo creato un partitore collega
 In questo modo potevamo scegliere la tensione di soglia girando semplicemente un cacciavite.
 
 Infine abbiamo posto il carico da alimentare tra l'alimentazione positiva +\SI{15}{\V} e la resistenza di pull-up ($R_P=$ \SI{1}{\kohm}).
-
-\begin{figure}[ht]
- \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/neon.pdf}}
- \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
- \label{gr4:neon}
-\end{figure}
