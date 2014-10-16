@@ -4,13 +4,13 @@
 
 I raddrizzatori sono dei circuiti il cui scopo è quello di effettuare il modulo di un segnale in ingresso preservandone la forma. In precedenti corsi di optoelettronica abbiamo incontrato alcuni semplici raddrizzatori i cui elementi circuitali chiave erano i diodi. Questi dispositivi sono in grado di portarsi in conduzione, e quindi di chiudere il ramo di circuito in cui si è posto il diodo, se la tensione al polo positivo è maggiore di quella al polo negativo; altrimenti il diodo apre il circuito. In realtà, ciò accade unicamente nel caso in cui il diodo sia ideale: per polarizzare un diodo è infatti necessario creare una differenza di tensione ai suoi capi, detta tensione di soglia $V_d$, che ha un valore di $\approx 0.6$ \si{\volt}; altrimenti il diodo risulterà come non polarizzato e dunque non in conduzione. Questo fatto, nella creazione di raddrizzatori può creare alcuni svantaggi, soprattutto se necessaria un'alta precisione (lavorando con piccoli valori di tensione): il segnale in uscita sarà con la stessa forma d'onda del segnale in entrata, ma con un offset di $-0.6$\si{\volt} dato dalla $V_d$; inoltre, se i segnali in entrata hanno valori più piccoli della tensione di soglia, il diodo non entrerà mai in conduzione. Di seguito presentiamo alcuni circuiti che risolvono in parte queste problematiche.
 
-\subsubsection{Raddrizzatore con un diodo}
+\subsubsection{Raddrizzatore}
 
 \begin{wrapfigure}[16]{r}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.350\textwidth]{../E05/latex/c_rectifier_A.pdf}
   \end{center}
-  \caption{Circuito dell'amplificatore per strumentazione.}
+  \caption{Circuito del raddrizzatore con un diodo. La resistenza di carico è $R_L=10$ \si{\kilo\ohm}.}
   \label{cir5:raddrizz_1}
 \end{wrapfigure}
 
@@ -69,13 +69,13 @@ In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle t
 
 Dal plot del segnale in entrata ed in uscita in funzione del tempo alla frequenza di 2 \si{\kilo\hertz} (grafico in Figura \ref{gr5:problema}), possiamo notare un troncamento della forma d'onda del segnale in uscita. Abbiamo ipotizzato che tale fenomeno fosse dovuto alla limitata velocità che i transistor all'interno dell'operazionale hanno di passare dalla saturazione all'interdizione; tale fenomeno è anche amplificato dal fatto che, quando il diodo è interdetto, $V_{A} \approx -V_{CC}$: il segnale deve quindi passare da una tensione di saturazione negativa alla tensione necessaria per raddrizzare il segnale in uscita in un tempo troppo breve, e ad alte frequenze ciò risulta in un troncamento. Per risolvere tale problema utilizziamo il circuito esposto al sottoparagrafo successivo.
 
-\subsubsection{Raddrizzatore con due diodi}
+\subsubsection{Raddrizzatore ottimizzato}
 
-\begin{wrapfigure}[15]{l}{0.5\textwidth}
+\begin{wrapfigure}[16]{l}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.350\textwidth]{../E05/latex/c_rectifier_B.pdf}
   \end{center}
-  \caption{Circuito dell'amplificatore per strumentazione.}
+  \caption{Circuito del raddrizzatore a semionda ottimizzato. La resistenza di carico è $R_L=10$ \si{\kilo\ohm}, mentre $R_1=R_2=10$ \si{\kilo\ohm}.}
   \label{cir5:raddrizz_2}
 \end{wrapfigure}
 
@@ -101,11 +101,11 @@ V_{out}=-\frac{R_2}{R_1}V_{in} \qquad V_A = \frac{R_2}{R_1} V_{in} + V_d
 \label{eq5:v_out_ottimizzato}
 \end{equation}
 
-Di seguito presentiamo i grafici delle tensioni.
+In Figura \ref{gr5:secondo_raddrizzatore} presentiamo il grafico della tensione.
 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=14.5cm]{../E05/latex/radd_ott.pdf}}
- \caption{Grafico delle tensioni in funzione del tempo. Notiamo subito il guadagno negativo quando $V_{in}<0$, plausibile con (\ref{eq5:v_out_ottimizzato}).}
- \label{gr5:primo_raddrizzatore_vin}
+ \caption{Grafico delle tensioni in funzione del tempo. Notiamo che il guadagno negativo quando $V_{in}<0$, plausibile con (\ref{eq5:v_out_ottimizzato}).}
+ \label{gr5:secondo_raddrizzatore}
 \end{figure}
