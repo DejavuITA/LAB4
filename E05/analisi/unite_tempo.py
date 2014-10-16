@@ -22,7 +22,7 @@ V_ou_1	= dataG1_1[2:,2]
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8*2, 5.5))
 # Titolo del grafico
-fig1.suptitle("Segnale del raddrizzatore in uscita dall'OPAMP", y=0.97, fontsize=15)
+fig1.suptitle("Segnale del raddrizzatore a mezz'onda", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
