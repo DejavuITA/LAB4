@@ -47,7 +47,7 @@ In Figura \ref{gr5:primo_raddrizzatore} presentiamo i grafici delle tensioni in 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=19.5cm]{../E05/latex/unite_tempo.pdf}}
- \caption{DIDASCALIA!!!!!}
+ \caption{Grafici delle tensioni in funzione del tempo. Il primo grafico è quello relativo alla tensione all'uscita del circuito $V_{out}$, il secondo alla tensione in uscita dall'OPAMP $V_A$, dove è facile vedere che l'operazionale entra in saturazione negativa.}
  \label{gr5:primo_raddrizzatore}
 \end{figure}
 
@@ -56,13 +56,13 @@ In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle t
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=19.5cm]{../E05/latex/u_risposta.pdf}}
- \caption{DIDASCALIA!!!!!}
+ \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'OPAMP in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici le (\ref{eq5:leggi_1.1}).}
  \label{gr5:primo_raddrizzatore_vin}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=12.5cm]{../E05/latex/zoom.pdf}}
+   {\includegraphics[width=14.5cm]{../E05/latex/zoom.pdf}}
  \caption{Grafico della tensione in entrata (tratteggiata) e della tensione in uscita dal circuito (in verde) in funzione del tempo. Si nota il fenomeno esposto nel paragrafo.}
  \label{gr5:problema}
 \end{figure}
@@ -96,8 +96,16 @@ Con considerazioni analoghe al caso precedente, possiamo concludere che $D_1$ ri
 Valutiamo il contributo del diodo nella tensione di uscita del circuito $V_{out}$ e dell'operazionale $V_{A}$. Consideriamo le correnti nel nodo $V_N$
 $$\frac{V_{in}-V_N}{R_1} + \frac{V_{out}-V_N}{R_2} = 0$$
 Osservando che $V_N$ è a ground virtuale, che $V_{out}=V_{A}-V_d$, e considerando l'operazionale come ideale e che vale che $V_{out}=V_{A}-V_d$, dalla (\ref{eq5:regola_opamp_NOFREQDEP}) otteniamo
-$$V_{out}=-\frac{R_2}{R_1}V_{in} \qquad V_A = \frac{R_2}{R_1} V_{in} + V_d$$
+\begin{equation}
+V_{out}=-\frac{R_2}{R_1}V_{in} \qquad V_A = \frac{R_2}{R_1} V_{in} + V_d
+\label{eq5:v_out_ottimizzato}
+\end{equation}
 
 Di seguito presentiamo i grafici delle tensioni.
 
-INSERIRE GRAFICI E COMMENTARE!
+\begin{figure}[ht]
+ \centering
+   {\includegraphics[width=14.5cm]{../E05/latex/radd_ott.pdf}}
+ \caption{Grafico delle tensioni in funzione del tempo. Notiamo subito il guadagno negativo quando $V_{in}<0$, plausibile con (\ref{eq5:v_out_ottimizzato}).}
+ \label{gr5:primo_raddrizzatore_vin}
+\end{figure}
