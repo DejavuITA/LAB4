@@ -1,6 +1,6 @@
 \subsection{Instrumentation Amplifier}
 
-\subsubsection{Circuito con Opamp}
+\subsubsection*{Circuito didattico con opamp}
 
 \begin{wrapfigure}[17]{r}{0.5\textwidth}
   \begin{center}
@@ -52,10 +52,7 @@ Infatti, sappiamo che le resistenze hanno una dipendenza dalla temperatura data 
 
 Sperimentalmente, si osserva però che una differenza di potenziale è già presente a temperatura ambiente (cioè senza variare la temperatura della resistenza $R_3$): questo fatto è imputabile al mancato bilanciamento del ponte. Infatti, è impossibile trovare due resistenze che abbiano un valore esattamente identico: dunque vi è un errore sistematico di cui dobbiamo tenere conto prima di effettuare le misure, fissando un valore zero di tensione, che si osserva essere $0.54$\si{\volt}.
 
-Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
-$$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
-
-\begin{wrapfigure}[16]{r}{0.5\textwidth}
+\begin{wrapfigure}[20]{r}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E05/latex/c_func_INA.pdf}
   \end{center}
@@ -63,6 +60,8 @@ $$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right
   \label{cir5:ad622_ponte}
 \end{wrapfigure}
 
+Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
+$$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
 Considerando che l'uscita è amplificata dall'AD622 di un fattore di guadagno $A \approx 1000$ e $R_4/R_1<<1$, svolgendo i calcoli per $R_3=R_4+\Delta R$, otteniamo la seguente equazione
 \begin{equation}
 \Delta V_{out} = - A \frac{\Delta R}{R_1+R_4} V_{b}
@@ -76,6 +75,7 @@ dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5
 
 Presentiamo ora la tabella dei valori sperimentali con la modalità di variazione della temperatura. I valori di $\Delta V$ sono osservati, $\Delta R$ e $\Delta T$ sono calcolati rispettivamente con (\ref{eq5:delta_R}) e (\ref{eq5:delta_T}).
 
+\begin{center}
 {\renewcommand{\arraystretch}{1.2}%
 	\begin{tabular}{c|c|c|c}
     %\hline
@@ -87,3 +87,4 @@ Presentiamo ora la tabella dei valori sperimentali con la modalità di variazion
     %\hline
 	\end{tabular}
 }
+\end{center}

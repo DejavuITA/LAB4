@@ -5,34 +5,33 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 \subsection*{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
-\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
-\item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
-\item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
-\item Multimetro Agilent 34410A a sei cifre e mezza;
-\item Un amplificatore operazionale $\mu$A741;
-\item Un amplificatore operazionale LM311;
-\item Fototransistor OP550;
+%\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
+%\item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
+%\item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
+%\item Multimetro Agilent 34410A a sei cifre e mezza;
+\item Due amplificatori operazionali: un $\mu$A741 e un LM311;
+\item Un fototransistor OP550;
 \item Resistenze e capacità di vari valori;
-\item un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
-\item un trimmer multigiro da \SI{10}{\kilo\ohm};
-\item Breadboard e cablaggi vari.
+\item Un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
+\item Un trimmer multigiro da \SI{10}{\kilo\ohm};
+%\item Breadboard e cablaggi vari.
 \end{itemize}
 
 \subsection{Verifica del funzionamento di un comparatore}
 
 In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 come comparatore.
 
-\begin{wrapfigure}[18]{r}{0.4\textwidth}
+\begin{wrapfigure}[14]{r}{0.4\textwidth}
   \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E04/latex/LM311.pdf}
+    \includegraphics[width=0.240\textwidth]{../E04/latex/LM311.pdf}
   \end{center}
   \caption{Piedinatura dell'operazionale LM311.}
   \label{cir4:piedinatura_LM311}
 \end{wrapfigure}
 
-Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$A741, lo slew rate particolarmente elevato permette di confrontare più velocemente i segnali.
-Il funzionamento di questo integrato può essere semplificato, se valutato in configurazione di open loop, schematizzandone il funzionamento con un transistor BJT a collettore aperto, in il collettore del transistor rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}).
-Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa
+L'amplificatore operazionale LM311 ha uno slew rate molto elevato e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$A741, lo slew rate particolarmente alto permette di confrontare più velocemente i segnali.
+Il funzionamento in configurazione di open loop dell'integrato può essere schematizzato, semplificandolo, come un transistor BJT a collettore aperto, in cui il collettore del transistor rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}).
+Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale assume la forma di
 
 \begin{equation}
 V_{out} = \bigg \{
@@ -43,7 +42,7 @@ V_C & \mathrm{se} \quad V_+ < V_- \\
 \label{eq4:comparatore}
 \end{equation}
 
-dove $V_+$ e $V_-$ sono rispettivamente le tensioni all'ingresso non invertente ed invertente. Utilizzando la schematizzazione con il transistor, è come considerare la condizione di quest'ultimo nella seguente maniera
+dove $V_+$ e $V_-$ sono rispettivamente le tensioni all'ingresso non invertente ed invertente. Utilizzando la schematizzazione con il transistor, è come considerare la condizione di quest'ultimo nei seguenti stati
 
 \begin{equation}
 Q : \bigg \{
@@ -56,28 +55,36 @@ Q : \bigg \{
 
 da cui è facile mostrare che la tensione di uscita è proprio (\ref{eq4:comparatore}).
 
-\begin{wrapfigure}[16]{l}{0.5\textwidth}
-  \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E04/latex/c_LM311.pdf}
-  \end{center}
-  \caption{Schema a collettore aperto dell'amplificatore operazionale LM311.}
-  \label{cir4:open_collector}
-\end{wrapfigure}
-
-Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm}) e non c'è caduta ai capi di $R$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R$.
-
-Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su un ingresso con quella all'altro ingresso. Ad esempio, poniamo l'ingresso invertente ad una tensione di soglia $V_{ref}$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$. Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}. Il grafico in Figura \ref{gr4:comparatore} mostra la tensione in entrata e in uscita.
-
 \begin{figure}[ht]
- \centering
-   {\includegraphics[width=5.5cm]{../E04/latex/c_comparatore.pdf}}
- \caption{Schema completo del comparatore utilizzato. La resistenza $R_p=(9.98 \pm 0.01)$ \si{\kilo\ohm}, come consigliato sul datasheet.}
- \label{cir4:comparatore}
+        \centering
+        \begin{subfigure}[c]{0.5\textwidth}
+		\centering
+		  \includegraphics[height=4.3cm]{../E04/latex/c_comparatore.pdf}
+		  \caption{Schema completo del comparatore utilizzato. La resistenza $R_p=\SI{9.98\pm0.01}{\kilo\ohm}$, come consigliato sul datasheet.}
+		  \label{cir4:comparatore}
+        \end{subfigure}%
+    \quad
+        \begin{subfigure}[c]{0.45\textwidth}
+		\centering
+		  \includegraphics[height=4.3cm]{../E04/latex/c_LM311.pdf}
+		  \caption{Schema semplificativo a collettore aperto dell'amplificatore operazionale LM311.}
+		  \label{cir4:open_collector}
+        \end{subfigure}
+	\caption{}
 \end{figure}
 
+Quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$, in quanto il transistor in saturazione ha una caduta di potenziale tra l'emettitore e il collettore.}.
+Quando Q è interdetto, invece, il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm}) e quindi non c'è caduta ai capi di $R$, dunque $V_{out}=V_C$.
+È bene notare che la tensione di uscita è definita non dall'amplificatore ma dalla tensione $V_C$ e dalla presenza della resistenza $R$, che serve anche a limitare la corrente che scorre in Q in saturazione.
+
+Possiamo pertanto confrontare le tensioni agli ingressi sfruttando il funzionamento di questo opamp.
+Poniamo, ad esempio, l'ingresso invertente ad una tensione di soglia $V_{ref}$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$.
+Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è riportato in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}.
+Il grafico in Figura \ref{gr4:comparatore} mostra le tensioni in entrata e in uscita dal circuito.
+\newpage
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/comp.pdf}}
+   {\includegraphics[width=14cm]{../E04/latex/comp.pdf}}
  \caption{Grafico della tensione in entrata (onda sinusoidale con $V_{pp}=2$ \si{\volt} e $f=500$\si{\hertz}, tratteggiata) e in uscita (verde) in funzione del tempo. Notiamo che l'uscita rispetta (\ref{eq4:comparatore}).}
  \label{gr4:comparatore}
 \end{figure}
@@ -88,7 +95,7 @@ Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su
   \begin{center}
     \includegraphics[width=0.320\textwidth]{../E04/latex/c_schmitt.pdf}
   \end{center}
-  \caption{Schema del trigger di Schmitt. Le resistenze $R_1$ e $R_2$ sono state variate, mentre $R_p=(9.98 \pm 0.01)$ \si{\kilo\ohm}, come consigliato sul datasheet.}
+  \caption{Schema del trigger di Schmitt. Le resistenze $R_1$ e $R_2$ sono state variate, mentre $R_p=\SI{9.98\pm0.01}{\kilo\ohm}$, come consigliato sul datasheet.}
   \label{cir4:schmitt}
 \end{wrapfigure}
 
@@ -121,12 +128,10 @@ Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha po
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/XY.pdf}}
+   {\includegraphics[width=14cm]{../E04/latex/XY.pdf}}
  \caption{Grafico dell'isteresi. Per questi dati le resistenze utilizzate sono $R_1=\SI{9.98(1)}{\kohm}$ e $R_2=\SI{99.6(1)}{\kohm}$. Le varie differenze rispetto al grafico ideale sono spiegate nel paragrafo.}
  \label{gr4:isteresi}
 \end{figure}
-
-\newpage
 
 \subsection{Oscillatore a rilassamento}
 
@@ -162,7 +167,7 @@ Nella seguente tabella riportiamo i valori teorici e sperimentali di periodo del
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/osc10k.pdf}}
+   {\includegraphics[width=14cm]{../E04/latex/osc10k.pdf}}
  \caption{Circuito oscillatore a rilassamento con $C=\SI{85.0(5)}{\nano\farad}$, $R=\SI{9.99(1)}{\kohm}$, $R_2= \SI{9.96(1)}{\kohm}$ e $R_2=\SI{9.98(1)}{\kohm}$.}
  \label{gr4:osc10k}
 \end{figure}
@@ -173,7 +178,7 @@ Nell'ultima parte dell'esperienza abbiamo assemblato un interruttore crepuscolar
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=12.5cm]{../E04/latex/c_crepuscolare.pdf}}
+   {\includegraphics[width=13.5cm]{../E04/latex/c_crepuscolare.pdf}}
  \caption{Circuito dell'interruttore crepuscolare. Come vediamo chiaramente, la parte con l'op-amp $\mu$A741 è un semplice amplificatore in tensione ($R_F = \SI{1}{\Mohm}$) La seconda parte del circuito è un comparatore con isteresi, settata dal rapporto $R_1/R_2$ ($R_1 = \SI{50}{\kohm}$ e $R_2 = \SI{100}{\kohm}$). La tensione di riferimento deve essere scelta in modo da decidere con quanta luminosità si vuole che l'interruttore scatti. Per far ciò abbiamo usato un partitore utilizzando un trimmer ($R_S$) da \SI{10}{\kohm}. La resistenza di pull-up è stata scelta di  \SI{1}{\kohm}, così da avere una corrente sufficiente per far accendere il led.}
  \label{cir4:crepuscolare}
 \end{figure}
@@ -185,7 +190,7 @@ Tale corrente è però difficilmente manipolabile, pertanto abbiamo deciso di ut
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/neon.pdf}}
+   {\includegraphics[width=14cm]{../E04/latex/neon.pdf}}
  \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
  \label{gr4:neon}
 \end{figure}
