@@ -3,18 +3,22 @@
 In questa prima sessione di laboratorio abbiamo preparato la breadboard con il circuito di alimentazione per l'amplificatore operazionale (opamp) che useremo anche nelle successive esperienze.
 Una volta preparata l'alimentazione, abbiamo montato due circuiti con opamp e valutato il loro funzionamento misurando la loro tensione di output.
 
-\subsection*{Strumenti e materiali}
+\subsection*{Strumenti e materiali comuni a tutte le esperienze}
 
 \begin{itemize} [noitemsep]
 \item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
 \item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
 \item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
-\item Multimetro Agilent 34410A (utilizzato come amperometro e per verificare i valori delle resistenze);
+\item Multimetro Agilent 34410A con risoluzione di 6$\frac{1}{2}$ cifre;
+\item Breadboard e cablaggi vari (tipo: banana-banana, BNC-banana, BNC-BNC).
+\end{itemize}
+\subsection*{Materiali}
+
+\begin{itemize} [noitemsep]
 \item Un amplificatore operazionale $\mu$A741;
 \item Resistenze di vari valori;
 \item Due capacità da \SI{100}{\nano\farad};
 \item un trimmer (potenziometro);
-\item Breadboard e cablaggi vari.
 \end{itemize}
 
 \subsection{Premessa sugli amplificatori operazionali ideali}
@@ -24,12 +28,12 @@ Nel modello ideale il guadagno è infinito, così come anche l'impedenza di ingr
 Infine per un amplificatore operazionale ideale provvisto di circuito di retroazione negativo valgono le seguenti \textit{regole d'oro} (siano A e B rispettivamente gli ingressi invertente e non invertente):
 
 \begin{equation}
-\Delta V_{AB}=0
-\label{eq1:regola_V}
+	\Delta V_{AB}=0
+	\label{eq1:regola_V}
 \end{equation}
 \begin{equation}
-I_{AB}=0
-\label{eq1:regola_I}
+	I_{AB}=0
+	\label{eq1:regola_I}
 \end{equation}
 
 Di queste due equazioni, la (\ref{eq1:regola_V}) asserisce che la differenza di potenziale fra l'ingresso invertente e il non invertente è resa nulla dall'amplificatore tramite il circuito di retroazione negativo.
@@ -38,11 +42,10 @@ La seconda equazione, invece, afferma che la corrente assorbita dai terminali di
 Queste \textit{regole d'oro} sono indispensabili per l'analisi della risposta in uscita del circuito ad un segnale in entrata e verranno utilizzate ogniqualvolta verrà applicato il modello di opamp ideale.
 
 \begin{SCfigure}[][ht]
- \centering
-	\includegraphics[width=6.5cm]{../E01/latex/alimentazione.pdf}
-	\caption{In questo grafico è mostrato lo schema di alimentazione dell'opamp. Le capacità hanno un valore nominale di $C_1=C_2= \SI{100}{\nano\farad}$. La tensione di alimentazione è impostata a $V^+ = \SI{15}{\volt}$ e a $V^- = \SI{-15}{\volt}$ ed è fornita dal generatore di tensione costante.\\
-\newline\newline\newline}
- \label{cir1:costante}
+\centering
+\includegraphics[height=5.0cm]{../E01/latex/uA741+PWR.pdf}
+	\caption{In questo grafico sono mostrati a sinistra la piedinatura e a destra lo schema di alimentazione dell'opamp. Le capacità hanno un valore nominale di $C_1=C_2= \SI{100}{\nano\farad}$. La tensione di alimentazione è impostata a $V^+ = \SI{15}{\volt}$ e a $V^- = \SI{-15}{\volt}$ ed è fornita dal generatore di tensione costante.}
+\label{cir1:PWR}
 \end{SCfigure}
 
 Per quanto riguarda l'alimentazione del circuito, abbiamo collegato i terminali $V^+$ e $V^-$ ad alimentazioni rispettivamente di \SI{+15}{\volt} e \SI{-15}{\volt}. Inoltre, in quanto immersi in un ambiente elettronicamente rumoroso, abbiamo inserito nel circuito due capacitori con lo scopo di evitare problemi di noise elettronico.
@@ -62,12 +65,12 @@ V_{gen}=I R_1
 \begin{wrapfigure}[18]{r}{0.52\textwidth}
   \caption{Schema del generatore di corrente costante. Abbiamo utilizzato $R1=3.85 \pm 0.01 \,\si{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utillizzato il generatore DC Agilent E3631A.}
   \begin{center}
-    \includegraphics[width=0.42\textwidth]{../E01/latex/c1.pdf}
+    \includegraphics[width=0.38\textwidth]{../E01/latex/c1.pdf}
   \end{center}
 \label{cir1:gen_continua}
 \end{wrapfigure}
 
-Per la legge di Kirchhoff sui nodi e dalla eq. (\ref{eq1:regola_I}), si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq1:gen_1}).
+Per la legge di Kirchhoff sui nodi e dalla eq. (\ref{eq1:regola_I}),z si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq1:gen_1}).
 
 Come possiamo osservare, l'intensità di corrente passante per la resistenza $R_2$ è indipendente dal valore della resistenza stessa. Infatti la tensione di output dell'opamp verrà da esso stesso modificata in modo da far passare sempre lo stesso valore di corrente attraverso il carico.
 Ciò avviene grazie al fenomeno di \textit{negative feedback}, o retroazione negativa, che permette all'opamp di controllare la tensione di output in modo tale da verificare l'eq. (\ref{eq1:regola_V}).
