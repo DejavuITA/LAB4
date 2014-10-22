@@ -1,2 +1,11 @@
 \subsection{Sistema di controllo proporzionale}
 
+Aggiungiamo ora al circuito proposto nel paragrafo precedente un sistema di controllo proporzionale, la cui funzione sarà quella di riscaldare una resistenza fino a raggiungere una data temperatura di soglia.
+
+Per comprenderne meglio l'implementazione, generalizziamo prima il concetto di controllo proporzionale. Osserviamo lo schema in Figura \ref : dati due segnali in ingresso X e R , il sistema deve rispondere con Y  se viene rispettata una condizione controllata dal nodo di confronto. Quest'ultimo avrà dunque il compito di confrontare X ed R e verificare che la condizione, in generale funzione dei due segnali, sia rispettata. L'aggiornamento di tale condizione è invece affidato al blocco di retroazione, che varia R.
+
+Nel nostro caso, X è la tensione relativa alla temperatura di soglia (dunque dovremmo rispettare l'output del circuito precedente per impostarla, cioè $100$\si{\milli\volt\per\celsius}) e R la tensione relativa alla temperatura misurata dalla termoresistenza. La nostra Y sarà una data potenza dissipata su una resistenza di potenza che, se posta vicino alla PT100, varierà R, cioè la temperatura letta. Dobbiamo ora identificare i blocchi relativi al sistema di controllo proporzionale e progettare quelli mancanti nel circuito attuale.
+
+Affidiamo il compito di blocco di retroazione al circuito finora costruito: questo restituisce un valore di tensione proporzionale alla temperatura letta dalla termoresistenza, che dovrà essere confrontato con la soglia. Successivamente, il blocco di controllo deve fare la differenza fra questi due valori e, una volta raggiungo un valore impostabile, diminuire il valore della corrente fornita alla resistenza di potenza in maniera proporzionale ad E. Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale . Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor.
+
+\subsubsection{Blocco di retroazione}
