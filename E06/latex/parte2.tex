@@ -14,13 +14,13 @@ Analizziamo il blocco di retroazione in Figura \ref . Con il trimmer impostiamo 
 
 Definiamo la tensione in uscita dall'operazionale come $V_{err}$ e
 $$\Delta T = \frac{|V_{T}-V_{S}|}{100\si{\milli\volt\per\celsius}}= | T - T_{S} | $$
-Ovviamente, per valori di tensione in entrata maggiori di $\approx 0.1$\si{\volt}, l'opamp entrerà in saturazione, mandando $V_{err}\approx 10$\si{\volt}; altrimenti l'amplificazione sarà quella di un amplificatore invertente. Dunque varrà la seguente equazione
+Ovviamente, per valori di tensione in entrata maggiori di $\approx 0.15$\si{\volt}, l'opamp entrerà in saturazione, mandando $V_{err}\approx 15$\si{\volt}; altrimenti l'amplificazione sarà quella di un amplificatore invertente. Dunque varrà la seguente equazione
 
 \begin{equation}
 V_{err} = \bigg \{
 \begin{array}{rl}
-G V_{T} & \mathrm{se} \quad 0<V_{T}<0.1 \si{\volt} \\
-\approx 10 \si{\volt} & \mathrm{se} \quad V_{T}>0.1 \si{\volt} \\
+G V_{T} & \mathrm{se} \quad 0<V_{T}<0.15 \si{\volt} \\
+\approx 15 \si{\volt} & \mathrm{se} \quad V_{T}>0.15 \si{\volt} \\
 \end{array}
 \label{eq6:exit_opamp}
 \end{equation}
@@ -30,11 +30,31 @@ G V_{T} & \mathrm{se} \quad 0<V_{T}<0.1 \si{\volt} \\
 Per progettare il sistema di riscaldamento proporzionale, dobbiamo fornire potenza (ad una resistenza capace di sopportare alti valori della stessa, detta \textit{resistenza di potenza}) in maniera proporzionale ad E, cioè $\Delta T$. Per fare ciò, utilizzeremo un transistor 2N2222A con emettitore collegato a comune, le cui caratteristiche sono le seguenti
 $$\begin{array}{rl}
 \beta = \frac{I_c}{I_b} = 75\\
-V_{CE}=0.4 \si{\volt}\\
+V_{CE}^{sat}=0.4 \si{\volt}\\
 V_{BE}=1.3 \si{\volt}\\
 \end{array}
 $$
 Vale che, con una resistenza di potenza $R_{P} = 27$ \si{\ohm} e impostata una tensione di $5$ \si{\volt} costante ad uno dei suoi capi\footnote{Il REF02 non avrebbe potuto erogare la corrente necessaria a mantenere invariata la tensione ai capi della resistenza. Dunque, per gestire questa tensione, abbiamo utilizzato il generatore di tensione costante Agilent. Inoltre, per questo motivo, la comune utilizzata per questo blocco è stata posta indipendentemente per poi essere collegata a quella degli altri blocchi.} come in Figura \ref ,
-$$I_{C}=\frac{5 \si{\volt}- V_{CE}}{R_P}=170 \si{\milli\ampere}$$
-quindi $I_B=I_{C}/\beta=2.27$\si{\milli\ampere}, da cui otteniamo il valore
-$$R_B=\frac{V_{err} - V_{BE}}{I_B}$$
+$$I_{C}=\frac{5 \si{\volt}- V_{CE}^{sat}}{R_P}=170 \si{\milli\ampere}$$
+quindi $I_B=I_{C}/\beta=2.27$\si{\milli\ampere}, da cui otteniamo il valore per cui il transistor si trova in saturazione (cioè quando la tensione base emettitore è maggiore di $V_{BE}$ e la tensione base collettore è minore di $V_{CE}^{sat}$)
+$$R_B=\frac{V_{err} - V_{BE}}{I_B}=2.2 \si{\kilo\ohm}$$
+
+Considerando il seguente sistema che descrive il transistor nelle condizioni di saturazione e le resistenze calcolate in precedenza
+$$
+V_{err} = \begin{cases}
+\begin{array}{rl}
+5\si{\volt}-V_{CE}^{sat} \leq I_{C}R_P\\
+I_C=\beta I_B \\
+V_B - V_E \geq V_{BE}\\
+V_{err}-V_B=I_B R_B
+\end{array}
+\end{cases}
+$$
+si può ottenere la condizione di saturazione come una condizione su $V_{err}$
+$$V_{err}\geq \frac{5\si{\volt}-V_{CE}^{sat}}{\beta} \frac{R_B}{R_P}+V_{BE} \cong 6.3 \si{\volt}$$
+Per tensioni minori il transistor si porterà in regione lineare e, per valori di $V_{err}$ molto bassi, in interdizione. Dunque, il massimo della corrente (per la legge di Joule il massimo della potenza dissipata), data (\ref{eq6:exit_opamp}), si avrà sicuramente per $\Delta T > 1.5 \si{\celsius}$.
+Possiamo dunque affermare di aver impostato il nostro circuito per disabilitare la dissipazione di potenza entro $\approx 0.63$ \si{\celsius} da $T_{S}$.
+
+INSERIRE GRAFICO E COMMENTARE
+
+%commento per caso a casa di casa con casa a caso
