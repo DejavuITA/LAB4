@@ -297,8 +297,8 @@ $$$$
 
 \begin{wrapfigure}[13]{r}{0.45\textwidth}
 \centering
-\caption{Circuito di controllo della temperatura a distanza: PT100 è il termoresistore al platino, l'ohmetro misura la resistenza in funzione della temperatura e le due resistenze da \SI{10}{\ohm} simulano i cavi lunghi.}
 \includegraphics[width=.25\textwidth]{../E05/latex/c_PT100_2wire.pdf}
+\caption{Circuito di controllo della temperatura a distanza: PT100 è il termoresistore al platino, l'ohmetro misura la resistenza in funzione della temperatura e le due resistenze da \SI{10}{\ohm} simulano i cavi lunghi.}
 \label{cir5:2wire}
 \end{wrapfigure}
 
@@ -327,7 +327,7 @@ Invertendo la formula si ottiene:
 T = T_0 + \frac{1}{\alpha}\left( \frac{R}{R_0}-1 \right)
 \end{equation}
 Nel nostro caso il costruttore ci ha fornito i dati relativi alla temperatura di riferimento $T_0 =$ \SI{0}{\degreeCelsius}:
-$$R_0 = \SI{100}{\ohm} \quad \quad \alpha = \SI[per-mode=symbol]{0.3850}{\ohm\per\degreeCelsius}$$
+$$R_0 = \SI{100}{\ohm} \quad \quad \alpha = 0.003850\si{\per\degreeCelsius}$$
 
 Conoscendo il comportamento della termoresistenza abbiamo simulato il caso in cui si volesse controllare la temperatura di un laboratorio a distanza.
 I circuito che simulava questa situazione è riportato in Figura \ref{cir5:2wire}
