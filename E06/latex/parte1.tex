@@ -1,1 +1,41 @@
 \subsection{Termometro elettronico}
+
+In questa prima parte vogliamo realizzare un termometro elettronico. Per far ciò usiamo una termoresistenza Pt100 di resistenza a 100\si{\ohm} a zero gradi Celsius. Il nostro circuito sarà realizzato a blocchi.
+\subsubsection*{Conversione Resistenza-Tensione}
+Per convertire la variazione di resistenza della nostra Pt100 in tensione dobbiamo far scorrere in essa una corrente, scelta di \SI{1}{\milli\ampere} per evitare autosurriscaldamenti. 
+
+\subsubsection*{Amplificazione e Condizionamento del segnale}
+Vogliamo poi ottenere una lettura di tensine pari a 0 quando la temperatura ambientale è di $0^{\circ}C$ e una $\Delta V=100\si{\milli\volt}/^{\circ}C$.
+
+\subsubsection*{Conversione Tensione-Temperatura}
+Infine, usando un circuito amplificatore, trasformiamo la tensione misurata in gradi centigradi.
+
+
+\subsubsection{Generatore di corrente costante [Blocco U1]}
+Come primo blocco realizziamo un generatore di corrente costante. Il circuito è riportato in Fig. (??). Come sappiamo, la tensione che scorre nel ramo di retroazione è univocamente determinata dalla tensione all'ingresso invertente e dalla resistenza $R_1+R_T$ (Dobbiamo solo stare attenti che il nostro opamp non vada in saturazione. In questo caso la corrente dipenderà dal carico). Infatti, da una semplice analisi circuitale, otteniamo che $I=V_{in}/(R_1+R_T)$. È stato scelto di utilizzare un come resistenza all'ingresso invertente un resistenza da $4.7\si{\kilo\ohm}$ con in serie un trimmer multigiro da $1\si{\kilo\ohm}$. Così facendo, utilizzando un amperometro in serie, possiamo tarare con precisione la corrente che scorre nel ramo di retroazione (e dunque nella nostra termoresistenza). Durante questa fase non utilizzeremo la termoresistenza (perchè in caso di errori nel circuito potremmo rovinarla ed è alquanto costosa) ma una resistenza di $100\si{\ohm}$. 
+
+Per la tensione $V_{in}$ utilizzeremo un generatore di tensione di riferimento di +5\si{\volt} REF02, che garantisce una tensione costante con un incertezza di $0.3\%$.
+
+\subsection{Amplificazione e Condizionamento [Blocchi U2-U3]}
+La tensione in uscita dal blocco U1 è $100 \si{\milli\volt}$ a $0^{\circ}C$ e una variazione per ogni grado centigrado di $\Delta V=0.385\si{\milli\volt}/^{\circ}C$. Ciò che vogliamo ottenere è una tensione di $0 \si{\milli\volt}$ a $0^{\circ}C$ e un $\Delta V=100\si{\milli\volt}/^{\circ}C$.
+
+Desideriamo dunque un'amplificazione totale $G=\frac{100\si{\milli\volt}/^{\circ}C}{0.385\si{\milli\volt}/^{\circ}C}=259.740$. 
+
+
+Come prima cosa amplifichiamo il segnale in uscita dal blocco U1. Vogliamo che quando siamo a $0^{\circ}C$ la tensione sia $5\si{\volt}$ [Blocco U2]. Così facendo, possiamo usare un comparatore con $V_{ref}=5\si{\volt}$ che, trivialmente, restituirà $O\si{\volt}$. 
+
+Per tarare il Gain del nostro amplificatore (che ovviamente dovrà essere G=50), abbiamo deciso di utilizzare un segnale DC di $-100\si{\milli\volt}$ dall'Agilent  
+
+%Come prima cosa eliminiamo la tensione di $100\si{\milli\volt}$
+
+
+
+
+
+
+
+
+
+
+
+
