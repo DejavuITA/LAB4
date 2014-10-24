@@ -44,7 +44,7 @@ STIMA DELL'ERRORE DATO DALL'AUTORISCALDAMENTO
 \paragraph{Generatore di tensione costante\newline}
 
 Per alimentare il blocco 1 con un segnale $V_{in}$ stabile, abbiamo scelto di usare l'integrato REF02, rappresentato in figura \ref{cir6:REF02}.
-Alimentandone il piedino 2 con +\SI{15}{\volt} e collegando il piedino 4 a ground, il piedino 6 restituisce una tensione costante di +\SI{5}{\volt} con un incertezza di \num{0.3}$\%$.
+Alimentandone il piedino 2 con +\SI{15}{\volt} e collegando il piedino 4 a comune, il piedino 6 restituisce una tensione costante di +\SI{5}{\volt} con un incertezza di \num{0.3}$\%$.
 \newpage
 
 \subsubsection{Amplificazione e Condizionamento del segnale}
@@ -62,21 +62,13 @@ Per fare ciò introduciamo in serie al blocco 1 due blocchi di alimentazione e d
 \label{cir6:2wire}
 \end{wrapfigure}
 
-La tensione in uscita dal blocco 1 è \SI{100}{\milli\volt} a \SI{0}{\celsius} e una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$.
-Ciò che vogliamo ottenere è un $\Delta V=\SI{100}{\milli\volt}/\si{\celsius}$, così da avere una conversione in gradi centigradi a meno di un fattore 10. %una tensione di \SI{0}{\milli\volt} a \SI{0}{\celsius} e
-Desideriamo dunque un'amplificazione totale data data da i blocchi 2 e 3 di
-\vspace{-2mm}
-$$G\,=\,\frac{\SI{100}{\milli\volt}/\si{\celsius}}{\SI{0.385}{\milli\volt}/\si{\celsius}}=\num{259.740}$$
-\vspace{-4mm}
+A \SI{0}{\celsius} la tensione in uscita al blocco 1 è di \SI{-100}{\mV} (il segno meno è dovuto alla configurazione invertente del blocco 1).
+Come prima cosa amplifichiamo tale segnale in modo che (con \SI{0}{\celsius}) la tensione in uscita dal blocco 2 sia di \SI{5}{\volt}.
+Così facendo, possiamo usare un comparatore con $V_{ref}=\SI{5}{\volt}$ che restituirà in uscita \SI{0}{\volt} per $T=\SI{0}{\celsius}$.
 
-%
-Come prima cosa amplifichiamo il segnale in uscita dal blocco 1.
-Vogliamo che quando siamo a \SI{0}{\celsius} la tensione sia \SI{5}{\volt} blocco 2.
-Così facendo, possiamo usare un comparatore con $V_{ref}=\SI{5}{\volt}$ che, trivialmente, restituirà in uscita \SI{0}{\volt} quando la temperatura è di zero gradi. 
-
-Per tarare il Gain del nostro amplificatore (che ovviamente dovrà essere G=50), abbiamo deciso di utilizzare un segnale DC di \SI{-100}{\mV} dall'Agilent portato all'ingresso invertente (l'ingresso non invertente è stato collegato a comune).
-Abbiamo utilizzato una resistenza di feedback di \SI{100}{\kilo\ohm} mentre la resistenza all'ingresso invertente è stata costruita mettendo in serie una da \SI{1.5}{\kilo\ohm} e un trimmer multigiro da \SI{1}{\kilo\ohm}.
-Così facendo è stato possibile tarare perfettamente il guadagno a 50, che evidentemente si ha quando la tensione in uscita è \SI{5}{\volt}. 
+Per tarare il Gain del nostro amplificatore (che ovviamente dovrà essere G=\num{-50}), abbiamo deciso di utilizzare un segnale DC di \SI{-100}{\mV} dall'Agilent E3631A portato all'ingresso invertente (l'ingresso non invertente è stato collegato a comune).
+Abbiamo utilizzato una resistenza di feedback di \SI{100}{\kilo\ohm} mentre la resistenza all'ingresso invertente è stata costruita mettendo in serie una resistenza nominale da \SI{1.5}{\kilo\ohm} e un trimmer multigiro da \SI{1}{\kilo\ohm}.
+Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, che evidentemente si ha quando la tensione in uscita è \SI{5}{\volt}. 
 
 %\subsubsection*{
 \paragraph{Condizionamento [Blocco 3]\newline}
@@ -88,22 +80,27 @@ Così facendo è stato possibile tarare perfettamente il guadagno a 50, che evid
 \label{cir6:2wire}
 \end{wrapfigure}
 
-Portiamo ora tale segnale amplificato all'ingresso non invertente di un amplificatore per strumentazione (AD622) e utilizziamo come riferimento i $5\si{\volt}$ forniti dal generatore di tensione REF02.
-Quando l'ambiente si trova alla temperatura di $0^{\circ}C$, la tensione in uscita dal blocco 2 è proprio $5\si{\volt}$ e dunque l'AD622 avrà un' uscita nulla.
+Portando ora il segnale amplificato in uscita dal blocco 2 all'ingresso non invertente di un amplificatore per strumentazione (AD622) e utilizzando come riferimento i \SI{5}{\volt} forniti dal generatore di tensione REF02 si ottiene facilmente che, quando la temperatura dell'ambiente è di \SI{0}{\celsius}, l'AD622 avrà un'uscita nulla.
 Quando la temperatura è maggiore di zero anche l'uscita del blocco 3 sarà maggiore di zero, perchè la tensione all'ingresso non invertente (segnale della temperatura) è maggiore del riferimento ($5\si{\volt}$).
 
 Dobbiamo ora decidere il guadagno dell'AD622.
-Per far ciò basta ricordare che il guadagno totale, ovvero il prodotto del guadagno di U2 e di U3 deve valere $G= G_{U2}\cdot G_{U3}=259.740$.
-È dunque immediato verificare che $G_{U3}=5.195$.
+Per far ciò basta ricordare che vogliamo ottenere è un $\Delta V=\SI{100}{\milli\volt}/\si{\celsius}$, così da avere una conversione in gradi centigradi a meno di un fattore 10.
+Poiché il blocco 1 resistuisce una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$, il guadagno totale dev'essere di
+$$G\,=\,\frac{\SI{100}{\milli\volt}/\si{\celsius}}{\SI{0.385}{\milli\volt}/\si{\celsius}}=\num{259.740}$$
+(il segno meno è dato ancora una volta dalla configurazione invertente del blocco 1).
+Il guadagno totale è però determinato separatamente da U2 e U3 e deve valere $G= G_{U2}\cdot G_{U3}=-259.740$ .
+È dunque immediato verificare che imponendo $G_{U2}=-50$ deve valere $G_{U3}=5.195$.
 
-Utilizzando la formula $G=1+\frac{50.5k\Omega}{R_g}$ possiamo ottenere il valore di resistenza di gain: $R_g=12.038\si{\kilo\ohm}$.
+Utilizzando la formula $G_{U3}=1+\frac{50.5k\Omega}{R_g}$ possiamo ottenere il valore di resistenza di gain: $R_g=12.038\si{\kilo\ohm}$.
 Utilizzando dunque la serie tra una resistenza da $10\si{\kilo\ohm}$ e un trimmer multigiro da $10\si{\kilo\ohm}$, con l'ausilio del multimetro digitale, abbiamo tarato tale resistenza. 
-Per essere sicuri che il guadagno fosse esattamente quello cercato, abbiamo fornito all'ingresso non invertente una tensione di \SI{6}{\volt}??? e controllato che l'uscita fosse $V_{out}=5.195 \si{\volt}$. 
+Per essere sicuri che il guadagno fosse esattamente quello cercato, abbiamo fornito all'ingresso non invertente una tensione di \SI{1}{\volt} e controllato che l'uscita fosse $V_{out}=\SI{5.195}{\V}$. 
 
 Controllati dunque tutti i moduli separatamente, abbiamo sostituito la resistenza da $100\si{\ohm}$ con la termoresistenza Pt100.
 La misura di tensione all'uscita è stata $V_{out}=(2.437\pm 0.002)\si{\volt}$.
 Come già detto, per ottenere la temperatura in gradi Celsius basta moltiplicare il valore di tensione per 10.
 La temperatura ambiente misurata risulta dunque $T=(24.37\pm0.02)^{\circ}C$.
+
+Abbiamo verificato il buon funzionamento del circuito raffreddando e riscaldando la termoresistenza e osservando che i valori di tensione variavano correttamente.
 
 \begin{figure}[ht]
  \centering
