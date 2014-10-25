@@ -24,7 +24,7 @@ Per evitare surriscaldamenti abbiamo scelto una corrente di \SI{1}{\milli\ampere
 \centering
 \includegraphics[width=.3\textwidth]{../E06/latex/P1.pdf}
 \caption{Blocco 1: Generatore di corrente costante.}
-\label{cir6:2wire}
+\label{cir6:blocco1}
 \end{wrapfigure}
 
 Come primo blocco realizziamo un generatore di corrente costante.
@@ -59,7 +59,7 @@ Per fare ciò introduciamo in serie al blocco 1 due blocchi di alimentazione e d
 \centering
 \includegraphics[width=.3\textwidth]{../E06/latex/P2.pdf}
 \caption{Blocco 2: Amplificatore con G=50.}
-\label{cir6:2wire}
+\label{cir6:blocco2}
 \end{wrapfigure}
 
 A \SI{0}{\celsius} la tensione in uscita al blocco 1 è di \SI{-100}{\mV} (il segno meno è dovuto alla configurazione invertente del blocco 1).
@@ -77,7 +77,7 @@ Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, c
 \centering
 \includegraphics[width=.25\textwidth]{../E06/latex/P3.pdf}
 \caption{Blocco 3: Amplificatore differenziale con G=5.195.}
-\label{cir6:2wire}
+\label{cir6:blocco3}
 \end{wrapfigure}
 
 Portando ora il segnale amplificato in uscita dal blocco 2 all'ingresso non invertente di un amplificatore per strumentazione (AD622) e utilizzando come riferimento i \SI{5}{\volt} forniti dal generatore di tensione REF02 si ottiene facilmente che, quando la temperatura dell'ambiente è di \SI{0}{\celsius}, l'AD622 avrà un'uscita nulla.
@@ -106,5 +106,5 @@ Abbiamo verificato il buon funzionamento del circuito raffreddando e riscaldando
  \centering
    {\includegraphics[width=0.75\textwidth]{../E06/latex/c1.pdf}}
  \caption{Schema circuitale del termometro elettronico.}
- \label{gr6:sbil_amp_diff}
+ \label{cir6:term}
 \end{figure}
