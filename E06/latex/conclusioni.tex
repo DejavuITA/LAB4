@@ -1,2 +1,18 @@
 \subsection*{Conclusioni}
-COMMENTARE il commento per caso a casa di casa con casa a caso in conclusione.
+In questa esperienza abbiamo affrontato diverse problematiche, tra cui quella di progettare e costruire un circuiro composto di molte componenti.
+Per fare ciò è stato necessario testare il funzionamento di singole parti dello schema complessivo per rendere più facile l'individuazione di eventuali problemi.
+
+Nella prima parte dell'esperienza abbiamo assemblato un termometro elettronico utilizzando come sensore una termoresistenza PT100 e l'abbiamo tarato in modo tale che restituisse un valore di \SI{0}{\V} a \SI{0}{\celsius} e che scalasse di \SI{100}{\mV} ogni \SI{1}{\celsius}.
+
+Nella seconda parte dell'esperienza invece abbiamo costruito un circuito di controllo proporzionale della temperatura.
+Servendoci del primo circuito come fonte di informazione, abbiamo aggiunto due blocchi circuitali che facevano scorrere della corrente in una resistenza di potenza con il fine di riscaldare la resistenza PT100.
+Inoltre questi nuovi blocchi regolavano o spegnevano l'alimentazione di tale resistenza di potenza una volta raggiunta una soglia di temperatura, decisa a priori.
+In questo modo abbiamo creato un sistema termostatato ad una temperatura T da noi scelta.
+
+In Figura \ref{gr6:grafico} è rappresentato l'andamento temporale della temperatura misurata dalla termoresistenza (in nero) e della temperatura di riferimento (in verde).
+Come si può notare il tempo necessario alla resistenza di potenza per aumentare la temperatura da \SI{25}{\celsius} a \SI{32.5}{\celsius} dissipando energia per effeto Joule è di circa un minuto.
+Una volta raggiunta la temperatura (in realtà come abbiamo visto l'alimentazione viene prima diminuita e poi tolta completamente) il circuito esclude l'alimentazione della resistenza di potenza, ma la temperatura registrata dalla PT100 continua a salire per inerzia termica dei componenti.
+Dopo poco la temperatura registrata comincia a discendere verso la temperatura ambiente, ma, una volta scesa sotto la soglia, l'alimentazione della resistenza viene riattivata alzando nuovamente la temperatura della termoresistenza.
+Questi passaggi vengono ripetuti e la temperatura oscilla asintoticamente vicino alla temperatura di soglia.
+
+Si può osservare inoltre che la temperatura di riferimento ha una certa variabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp. Tale imperferzione è probabilmente generata da rumori ambientali.

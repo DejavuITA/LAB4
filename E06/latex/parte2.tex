@@ -1,4 +1,5 @@
 \newpage
+\vspace{-2mm}
 \subsection{Sistema di controllo proporzionale}
 
 \begin{wrapfigure}[12]{r}{0.5\textwidth}
@@ -21,15 +22,15 @@ Dobbiamo ora identificare i blocchi relativi al sistema di controllo proporziona
 
 Affidiamo il compito del blocco di retroazione al circuito finora costruito: questo restituisce un valore di tensione proporzionale alla temperatura letta dalla termoresistenza, che dovrà essere confrontato con la soglia.
 Successivamente, il blocco di controllo deve fare la differenza fra questi due valori e, una volta raggiunto un valore impostabile, diminuire il valore della corrente fornita alla resistenza di potenza in maniera proporzionale ad E.
-Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale .
+Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale.
 Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor BJT.
-
+\vspace{-2mm}
 \subsubsection{Confronto [Blocco 4]}
 
-\begin{wrapfigure}[12]{r}{0.4\textwidth}
+\begin{wrapfigure}[13]{r}{0.37\textwidth}
 \centering
 \includegraphics[width=.33\textwidth]{../E06/latex/P4.pdf}
-\caption{blocco4}
+\caption{Blocco di confronto}
 \label{fig6:blocco4}
 \end{wrapfigure}
 
@@ -51,29 +52,29 @@ V_{U4}^{sat}\approx 15 \si{\volt} & \mathrm{se} \quad \Delta V>0.15 \si{\volt} \
 \label{eq6:exit_opamp}
 \end{equation}
 
-\subsubsection{Sistema}
+\subsubsection{Sistema [Blocco 5]}
 
-\begin{wrapfigure}[13]{r}{0.2\textwidth}
+\begin{wrapfigure}[17]{r}{0.2\textwidth}
 \centering
 \includegraphics[height=5cm]{../E06/latex/P5.pdf}
-\caption{sistema}
+\caption{Sistema di riscaldamento proporzionale}
 \label{fig6:sistema}
 \end{wrapfigure}
 
-Per progettare il sistema di riscaldamento proporzionale, dobbiamo fornire potenza (ad una resistenza capace di sopportare alti valori della stessa, detta \textit{resistenza di potenza}) in maniera proporzionale ad E, cioè $\Delta T$.
+Per progettare il sistema di riscaldamento proporzionale, dobbiamo fornire potenza (ad una resistenza capace di dissipare molta energia e quindi di sopportare alti valori di corrente, detta \textit{resistenza di potenza}) in maniera proporzionale ad E, cioè $\Delta T$.
 Per fare ciò, utilizzeremo un transistor 2N2222A con emettitore collegato a comune, le cui caratteristiche sono le seguenti
-$$\begin{array}{rl}
-\beta = \frac{I_c}{I_b} = 75\\
-V_{CE}^{sat}=0.4 \si{\volt}\\
-V_{BE}^{pol}=1.3 \si{\volt}\\
-\end{array}
-$$
+%$$\begin{array}{rl}
+%\beta = \frac{I_c}{I_b} = 75\\
+%V_{CE}^{sat}=0.4 \si{\volt}\\
+%V_{BE}^{pol}=1.3 \si{\volt}\\
+%\end{array}$$
+$$\beta=\frac{I_c}{I_b}=75 \qquad V_{CE}^{sat}=\SI{.4}{\volt} \qquad V_{BE}^{pol}=\SI{1.3}{\volt}$$
 Vale che, con una resistenza di potenza $R_{P} = \SI{27}{\ohm}$ e impostata una tensione di $5$ \si{\volt} costante ad uno dei suoi capi\footnote{Il REF02 non avrebbe potuto erogare la corrente necessaria a mantenere invariata la tensione ai capi della resistenza.
 Dunque, per gestire questa tensione, abbiamo utilizzato il generatore di tensione costante Agilent E3631A.
 Inoltre, per questo motivo, la comune utilizzata per questo blocco è stata posta indipendentemente per poi essere collegata a quella degli altri blocchi.} come in Figura \ref{gr6:proporzionale},
 $$I_{C}=\frac{5 \si{\volt}- V_{CE}^{sat}}{R_P}=170 \si{\milli\ampere}$$
-quindi $I_B=I_{C}/\beta=2.27$\si{\milli\ampere}, da cui otteniamo il valore per cui il transistor si trova in saturazione (cioè quando la tensione base emettitore è maggiore di $V_{BE}$ e la tensione base collettore è minore di $V_{CE}^{sat}$)
-$$R_B=\frac{V_{err} - V_{BE}}{I_B}=2.2 \si{\kilo\ohm}$$
+quindi $I_B=I_{C}/\beta=\SI{2.27}{\mA}$, da cui otteniamo il valore per cui il transistor si trova in saturazione (cioè quando la tensione base emettitore è pari a $V_{BE}^{pol}$ e la tensione base collettore è uguale a $V_{CE}^{sat}$)
+$$R_B=\frac{V_{err} - V_{BE}^{pol}}{I_B}=2.2 \si{\kilo\ohm}$$
 
 Considerando il seguente sistema che descrive il transistor e le resistenze calcolate in precedenza
 $$
@@ -88,7 +89,7 @@ V_{err}-V_B=I_B R_B
 $$
 si può ottenere la condizione di saturazione come una condizione su $V_{err}$
 \begin{equation}
-V_{err}^{sat} \geq \frac{5\si{\volt}-V_{CE}^{sat}}{\beta} \frac{R_B}{R_P}+V_{BE} \cong 6.3 \si{\volt}
+V_{err}^{sat} \geq \frac{5\si{\volt}-V_{CE}^{sat}}{\beta} \frac{R_B}{R_P}+V_{BE}^{sat} \cong 6.3 \si{\volt}
 \label{eq6:saturazione}
 \end{equation}
 e una condizione di interdizione (data da $I_C = 0 \Rightarrow I_B = I_C / \beta = 0$)
@@ -98,11 +99,11 @@ V_{err}^{int} = I_B R_B + V_B = V_B \leq V_{BE}^{pol} = \SI{1.3}{\V}
 \end{equation}
 Per tensioni superiori a $V_{err}^{sat}$ il transistor sarà in zona di saturazione, per tensioni inferiori a $V_{err}^{int}$ sarà in interdizione e nella regione intermedia esso sarà governato linearmente dalla corrente di base.
 
-Dunque, date (\label{eq6:exit_opamp}), (\ref{eq6:saturazione}) e (\ref{eq6:interdizione}), il massimo della corrente e quindi, per la legge di Joule, il massimo della potenza dissipata da $R_P$ si avrà per $\Delta T \gtrsim 0.63 \si{\celsius}$), mentre il nostro circuito disabiliterà l'alimentazione della resistenza interdicendo il transistor per $\Delta V \lesssim \SI{.13}{\V}$, cioè quando la temperatura ambientale si porterà entro $\approx \SI{0.13}{\celsius}$ da $T_{S}$.
+Dunque, date (\ref{eq6:exit_opamp}), (\ref{eq6:saturazione}) e (\ref{eq6:interdizione}), il massimo della corrente e quindi, per la legge di Joule, il massimo della potenza dissipata da $R_P$ si avrà per $\Delta T \gtrsim 0.63 \si{\celsius}$), mentre il nostro circuito disabiliterà l'alimentazione della resistenza interdicendo il transistor per $\Delta V \lesssim \SI{.13}{\V}$, cioè quando la temperatura ambientale si porterà entro $\approx \SI{0.13}{\celsius}$ da $T_{S}$.
 
 
 Ad un siffatto sistema abbiamo inoltre aggiunto un LED in modo tale che fosse acceso quando la resistenza $R_P$ fosse alimentata e fosse spendo quando il transistor fosse interdetto.
-Per raggiungere tale scopo il diodo è stato messo in serie ad una resistenza da \SI{500}{\ohm} su un ramo parallelo alla resistenza di potenza $R_P$.
+Per raggiungere tale scopo il diodo è stato messo in serie ad una resistenza da \SI{500}{\ohm} su un ramo parallelo alla resistenza di potenza $R_P$ affinché vi scorresse una corrente di circa \SI{10}{\mA}.
 Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:proporzionale}.
 
 \begin{figure}[ht]
@@ -112,9 +113,9 @@ Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:pr
  \label{gr6:grafico}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[htc!]
  \centering
-   {\includegraphics[width=0.75\textwidth]{../E06/latex/c2.pdf}}
- \caption{Schema circuitale del circuito termostatato con termometro elettronico a parallelogramma complesso immerso in criptonite.}
+   {\includegraphics[width=0.78\textwidth]{../E06/latex/c2.pdf}}%.75
+ \caption{Schema circuitale del sistema di controllo proporzionale della temperatura composto di un termometro elettronico e di un sistema di riscaldamento.}
  \label{gr6:proporzionale}
 \end{figure}
