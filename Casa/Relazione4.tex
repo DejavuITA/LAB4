@@ -13,8 +13,8 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 \item Un amplificatore operazionale LM311;
 \item Fototransistor OP550;
 \item Resistenze e capacità di vari valori;
-\item un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
-\item un trimmer multigiro da \SI{10}{\kilo\ohm};
+\item Un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
+\item Un trimmer multigiro da \SI{10}{\kilo\ohm};
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
@@ -37,8 +37,8 @@ Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la fu
 \begin{equation}
 V_{out} = \bigg \{
 \begin{array}{rl}
-V_C & \mathrm{se} \quad V_+ < V_- \\
-0 & \mathrm{se} \quad V_+ > V_- \\
+V_C & \mathrm{se} \quad V_+ > V_- \\
+0 & \mathrm{se} \quad V_+ < V_- \\
 \end{array}
 \label{eq4:comparatore}
 \end{equation}
@@ -48,8 +48,8 @@ dove $V_+$ e $V_-$ sono rispettivamente le tensioni all'ingresso non invertente 
 \begin{equation}
 Q : \bigg \{
 \begin{array}{rl}
-\mathrm{interdizione} & \mathrm{se} \quad V_+ < V_- \\
-\mathrm{saturazione} & \mathrm{se} \quad V_+ > V_- \\
+\mathrm{interdizione} & \mathrm{se} \quad V_+ > V_- \\
+\mathrm{saturazione} & \mathrm{se} \quad V_+ < V_- \\
 \end{array}
 \label{eq4:comparatore_Q}
 \end{equation}
@@ -66,7 +66,7 @@ da cui è facile mostrare che la tensione di uscita è proprio (\ref{eq4:compara
 
 Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm}) e non c'è caduta ai capi di $R$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R$.
 
-Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su un ingresso con quella all'altro ingresso. Ad esempio, poniamo l'ingresso invertente ad una tensione di soglia $V_{ref}$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$. Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}. Il grafico in Figura \ref{gr4:comparatore} mostra la tensione in entrata e in uscita.
+Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su un ingresso con quella all'altro ingresso. Ad esempio, poniamo l'ingresso invertente ad una tensione di soglia $V_{ref}=0$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$. Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}. Il grafico in Figura \ref{gr4:comparatore} mostra la tensione in entrata e in uscita.
 
 \begin{figure}[ht]
  \centering
