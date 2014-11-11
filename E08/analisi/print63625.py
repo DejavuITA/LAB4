@@ -10,8 +10,9 @@ if len(sys.argv)==1:
 
 	####  Qui vanno i dati 	####
 dataG1 = np.genfromtxt("../dati/scope_{}.csv".format(sys.argv[1]), delimiter=',')
-top=int((60000)/int(sys.argv[2]))
+
 t	= dataG1[2:,0]
+top=int((60000)/int(sys.argv[2]))
 tb=[]
 for i in range(1,top):
 	tb.append(t[int(sys.argv[2])*i])
