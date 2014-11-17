@@ -245,7 +245,10 @@ Modificando la resistenza $R_g$ possiamo dunque controllare il guadagno del circ
 \end{wrapfigure}
 
 In realtà, nell'esperienza abbiamo utilizzato un circuito integrato (più precisamente l'AD622, la cui piedinatura è esposta in Figura \ref{cir5:ad622_piedinatura}) che ha come qualità il fatto di avere un'alta precisione sul valore delle resistenze (abbiamo visto nel precedente circuito che uno squilibrio anche minimo fra i valori di resistenze che dovrebbero essere uguali può portare ad un guadagno diverso da quello teorico). Il suo guadagno è dato dall'equazione, fornita dal costruttore
-$$G=1+\frac{50.5 \si{\kilo\ohm}}{R_g}$$
+\begin{equation}
+G=1+\frac{50.5 \si{\kilo\ohm}}{R_g}
+\label{eq5:guadagno_AD622}
+\end{equation}
 
 Una possibile applicazione di questo integrato è di utilizzarlo per individuare variazioni di tensione all'interno di un ponte di resistenze. Allo scopo, utilizziamo il circuito in Figura \ref{cir5:ad622_ponte}, con l'accortezza di portare una resistenza del ponte lontana dalle altre, così da poter modificarne la temperatura senza influenzare anche le altre.
 

@@ -19,9 +19,13 @@ Analizziamo ora le parti che formeranno il circuito completo.
 
 \subsection{Amplificatore differenziale}
 
-Questo primo stadio in entrata (operazionale U1 in Figura \ref{cir8:compensation}) è necessario per avere un'alta impedenza in ingresso (e dunque un valore maggiormente fedele alla reale ddp del corpo), ma soprattutto per eliminare i segnali di modo comune generati dagli elettrodi. In testa ed in coda a questo stadio sono però presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
+Questo primo stadio in entrata (operazionale U1 in Figura \ref{cir8:compensation}) è necessario per avere un'alta impedenza in ingresso (e dunque un valore maggiormente fedele alla reale ddp del corpo), per eliminare i segnali di modo comune generati dagli elettrodi e per richiedere una prima amplificazione (dato il basso valore di tensione in entrata).
 
-Il primo filtro passa basso posto in testa ad U1, e composto dalle capacità $C_c$ e $C_d$, è necessario per abbattere eventuali rumori ambientali causati dalle radio-frequenze. Date le capacità in Figura \ref{cir8:compensation}, il datasheet dell'operazionale ci fornisce le seguenti frequenze di taglio di modo differenziale
+Questa prima amplificazione è data dalla (\ref{eq5:guadagno_AD622}), e si attesta a $\approx 116$.
+
+In testa ed in coda a questo stadio sono però presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
+
+\paragraph{Passa Basso} Posto in testa ad U1, e composto dalle capacità $C_c$ e $C_d$, è necessario per abbattere eventuali rumori ambientali causati dalle radio-frequenze. Date le capacità in Figura \ref{cir8:compensation}, il datasheet dell'operazionale ci fornisce le seguenti frequenze di taglio di modo differenziale
 \begin{equation*}
 	\frac{1}{2 \pi R ( C_d + C_c ) } = \SI{194}{\Hz}
 \end{equation*}
@@ -30,7 +34,7 @@ e di modo comune
 	\frac{1}{2 \pi R C_c} = \SI{4}{\kHz}
 \end{equation*}
 
-Il secondo filtro passa alto ha invece con frequenza di taglio pari a circa \SI{3}{\Hz}. Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output.
+\paragraph{Passa Alto} La frequenza di taglio è pari a circa \SI{3}{\Hz} (applicando la solita formula della frequenza di taglio di un passa alto).\footnote{Sembrerebbe che questo filtro tagli} Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. Inoltre, è necessario che questa tensione abbia impedenze adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
 
 \subsection{Active gards}
 Polarizzo la calza del cavo coassiale che connette l’elettrodo all’amplificatore ad un
@@ -45,8 +49,7 @@ banco)
 \end{itemize}
 
 \subsection{Amplificatore di isolamento}
-Isola galvanicamente i 2 lati del circuito: quello collegato al paziente ed alimentato a
-batteria e quello di uscita ed elaborazione del segnale alimentato dall’alimentatore da
+Isola galvanicamente i 2 lati del circuito: quello collegato al paziente ed alimentato a batteria e quello di uscita ed elaborazione del segnale alimentato dall’alimentatore da
 banco.
 \begin{itemize}
 	\item Isola fino a 1500 volt -Alimentazione da+/-4,5V a +/-18V.
