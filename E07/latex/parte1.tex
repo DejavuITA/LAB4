@@ -1,6 +1,6 @@
 \subsection*{Dati di progetto}
 
-\begin{wrapfigure}[14]{r}{0.24\textwidth}
+\begin{wrapfigure}[20]{r}{0.24\textwidth}
 \centering
 \includegraphics[width=.18\textwidth]{../E07/latex/human.pdf}
 \caption{Connessioni al corpo umano}
@@ -15,21 +15,22 @@ Per progettare un circuito che legga il segnale elettrico del nostro battito car
 	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco.
 \end{itemize}
 
-\subsection*{componenti}
-Le parti che formeranno il circuito completo saranno:
-\subsubsection{Filtro passa basso}
-Il filtro passa-basso elimina i disturbi causati dalla radio-frequenza.
-Con una frequenza di taglio in modo differenziale (?) di
+Analizziamo ora le parti che formeranno il circuito completo.
+
+\subsection{Amplificatore differenziale}
+
+Questo primo stadio in entrata (operazionale U1 in Figura \ref{cir8:compensation}) è necessario per avere un'alta impedenza in ingresso (e dunque un valore maggiormente fedele alla reale ddp del corpo), ma soprattutto per eliminare i segnali di modo comune generati dagli elettrodi. In testa ed in coda a questo stadio sono però presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
+
+Il primo filtro passa basso posto in testa ad U1, e composto dalle capacità $C_c$ e $C_d$, è necessario per abbattere eventuali rumori ambientali causati dalle radio-frequenze. Date le capacità in Figura \ref{cir8:compensation}, il datasheet dell'operazionale ci fornisce le seguenti frequenze di taglio di modo differenziale
 \begin{equation*}
-	\frac{1}{2 pi R ( C_d + C_c ) } = \SI{194}{\Hz}
+	\frac{1}{2 \pi R ( C_d + C_c ) } = \SI{194}{\Hz}
 \end{equation*}
-e in modo comune di
+e di modo comune
 \begin{equation*}
-	\frac{1}{2 pi R C_c} = \SI{4}{\kHz}
+	\frac{1}{2 \pi R C_c} = \SI{4}{\kHz}
 \end{equation*}
 
-\subsubsection{Filtro passa alto}
-Il filtro passa-alto, con frequenza di taglio pari a circa \SI{3}{\Hz}, elimina la componente continua del segnale in uscita dall’amplificatore differenziale.
+Il secondo filtro passa alto ha invece con frequenza di taglio pari a circa \SI{3}{\Hz}. Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output.
 
 \subsection{Active gards}
 Polarizzo la calza del cavo coassiale che connette l’elettrodo all’amplificatore ad un
@@ -58,5 +59,5 @@ banco.
 \centering
 \includegraphics[width=.7\textwidth]{../E07/latex/circuito.pdf}
 \caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma.}
-\label{fig8:compensation}
+\label{cir8:compensation}
 \end{figure}
