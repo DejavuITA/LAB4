@@ -31,16 +31,11 @@ Con queste capacità riusciamo dunque ad eliminare i segnali di modo comune ad a
 \paragraph*{Passa Alto}
 Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. La sua frequenza di taglio è di circa \SI{3}{\Hz}. Inoltre, è necessario che l'impedenza siano adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
 
-\subsubsection*{Active gards}
+\subsubsection*{Operazionale U4 ed active gards}
 
-Per diminuire l'effetto dei segnali di modo comune (dovuto all
+Per diminuire l'effetto dei segnali di modo comune (dovuto agli elettrodi), è conveniente polarizzare in maniera uguale entrambe le calze dei cavi coassiali utilizzati per la connessione elettrodo-amplificatore. Così facendo il potenziale delle calze rimarrà uguale indipendentemente da eventuali movimenti dei cavi. Inoltre la differenza di potenziale fra la calza e il cavo che trasporta il segnale sarà minimizzata al fine di limitare le perdite sull'isolante.
 
-Polarizzo la calza del cavo coassiale che connette l’elettrodo all’amplificatore ad un potenziale pari alla tensione di modo comune.
-In tal modo riduco l’effetto delle capacità parassite, e aumento la reiezione di modo comune.
-\begin{itemize}
-\item il cavo che porta il segnale “vede” una differenza di potenziale molto bassa. Limito le perdite nell’isolante
-\item entrambi i cavi “vedono” lo stesso potenziale, indipendentemente dalla loro posizione sul banco)
-\end{itemize}
+Per effettuare la polarizzazione dobbiamo dunque attingere ad una tensione di $\approx \SI{700}{\milli\volt}$. Quindi abbiamo scelto di utilizzare la media fra i segnali entranti che, dato l'alto valore del segnale in modo comune, sarà la tensione desiderata. Infatti, se ricordiamo la struttura interna dell'amplificatore per strumentazione (Figura \ref{cir5:instr_amplif}), notiamo che, passando la stessa corrente sulle resistenze $R_1$ e su $R_G$, il punto ad $1/2 R_G$ è proprio a metà fra la due tensioni in ingresso.
 
 \subsubsection*{Pile e amplificatore di isolamento}
 
