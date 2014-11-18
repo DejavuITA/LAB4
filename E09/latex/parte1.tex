@@ -27,7 +27,8 @@ Abbiamo verificato il funzionamento di una porta NAND utilizzando, come già det
 \begin{table}[htpc]
 \begin{minipage}{0.6\textwidth}
 \centering
-\begin{tabular}{|l|l|c|}
+{\renewcommand{\arraystretch}{1.2}%
+\begin{tabular}{|c|c|c|}
 \hline
 A & B & $\overline{AB}$ \\
 \hline
@@ -39,7 +40,7 @@ A & B & $\overline{AB}$ \\
 \hline
 1 & 1 & 0\\
 \hline
-\end{tabular}
+\end{tabular}}
 \label{tab9:NAND}
 \end{minipage}
 \end{table}
@@ -85,12 +86,13 @@ Come vediamo, tra \SI{1}{\volt} e \SI{1.5}{\volt} la tensione varia in modo molt
 
 \begin{table}[htpc]
 \centering
+{\renewcommand{\arraystretch}{1.1}%
 \begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c}
 $V_{in}$ [\si{\volt}] & 0.0 & 0.5 & 1.0 & 1.5 & 2.0 & 2.5 & 3.0 & 3.5 & 4.0 & 4.5 & 5.0 \\
 \hline
 $V_{out}$ [\si{\volt}] & 4.30 & 4.05 & 3.01 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 \\
-\end{tabular}
-\caption{blah blah blah.}
+\end{tabular}}
+\caption{I valori sono stati ricavati variando la tensione in entrata di \SI{.5}{\V}.}
 \label{tab9:risposta2}
 \end{table}
 
@@ -109,7 +111,7 @@ Lo standard TTL è riportato in Figura \ref{fig9:TTL}
 \centering
 	\begin{subfigure}[hc]{0.49\textwidth}
 		\centering
-		\includegraphics[width=.95\textwidth]{../E09/latex/TTL.png}
+		\includegraphics[width=.95\textwidth]{../E09/latex/XYschifo.pdf}
                 \caption{XY.}
                 \label{fig9:XY}
         \end{subfigure}%
@@ -121,10 +123,8 @@ Lo standard TTL è riportato in Figura \ref{fig9:TTL}
                 \label{fig9:TTL}
         \end{subfigure}
 \caption{}
-%\label{fig9:double}
 \end{figure}
-
-$$GRAFICO$$
+\vspace{-5mm}
 
 \subsubsection{Circuito di GATE con porta AND}
 Per realizzare il circuito GATE è sufficiente utilizzare una porta AND con un segnale di controllo ad un ingresso.
@@ -144,6 +144,7 @@ La tavola di verità è la seguente (A=C=controllo, B=S=segnale):
 \begin{table}[htpc]
 \begin{minipage}{0.6\textwidth}
 \centering
+{\renewcommand{\arraystretch}{1.1}%
 \begin{tabular}{|l|l|c|}
 \hline
 C & S & CS \\
@@ -156,7 +157,7 @@ C & S & CS \\
 \hline
 1 & 1 & 1\\
 \hline
-\end{tabular}
+\end{tabular}}
 \label{tab9:AND}
 \end{minipage}
 \end{table}
@@ -187,7 +188,8 @@ Riportiamo a seguire la tavola di verità per questa porta.
 \begin{table}[htpc]
 \begin{minipage}{0.6\textwidth}
 \centering
-\begin{tabular}{|l|l|c|}
+{\renewcommand{\arraystretch}{1.1}%
+\begin{tabular}{|c|c|c|}
 \hline
 A & B & $A \oplus B$ \\
 \hline
@@ -199,7 +201,7 @@ A & B & $A \oplus B$ \\
 \hline
 1 & 1 & 0\\
 \hline
-\end{tabular}
+\end{tabular}}
 \label{tab9:XOR}
 \end{minipage}
 \end{table}
@@ -224,7 +226,8 @@ Se la maggioranza dei voti ($\geq 50\%$) è positiva allora la votazione ha esit
 \begin{wraptable}[7]{c}{.4\textwidth}%[htpc]
 %\begin{minipage}{0.6\textwidth}
 \centering
-\begin{tabular}{|c|l|l|l|l|}
+{\renewcommand{\arraystretch}{1}%
+\begin{tabular}{|c|c|c|c|c|}
 \hline
 \diaghead{\theadfont lololololo a} {CP}{AB}& 00 & 01 & 11 & 10\\
 %\diaghead{}{CP}{AB}& 00 & 01 & 11 & 10\\
@@ -237,7 +240,7 @@ Se la maggioranza dei voti ($\geq 50\%$) è positiva allora la votazione ha esit
 \hline
 10 & 0 & 0 & 1 & 0 \\
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{}
 \label{tab9:giurati}
 %\end{minipage}
@@ -276,7 +279,7 @@ Come per gli altri circuiti, ne è stato verificato utilizzando la schedina a LE
 \begin{figure}[htpc]
 \centering
 \includegraphics[width=.75\textwidth]{../E09/latex/giudici.pdf}
-\caption{???}
+\caption{Circuito logico dedicato alla votazione di una assemblea collegiale composta da un presidente e tre giurati.}
 \label{cir9:giudici}
 \end{figure}
 
@@ -292,19 +295,20 @@ Chiamiamo P il sensore sulla porta (0=chiusa), F il sensore sulla finestra (0=ch
 \begin{wraptable}[11]{c}{.4\textwidth}%[htpc]
 %\begin{minipage}{0.6\textwidth}
 \centering
-\begin{tabular}{|l|l|l|l|l|}
+{\renewcommand{\arraystretch}{1}%
+\begin{tabular}{|c|c|c|c|c|}
 \hline
 \diaghead{\theadfont lololololo a} {IC}{PF}& 00& 01 & 11&10\\
 \hline
-00&0 & 1 & 1 &1 \\
+00 & 0 & 1 & 1 & 1 \\
 \hline
-01&0 & 1 & 1 &1 \\
+01 & 0 & 1 & 1 & 1 \\
 \hline
-11&0 &1  &1  &1 \\
+11 & 0 & 1 & 1 & 1 \\
 \hline
-10&1 & 1 & 1 & 1\\
+10 & 1 & 1 & 1 & 1\\
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{}
 \label{tab9:allarme}
 %\end{minipage}
