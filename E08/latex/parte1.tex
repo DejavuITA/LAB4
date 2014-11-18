@@ -9,9 +9,12 @@
 
 L'idea alla base dell'oscillatore a ponte di Wien è quella di sfruttare la selezione in frequenza di un filtro passa banda - il ponte di Wien - caratterizzato da avere il massimo guadagno per una determinata frequenza $f_0$.
 
-Sappiamo inoltre che all'accensione dell'alimentazione del circuito si crea una forma d'onda che contiene virtualmente tutte le frequenze e pertanto anche $f_0$.
+All'accensione dell'alimentazione del circuito si crea una forma d'onda quadra che contiene tutte le frequenze e pertanto anche $f_0$ (un'onda quadra puù essere ottenuta tramite serie di Fourier).
 
-Ciò significa che, imponendo unitario il guadagno massimo del circuito, si otterrà un circuito che oscilla con ampiezza costante a $f_0$, con l'ampiezza data dall'ampiezza iniziale.
+Dunque, se riusciamo a stabilizzare il circuito, ovvero evitare che nel tempo o si smorzi o vada in saturazione, avremo una oscillazione alla frequenza $f_0$ e con ampiezza costante. Dovremo dunque imporre un guadagno complessivo unitario.
+
+
+%Ciò significa che, imponendo unitario il guadagno massimo del circuito, si otterrà un circuito che oscilla con ampiezza costante a $f_0$, con l'ampiezza data dall'ampiezza iniziale.
 
 Lo schema in Figura \ref{cir8:without_lamp} presenta il circuito con amplificazione massima unitaria.
 Come si può vedere esso è composto da un opamp con due rami di retroazione negativa e positiva.
@@ -46,7 +49,7 @@ da cui, per $A_{ol} \rightarrow \infty$, semplificando $V_{out,f_0}$
 \end{equation}
 
 Utilizzando questi componenti otteniamo pertanto un sistema che oscilla alla frequenza $f_0$.
-La problematica di tale circuito è però che non abbiamo il controllo dell'ampiezza con cui esso oscilla.
+La problematica di tale circuito è però che non abbiamo il controllo dell'ampiezza dell'oscillazione. Se idealmente infatti troviamo una $R_2 = 2 R_1$, allora avremo in uscita un segnale oscillante con frequenza $f_0$ ma con ampiezza dipendente dal segnale iniziale in ingresso. Ricordando che il segnale in ingresso è verosimilmente un onda quadra, l'ampiezza del segnale a frequenza $f_0$ sarà dato dal relativo coefficiente della serie di Fourier. Avremo dunque un segnale sicuramente piccolo (pochi \si{\milli\volt}). Se scegliamo un guadagno maggiore de 1, il nostro segnale verrà amplificato fino a quando l'intero sistema non va in saturazione. Dobbiamo dunque trovare un modo di regolare il guadagno in base all'ampiezza del segnale. Al contrario, se il guadagno è minore di 1, il nostro segnale si smorzerà con il passare del tempo. 
 
 \subsubsection*{Controllo automatico del guadagno}
 
@@ -58,10 +61,10 @@ La problematica di tale circuito è però che non abbiamo il controllo dell'ampi
 \end{wrapfigure}
 
 La configurazione precedente è detta autoinnescante, cioè basta alimentare l'opamp affinché il circuito inizi ad oscillare.
-Per avere un innesco certo è però necessario che il guadagno totale del circuito sia \textit{inizialmente} maggiore di \num{1}.
+Per avere un innesco certo è però necessario che il guadagno totale del circuito sia \textit{inizialmente} maggiore di \num{1}. Così facendo, avremo un'amplificazione del piccolo segnale in ingresso.
 
 Per fare ciò si sostituisce la resistenza $R_1$ con una lampadina a filamento (il nuovo circuito è proposto in Figura \ref{cir8:with_lamp}).
-Essa infatti possiede una coefficiente di temperature postivo che ne aumenta la resistenza con l'aumento temperatura, generato per effetto joule dalla corrente.
+Essa infatti possiede una coefficiente di temperature postivo non lineare che ne aumenta la resistenza con l'aumento temperatura, generato per effetto joule dalla corrente.
 
 Inizialmente la resistenza sarà più fredda e pertanto il guadagno del circuito sarà maggiore di \num{1}, innescando l'oscillazione.
 Con il passaggio di corrente nella lampadina, essa si scalderà e aumenterà la propria resistenza, diminuendo il guadagno portandolo a valori inferiori di \num{1}.
@@ -73,3 +76,5 @@ Ciò porterà il circuito a stabilizzarsi con un guadagno unitario e pertanto a 
 \caption{Risposta del circuito oscillatore, nel grafico a sinistra in guadagno è maggiore di \num{1}, nel grafico centrale il guadagno è stabile, nel grafico a destra il guadagno è inferiore di \num{1}.}
 \label{fig8:wien}
 \end{figure}
+
+Utilizzando un trimmer è possibile aggiustare il valore della resistenza $R_2$ in modo che l'oscillazione autosostenuta del ponte di Wien abbia l'ampiezza desiderata.

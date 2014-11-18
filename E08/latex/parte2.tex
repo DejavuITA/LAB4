@@ -7,10 +7,10 @@
 \label{cir8:probe}
 \end{wrapfigure}
 
-La \textit{pole-zero compensation} è una tecnica che permette di effettuare misure precise di circuiti ad alta impedenza e ad alte frequenze senza interferenze da parte dell'apparato di misura.
-L'alta impedenza determina una forte dipendenza dalla frequenza generata ad esempio da grandi resistenze, in quanto subentrano induttanze parassite, oppure direttamente da piccole capacità.
+La \textit{pole-zero compensation} è una tecnica che permette di compensare dei poli del sistema. Tale procedimento ci permette di eliminare dipendenze dalla grequenza e di effettuare misure precise di circuiti senza interferenze da parte dell'apparato di misura.
+%L'alta impedenza determina una forte dipendenza dalla frequenza generata ad esempio da grandi resistenze, in quanto subentrano induttanze parassite, oppure direttamente da piccole capacità.
 
-Essa consiste nel posizionare, aggiungendo un'ulteriore parte circuitale, uno zero alla funzione di trasferimento esattamente nel punto in cui esiste un polo della funzione di trasferimento.
+Essa consiste nel posizionare, aggiungendo un'ulteriore parte circuitale, uno zero alla funzione di trasferimento esattamente nel punto in cui esiste un polo .
 In equazioni si traduce con:
 
 \[
@@ -40,7 +40,9 @@ R_1 = R_2 \frac{C_2}{C_1}
 \end{equation}
 
 Questa relazione permette di spostare lo zero della sonda proprio sul polo dell'oscilloscopio permettendone la compensazione.
-Dal punto di vista pratico, fissati i parametri $R_2$, $C_2$ e $C_1$ si varia $R_1$ finché l'oscilloscopio non misura la stessa tensione $V_{in}$ ridotta di un fattore $\frac{R_2}{R_1+R_2}$.
+Dal punto di vista pratico, rendiamo la sonda insensibile alla frequenza e, fissati i parametri $R_2$, $C_2$ e $C_1$, si varia $R_1$ finché l'oscilloscopio non misura la stessa tensione $V_{in}$ ridotta di un fattore $\frac{R_2}{R_1+R_2}$.
+
+
 
 \begin{figure}[htpc]
 \centering
