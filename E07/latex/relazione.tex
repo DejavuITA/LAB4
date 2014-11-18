@@ -1,27 +1,18 @@
-\subsection*{Dati di progetto}
+\subsection{Premesse}
 
-\begin{wrapfigure}[20]{r}{0.24\textwidth}
-\centering
-\includegraphics[width=.18\textwidth]{../E07/latex/human.pdf}
-\caption{Connessioni al corpo umano}
-\label{fig7:human}
-\end{wrapfigure}
-
-Per progettare un circuito che legga il segnale elettrico del nostro battito cardiaco a livello della cute, dobbiamo avere innanzitutto ben presenti alcuni punti fondamentali:
+Per progettare un circuito che legga il segnale elettrico del nostro battito cardiaco a livello della cute, dobbiamo considerare che:
 \begin{itemize} [noitemsep]
 	\item Sulla superficie del corpo il segnale ECG è normalmente di circa \SI{1}{mV} (al massimo raggiunge i \SI{4}{mV}) ed ha una frequenza di circa \SI{1.25}{\Hz}.
 	\item Gli elettrodi a nostra disposizione, che realizzano il collegamento tra la strumentazione e il corpo, creano un potenziale di circa \SI{700}{\mV}, quindi di circa \num{3} ordini di grandezza maggiore del segnale cardiaco.
 	\item Il segnale da misurare è piccolo, quindi dobbiamo porre particolare attenzione alle fonti di rumore elettromagnetico dati da effetti capacitivi e/o induttivi. Inoltre dobbiamo evitare che i cavi e il paziente si muovano durante la misurazione.
-	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco.
+	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco, per evitare problemi di giri di massa.
 \end{itemize}
 
-Analizziamo ora le parti che formeranno il circuito completo.
+Tenendo conto di questi aspetti, nei paragrafi successivi analizzeremo gli aspetti legati all'abbattimento dei rumori e all'amplificazione del segnale in ingresso.
 
-\subsection{Amplificatore differenziale}
+\subsection{Abbattimento dei rumori}
 
 Questo primo stadio in entrata (operazionale U1 in Figura \ref{cir8:compensation}) è necessario per avere un'alta impedenza in ingresso (e dunque un valore maggiormente fedele alla reale ddp del corpo), per eliminare i segnali di modo comune generati dagli elettrodi e per richiedere una prima amplificazione (dato il basso valore di tensione in entrata).
-
-Questa prima amplificazione è data dalla (\ref{eq5:guadagno_AD622}), e si attesta a $\approx 116$.
 
 In testa ed in coda a questo stadio sono però presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
 
@@ -34,7 +25,7 @@ e di modo comune
 	\frac{1}{2 \pi R C_c} = \SI{4}{\kHz}
 \end{equation*}
 
-\paragraph{Passa Alto} La frequenza di taglio è pari a circa \SI{3}{\Hz} (applicando la solita formula della frequenza di taglio di un passa alto).\footnote{Sembrerebbe che questo filtro tagli} Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. Inoltre, è necessario che questa tensione abbia impedenze adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
+\paragraph{Passa Alto} La frequenza di taglio è pari a circa \SI{3}{\Hz} (applicando la solita formula della frequenza di taglio di un passa alto). Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. Inoltre, è necessario che questa tensione abbia impedenze adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
 
 \subsection{Active gards}
 Polarizzo la calza del cavo coassiale che connette l’elettrodo all’amplificatore ad un
@@ -64,3 +55,5 @@ banco.
 \caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma.}
 \label{cir8:compensation}
 \end{figure}
+
+Questa prima amplificazione è data dalla (\ref{eq5:guadagno_AD622}), e si attesta a $\approx 116$.
