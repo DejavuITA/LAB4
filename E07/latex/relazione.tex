@@ -8,7 +8,7 @@ Per progettare un circuito che legga il segnale elettrico del nostro battito car
 	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco, per evitare problemi di giri di massa.
 \end{itemize}
 
-Tenendo conto di questi aspetti, nei paragrafi successivi analizzeremo gli aspetti legati all'abbattimento dei rumori e all'amplificazione del segnale in ingresso.
+Tenendo conto di ciò, nei paragrafi successivi analizzeremo gli aspetti legati all'abbattimento dei rumori e all'amplificazione del segnale in ingresso.
 
 \subsection{Abbattimento dei rumori}
 
@@ -33,6 +33,8 @@ Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:
 
 \subsubsection*{Active gards}
 
+Per diminuire l'effetto dei segnali di modo comune (dovuto all
+
 Polarizzo la calza del cavo coassiale che connette l’elettrodo all’amplificatore ad un potenziale pari alla tensione di modo comune.
 In tal modo riduco l’effetto delle capacità parassite, e aumento la reiezione di modo comune.
 \begin{itemize}
@@ -40,12 +42,14 @@ In tal modo riduco l’effetto delle capacità parassite, e aumento la reiezione
 \item entrambi i cavi “vedono” lo stesso potenziale, indipendentemente dalla loro posizione sul banco)
 \end{itemize}
 
-\subsubsection*{Amplificatore di isolamento}
-Isola galvanicamente i 2 lati del circuito: quello collegato al paziente ed alimentato a batteria e quello di uscita ed elaborazione del segnale alimentato dall’alimentatore da banco.
-\begin{itemize}
-	\item Isola fino a 1500 volt -Alimentazione da+/-4,5V a +/-18V.
-	\item Possiede 2 alimentazioni separate e quindi anche due riferimenti di massa separati.
-	\item Non richiede componenti esterni (tranne le capacità di disaccoppiamento)
+\subsubsection*{Pile e amplificatore di isolamento}
+
+Per alimentare il circuito abbiamo optato per utilizzare due pile da \SI{9}{\volt}, e come comune il polo positivo di una collegato al polo negativo dell'altra. Questo ha permesso di abbattere tutti i rumori relativi all'alimentazione dell'edificio e di avere una comune flottante rispetto a quella dell'oscilloscopio (in nero nella Figura \ref{cir8:compensation}).
+
+Per isolare ulteriormente il circuito ed evitare giri di massa abbiamo anche utilizzato un ISO124. Questo operazionale ha le seguenti caratteristiche
+\begin{itemize}[noitemsep]
+	\item Isola fino a \SI{1500}{\volt} e ammette una alimentazione da $\pm$ 4,5V a $\pm$ 18V;
+	\item Possiede due alimentazioni separate e quindi anche due riferimenti di massa indipendenti l'uno dall'altro.
 \end{itemize}
 
 \subsection{Amplificazione}
