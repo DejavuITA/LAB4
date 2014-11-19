@@ -1,4 +1,5 @@
 \subsection{Logiche TTL e scheda di visualizzazione}
+
 Le porte logiche a tecnologia TTL funzionano utilizzando come 1 logico il valore di tensione +\SI{5}{\volt} mentre come 0 logico \SI{0}{\volt}.
 Pertanto l'alimentazione che porteremo alla breadboard non sarà più $\pm$\SI{15}{\V} e GND, ma solo $+$\SI{5}{\V} e GND.
 Ricordiamo che l'alimentazione deve essere stabilizzata e disaccoppiata con i condensatori come nel caso analogico in quanto nei momenti di commutazione delle porte abbiamo grandi variazioni di tensione in piccoli tempi (idealmente la variazione da stato 1 a 0 è istantanea).
@@ -7,16 +8,8 @@ Ricordiamo che l'alimentazione deve essere stabilizzata e disaccoppiata con i co
 Per controllare il funzionamento dei nostri circuiti utilizzeremo una schedina di visualizzazione a led fornitaci già assemblata.
 Essa permette di visualizzare lo stato "alto" o "basso" delle linee da monitorare tramite 8 led (4 rossi e 4 verdi).
 Tali schede contengono un integrato buffer 74LS244 nella logica TTL che fornisce in uscita una corrente di \SI{-15}{\milli\ampere} per il livello alto e di \SI{24}{\milli\ampere} per il livello basso.
-% NON HO IDEA SE LA PARTE DEL 74LS244 SIA CORRETTA O MENO (xD)
 
 \subsubsection{Porta NAND}
-
-%\begin{wrapfigure}[5]{r}{0.4\textwidth}
-%\centering
-%\includegraphics[width=.15\textwidth]{../E09/latex/NAND.pdf}
-%\caption{Simbolo circuitale convenzionalmente utilizzato per porte NAND.}
-%\label{cir9:nand}
-%\end{wrapfigure}
 
 Abbiamo verificato il funzionamento di una porta NAND utilizzando, come già detto, una scheda di visualizzazione a LED.
 È stata verificata la seguente tavola di verità.\\
@@ -44,34 +37,10 @@ Abbiamo verificato il funzionamento di una porta NAND utilizzando, come già det
         \begin{subfigure}[hc]{.4\textwidth}
 		\centering
 		\includegraphics[width=.35\textwidth]{../E09/latex/NAND.pdf}
-		%\caption{Simbolo circuitale convenzionalmente utilizzato per porte NAND.}
 		\label{cir9:nand}
         \end{subfigure}
 \caption{Tabella di verità e simbolo circuitale convenzionalmente utilizzato per porte NAND.}
 \end{figure}
-
-%\vspace{-5mm}
-%\begin{table}[htpc]
-%\begin{minipage}{0.6\textwidth}
-%\centering
-%{\renewcommand{\arraystretch}{1.2}%
-%\begin{tabular}{|c|c|c|}
-%\hline
-%A & B & $\overline{AB}$ \\
-%\hline
-%0 & 0 & 1\\
-%\hline
-%0 & 1 & 1\\
-%\hline
-%1 & 0 & 1\\
-%\hline
-%1 & 1 & 0\\
-%\hline
-%\end{tabular}}
-%\label{tab9:NAND}
-%\end{minipage}
-%\end{table}
-%\vspace{-4mm}
 
 \subsubsection{Porta NOT}
 
@@ -90,38 +59,20 @@ Una volta eseguito questo test preliminare, abbiamo collegato ingresso ed uscita
 I dati ottenuti sono riportati in Tabella (\ref{tab9:risposta2}).
 Come vediamo, tra \SI{1}{\volt} e \SI{1.5}{\volt} la tensione varia in modo molto rapido.
 
-%\begin{table}[htpc]
-%\centering
-%\begin{tabular}{|l|l|||l|l|||l|l|||l|l|}
-%\hline
-%$V_{in}$ [\si{\volt}] & $V_{out}$ [\si{\volt}] & $V_{in}$ [\si{\volt}]& $V_{out}$ [\si{\volt}] & $V_{in}$ [\si{\volt}]& $V_{out}$ [\si{\volt}] & $V_{in}$ [\si{\volt}]& $V_{out}$ [\si{\volt}]\\
-%\hline
-%0 & 4.30 & 2.5 & 0.10 & 5  & 0.10 & 2.5 & 0.10\\
-%\hline
-%0.5 & 4.05 & 3 & 0.10 & 4.5 & 0.10 & 2 &0.10\\
-%\hline
-%1 & 3.01 & 3.5 & 0.10 & 4 & 0.10 & 1.5 & 0.10\\
-%\hline
-%1.5 & 0.10 & 4 & 0.10 & 3.5 & 0.10 & 1 & 3.00\\
-%\hline
-%2 & 0.10 & 4.5 & 0.10 & 3.0 &0.10 & 0.5 & 4.05\\
-%\hline
-%\end{tabular}
-%\label{tab9:risposta}
-%\end{table}
 \vspace{2mm}
 \begin{table}[htpc]
 \centering
 {\renewcommand{\arraystretch}{1.1}%
-\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
 $V_{in}$ [\si{\volt}] & 0.0 & 0.5 & 1.0 & 1.5 & 2.0 & 2.5 & 3.0 & 3.5 & 4.0 & 4.5 & 5.0 \\
 \hline
 $V_{out}$ [\si{\volt}] & 4.30 & 4.05 & 3.01 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 \\
+\hline
 \end{tabular}}
 \caption{I valori sono stati ricavati variando la tensione in entrata di \SI{.5}{\V}.}
 \label{tab9:risposta2}
 \end{table}
-%\vspace{2mm}
 
 Siamo dunque interessati a capire meglio la risposta della porta in funzione della tensione in ingresso.
 Per fare ciò utilizziamo la modalità XY dell'oscilloscopio.
@@ -154,16 +105,10 @@ Lo standard TTL è riportato in Figura \ref{fig9:TTL}
 \vspace{-5mm}
 
 \subsubsection{Circuito di GATE con porta AND}
+
 Per realizzare il circuito GATE è sufficiente utilizzare una porta AND con un segnale di controllo ad un ingresso.
 Per realizzare una porta AND possiamo utilizzare 2 NAND come proposto nella seguente figura.
 Infatti, utilizzando la notazione convenzionale, $AB=\overline {\overline {AB}}$ che trivialmente è una NAND e una NOT in serie.
- 
-%\begin{wrapfigure}[3]{r}{0.4\textwidth}
-%\centering
-%\includegraphics[width=.22\textwidth]{../E09/latex/AND.pdf}
-%\caption{Implementazione e simbolo circuitale per porte AND.}
-%\label{cir9:AND}
-%\end{wrapfigure}
 
 La tavola di verità è la seguente (A=C=controllo, B=S=segnale):
 
@@ -190,34 +135,10 @@ La tavola di verità è la seguente (A=C=controllo, B=S=segnale):
         \begin{subfigure}[hc]{.4\textwidth}
 		\centering
 		\includegraphics[width=.5\textwidth]{../E09/latex/AND.pdf}
-%		\caption{Implementazione e simbolo circuitale per porte AND.}
 		\label{cir9:AND}
         \end{subfigure}
 \caption{Tabella di verità e simbolo circuitale delle porte AND e implementazione con porte NAND}
 \end{figure}
-
-%\vspace{-5mm}
-%\begin{table}[htpc]
-%\begin{minipage}{0.6\textwidth}
-%\centering
-%{\renewcommand{\arraystretch}{1.1}%
-%\begin{tabular}{|l|l|c|}
-%\hline
-%C & S & CS \\
-%\hline
-%0 & 0 & 0\\
-%\hline
-%0 & 1 & 0\\
-%\hline
-%1 & 0 & 0\\
-%\hline
-%1 & 1 & 1\\
-%\hline
-%\end{tabular}}
-%\label{tab9:AND}
-%\end{minipage}
-%\end{table}
-%\vspace{-4mm}
 
 Come vediamo dalla tabella, se il segnale di controllo è a 0 logico l'uscita sarà sempre 0 logico.
 Se invece il controllo è a 1 logico, allora l'uscita sarà una copia del segnale in ingresso.
@@ -226,13 +147,6 @@ Abbiamo visto che quando il controllo era collegato a comune, l'uscita era prati
 Con il controllo a 0 logico, abbiamo osservato invece la stessa onda quadra posta in ingresso anche in uscita.
 
 \subsubsection{Porta XOR}
-
-%\begin{wrapfigure}[8]{r}{0.4\textwidth}
-%\centering
-%\includegraphics[width=.330\textwidth]{../E09/latex/XOR.pdf}
-%\caption{Implementazione e simbolo circuitale per porte XOR.}
-%\label{cir9:XOR}
-%\end{wrapfigure}
 
 Una porta XOR implementa la funzione matematica della somma diretta.
 Avendo solo a disposizione porte NAND, dobbiamo cercare di implementare un circuito che svolga tale funzione.
@@ -274,29 +188,7 @@ Riportiamo a seguire la tavola di verità per questa porta.
 \caption{Tabella di verità e simbolo circuitale delle porte XOR e implementazione con sole porte NAND}
 \end{figure}
 
-%\begin{table}[htpc]
-%\begin{minipage}{0.6\textwidth}
-%\centering
-%{\renewcommand{\arraystretch}{1.1}%
-%\begin{tabular}{|c|c|c|}
-%\hline
-%A & B & $A \oplus B$ \\
-%\hline
-%0 & 0 & 0\\
-%\hline
-%0 & 1 & 1\\
-%\hline
-%1 & 0 & 1\\
-%\hline
-%1 & 1 & 0\\
-%\hline
-%\end{tabular}}
-%\label{tab9:XOR}
-%\end{minipage}
-%\end{table}
-%\vspace{-4mm}
-
-Senza utilizzare le mappe di Karnaugh, è facile vedere che vale $A \oplus B=A\overline B + \overline A B$ e applicando il teorema di De Morgan si ottiene:  %, dove con A,B indichiamo l'1 logico, con $\overline A,\overline B$ lo 0 logico.
+Senza utilizzare le mappe di Karnaugh, è facile vedere che vale $A \oplus B=A\overline B + \overline A B$ e applicando il teorema di De Morgan si ottiene:
 
 $$A \oplus B=A\overline B + \overline A B=\overline{\overline{A\overline B + \overline A B}}=\overline{\overline{A\overline B} \cdot \overline{\overline A B}}$$
 
@@ -306,6 +198,7 @@ Come vediamo, la realizzazione da noi progettata prevede l'utilizza do 2 porte N
 Ne abbiamo verificato il funzionamento con la scheda a LED.
 
 \subsubsection{Votazione con 3 Giurati e 1 Presidente}
+
 Consideriamo un'assemblea composta da tre giurati e un presidente il cui compito è votare a favore o contro QUALCOSA, in cui il voto del presidente vale il doppio.
 Il circuito che restituisce l'esito della votazione prevede di sommare i voti dei vari membri tenendo però in considerazione che il voto del presidente ha peso doppio.
 Se la maggioranza dei voti ($\geq 50\%$) è positiva allora la votazione ha esito positivo, altrimenti ha esito negativo.
