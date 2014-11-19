@@ -1,1 +1,32 @@
-\subsection*{Tempo di propagazione}
+\subsection{Trasmissione di segnali}
+
+In questa parte dell'esperienza ci occuperemo di effettuare la trasmissione di segnali attraverso un circuito logico. Ovviamente potremmo dedicare ad ogni segnale un filo: dunque, se volessimo trasportare $N$ segnali dovremmo utilizzare $N$ fili.
+
+Un modo più efficiente è segnalare a chi deve ricevere il segnale quale di questi $N$ segnali stia passando su un unico cavo di trasmissione. Dobbiamo quindi predisporre una circuiteria dedicata al \textit{segnale di selezione} e dovremmo portare tanti cavi quanti siano necessari ad identificare univocamente tutti gli $N$ segnali.
+
+Ad esempio, nel nostro caso abbiamo bisogno di mandare quattro segnali distinti, quindi avremo bisogno di due segnali di selezione (infatti le combinazioni di 1 e 0 logici possibili sono abbastanza per assegnare ad ognuno dei quattro segnali un codice logico di due cifre). Dunque, insieme al cavo dedicato alla trasmissione dati e a quello di terra (abbiamo bisogno di un riferimento comune per i nostri stati logici), costruiremo un circuito di trasmissione che utilizzerà quattro cavi e avrà bisogno di blocchi per la selezione e blocchi per la trasmissione.
+
+\subsubsection{Selezione}
+
+Per permettere la selezione del segnale abbiamo bisogno di implementare la seguente tabella di verità (con $S_0$ ed $S_1$ i segnali di selezione che passeranno sui due cavi di selezione).
+
+\begin{table}[htpc]
+\centering
+{\renewcommand{\arraystretch}{1.1}%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$S_0$ & $S_1$ & $Q_0$ & $Q_1$ & $Q_2$ & $Q_3$ \\
+\hline
+0 & 0 & 0 & 1 & 1 & 1\\
+\hline
+0 & 1 & 1 & 0 & 1 & 1\\
+\hline
+1 & 0 & 1 & 1 & 0 & 1\\
+\hline
+1 & 1 & 1 & 1 & 1 & 0\\
+\hline
+\end{tabular}}
+\label{tab10:multiplx_selezione}
+\end{table}
+
+In questo modo in uscita avremo il segnale selezionato con i due segnali di selezione.
