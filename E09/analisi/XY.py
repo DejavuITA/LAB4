@@ -9,7 +9,7 @@ if len(sys.argv)==1:
 	sys.exit()
 
 	####  Qui vanno i dati 	####
-dataG1 = np.genfromtxt("../dati/scope_{}.csv".format(sys.argv[1]), delimiter=',')
+dataG1 = np.genfromtxt("../dati/Dati2/scope_{}.csv".format(sys.argv[1]), delimiter=',')
 
 t	= dataG1[2:,0]
 V1	= dataG1[2:,1]
