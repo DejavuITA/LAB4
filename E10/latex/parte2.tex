@@ -29,4 +29,27 @@ $S_0$ & $S_1$ & $Q_0$ & $Q_1$ & $Q_2$ & $Q_3$ \\
 \label{tab10:multiplx_selezione}
 \end{table}
 
-In questo modo in uscita avremo il segnale selezionato con i due segnali di selezione.
+In questo modo in uscita avremo come 0 solo la $Q_i$ relativa al segnale selezionato con i due segnali di selezione.
+
+Per far ciò, possiamo dividere il problema come se ogni $Q_i$ abbia una mappa di Karnaugh associata come in Tabella \ref{tab10:multiplex_selezione_Q}.\footnote{Lo svolgiamo per $Q_0$ ma gli altri tre casi sono analoghi}
+
+Otteniamo dunque, considerando per ogni mappa lo 0 come stato logico che ci interessa
+$$Q_0 = \overline S_0 \overline S_1 \quad Q_1 = S_0 \overline S_1 \quad Q_0 = \overline S_0 S_1 \quad Q_3 = S_0  S_1$$
+
+E' dunque facile vedere che una implementazione di questo sistema è il circuito logico in Figura \ref{cir10:selettore}.
+
+\begin{wraptable}[7]{c}{.4\textwidth}
+\centering
+{\renewcommand{\arraystretch}{1}%
+\begin{tabular}{|c|c|c|}
+\hline
+\diaghead{\theadfont lololololo a} {$S_0$}{$S_1$}& 0 & 1\\
+\hline
+0 & 0 & 1\\
+\hline
+1 & 1 & 1\\
+\hline
+\end{tabular}}
+\caption{}
+\label{tab10:multiplex_selezione_Q}
+\end{wraptable}
