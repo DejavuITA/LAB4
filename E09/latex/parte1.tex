@@ -4,8 +4,6 @@ Pertanto l'alimentazione che porteremo alla breadboard non sarà più $\pm$\SI{1
 Ricordiamo che l'alimentazione deve essere stabilizzata e disaccoppiata con i condensatori come nel caso analogico in quanto nei momenti di commutazione delle porte abbiamo grandi variazioni di tensione in piccoli tempi (idealmente la variazione da stato 1 a 0 è istantanea).
 È dunque essenziale avere una riserva di cariche utilizzabili dal circuito nel momento in cui si hanno commutazioni.
 
-RESITENZE DI PULL-UP E PULL-DOWN
-
 Per controllare il funzionamento dei nostri circuiti utilizzeremo una schedina di visualizzazione a led fornitaci già assemblata.
 Essa permette di visualizzare lo stato "alto" o "basso" delle linee da monitorare tramite 8 led (4 rossi e 4 verdi).
 Tali schede contengono un integrato buffer 74LS244 nella logica TTL che fornisce in uscita una corrente di \SI{-15}{\milli\ampere} per il livello alto e di \SI{24}{\milli\ampere} per il livello basso.
@@ -229,38 +227,73 @@ Con il controllo a 0 logico, abbiamo osservato invece la stessa onda quadra post
 
 \subsubsection{Porta XOR}
 
-\begin{wrapfigure}[8]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=.330\textwidth]{../E09/latex/XOR.pdf}
-\caption{Implementazione e simbolo circuitale per porte XOR.}
-\label{cir9:XOR}
-\end{wrapfigure}
+%\begin{wrapfigure}[8]{r}{0.4\textwidth}
+%\centering
+%\includegraphics[width=.330\textwidth]{../E09/latex/XOR.pdf}
+%\caption{Implementazione e simbolo circuitale per porte XOR.}
+%\label{cir9:XOR}
+%\end{wrapfigure}
 
 Una porta XOR implementa la funzione matematica della somma diretta.
 Avendo solo a disposizione porte NAND, dobbiamo cercare di implementare un circuito che svolga tale funzione.
 
 Riportiamo a seguire la tavola di verità per questa porta.
 
-\begin{table}[htpc]
-\begin{minipage}{0.6\textwidth}
+\begin{figure}[htpc]
 \centering
-{\renewcommand{\arraystretch}{1.1}%
-\begin{tabular}{|c|c|c|}
-\hline
-A & B & $A \oplus B$ \\
-\hline
-0 & 0 & 0\\
-\hline
-0 & 1 & 1\\
-\hline
-1 & 0 & 1\\
-\hline
-1 & 1 & 0\\
-\hline
-\end{tabular}}
-\label{tab9:XOR}
-\end{minipage}
-\end{table}
+	\begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{|c|c|c|}
+		\hline
+		A & B & $A \oplus B$ \\
+		\hline
+		0 & 0 & 0\\
+		\hline
+		0 & 1 & 1\\
+		\hline
+		1 & 0 & 1\\
+		\hline
+		1 & 1 & 0\\
+		\hline
+		\end{tabular}}
+		\label{tab9:XOR}
+        \end{subfigure}
+        \begin{subfigure}[hc]{.15\textwidth}
+		\centering
+		\includegraphics[width=.99\textwidth]{../E09/latex/XOR.pdf}
+%		\caption{Implementazione e simbolo circuitale per porte XOR.}
+		\label{cir9:XOR}
+	\end{subfigure}
+        \begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		\includegraphics[width=.7\textwidth]{../E09/latex/iXOR.pdf}
+%		\caption{Implementazione e simbolo circuitale per porte XOR.}
+		\label{cir9:iXOR}
+        \end{subfigure}
+\caption{Tabella di verità e simbolo circuitale delle porte XOR e implementazione con sole porte NAND}
+\end{figure}
+
+%\begin{table}[htpc]
+%\begin{minipage}{0.6\textwidth}
+%\centering
+%{\renewcommand{\arraystretch}{1.1}%
+%\begin{tabular}{|c|c|c|}
+%\hline
+%A & B & $A \oplus B$ \\
+%\hline
+%0 & 0 & 0\\
+%\hline
+%0 & 1 & 1\\
+%\hline
+%1 & 0 & 1\\
+%\hline
+%1 & 1 & 0\\
+%\hline
+%\end{tabular}}
+%\label{tab9:XOR}
+%\end{minipage}
+%\end{table}
 %\vspace{-4mm}
 
 Senza utilizzare le mappe di Karnaugh, è facile vedere che vale $A \oplus B=A\overline B + \overline A B$ e applicando il teorema di De Morgan si ottiene:  %, dove con A,B indichiamo l'1 logico, con $\overline A,\overline B$ lo 0 logico.
