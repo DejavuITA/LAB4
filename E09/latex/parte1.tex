@@ -171,9 +171,6 @@ Con il controllo a 0 logico, abbiamo osservato invece la stessa onda quadra post
 
 \subsubsection{Porta XOR}
 
-Una porta XOR implementa la funzione matematica della somma diretta.
-Avendo solo a disposizione porte NAND, dobbiamo cercare di implementare un circuito che svolga tale funzione.
-
 \begin{wrapfigure}[8]{r}{0.4\textwidth}
 \centering
 \includegraphics[width=.330\textwidth]{../E09/latex/XOR.pdf}
@@ -181,10 +178,11 @@ Avendo solo a disposizione porte NAND, dobbiamo cercare di implementare un circu
 \label{cir9:XOR}
 \end{wrapfigure}
 
-Riportiamo a seguire la tavola di verità per questa porta.
-%In questo semplice caso non è necessario scomodare dalla tomba il povero Karnaugh.
+Una porta XOR implementa la funzione matematica della somma diretta.
+Avendo solo a disposizione porte NAND, dobbiamo cercare di implementare un circuito che svolga tale funzione.
 
-%\vspace{-3mm}
+Riportiamo a seguire la tavola di verità per questa porta.
+
 \begin{table}[htpc]
 \begin{minipage}{0.6\textwidth}
 \centering
@@ -216,21 +214,19 @@ Dunque, il circuito per realizzare una porta XOR usando porte NAND e NOT è ripo
 Come vediamo, la realizzazione da noi progettata prevede l'utilizza do 2 porte NOT e 3 NAND.
 Ne abbiamo verificato il funzionamento con la scheda a LED.
 
-\newpage
-
 \subsubsection{Votazione con 3 Giurati e 1 Presidente}
 Consideriamo un'assemblea composta da tre giurati e un presidente il cui compito è votare a favore o contro QUALCOSA, in cui il voto del presidente vale il doppio.
 Il circuito che restituisce l'esito della votazione prevede di sommare i voti dei vari membri tenendo però in considerazione che il voto del presidente ha peso doppio.
 Se la maggioranza dei voti ($\geq 50\%$) è positiva allora la votazione ha esito positivo, altrimenti ha esito negativo.
 
-\begin{wraptable}[7]{c}{.4\textwidth}%[htpc]
-%\begin{minipage}{0.6\textwidth}
+Partiamo dunque dalla mappa di Karnaugh a fianco: minimizzandola otteniamo
+
+\begin{wraptable}[7]{c}{.4\textwidth}
 \centering
 {\renewcommand{\arraystretch}{1}%
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \diaghead{\theadfont lololololo a} {CP}{AB}& 00 & 01 & 11 & 10\\
-%\diaghead{}{CP}{AB}& 00 & 01 & 11 & 10\\
 \hline
 00 & 0 & 0 & 0 & 0 \\
 \hline
@@ -241,24 +237,12 @@ Se la maggioranza dei voti ($\geq 50\%$) è positiva allora la votazione ha esit
 10 & 0 & 0 & 1 & 0 \\
 \hline
 \end{tabular}}
-\caption{}
 \label{tab9:giurati}
-%\end{minipage}
 \end{wraptable}
-
-Partiamo dunque dalla mappa di Karnaugh riportata in Tabella \ref{tab9:giurati}: minimizzando tale mappa otteniamo
 
 $$Y=ABC+P(A+B+C)$$
 
 Come fatto prima, avendo a disposizione solo porte NAND, trasformiamo tutto in prodotti.
-
-%\begin{align}
-%Y 	&= ABC+P(A+B+C)
-%	= \overline{\overline{ABC+P(A+B+C)}} %\nonumber \\
-%	= \overline{\overline{ABC} \cdot \overline {P(A+B+C)} }
-%	= \overline{\overline{(AB)C} \cdot \overline {P(\overline{\overline{{A+B+C}} })}} \nonumber \\
-%	&= \overline{\overline{(AB)C} \cdot \overline {P(\overline{{(\overline A \cdot \overline B) %\cdot \overline C} })}} %\nonumber
-%\end{align}
 
 \vspace{-1mm}
 \begin{minipage}{0.6\textwidth}
@@ -285,10 +269,7 @@ Come per gli altri circuiti, ne è stato verificato utilizzando la schedina a LE
 
 \subsubsection{Allarme per appartamento}
 
-In quest'ultima parte dell'esperienza cercheremo di progettare e costruire un circuito di allarme.
-%\sout{Immaginiamo di avere una villa piena di zoccole e di aver installato dei sensori.}
-Immaginiamo di avere un mini-appartamento in cui sono presenti sensori d'apertura su porte e finestre e un sensore di movimento.
-Vogliamo analizzarne i segnali per decidere se fare suonare l'allarme.
+In quest'ultima parte dell'esperienza cercheremo di progettare e costruire un circuito di allarme. Immaginiamo dunque di avere un mini-appartamento in cui sono presenti sensori d'apertura su porte e finestre e un sensore di movimento: vogliamo analizzarne i segnali per decidere se fare suonare l'allarme.
 
 Chiamiamo P il sensore sulla porta (0=chiusa), F il sensore sulla finestra (0=chiusa), I il sensore ad infrarossi (0=no movimento) e infine C la chiave che permette di attivare l'allarme escludendo il sensore ad infrarossi (1=escludo infrarossi).
 
@@ -309,12 +290,12 @@ Chiamiamo P il sensore sulla porta (0=chiusa), F il sensore sulla finestra (0=ch
 10 & 1 & 1 & 1 & 1\\
 \hline
 \end{tabular}}
-\caption{}
+%\caption{}
 \label{tab9:allarme}
 %\end{minipage}
 \end{wraptable}
 
-Osserviamo che uno dei possibili raggruppamenti dati dalla mappa di Karnaugh, riportata in Tabella \ref{tab9:allarme} è
+Osserviamo che uno dei possibili raggruppamenti dati dalla mappa di Karnaugh, riportata a fianco, è
 $$Y=P+F+\overline C I$$
 Avendo a disposizione solo porte NAND trasformiamo l'espressione in sole moltiplicazioni con il teorema di De Morgan.
 
