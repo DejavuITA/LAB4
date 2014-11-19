@@ -1,4 +1,4 @@
-\begin{wrapfigure}[14]{r}{0.45\textwidth}
+\begin{wrapfigure}[15]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=.35\textwidth]{../E08/latex/osc.pdf}
 \caption{Schema dell'oscillatore a ponte di Wien senza regolazione del guadagno.}
@@ -53,22 +53,27 @@ La problematica di tale circuito è però che non abbiamo il controllo dell'ampi
 
 \subsubsection*{Controllo automatico del guadagno}
 
-\begin{wrapfigure}[14]{l}{0.45\textwidth}
-\centering
-\includegraphics[width=.35\textwidth]{../E08/latex/osc_w_lamp.pdf}
-\caption{Schema dell'oscillatore a ponte di Wien con regolazione del guadagno ottenuta mediante una lampadina a filamento.}
-\label{cir8:with_lamp}
-\end{wrapfigure}
-
 La configurazione precedente è detta autoinnescante, cioè basta alimentare l'opamp affinché il circuito inizi ad oscillare.
 Per avere un innesco certo è però necessario che il guadagno totale del circuito sia \textit{inizialmente} maggiore di \num{1}. Così facendo, avremo un'amplificazione del piccolo segnale in ingresso.
 
 Per fare ciò si sostituisce la resistenza $R_1$ con una lampadina a filamento (il nuovo circuito è proposto in Figura \ref{cir8:with_lamp}).
 Essa infatti possiede una coefficiente di temperature postivo non lineare che ne aumenta la resistenza con l'aumento temperatura, generato per effetto joule dalla corrente.
 
+\begin{wrapfigure}[10]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.35\textwidth]{../E08/latex/osc_w_lamp.pdf}
+\caption{Schema dell'oscillatore a ponte di Wien con regolazione del guadagno ottenuta mediante una lampadina a filamento.}
+\label{cir8:with_lamp}
+\end{wrapfigure}
+
 Inizialmente la resistenza sarà più fredda e pertanto il guadagno del circuito sarà maggiore di \num{1}, innescando l'oscillazione.
 Con il passaggio di corrente nella lampadina, essa si scalderà e aumenterà la propria resistenza, diminuendo il guadagno portandolo a valori inferiori di \num{1}.
 Ciò porterà il circuito a stabilizzarsi con un guadagno unitario e pertanto a generare un'oscillazione di frequenza $f_0$ di ampiezza costante.
+
+Utilizzando un trimmer è possibile aggiustare il valore della resistenza $R_2$ in modo che l'oscillazione autosostenuta del ponte di Wien abbia l'ampiezza desiderata.
+
+$$$$
+$$$$
 
 \begin{figure}[htpc]
 \centering
@@ -76,5 +81,3 @@ Ciò porterà il circuito a stabilizzarsi con un guadagno unitario e pertanto a 
 \caption{Risposta del circuito oscillatore, nel grafico a sinistra in guadagno è maggiore di \num{1}, nel grafico centrale il guadagno è stabile, nel grafico a destra il guadagno è inferiore di \num{1}.}
 \label{fig8:wien}
 \end{figure}
-
-Utilizzando un trimmer è possibile aggiustare il valore della resistenza $R_2$ in modo che l'oscillazione autosostenuta del ponte di Wien abbia l'ampiezza desiderata.

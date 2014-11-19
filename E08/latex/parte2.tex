@@ -1,14 +1,6 @@
 \subsection{Pole-zero compensation di una sonda}
 
-\begin{wrapfigure}[11]{r}{0.45\textwidth}
-\centering
-\includegraphics[width=.35\textwidth]{../E08/latex/probe.pdf}
-\caption{Schema del circuito di misura composto dall'oscilloscopio e dalla sonda.}
-\label{cir8:probe}
-\end{wrapfigure}
-
 La \textit{pole-zero compensation} è una tecnica che permette di compensare dei poli del sistema. Tale procedimento ci permette di eliminare dipendenze dalla grequenza e di effettuare misure precise di circuiti senza interferenze da parte dell'apparato di misura.
-%L'alta impedenza determina una forte dipendenza dalla frequenza generata ad esempio da grandi resistenze, in quanto subentrano induttanze parassite, oppure direttamente da piccole capacità.
 
 Essa consiste nel posizionare, aggiungendo un'ulteriore parte circuitale, uno zero alla funzione di trasferimento esattamente nel punto in cui esiste un polo .
 In equazioni si traduce con:
@@ -23,6 +15,13 @@ f(s) \quad tc \quad f(s_0) = 0
 \]
 
 Per ottenere questo risultato, si antepone all'oscilloscopio una sonda compensata il cui circuito schematizzato è proposto in Figura \ref{cir8:probe}.
+
+\begin{wrapfigure}[13]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=.35\textwidth]{../E08/latex/probe.pdf}
+\caption{Schema del circuito di misura composto dall'oscilloscopio e dalla sonda.}
+\label{cir8:probe}
+\end{wrapfigure}
 Come si può notare la sonda e l'oscilloscopio formano un partitore e pertanto la tensione misurata dallo strumento non sarà la stessa del circuito.
 Sarà determinata dalla funzione di trasferimento:
 
