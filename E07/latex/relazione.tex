@@ -31,7 +31,7 @@ Con queste capacità riusciamo dunque ad eliminare i segnali di modo comune ad a
 \paragraph*{Passa Alto}
 Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. La sua frequenza di taglio è di circa \SI{3}{\Hz}. Inoltre, è necessario che l'impedenza siano adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
 
-\subsubsection*{Operazionale U4 ed active gards}
+\subsubsection*{Operazionale U3 ed active gards}
 
 Per diminuire l'effetto dei segnali di modo comune (dovuto agli elettrodi), è conveniente polarizzare in maniera uguale entrambe le calze dei cavi coassiali utilizzati per la connessione elettrodo-amplificatore. Così facendo il potenziale delle calze rimarrà uguale indipendentemente da eventuali movimenti dei cavi. Inoltre la differenza di potenziale fra la calza e il cavo che trasporta il segnale sarà minimizzata al fine di limitare le perdite sull'isolante.
 
@@ -47,28 +47,41 @@ Per isolare ulteriormente il circuito ed evitare giri di massa abbiamo anche uti
 	\item Possiede due alimentazioni separate e quindi anche due riferimenti di massa indipendenti l'uno dall'altro.
 \end{itemize}
 
+\begin{figure}[tpc]
+\centering
+\includegraphics[width=.6\textwidth]{../E07/latex/circuito.pdf}
+\caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma. Il diverso colore della comune serve a rendere evidente l'indipendenza delle comuni fra il circuito e il collegamento all'oscilloscopio.}
+\label{cir8:compensation}
+\end{figure}
+
 \subsection{Amplificazione}
 
 Dato il basso valore di tensione del segnale in entrata, abbiamo anche la necessità di amplificarlo per permettere alla strumentazione di leggerlo. Nel circuito ci sono tre stadi di amplificazione che amplficano il segnale di circa 800 volte.
 
-\paragraph*{Operazionale U1}
+\subsubsection*{Operazionale U1}
 L'AD622, come visto nell'Esperienza 5, controlla l'amplificazione tramite la presenza di una resistenza posta nei punti dedicati della piedinatura (si faccia riferimento alla Figura \ref{cir5:ad622_ponte}). Con le resistenze utilizzate, l'amplificazione è data dalla legge (\ref{eq5:guadagno_AD622}) fornitaci dal costruttore
 $$G_1=1+\frac{50.5 \si{\kilo\ohm}}{R_g} \approx 116$$
 
-\paragraph*{Filtro passa alto}
+\subsubsection*{Filtro passa alto}
 Con la sua frequenza di taglio di circa \SI{3}{\Hz}, il filtro passa alto in coda ad U1 riduce il nostro segnale (in uscita dal primo stadio di amplificazione dato da U1). Possiamo stimare di quanto viene ridotto considerando la funzione di partizione di un passa alto e facendone il modulo, ottenendo il guadagno. Vale dunque che
 $$G_2=\frac{2 \pi R_1 C_1 \times \SI{1.25}{\Hz}}{\sqrt{1+(2 \pi R_1 C_1 \times \SI{1.25}{\Hz})^2}}\approx 0.35$$
 
-\paragraph*{Operazionale U3}
+\subsubsection*{Operazionale U4}
 Questo operazionale è posto in un blocco con retroazione negativa non invertente. Dunque il suo guadagno è dato da
 $$G_3=1+\frac{R_2}{R_3} \approx 11$$
 
 L'amplificazione totale è dunque
 $$G = G_1 \times G_2 \times G_3 \approx 450$$
 
-\begin{figure}[tpc]
+La capacità di \SI{10}{\nano\farad} inserita è un ulteriore stadio di abbattimento dei rumori ad alte frequenze.
+
+\subsection{Grafico dell'ECG}
+
+Presentiamo ora l'elettrocardiogramma di uno degli sperimentatori.
+
+\begin{figure}[htpc]
 \centering
-\includegraphics[width=.7\textwidth]{../E07/latex/circuito.pdf}
-\caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma. Il diverso colore della comune serve a rendere evidente l'indipendenza delle comuni fra il circuito e il collegamento all'oscilloscopio.}
+\includegraphics[width=.7\textwidth]{../E07/latex/g4.pdf}
+\caption{Grafico della tensione registrata dall'oscilloscopio in funzione del tempo (ECG).}
 \label{cir8:compensation}
 \end{figure}
