@@ -1,30 +1,30 @@
 Repository per il "Quaderno di laboratorio"
 
-corso Laboratorio IV
+Corso di Laboratorio di Fisica IV
 
 A.A. 2014-2015
 
 
-standardizzazione label:
+Standardizzazione label nei file *.tex:
 
-equazioni
+Equazioni
 
 	eq#:titolo_sottotitolo
 
-figure generiche
+Figure generiche
 
 	fig#:titolo_sottotitolo
 
-grafici
+Grafici
 
 	gr#:titolo_sottotitolo
 
-circuiti
+Circuiti
 
 	cir#:titolo_sottotitolo
 
-tabelle
+Tabelle
 
 	tab#:titolo_sottotitolo
 
-dove # è il numero della relazione.
+Con # := numero della relazione.
