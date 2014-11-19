@@ -1,4 +1,4 @@
-name:
+Username:
 	LAB4
-psw:
+Password:
 	LAB4unitn
