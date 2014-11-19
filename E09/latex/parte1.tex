@@ -13,41 +13,69 @@ Tali schede contengono un integrato buffer 74LS244 nella logica TTL che fornisce
 
 \subsubsection{Porta NAND}
 
-\begin{wrapfigure}[5]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=.15\textwidth]{../E09/latex/NAND.pdf}
-\caption{Simbolo circuitale convenzionalmente utilizzato per porte NAND.}
-\label{cir9:nand}
-\end{wrapfigure}
+%\begin{wrapfigure}[5]{r}{0.4\textwidth}
+%\centering
+%\includegraphics[width=.15\textwidth]{../E09/latex/NAND.pdf}
+%\caption{Simbolo circuitale convenzionalmente utilizzato per porte NAND.}
+%\label{cir9:nand}
+%\end{wrapfigure}
 
 Abbiamo verificato il funzionamento di una porta NAND utilizzando, come già detto, una scheda di visualizzazione a LED.
 È stata verificata la seguente tavola di verità.\\
 
-\vspace{-5mm}
-\begin{table}[htpc]
-\begin{minipage}{0.6\textwidth}
+\begin{figure}[htpc]
 \centering
-{\renewcommand{\arraystretch}{1.2}%
-\begin{tabular}{|c|c|c|}
-\hline
-A & B & $\overline{AB}$ \\
-\hline
-0 & 0 & 1\\
-\hline
-0 & 1 & 1\\
-\hline
-1 & 0 & 1\\
-\hline
-1 & 1 & 0\\
-\hline
-\end{tabular}}
-\label{tab9:NAND}
-\end{minipage}
-\end{table}
-\vspace{-4mm}
+	\begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		{\renewcommand{\arraystretch}{1.2}%
+		\begin{tabular}{|c|c|c|}
+		\hline
+		A & B & $\overline{AB}$ \\
+		\hline
+		0 & 0 & 1\\
+		\hline
+		0 & 1 & 1\\
+		\hline
+		1 & 0 & 1\\
+		\hline
+		1 & 1 & 0\\
+		\hline
+		\end{tabular}}
+		\label{tab9:NAND}
+        \end{subfigure}
+        \begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		\includegraphics[width=.35\textwidth]{../E09/latex/NAND.pdf}
+		%\caption{Simbolo circuitale convenzionalmente utilizzato per porte NAND.}
+		\label{cir9:nand}
+        \end{subfigure}
+\caption{Tabella di verità e simbolo circuitale convenzionalmente utilizzato per porte NAND.}
+\end{figure}
+
+%\vspace{-5mm}
+%\begin{table}[htpc]
+%\begin{minipage}{0.6\textwidth}
+%\centering
+%{\renewcommand{\arraystretch}{1.2}%
+%\begin{tabular}{|c|c|c|}
+%\hline
+%A & B & $\overline{AB}$ \\
+%\hline
+%0 & 0 & 1\\
+%\hline
+%0 & 1 & 1\\
+%\hline
+%1 & 0 & 1\\
+%\hline
+%1 & 1 & 0\\
+%\hline
+%\end{tabular}}
+%\label{tab9:NAND}
+%\end{minipage}
+%\end{table}
+%\vspace{-4mm}
 
 \subsubsection{Porta NOT}
-
 
 \begin{wrapfigure}[10]{r}{0.4\textwidth}
 \centering
@@ -83,7 +111,7 @@ Come vediamo, tra \SI{1}{\volt} e \SI{1.5}{\volt} la tensione varia in modo molt
 %\end{tabular}
 %\label{tab9:risposta}
 %\end{table}
-
+\vspace{2mm}
 \begin{table}[htpc]
 \centering
 {\renewcommand{\arraystretch}{1.1}%
@@ -95,6 +123,7 @@ $V_{out}$ [\si{\volt}] & 4.30 & 4.05 & 3.01 & 0.10 & 0.10 & 0.10 & 0.10 & 0.10 &
 \caption{I valori sono stati ricavati variando la tensione in entrata di \SI{.5}{\V}.}
 \label{tab9:risposta2}
 \end{table}
+%\vspace{2mm}
 
 Siamo dunque interessati a capire meglio la risposta della porta in funzione della tensione in ingresso.
 Per fare ciò utilizziamo la modalità XY dell'oscilloscopio.
@@ -111,8 +140,8 @@ Lo standard TTL è riportato in Figura \ref{fig9:TTL}
 \centering
 	\begin{subfigure}[hc]{0.49\textwidth}
 		\centering
-		\includegraphics[width=.95\textwidth]{../E09/latex/XYschifo.pdf}
-                \caption{XY.}
+		\includegraphics[width=.95\textwidth]{../E09/latex/XY.pdf}
+                \caption{Risposta in uscita di una porta NAND (= NOT) con entrate cortocircuitate ad un'onda quadra di frequenza \SI{100}{\kHz} in entrata.}
                 \label{fig9:XY}
         \end{subfigure}%
 	\quad
@@ -131,36 +160,65 @@ Per realizzare il circuito GATE è sufficiente utilizzare una porta AND con un s
 Per realizzare una porta AND possiamo utilizzare 2 NAND come proposto nella seguente figura.
 Infatti, utilizzando la notazione convenzionale, $AB=\overline {\overline {AB}}$ che trivialmente è una NAND e una NOT in serie.
  
-\begin{wrapfigure}[3]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=.22\textwidth]{../E09/latex/AND.pdf}
-\caption{Implementazione e simbolo circuitale per porte AND.}
-\label{cir9:AND}
-\end{wrapfigure}
+%\begin{wrapfigure}[3]{r}{0.4\textwidth}
+%\centering
+%\includegraphics[width=.22\textwidth]{../E09/latex/AND.pdf}
+%\caption{Implementazione e simbolo circuitale per porte AND.}
+%\label{cir9:AND}
+%\end{wrapfigure}
 
 La tavola di verità è la seguente (A=C=controllo, B=S=segnale):
 
-%\vspace{-5mm}
-\begin{table}[htpc]
-\begin{minipage}{0.6\textwidth}
+\begin{figure}[htpc]
 \centering
-{\renewcommand{\arraystretch}{1.1}%
-\begin{tabular}{|l|l|c|}
-\hline
-C & S & CS \\
-\hline
-0 & 0 & 0\\
-\hline
-0 & 1 & 0\\
-\hline
-1 & 0 & 0\\
-\hline
-1 & 1 & 1\\
-\hline
-\end{tabular}}
-\label{tab9:AND}
-\end{minipage}
-\end{table}
+	\begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{|l|l|c|}
+		\hline
+		C & S & CS \\
+		\hline
+		0 & 0 & 0\\
+		\hline
+		0 & 1 & 0\\
+		\hline
+		1 & 0 & 0\\
+		\hline
+		1 & 1 & 1\\
+		\hline
+		\end{tabular}}
+		\label{tab9:AND}
+        \end{subfigure}
+        \begin{subfigure}[hc]{.4\textwidth}
+		\centering
+		\includegraphics[width=.5\textwidth]{../E09/latex/AND.pdf}
+%		\caption{Implementazione e simbolo circuitale per porte AND.}
+		\label{cir9:AND}
+        \end{subfigure}
+\caption{Tabella di verità e simbolo circuitale delle porte AND e implementazione con porte NAND}
+\end{figure}
+
+%\vspace{-5mm}
+%\begin{table}[htpc]
+%\begin{minipage}{0.6\textwidth}
+%\centering
+%{\renewcommand{\arraystretch}{1.1}%
+%\begin{tabular}{|l|l|c|}
+%\hline
+%C & S & CS \\
+%\hline
+%0 & 0 & 0\\
+%\hline
+%0 & 1 & 0\\
+%\hline
+%1 & 0 & 0\\
+%\hline
+%1 & 1 & 1\\
+%\hline
+%\end{tabular}}
+%\label{tab9:AND}
+%\end{minipage}
+%\end{table}
 %\vspace{-4mm}
 
 Come vediamo dalla tabella, se il segnale di controllo è a 0 logico l'uscita sarà sempre 0 logico.
@@ -237,6 +295,7 @@ Partiamo dunque dalla mappa di Karnaugh a fianco: minimizzandola otteniamo
 10 & 0 & 0 & 1 & 0 \\
 \hline
 \end{tabular}}
+\caption{}
 \label{tab9:giurati}
 \end{wraptable}
 
@@ -290,12 +349,12 @@ Chiamiamo P il sensore sulla porta (0=chiusa), F il sensore sulla finestra (0=ch
 10 & 1 & 1 & 1 & 1\\
 \hline
 \end{tabular}}
-%\caption{}
+\caption{}
 \label{tab9:allarme}
 %\end{minipage}
 \end{wraptable}
 
-Osserviamo che uno dei possibili raggruppamenti dati dalla mappa di Karnaugh, riportata a fianco, è
+Osserviamo che uno dei possibili raggruppamenti dati dalla mappa di Karnaugh, riportata in Tabella \ref{tab9:allarme} è
 $$Y=P+F+\overline C I$$
 Avendo a disposizione solo porte NAND trasformiamo l'espressione in sole moltiplicazioni con il teorema di De Morgan.
 
