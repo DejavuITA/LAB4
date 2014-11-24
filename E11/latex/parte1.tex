@@ -1,0 +1,60 @@
+\subsection{Flip-Flop}
+
+\subsubsection*{FF SR con porte NAND}
+
+In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Fig. e, come abbiamo già fatto per gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED. Come già visto a lezione, la tabella di verità è la seguente. 
+
+\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{c|c|c|c}
+		
+		S & R & Q & $\bar Q$ \\
+		\hline
+		0 & 0 & Q & $\bar Q$\\
+		\hline
+		0 & 1 & 0 &1\\
+		\hline
+		1 & 0 & 1 & 0\\
+		\hline
+		1 & 1 & ? & ?\\
+		\end{tabular}}
+		\label{tab11:FFSR}
+		\caption{puzzi}
+        \end{figure}
+
+
+Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo notato che non avevamo mai due led accessi contemporaneamente, eccetto nel caso in cui sia Set che Reset erano ad 1 logico. In questo caso entrambi i led erano accessi. Ciò ovviamente non va bene per i nostri scopi, in quanto vogliamo avere uno stato stabile e un'uscita la negazione dell'altra. 
+
+
+\subsubsection*{FF SR con Cock}
+
+
+
+
+
+
+\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{c|c|c|c|c}
+		CLK & S & R & Q & $\bar Q$ \\
+		\hline		
+		0 & ? & ? & Q & $\bar Q$\\
+		\hline
+		 1&0 & 0 & Q & $\bar Q$\\
+		\hline
+		1&0 & 1 & 0 &1\\
+		\hline
+		1&1 & 0 & 1 & 0\\
+		\hline
+		1&1 & 1 & ? & ?\\
+		\end{tabular}}
+		\label{tab11:FFSR}
+		\caption{puzzi di più}
+        \end{figure}
+
+
+
+
+
