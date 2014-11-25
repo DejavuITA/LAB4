@@ -1,23 +1,24 @@
 \subsection{Flip-Flop}
 
-\subsubsection*{FF SR con porte NAND}
+\subsubsection*{FF SR con porte NAND tipo latch}
+
 
 In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Fig. e, come abbiamo già fatto per gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED. Come già visto a lezione, la tabella di verità è la seguente. 
 
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
-		\begin{tabular}{c|c|c|c}
+		\begin{tabular}{c|c|c|c|c|c}
 		
-		S & R & Q & $\bar Q$ \\
+		S & R & $\bar S$ & $\bar R$ & $Q_{n+1}$ & $\bar Q_{n+1}$ \\
 		\hline
-		0 & 0 & Q & $\bar Q$\\
+		0 & 0 & 1 & 1 & $Q_n$ & $\bar Q_n$\\
 		\hline
-		0 & 1 & 0 &1\\
+		0 & 1 & 1 & 0 & 0 &1\\
 		\hline
-		1 & 0 & 1 & 0\\
+		1 & 0 & 0 & 1& 1 & 0\\
 		\hline
-		1 & 1 & ? & ?\\
+		1 & 1 &0 &0 & ? & ?\\
 		\end{tabular}}
 		\label{tab11:FFSR}
 		\caption{puzzi}
@@ -27,7 +28,7 @@ In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando de
 Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo notato che non avevamo mai due led accessi contemporaneamente, eccetto nel caso in cui sia Set che Reset erano ad 1 logico. In questo caso entrambi i led erano accessi. Ciò ovviamente non va bene per i nostri scopi, in quanto vogliamo avere uno stato stabile e un'uscita la negazione dell'altra. 
 
 
-\subsubsection*{FF SR con Cock}
+\subsubsection*{FF SR con Clock}
 
 
 
@@ -38,11 +39,11 @@ Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
 		\begin{tabular}{c|c|c|c|c}
-		CLK & S & R & Q & $\bar Q$ \\
+		CLK & S & R & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
 		\hline		
-		0 & ? & ? & Q & $\bar Q$\\
+		0 & X & X & $Q_n$ & $\bar Q_n$\\
 		\hline
-		 1&0 & 0 & Q & $\bar Q$\\
+		 1&0 & 0 & $Q_n$ & $\bar Q_n$\\
 		\hline
 		1&0 & 1 & 0 &1\\
 		\hline
@@ -54,6 +55,78 @@ Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo
 		\caption{puzzi di più}
         \end{figure}
 
+
+\subsubsection*{Latch tipo D}
+
+
+\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{c|c|c|c}
+		D & CLK & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
+		\hline
+		X & 0  & $Q_n$ & $\bar Q_n$\\
+		\hline
+		 1&1 & 1 & 0\\
+		\hline
+		0&1 & 0  &1\\
+		\end{tabular}}
+		\label{tab11:Latch_D}
+		\caption{puzzi ancora di più}
+        \end{figure}
+
+Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'uscita Q era bassa. Ciò è in contraddizione con le porte integrate, in quanto quando un ingresso non è collegato a nessun riferimento viene visto come alto. Abbiamo capito che ciò era dovuto al fatto che abbiamo collegato il cavo dati alla basetta al led per vedere quando esso era a 0 o 1 logico. La basetta al led è costruita con resistenze di pull-down così che quando il segnale in ingresso è basso i led sono spenti. Dunque se monitoriamo il segnale D con la basetta, esso è collegato con resistenze di pull-down a comune. Abbiamo infatti verificato che scollegandolo dalla basetta, l'ingresso D flottante causava un uscita Q alta.
+
+
+\subsubsection*{Circuito anti-rimbalzo}
+
+
+\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{c|c|c|c}
+		$\bar S$ & $\bar R$ & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
+		\hline
+		0 & 0  & ?&?\\
+		\hline
+		0&1 & 1 & 0\\
+		\hline
+		1&0 & 0  &1\\
+		\hline
+		1&1 & $Q_n$ & $\bar Q_n$\\
+		\end{tabular}}
+		\label{tab11:antirimb}
+		\caption{puzzi ancora di più di buzz}
+        \end{figure}
+
+\subsection*{Comandi separati Marcia/Arresto}
+
+
+
+
+\subsubsection*{FF SR con porte NOR}
+
+
+\begin{figure}[H]
+		\centering
+		{\renewcommand{\arraystretch}{1.1}%
+		\begin{tabular}{c|c|c|c}
+		S & R & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
+		\hline
+		1 & 1  & ?&?\\
+		\hline
+		1&0 & 1 & 0\\
+		\hline
+		0&1 & 0  &1\\
+		\hline
+		0&0 & $Q_n$ & $\bar Q_n$\\
+		\end{tabular}}
+		\label{tab11:nor}
+		\caption{puzzi come miani}
+        \end{figure}
+
+
+\subsubsection*{Divisore di frequenze}
 
 
 

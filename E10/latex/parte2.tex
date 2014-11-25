@@ -8,6 +8,13 @@ Ad esempio, nel nostro caso abbiamo bisogno di mandare quattro segnali distinti,
 
 \subsubsection{Selettore}
 
+\begin{wrapfigure}[10]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.35\textwidth]{../E10/latex/selector.pdf}
+\caption{.}
+\label{cir10:selector}
+\end{wrapfigure}
+
 Per permettere la selezione del segnale abbiamo bisogno di implementare la seguente tabella di verità (con $S_0$ ed $S_1$ i segnali di selezione che passeranno sui due cavi di selezione).
 
 \begin{table}[htpc]
@@ -56,11 +63,26 @@ E' dunque facile vedere che una implementazione di questo sistema è il circuito
 
 \subsubsection{Multiplexing}
 
+
+\begin{wrapfigure}[12]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{../E10/latex/mult.pdf}
+\caption{.}
+\label{cir10:mult}
+\end{wrapfigure}
+
 Dati i segnali $Q_i$ del circuito di selezione, ora dobbiamo implementare un circuito che passi al cavo di trasmissione solo il segnale che ci interessa. Possiamo dunque utilizzare delle porte tri-state con ingresso di attivazione negato; infatti, collegando a questo ingresso uno dei segnali $Q_i$, faremo passare il segnale $D_i$ (collegato all'altro ingresso della tri-state) se e solo se $Q_i=0$. Un altro vantaggio di utilizzare le tri-state è quello di avere un'alta impedenza quando $Q_i$ sia ad 1 logico (e dunque il segnale selezionato è un altro), evitando cortocircuiti alle uscite delle tri-state (sono tutte collegate al cavo di trasmissione).
 
 Il circuito di multiplexing è in Figura \ref{cir10:multiplex}.
 
 \subsubsection{De-multiplexing}
+
+\begin{wrapfigure}[10]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{../E10/latex/demult.pdf}
+\caption{.}
+\label{cir10:demult}
+\end{wrapfigure}
 
 Portando i segnali $S_0$ ed $S_1$ di chi invia il segnale ad un selettore (uguale al precedente), il ricevente può costruire un circuito che passi in uscita il dato inviato.
 
