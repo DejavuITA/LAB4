@@ -2,16 +2,15 @@
 
 \subsubsection*{FF SR con porte NAND tipo latch}
 
-
-In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Fig. e, come abbiamo già fatto per gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED. Come già visto a lezione, la tabella di verità è la seguente. 
+In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Figura \ref e, come abbiamo già fatto per gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED. Come già visto a lezione, la tabella di verità è la seguente. 
 
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
-		\begin{tabular}{c|c|c|c|c|c}
-		
-		S & R & $\bar S$ & $\bar R$ & $Q_{n+1}$ & $\bar Q_{n+1}$ \\
+		\begin{tabular}{|c|c|c|c|c|c|}
 		\hline
+		S & R & $\bar S$ & $\bar R$ & $Q_{n+1}$ & $\bar Q_{n+1}$ \\
+		\hline \hline
 		0 & 0 & 1 & 1 & $Q_n$ & $\bar Q_n$\\
 		\hline
 		0 & 1 & 1 & 0 & 0 &1\\
@@ -19,6 +18,7 @@ In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando de
 		1 & 0 & 0 & 1& 1 & 0\\
 		\hline
 		1 & 1 &0 &0 & ? & ?\\
+		\hline
 		\end{tabular}}
 		\label{tab11:FFSR}
 		\caption{puzzi}
@@ -27,22 +27,19 @@ In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando de
 
 Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo notato che non avevamo mai due led accessi contemporaneamente, eccetto nel caso in cui sia Set che Reset erano ad 1 logico. In questo caso entrambi i led erano accessi. Ciò ovviamente non va bene per i nostri scopi, in quanto vogliamo avere uno stato stabile e un'uscita la negazione dell'altra. 
 
-
 \subsubsection*{FF SR con Clock}
 
-
-
-
-
+In questo secondo circuito vogliamo rendere sincrono quello precedente, inserendo un attivatore (CLK in  Tabella \ref{tab11:FFSR}). Portando come segnale dell'attivatore una forma d'onda quadra potremmo anche creare un clock. La tabella di verità è quella sottostante
 
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
-		\begin{tabular}{c|c|c|c|c}
-		CLK & S & R & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
-		\hline		
-		0 & X & X & $Q_n$ & $\bar Q_n$\\
+		\begin{tabular}{|c||c|c|c|c|}
 		\hline
+		CLK & S & R & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
+		\hline \hline
+		0 & X & X & $Q_n$ & $\bar Q_n$\\
+		\hline \hline
 		 1&0 & 0 & $Q_n$ & $\bar Q_n$\\
 		\hline
 		1&0 & 1 & 0 &1\\
@@ -50,11 +47,13 @@ Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo
 		1&1 & 0 & 1 & 0\\
 		\hline
 		1&1 & 1 & ? & ?\\
+		\hline
 		\end{tabular}}
 		\label{tab11:FFSR}
 		\caption{puzzi di più}
         \end{figure}
 
+Notiamo che, anche in questo caso, se sia S che R sono ad 1 logico, $Q$ e $\bar Q$ sono indeterminati.
 
 \subsubsection*{Latch tipo D}
 
@@ -76,7 +75,6 @@ Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo
         \end{figure}
 
 Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'uscita Q era bassa. Ciò è in contraddizione con le porte integrate, in quanto quando un ingresso non è collegato a nessun riferimento viene visto come alto. Abbiamo capito che ciò era dovuto al fatto che abbiamo collegato il cavo dati alla basetta al led per vedere quando esso era a 0 o 1 logico. La basetta al led è costruita con resistenze di pull-down così che quando il segnale in ingresso è basso i led sono spenti. Dunque se monitoriamo il segnale D con la basetta, esso è collegato con resistenze di pull-down a comune. Abbiamo infatti verificato che scollegandolo dalla basetta, l'ingresso D flottante causava un uscita Q alta.
-
 
 \subsubsection*{Circuito anti-rimbalzo}
 
