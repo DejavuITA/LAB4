@@ -1,9 +1,18 @@
 \subsection{Flip-Flop}
 
-\subsubsection*{FF SR con porte NAND tipo latch}
+\subsubsection{FF SR con porte NAND tipo latch}
 
-In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Figura \ref e, come abbiamo già fatto per gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED. Come già visto a lezione, la tabella di verità è la seguente. 
+In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND. Il circuito è riportato in Figura \ref e, come gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED.
 
+Analizziamo ora il circuito logico. U1 e U2 sono delle porte NAND le cui entrate sono allo stesso potenziale, dunque sono due NOT rispettivamente per i segnali S ed R (terza e quarta colonna della tabella sottostante).
+
+Ad esempio, poniamo ad S ed R l'1 logico: quindi U1 e U2 li renderanno degli 0 logici; dunque, considerando U3 ed U4 come interruttori, se hanno uno degli ingressi a 0 l'uscita sarà sempre 1 indipendentemente dall'altra entrata. Questo stato è poco interessante dal punto di vista logico (non ho due uscite una la negazione dell'altra), quindi cercheremo di evitarlo.
+
+Se invece pongo entrambi gli ingressi di U3 e U4 ad 1 logico (cioè con S=R=0 logico), questi mi restituiranno 1 se l'altro ingresso sarà 0, altrimenti 1. Ciò ovviamente rende le uscite dipendenti dalle tensioni presenti prima del cambiamento di S e di R, rendendolo indeterminate (nel senso che, se non sapessimo i valori di $Q$ e $\bar Q$, a priori non potremmo stabilire, ponendo S=R=0, quale sarà l'uscita). Sfrutteremo questa indeterminazione come elemento di memoria per conservare la nostra informazione fino alla scrittura successiva, che può essere effettuata ponendo S ed R a valori l'uno la negazione dell'altro.
+
+La tabella di verità del circuito logico è la seguente, con $Q_n$ la tensione ad un ciclo e $Q_{n+1}$ quella al ciclo successivo\footnote{In realtà per poter parlare di un ciclo dovremmo attendere la presenza di un attivatore, che se posto come onda quadra ad una certa frequenza può fornirci un clock. Ciò sarà presente nel circuito successivo.}.
+
+\begin{savenotes}
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
@@ -17,19 +26,19 @@ In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando de
 		\hline
 		1 & 0 & 0 & 1& 1 & 0\\
 		\hline
-		1 & 1 &0 &0 & ? & ?\\
+		1 & 1 &0 &0 & "1" & ”1"\footnote{Ovviamente in questo caso i valori ricavati non rispettano la condizione di essere uno la negazione dell'altro. Abbiamo però voluto inserirli in tabella per sottolineare che questi valori possono essere ricavati, ma sono poco utili per la logica digitale.}\\
 		\hline
 		\end{tabular}}
 		\label{tab11:FFSR}
-		\caption{puzzi}
         \end{figure}
+        		\end{savenotes}
 
 
-Abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led e abbiamo notato che non avevamo mai due led accessi contemporaneamente, eccetto nel caso in cui sia Set che Reset erano ad 1 logico. In questo caso entrambi i led erano accessi. Ciò ovviamente non va bene per i nostri scopi, in quanto vogliamo avere uno stato stabile e un'uscita la negazione dell'altra. 
+Per verificarne il funzionamento, abbiamo collegato entrambe le uscite del Flip-Flop alla basetta al led. Abbiamo notato che non avevamo mai due led accessi contemporaneamente, eccetto nel caso in cui sia Set che Reset erano ad 1 logico, confermando la correttezza della nostra analisi circuitale.
 
-\subsubsection*{FF SR con Clock}
+\subsubsection{FF SR con Clock}
 
-In questo secondo circuito vogliamo rendere sincrono quello precedente, inserendo un attivatore (CLK in  Tabella \ref{tab11:FFSR}). Portando come segnale dell'attivatore una forma d'onda quadra potremmo anche creare un clock. La tabella di verità è quella sottostante
+In questo secondo circuito vogliamo rendere sincrono quello precedente, inserendo un attivatore (CLK nella tabella sottostante) che possa bloccare eventuali cambiamenti in uscita (cioè la porti in modalità di memoria) indipendentemente da S ed R, come nel circuito in Figura \ref{}. Portando come segnale dell'attivatore una forma d'onda quadra potremmo anche creare un clock. La tabella di verità può essere ricavata con considerazioni analoghe al paragrafo precedente, ed è quella sottostante
 
 \begin{figure}[H]
 		\centering
@@ -46,22 +55,23 @@ In questo secondo circuito vogliamo rendere sincrono quello precedente, inserend
 		\hline
 		1&1 & 0 & 1 & 0\\
 		\hline
-		1&1 & 1 & ? & ?\\
+		1&1 & 1 & "1" & "1"\\
 		\hline
 		\end{tabular}}
-		\label{tab11:FFSR}
-		\caption{puzzi di più}
+		\label{tab11:FFSR2}
         \end{figure}
 
-Notiamo che, anche in questo caso, se sia S che R sono ad 1 logico, $Q$ e $\bar Q$ sono indeterminati.
+Notiamo inoltre che anche in questo caso, se sia S che R sono ad 1 logico, le uscite non sono utili per un utilizzo in circuiti logici.
 
 \subsubsection*{Latch tipo D}
 
+Cerchiamo ora di risolvere il problema della presenza dello stato indesiderato dato da S=R=0 logico. Un modo semplice per evitare che possa accadere è di utilizzare il circuito in Figura \ref{}, la cui tabella di verità è la seguente
 
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
-		\begin{tabular}{c|c|c|c}
+		\begin{tabular}{|c|c|c|c|}
+		\hline
 		D & CLK & $Q_{n+1}$ & $\bar Q_{n+1}$  \\
 		\hline
 		X & 0  & $Q_n$ & $\bar Q_n$\\
@@ -69,9 +79,9 @@ Notiamo che, anche in questo caso, se sia S che R sono ad 1 logico, $Q$ e $\bar 
 		 1&1 & 1 & 0\\
 		\hline
 		0&1 & 0  &1\\
+		\hline
 		\end{tabular}}
 		\label{tab11:Latch_D}
-		\caption{puzzi ancora di più}
         \end{figure}
 
 Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'uscita Q era bassa. Ciò è in contraddizione con le porte integrate, in quanto quando un ingresso non è collegato a nessun riferimento viene visto come alto. Abbiamo capito che ciò era dovuto al fatto che abbiamo collegato il cavo dati alla basetta al led per vedere quando esso era a 0 o 1 logico. La basetta al led è costruita con resistenze di pull-down così che quando il segnale in ingresso è basso i led sono spenti. Dunque se monitoriamo il segnale D con la basetta, esso è collegato con resistenze di pull-down a comune. Abbiamo infatti verificato che scollegandolo dalla basetta, l'ingresso D flottante causava un uscita Q alta.
