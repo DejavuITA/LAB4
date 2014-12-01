@@ -89,6 +89,20 @@ Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'usc
 \subsubsection*{Circuito anti-rimbalzo}
 
 
+\begin{wrapfigure}[14]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{../E11/latex/anti-rimbalzo.pdf}
+\caption{.}
+\label{cir11:no-rimb}
+\end{wrapfigure}
+
+Un problema degli interruttori è quello del rimbalzo. Infatti lo switch meccanico dell'interruttore non è istantaneo in quanto composto da una linguetta conduttrice che fa da contatto. Nel momento in cui la linguetta passa da un contatto all'altro abbiamo dei rimbalzi di tensione. Un modo per risolvere questo problema è quello di utilizzare un interruttore a transistor oppure inserire appena dopo l'interruttore meccanico un circuito di anti-rimbalzo. Lo schema è riportato in figura (\ref{cir11:no-rimb}). Tale circuito ci permette di evitare i rimbalzi poichè quando la linguetta è scollegata sia dal SET che dal RESET abbiamo il circuito in configurazione memoria. Ciò è dovuto al fatto che abbiamo inserito delle resistenze di Pull-Up che portano gli ingressi delle NAND a 1 logico. 
+
+Di seguito è riportata la tabella di verità del circuito.
+
+
+
+
 \begin{figure}[H]
 		\centering
 		{\renewcommand{\arraystretch}{1.1}%
@@ -107,13 +121,42 @@ Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'usc
 		\caption{puzzi ancora di più di buzz}
         \end{figure}
 
+
+Dopo averne studiato le caratteristiche dal punto di vista teorico, ne abbiamo verificato il funzionamento sperimentalmente. I risultati sono riportati nei seguenti grafici.
+
+
+$$**grafici**$$
+
+
+Come vediamo, il tempo di rimbalzo senza correzione è di circa \SI{4}{\milli\second}. Utilizzando il circuito FF, invece, abbiamo completamente eliminato il problema. La forma d'onda in uscita non è perfettamente a scalino in quanto i generatori di corrente non sono ideali e le impedenze non sono ottimizzate. 
+
+
 \subsection*{Comandi separati Marcia/Arresto}
 
+Possiamo apportare delle utili modifiche al circuito anti-rimbalzo separando il comando Marcia/Arresto. Così facendo possiamo avere un circuito che può essere messo nella condizione di memoria. Il circuito è riportato in fugura (\ref{cir11:marcia}).
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.25\textwidth]{../E11/latex/motorefermo.pdf}
+\caption{.}
+\label{cir11:marcia}
+\end{figure}
+
+Dobbiamo ricordarci di non mettere mai contemporaneamente a 0 logico sia Marcia che Arresto in quanto avremmo una condizione di indeterminazione che ovviamente non vogliamo.
 
 
 \subsubsection*{FF SR con porte NOR}
 
+Abbiamo provato a realizzare un FF SR con porte NOR. Il principio di funzionamento è lo stesso di quello costruito utilizzando porte NAND. L'unica differenza sta nel fatto che il circuito si trova in memoria quando sia S che R sono a 0 logico. Lo schema circuitale elaborato è riportato nella seguente figura.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.25\textwidth]{../E11/latex/FF-w-NOR.pdf}
+\caption{.}
+\label{cir11:nor}
+\end{figure}
+
+Per completezza riportiamo anche la tabella di verità del circuito. Il circuito, come sempre, è stato verificato utilizzado la basetta a led.
 
 \begin{figure}[H]
 		\centering
@@ -130,12 +173,12 @@ Abbiamo inoltre notato che, con CLK ad 1, lasciando l'ingresso D flottante l'usc
 		0&0 & $Q_n$ & $\bar Q_n$\\
 		\end{tabular}}
 		\label{tab11:nor}
-		\caption{puzzi come miani}
+		\caption{.}
         \end{figure}
 
 
 \subsubsection*{Divisore di frequenze}
 
-
+Come ultima parte dell'esperienza abbiamo realizzato un divisore di frequenze. Tale circuito, utilizzando dei FF di tipo T (Toggle), permette di fare una divisione di frequenze per multipli di 2. In effetti, utilizzando un circuito 
 
 
