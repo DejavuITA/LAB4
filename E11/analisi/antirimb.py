@@ -5,11 +5,8 @@ import matplotlib
 from matplotlib import pyplot as plt
 import numpy as np
 
-if len(sys.argv)==1:
-	sys.exit()
-
 	####  Qui vanno i dati 	####
-dataG1 = np.genfromtxt("../dati/scope_{}.csv".format(sys.argv[1]), delimiter=',')
+dataG1 = np.genfromtxt("../dati/scope_1.csv", delimiter=',')
 
 t	= dataG1[2:,0]*1000000
 V_in	= dataG1[2:,1]
@@ -44,8 +41,8 @@ g1 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 #f1.text(100, 23, 'G=11x', size=12, va='center', ha='center')
 
 f1.grid(True)
-#f1.set_ylim((-400, 1000))
-#f1.set_xlim((-1.8,1.8))
+f1.set_ylim((-1.1, 5))
+#f1.set_xlim((-150,600))
 
 f1.set_ylabel(u'd.d.p. [$V$]', labelpad=0, fontsize=14)
 f1.set_xlabel(u'Tempo [$\mu s$]', labelpad=0, fontsize=14)
@@ -55,6 +52,6 @@ f1.set_xlabel(u'Tempo [$\mu s$]', labelpad=0, fontsize=14)
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.09, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.07, right=0.98, top=0.93, bottom=0.09, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
