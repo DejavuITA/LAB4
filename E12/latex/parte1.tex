@@ -1,5 +1,12 @@
 \subsection{Registro a scorrimento ad anello}
-La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizza di FF J-K in modalità D. Tale circuito, come visto a lezione, permette di trasmettere ad ogni fronte di salita del Clock il segnale memorizzato in un FF al successivo. Essendo l'ultimo collegato al primo, il segnale continua a circolare nel nostro circuito. Proprio per questo tale registro viene chiamato ad anello. Lo schema circuitale è riportato in figura. 
+La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizza di FF J-K in modalità D. Tale circuito, come visto a lezione, permette di trasmettere ad ogni fronte di salita del Clock il segnale memorizzato in un FF al successivo. Essendo l'ultimo collegato al primo, il segnale continua a circolare nel nostro circuito. Proprio per questo tale registro viene chiamato ad anello. Lo schema circuitale è riportato in Figura \ref{cir12:shift}.
+
+\begin{figure}[htpc]
+\centering
+	\includegraphics[width=.85\textwidth]{../E12/latex/shift_register.pdf}
+	\caption{}
+	\label{cir12:shift}
+\end{figure}
 
 Per memorizzare gli 1 e 0 logici utilizziamo le linee di Preset e Clear presenti nei FF. La linea RC connessa al Preset del nostro primo FF e ai Clear di tutti gli altri permette di caricare inizialmente un 1 nel primo FF e 0 in tutti gli altri. Ad ogni ciclo di Clock il nostro 1 passerà al successivo e così facendo avremo un segnale alto che cicla all'infinito.
 
@@ -39,17 +46,18 @@ Dobbiamo dunque trovare un'alternativa, che ci è data dal DAC, integrato conten
 Inseriamo dunque il DAC all'uscita del circuito discusso al paragrafo precedente come in Figura \ref{cir12:DAC} (dove per uscita intendiamo i valori di 0 e 1 logico in uscita dai due contatori). Essendo l'uscita di un contatore, il valore di tensione che ci aspettiamo di osservare sarà variabile (forma a dente di sega) dallo zero ad un valore impostabile. Per trovare tale valore bisogna tener conto del fatto che questo integrato lavora con correnti di riferimento. Per impostarla basta porre una corrente entrante al piedino 14: nel nostro caso abbiamo utilizzato una corrente
 $$I_{rif}=\frac{4.4 \si{\volt}}{2.2\si{\kilo\ohm}} = 2 \si{\milli\ampere}$$
 che ci permette di calcolare la corrente in uscita di fondo scala come (con n numero di bit, cioè 8)
-$$I_{fs}=\frac{2^n - 1}{2^n} I_{ref} = \frac{7}{8} I_{ref}= 1.75 \si{\milli\ampere}$$
-Dunque se poniamo all'uscita del DAC una resistenza di $2 \si{\kilo\ohm}$\footnote{Il costruttore richiedeva l'utilizzo di resistenze di valore più elevato; ma, vista l'impedenza in entrata dell'oscilloscopio, se avessimo inserito tale valore avremmo fatto passare corrente anche nell'oscilloscopio, rompendo l'approssimazione di partitore all'uscita.} messa a comune, ai suoi capi la caduta di tensione a fondo scala sarà di circa $3.5 \si{\volt}$. Come si vede nel grafico in Figura \ref{fig12:sega}, il valore atteso così calcolato è rispettato: infatti, il valore minimo di tensione ottenuto è stato di $-3.5 \si{\volt}$ (se colleghiamo l'oscilloscopio a $I_{out}$ la corrente è entrante nel DAC).
+$$I_{fs}=\frac{2^n-1}{2^n} I_{ref} = \frac{255}{256} I_{ref} \approx 2 \si{\milli\ampere}$$
 
 \begin{figure}[htpc]
 \centering
 	\includegraphics[width=.65\textwidth]{../E12/latex/sega.pdf}
-	\caption{}
+	\caption{Grafico della tensione in funzione del tempo. Con questa scala il segnale sembra una retta ma, avendo utilizzato due contatori a 4 bit, abbiamo 256 stati intermedi di onda quadra. Tali stati hanno una tensione fra i due picchi di $\approx 16 \si{\milli \volt}$ (affermazione verificata sui dati).}
 	\label{fig12:sega}
 \end{figure}
 
-Se vogliamo invece ottenere una forma d'onda triangolare dobbiamo far si che, al posto dell'interruttore per controllare la discesa e la salita, ci sia un dispositivo che inverta il valore logico in entrata nel JK quando c'è un massimo o un minimo. A tal fine, ci viene in aiuto un piedino dell'integrato che diventa uno nel massimo e nel minimo del segnale: ponendolo come clock di un JK in modalità toggle, questo invertirà Q sul fronte di salita (appunto quando c'è un massimo o un minimo).
+Dunque se poniamo all'uscita del DAC una resistenza di $2 \si{\kilo\ohm}$\footnote{Il costruttore richiedeva l'utilizzo di resistenze di valore più elevato; ma, vista l'impedenza in entrata dell'oscilloscopio, se avessimo inserito tale valore avremmo fatto passare corrente anche nell'oscilloscopio, rompendo l'approssimazione di partitore all'uscita.} messa a comune, ai suoi capi la caduta di tensione a fondo scala sarà di circa $4 \si{\volt}$. Come si vede nel grafico in Figura \ref{fig12:sega}, il valore atteso così calcolato è rispettato: infatti, il valore minimo di tensione ottenuto è stato di $-4 \si{\volt}$ (se colleghiamo l'oscilloscopio a $I_{out}$ la corrente è entrante nel DAC).
+
+Se vogliamo invece ottenere una forma d'onda triangolare dobbiamo far si che, al posto dell'interruttore per controllare la discesa e la salita, ci sia un dispositivo che inverta il valore logico in entrata nel JK quando c'è un massimo o un minimo. A tal fine, ci viene in aiuto un piedino dell'integrato che diventa uno nel massimo e nel minimo del segnale: ponendolo come clock di un JK in modalità toggle, questo invertirà Q sul fronte di salita (appunto quando c'è un massimo o un minimo). Il risultato è in Figura \ref{fig12:triangolare}.
 
 \begin{figure}[htpc]
 \centering
