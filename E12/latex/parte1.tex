@@ -4,7 +4,6 @@ La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizz
 Per memorizzare gli 1 e 0 logici utilizziamo le linee di Preset e Clear presenti nei FF. La linea RC connessa al Preset del nostro primo FF e ai Clear di tutti gli altri permette di caricare inizialmente un 1 nel primo FF e 0 in tutti gli altri. Ad ogni ciclo di Clock il nostro 1 passerà al successivo e così facendo avremo un segnale alto che cicla all'infinito.
 
 Il motivo per cui è stato messa una linea RC è quella di permettere un set automatico del nostro dispositivo all'accensione. Infatti il nostro generatore di tensione impiegherà un certo $\delta t$ a portarsi a regime (\SI{5}{\volt}). A $t=0^+$ la tensione $V_c$ sarà zero e dunque setterà i nostri bit con un 1 nel primo FF e 0 negli altri (ricordiamo che Clear e Preset sono attivi bassi). Ma essendoci un RC, la tensione in $V_c$ cresce più lentamente della tensione fornita dal generatore. Dopo un tempo adeguato in base al circuito RC (solitamente è sufficiente $4\tau$) la nostra tensione $V_c$ sarà praticamente la tensione di alimentazione e dunque avremo disattivate il Clear e Preset. Dovremo dunque attendere un tempo pari a circa $4\tau$ prima di inviare un segnale di Clock. Dai nostri calcoli risulta che il $\tau$ del nostro circuito è circa $\SI{545}{\milli\second}$ da cui otteniamo che il tempo che dobbiamo attendere è di circa $\SI{545}{\milli\second}$.
-% Se accendiamo il Clock dopo aver alimentato il nostro circuito dunque siamo sicuri che i bit sono memorizzati correttamente.
 
 Abbiamo dunque verificato tale circuito con la solita schedina al led. 
 
@@ -16,9 +15,7 @@ Con tali linee in modo appropriato possiamo contare a 8 bit utilizzando due inte
 
 Possiamo ora scegliere due metodi per implementare il contatore: asincrono o sincrono. Come già visto a lezione, il contatore asincrono ha il problema che ogni FF passa il Clock al successivo, passando dunque i ritardi che sono presenti. Il metodo sincrono invece non ha problemi di ritardi in quanto tutti i FF sono sincronizzati dallo stesso Clock. 
 
-Noi costruiremo dunque un contatore sincrono. Lo schema circuitale è riportato nella seguente figura.
-
-$$figura$$
+Noi costruiremo dunque un contatore sincrono. Lo schema circuitale è il primo blocco riportato in Figura \ref{cir12:dac}.
 
 Come vediamo abbiamo messo una linea RC come nel caso del circuito precedente per settare in automatico il valore iniziale (in questo caso abbiamo settato 0). Abbiamo inoltre inserito un FF di tipo D sincronizzato con il Clock del contatore. Tale elemento,  collegato agli ingressi Up/Down, fa si che se decidiamo di cambiare il controllo Up/Down il segnale dovrà passare attraverso il FF di "controllo". Dato che abbiamo i ritardi, tale segnale raggiungerà il contatore solo  quando il Clock è alto. Con tale accorgimento non rischiamo di interferire con il contatore quando il Clock è basso, cosa che potrebbe provocare errori nel conteggio.
 
@@ -32,10 +29,31 @@ con $\epsilon$ l'incertezza relativa di $R$ più piccola. Si nota dunque che ott
 
 Dobbiamo dunque trovare un'alternativa, che ci è data dal DAC, integrato contenente il R-2R ladder e facente funzione di convertitore. Tale circuito è essenziale per eliminare i problemi dati dalla preponderanza delle incertezze sulle resistenze di valore minore. Infatti, le resistenze utilizzate sono tutte dello stesso taglio, e nel processo costruttivo si ritroveranno ad avere una incertezza confrontabile.
 
-Inseriamo dunque il DAC all'uscita del circuito discusso al paragrafo precedente (dove per uscita intendiamo i valori di 0 e 1 logico in uscita dai due contatori). Essendo l'uscita di un contatore, il valore di tensione che ci aspettiamo di osservare sarà variabile (forma a dente di sega) dallo zero ad un valore impostabile. Per trovare tale valore bisogna tener conto del fatto che questo integrato lavora con correnti di riferimento. Per impostarla basta porre una corrente entrante al piedino 14: nel nostro caso abbiamo utilizzato una corrente
+\begin{figure}[htpc]
+\centering
+	\includegraphics[width=.85\textwidth]{../E12/latex/DAC.pdf}
+	\caption{}
+	\label{cir12:DAC}
+\end{figure}
+
+Inseriamo dunque il DAC all'uscita del circuito discusso al paragrafo precedente come in Figura \ref{cir12:DAC} (dove per uscita intendiamo i valori di 0 e 1 logico in uscita dai due contatori). Essendo l'uscita di un contatore, il valore di tensione che ci aspettiamo di osservare sarà variabile (forma a dente di sega) dallo zero ad un valore impostabile. Per trovare tale valore bisogna tener conto del fatto che questo integrato lavora con correnti di riferimento. Per impostarla basta porre una corrente entrante al piedino 14: nel nostro caso abbiamo utilizzato una corrente
 $$I_{rif}=\frac{4.4 \si{\volt}}{2.2\si{\kilo\ohm}} = 2 \si{\milli\ampere}$$
 che ci permette di calcolare la corrente in uscita di fondo scala come (con n numero di bit, cioè 8)
 $$I_{fs}=\frac{2^n - 1}{2^n} I_{ref} = \frac{7}{8} I_{ref}= 1.75 \si{\milli\ampere}$$
-Dunque se poniamo all'uscita del DAC una resistenza di $2 \si{\kilo\ohm}$\footnote{Il costruttore richiedeva l'utilizzo di resistenze di valore più elevato; ma, vista l'impedenza in entrata dell'oscilloscopio, se avessimo inserito tale valore avremmo fatto passare corrente anche nell'oscilloscopio, rompendo l'approssimazione di partitore all'uscita.} messa a comune, ai suoi capi la caduta di tensione a fondo scala sarà di circa $3.5 \si{\volt}$. Come si vede nel grafico in Figura \ref{}, il valore atteso così calcolato è rispettato: infatti, il valore minimo di tensione ottenuto è stato di $-3.5 \si{\volt}$ (se colleghiamo l'oscilloscopio a $I_{out}$ la corrente è entrante nel DAC).
+Dunque se poniamo all'uscita del DAC una resistenza di $2 \si{\kilo\ohm}$\footnote{Il costruttore richiedeva l'utilizzo di resistenze di valore più elevato; ma, vista l'impedenza in entrata dell'oscilloscopio, se avessimo inserito tale valore avremmo fatto passare corrente anche nell'oscilloscopio, rompendo l'approssimazione di partitore all'uscita.} messa a comune, ai suoi capi la caduta di tensione a fondo scala sarà di circa $3.5 \si{\volt}$. Come si vede nel grafico in Figura \ref{fig12:sega}, il valore atteso così calcolato è rispettato: infatti, il valore minimo di tensione ottenuto è stato di $-3.5 \si{\volt}$ (se colleghiamo l'oscilloscopio a $I_{out}$ la corrente è entrante nel DAC).
+
+\begin{figure}[htpc]
+\centering
+	\includegraphics[width=.65\textwidth]{../E12/latex/sega.pdf}
+	\caption{}
+	\label{fig12:sega}
+\end{figure}
 
 Se vogliamo invece ottenere una forma d'onda triangolare dobbiamo far si che, al posto dell'interruttore per controllare la discesa e la salita, ci sia un dispositivo che inverta il valore logico in entrata nel JK quando c'è un massimo o un minimo. A tal fine, ci viene in aiuto un piedino dell'integrato che diventa uno nel massimo e nel minimo del segnale: ponendolo come clock di un JK in modalità toggle, questo invertirà Q sul fronte di salita (appunto quando c'è un massimo o un minimo).
+
+\begin{figure}[htpc]
+\centering
+	\includegraphics[width=.65\textwidth]{../E12/latex/triangolare.pdf}
+	\caption{}
+	\label{fig12:triangolare}
+\end{figure}
