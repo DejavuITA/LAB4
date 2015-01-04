@@ -14,10 +14,10 @@ Tenendo conto di ciò, nei paragrafi successivi analizzeremo gli aspetti legati 
 
 \subsubsection*{Operazionale U1}
 
-Con il primo stadio in entrata (operazionale U1 in Figura \ref{cir8:compensation}) eliminiamo i segnali di modo comune generati dagli elettrodi (oltre ad avere un'alta impedenza in ingresso e quindi un valore in entrata ad U1 più fedele alla reale ddp generata dal corpo). In testa ed in coda a questo stadio sono anche presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
+Con il primo stadio in entrata (operazionale U1 in Figura \ref{cir7:elettro-cardiogramma}) eliminiamo i segnali di modo comune generati dagli elettrodi (oltre ad avere un'alta impedenza in ingresso e quindi un valore in entrata ad U1 più fedele alla reale ddp generata dal corpo). In testa ed in coda a questo stadio sono anche presenti delle capacità che creano due filtri: rispettivamente un passa basso ed un passa alto.
 
 \paragraph*{Passa Basso}
-Posto in testa ad U1, e composto dalle capacità $C_c$ e $C_d$, è necessario per abbattere eventuali rumori ambientali. Inserendo le capacito nel circuito come in Figura \ref{cir8:compensation}, il datasheet dell'operazionale ci fornisce direttamente le frequenze di taglio di modo differenziale
+Posto in testa ad U1, e composto dalle capacità $C_c$ e $C_d$, è necessario per abbattere eventuali rumori ambientali. Inserendo le capacito nel circuito come in Figura \ref{cir7:elettro-cardiogramma}, il datasheet dell'operazionale ci fornisce direttamente le frequenze di taglio di modo differenziale
 \begin{equation*}
 	\frac{1}{2 \pi R ( C_d + C_c ) } = \SI{194}{\Hz}
 \end{equation*}
@@ -29,7 +29,7 @@ e di modo comune
 Con queste capacità riusciamo dunque ad eliminare i segnali di modo comune ad alte frequenze, ma soprattutto tagliamo ogni frequenza superiore ai \SI{200}{\Hz} in modo differenziale (il nostro segnale è infatti sui \SI{1.25}{\Hz} come da premesse), e dunque restringiamo drasticamente le frequenze ammesse ad essere amplificate dal nostro circuito.
 
 \paragraph*{Passa Alto}
-Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir8:compensation}, elimina eventuali segnali continui in output. La sua frequenza di taglio è di circa \SI{3}{\Hz}. Inoltre, è necessario che l'impedenza siano adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir8:compensation}).
+Essendo posto all'uscita dell'operazionale (capacità $C_1$ in Figura \ref{cir7:elettro-cardiogramma}), elimina eventuali segnali continui in output. La sua frequenza di taglio è di circa \SI{3}{\Hz}. Inoltre, è necessario che l'impedenza siano adattate, ovvero dovrà essere vista come infinita in entrata al prossimo blocco: per far ciò poniamo un ulteriore operazionale (un OP07, U2 in Figura \ref{cir7:elettro-cardiogramma}).
 
 \subsubsection*{Operazionale U3 ed active gards}
 
@@ -39,7 +39,7 @@ Per effettuare la polarizzazione dobbiamo dunque attingere ad una tensione di $\
 
 \subsubsection*{Pile e amplificatore di isolamento}
 
-Per alimentare il circuito abbiamo optato per utilizzare due pile da \SI{9}{\volt}, e come comune il polo positivo di una collegato al polo negativo dell'altra. Questo ha permesso di abbattere tutti i rumori relativi all'alimentazione dell'edificio e di avere una comune flottante rispetto a quella dell'oscilloscopio (in nero nella Figura \ref{cir8:compensation}).
+Per alimentare il circuito abbiamo optato per utilizzare due pile da \SI{9}{\volt}, e come comune il polo positivo di una collegato al polo negativo dell'altra. Questo ha permesso di abbattere tutti i rumori relativi all'alimentazione dell'edificio e di avere una comune flottante rispetto a quella dell'oscilloscopio (in nero nella Figura \ref{cir7:elettro-cardiogramma}).
 
 Per isolare ulteriormente il circuito ed evitare giri di massa abbiamo anche utilizzato un ISO124. Questo operazionale ha le seguenti caratteristiche
 \begin{itemize}[noitemsep]
@@ -51,7 +51,7 @@ Per isolare ulteriormente il circuito ed evitare giri di massa abbiamo anche uti
 \centering
 \includegraphics[width=.6\textwidth]{../E07/latex/circuito.pdf}
 \caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma. Il diverso colore della comune serve a rendere evidente l'indipendenza delle comuni fra il circuito e il collegamento all'oscilloscopio.}
-\label{cir8:compensation}
+\label{cir7:elettro-cardiogramma}
 \end{figure}
 
 \subsection{Amplificazione}
@@ -77,11 +77,11 @@ La capacità di \SI{10}{\nano\farad} inserita è un ulteriore stadio di abbattim
 
 \subsection{Grafico dell'ECG}
 
-Presentiamo ora l'elettrocardiogramma di uno degli sperimentatori.
+Presentiamo ora in Figura \ref{fig7:ecg_output} l'elettrocardiogramma di uno degli sperimentatori.
 
 \begin{figure}[htpc]
 \centering
 \includegraphics[width=.7\textwidth]{../E07/latex/g4.pdf}
 \caption{Grafico della tensione registrata dall'oscilloscopio in funzione del tempo (ECG).}
-\label{cir8:compensation}
+\label{fig7:ecg_output}
 \end{figure}

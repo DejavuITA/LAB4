@@ -186,13 +186,14 @@ Riportiamo a seguire la tavola di verità per questa porta.
 		\label{cir9:iXOR}
         \end{subfigure}
 \caption{Tabella di verità e simbolo circuitale delle porte XOR e implementazione con sole porte NAND}
+\label{cir9:xor}
 \end{figure}
 
 Senza utilizzare le mappe di Karnaugh, è facile vedere che vale $A \oplus B=A\overline B + \overline A B$ e applicando il teorema di De Morgan si ottiene:
 
 $$A \oplus B=A\overline B + \overline A B=\overline{\overline{A\overline B + \overline A B}}=\overline{\overline{A\overline B} \cdot \overline{\overline A B}}$$
 
-Dunque, il circuito per realizzare una porta XOR usando porte NAND e NOT è riportato in Figura \ref{cir9:XOR}.
+Dunque, il circuito per realizzare una porta XOR usando porte NAND e NOT è riportato in Figura \ref{cir9:xor}.
 
 Come vediamo, la realizzazione da noi progettata prevede l'utilizza do 2 porte NOT e 3 NAND.
 Ne abbiamo verificato il funzionamento con la scheda a LED.
