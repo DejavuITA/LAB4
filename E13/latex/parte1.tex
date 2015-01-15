@@ -53,6 +53,7 @@ Poichè noi lavoriamo con frequenze reali positive, ci interessa il modulo e sol
 
 Le ipotesi del teorema del campionamento sono dunque verificate e possiamo studiarne le conseguenze. Per comodità definiamo $\nu_{\alpha}=\frac{\omega_{\alpha}}{2\pi}$.
 
+%Basta usare la formula commentata sotto e si ottiene subito il risultato. Io lascio i calcoli espliciti per rompere il cazzo a chi lo corregge.
 
 \subsubsection{$f_c \gg f_s$}
 
@@ -105,13 +106,13 @@ Vediamo immediatamente come nella serie compaiano solo le armoniche dispari, ovv
 
 Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze non è limitato. Dunque non vale il teorema del campionamento. Tuttavia, essendo i coefficienti di fourier proporzionali a $\frac{1}{n}$, è evidente che le armoniche con frequenze alte avranno un impatto sulla ricostruzione del segnale minore che le prime armoniche. È dunque sufficiente, per ottenere un buon campionamento, utilizzare una frequenza di qualche fattore maggiore rispetto alle prime armoniche. 
 
-Per completezza ricordiamo che è possibile anche ottenere lo spettro della $f(t)$ utilizzando direttamete le trasformate di Fourier. È infatti sufficiente ricordare che la trasformata di Fourier di una funzione periodica con periodo $2\pi$ è semplicemente:
+%Per completezza ricordiamo che è possibile anche ottenere lo spettro della $f(t)$ utilizzando direttamete le trasformate di Fourier. È infatti sufficiente ricordare che la trasformata di Fourier di una funzione periodica con periodo $2\pi$ è semplicemente:
 
-$$F(f(t))(\omega)=2\pi \sum_{n=-\infty}^{+\infty} c_n \delta(\omega-n ) $$
+%$$F(f(t))(\omega)=2\pi \sum_{n=-\infty}^{+\infty} c_n \delta(\omega-n ) $$
 
-dove i coefficienti $c_n=\frac{1}{2\pi}\int_{-\pi}^{+\pi} f(t)e^{-int}dt$.
+%dove i coefficienti $c_n=\frac{1}{2\pi}\int_{-\pi}^{+\pi} f(t)e^{-int}dt$.
 
-Il risultato è lo stesso di quello sopra calcolato. Notiamo inoltre che le $\nu_n$ sono quantizzate.
+%Il risultato è lo stesso di quello sopra calcolato. Notiamo inoltre che le $\nu_n$ sono quantizzate.
 
 $$**grafico**$$
 
