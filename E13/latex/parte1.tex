@@ -105,11 +105,13 @@ Vediamo immediatamente come nella serie compaiano solo le armoniche dispari, ovv
 
 Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze non è limitato. Dunque non vale il teorema del campionamento. Tuttavia, essendo i coefficienti di fourier proporzionali a $\frac{1}{n}$, è evidente che le armoniche con frequenze alte avranno un impatto sulla ricostruzione del segnale minore che le prime armoniche. È dunque sufficiente, per ottenere un buon campionamento, utilizzare una frequenza di qualche fattore maggiore rispetto alle prime armoniche. 
 
-Per completezza ricordiamo che è possibile anche ottenere la $f(t)$ utilizzando le trasformate di Fourier. È infatti sufficiente calcolare la trasformata per un solo rettangolo e poi fare il prodotto di convoluzione con la $\delta$ tenendo conto della periodicità. 
+Per completezza ricordiamo che è possibile anche ottenere lo spettro della $f(t)$ utilizzando direttamete le trasformate di Fourier. È infatti sufficiente ricordare che la trasformata di Fourier di una funzione periodica con periodo $2\pi$ è semplicemente:
 
-$$f(t)=\sum_{n=-\infty}^{+\infty}\frac{1}{2}\frac{sin(n/2)}{n/2}\delta(\omega-\frac{n}{\tau})$$
+$$F(f(t))(\omega)=2\pi \sum_{n=-\infty}^{+\infty} c_n \delta(\omega-n ) $$
 
-Il risultato finale è lo stesso, sebbene ci sia un abuso di notazione in quanto la $\delta$ è una distribuzione e ha senso solo sotto il segno di integrale. Sarebbe più corretto utilizzare una delta di Kronecker.
+dove i coefficienti $c_n=\frac{1}{2\pi}\int_{-\pi}^{+\pi} f(t)e^{-int}dt$.
+
+Il risultato è lo stesso di quello sopra calcolato. Notiamo inoltre che le $\nu_n$ sono quantizzate.
 
 $$**grafico**$$
 
@@ -131,7 +133,7 @@ Lo sviluppo in serie di Fourier di tale funzione è:
 f(t)=\sum_{n=0}^{+\infty}\frac{8}{(2n+1)^2\pi^2}cos (\frac{2\pi(2n+1)}{\tau}t)
 \end{equation}
 
-Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=\frac{2n+1}\nu_0$. Osservando la FFT dei dati vediamo che ciò è anche in questo caso vero. Anche in questo caso non vale il teorema del campionamento.
+Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=\frac{2n+1}\nu_0$. Osservando la FFT dei dati vediamo che ciò è corretto. Anche in questo caso non vale il teorema del campionamento.
 
 $$**grafico**$$
 
