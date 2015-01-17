@@ -18,11 +18,28 @@ $$00001111\pm10=\frac{-4}{255}(15\pm2)=(-0.23\pm0.03)$$
 
 Come vediamo, il valore digitale è compatibile con quello analogico ottenuto misurando direttamente la tensione in ingresso. Riportiamo ora un grafico ottenuto utilizzando l'oscilloscopio. 
 
+%\begin{figure}[htpc]
+%\centering
+%	\includegraphics[width=.73\textwidth]{../E13/latex/zoom.pdf}
+%	\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. Se inseriamo altri partitori, la tensione avrà dunque delle fluttuazioni. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
+%	\label{graf:zoom}
+%\end{figure}
+
 \begin{figure}[htpc]
 \centering
-	\includegraphics[width=.73\textwidth]{../E13/latex/zoom.pdf}
-	\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. Se inseriamo altri partitori, la tensione avrà dunque delle fluttuazioni. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
-	\label{graf:zoom}
+	\begin{subfigure}[hc]{.49\textwidth}
+		\centering
+		\includegraphics[width=.99\textwidth]{../E13/latex/tracker.pdf}
+		\caption{}
+		\label{gr13:track}
+        \end{subfigure}%
+        \begin{subfigure}[hc]{.49\textwidth}
+		\centering
+		\includegraphics[width=.99\textwidth]{../E13/latex/zoom.pdf}
+		\caption{}
+		\label{gr13:zoom}
+        \end{subfigure}
+\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. Se inseriamo altri partitori, la tensione avrà dunque delle fluttuazioni. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
 \end{figure}
 
 \subsection{Teorema del campionamento}
@@ -30,7 +47,6 @@ Come vediamo, il valore digitale è compatibile con quello analogico ottenuto mi
 Il teorema del campionamento (o teorema di Nyquist-Shannon) è enunciato come segue. Per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $f_c$ deve essere il doppio della frequenza massima $f_s$ del segnale da campionare.
 
 Bisogna però tenere presente che tale teorema è valido solo se la trasformata di Fourier del segnale da campionare è limitata nel dominio delle frequenze, cioè esiste solo una banda di frequenze in cui la trasformata non è nulla.
-
 
 \subsection{Campionamento di una funzione sinusoidale}
 
