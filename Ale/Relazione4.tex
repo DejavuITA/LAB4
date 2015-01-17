@@ -20,7 +20,7 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 
 \subsection{Verifica del funzionamento di un comparatore}
 
-In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 come comparatore.
+In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 utilizzato come comparatore.
 
 \begin{wrapfigure}[18]{r}{0.4\textwidth}
   \begin{center}
@@ -31,8 +31,8 @@ In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un 
 \end{wrapfigure}
 
 Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$A741, lo slew rate particolarmente elevato permette di confrontare più velocemente i segnali.
-Il funzionamento di questo integrato può essere semplificato, se valutato in configurazione di open loop, schematizzandone il funzionamento con un transistor BJT a collettore aperto, in il collettore del transistor rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}).
-Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa
+Il funzionamento di questo integrato può essere semplificato, se valutato in configurazione di open loop, schematizzandone il funzionamento con un transistor BJT a collettore aperto, in cui il collettore del transistor rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}).
+Inserendo una resistenza $R_p$ (detta di Pull-Up) tra $V_{out}$ e $V_c$ otteniamo:
 
 \begin{equation}
 V_{out} = \bigg \{

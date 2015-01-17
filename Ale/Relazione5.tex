@@ -1,6 +1,6 @@
 \section{14.10.2014 - Raddrizzatore, Amplificatori e Termoresistenza}
 
-In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile anche per segnali di bassa tensione). Dopodiché valuteremo la capacità di un amplificatore differenziale e dell'integrato $AD622$ di abbattere i guadagni di modo comune. Infine utilizzeremo una termoresistenza per ricavare la temperatura in alcune situazioni.
+In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile anche per segnali di bassa tensione). Dopodiché valuteremo la capacità di un amplificatore differenziale e dell'integrato $AD622$ di abbattere i guadagni in modo comune. Infine utilizzeremo una termoresistenza per misurare la temperatura.
 
 \subsection*{Strumenti e materiali}
 
@@ -19,9 +19,9 @@ In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile a
 
 \subsection{Raddrizzatore di precisione}
 
-\subsubsection*{Premessa sui raddrizzatori}
+%\subsubsection*{Premessa sui raddrizzatori}
 
-I raddrizzatori sono dei circuiti il cui scopo è quello di effettuare il modulo di un segnale in ingresso preservandone la forma. In precedenti corsi di optoelettronica abbiamo incontrato alcuni semplici raddrizzatori i cui elementi circuitali chiave erano i diodi. Questi dispositivi sono in grado di portarsi in conduzione, e quindi di chiudere il ramo di circuito in cui si è posto il diodo, se la tensione al polo positivo è maggiore di quella al polo negativo; altrimenti il diodo apre il circuito. In realtà, ciò accade unicamente nel caso in cui il diodo sia ideale: per polarizzare un diodo è infatti necessario creare una differenza di tensione ai suoi capi, detta tensione di soglia $V_d$, che ha un valore di $\approx 0.6$ \si{\volt}; altrimenti il diodo risulterà come non polarizzato e dunque non in conduzione. Questo fatto, nella creazione di raddrizzatori può creare alcuni svantaggi, soprattutto se necessaria un'alta precisione (lavorando con piccoli valori di tensione): il segnale in uscita sarà con la stessa forma d'onda del segnale in entrata, ma con un offset di $-0.6$\si{\volt} dato dalla $V_d$; inoltre, se i segnali in entrata hanno valori più piccoli della tensione di soglia, il diodo non entrerà mai in conduzione. Di seguito presentiamo alcuni circuiti che risolvono in parte queste problematiche.
+%I raddrizzatori sono dei circuiti il cui scopo è quello di effettuare il modulo di un segnale in ingresso preservandone la forma. In precedenti corsi di optoelettronica abbiamo incontrato alcuni semplici raddrizzatori i cui elementi circuitali chiave erano i diodi. Questi dispositivi sono in grado di portarsi in conduzione, e quindi di chiudere il ramo di circuito in cui si è posto il diodo, se la tensione al polo positivo è maggiore di quella al polo negativo; altrimenti il diodo apre il circuito. In realtà, ciò accade unicamente nel caso in cui il diodo sia ideale: per polarizzare un diodo è infatti necessario creare una differenza di tensione ai suoi capi, detta tensione di soglia $V_d$, che ha un valore di $\approx 0.6$ \si{\volt}; altrimenti il diodo risulterà come non polarizzato e dunque non in conduzione. Questo fatto, nella creazione di raddrizzatori può creare alcuni svantaggi, soprattutto se necessaria un'alta precisione (lavorando con piccoli valori di tensione): il segnale in uscita sarà con la stessa forma d'onda del segnale in entrata, ma con un offset di $-0.6$\si{\volt} dato dalla $V_d$; inoltre, se i segnali in entrata hanno valori più piccoli della tensione di soglia, il diodo non entrerà mai in conduzione. Di seguito presentiamo alcuni circuiti che risolvono in parte queste problematiche.
 
 \subsubsection{Raddrizzatore}
 
@@ -63,25 +63,25 @@ V_{out}=\frac{1}{1+A} (A V_{in} - V_d) \approx V_{in} \qquad V_{A} \approx V_{in
 
 In Figura \ref{gr5:primo_raddrizzatore} presentiamo i grafici delle tensioni in funzione del tempo alla frequenza di $50$ \si{\hertz}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=19.5cm]{../E05/latex/unite_tempo.pdf}}
+   {\includegraphics[width=16.5cm]{../E05/latex/unite_tempo.pdf}}
  \caption{Grafici delle tensioni in funzione del tempo. Il primo grafico è quello relativo alla tensione all'uscita del circuito $V_{out}$, il secondo alla tensione in uscita dall'OPAMP $V_A$, dove è facile vedere che l'operazionale entra in saturazione negativa.}
  \label{gr5:primo_raddrizzatore}
 \end{figure}
 
 In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle tensioni come funzioni di $V_{in}$
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=19.5cm]{../E05/latex/u_risposta.pdf}}
- \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'OPAMP in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici le (\ref{eq5:leggi_1.1}).}
+   {\includegraphics[width=16.5cm]{../E05/latex/u_risposta.pdf}}
+ \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'OPAMP in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici (\ref{eq5:leggi_1.1}).}
  \label{gr5:primo_raddrizzatore_vin}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=14.5cm]{../E05/latex/zoom.pdf}}
+   {\includegraphics[width=11.5cm]{../E05/latex/zoom.pdf}}
  \caption{Grafico della tensione in entrata (tratteggiata) e della tensione in uscita dal circuito (in verde) in funzione del tempo. Si nota il fenomeno esposto nel paragrafo.}
  \label{gr5:problema}
 \end{figure}
@@ -122,9 +122,9 @@ V_{out}=-\frac{R_2}{R_1}V_{in} \qquad V_A = \frac{R_2}{R_1} V_{in} + V_d
 
 In Figura \ref{gr5:secondo_raddrizzatore} presentiamo il grafico della tensione.
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=14.5cm]{../E05/latex/radd_ott.pdf}}
+   {\includegraphics[width=11.5cm]{../E05/latex/radd_ott.pdf}}
  \caption{Grafico delle tensioni in funzione del tempo. Notiamo che il guadagno negativo quando $V_{in}<0$, plausibile con (\ref{eq5:v_out_ottimizzato}).}
  \label{gr5:secondo_raddrizzatore}
 \end{figure}
@@ -135,7 +135,7 @@ In Figura \ref{gr5:secondo_raddrizzatore} presentiamo il grafico della tensione.
   \begin{center}
     \includegraphics[width=0.33\textwidth]{../E05/latex/c_teo_diff_amp.pdf}
   \end{center}
-  \caption{Grafico teorico di un amplificatore differenziale. Per $m$ si intende un fattore moltiplicativo rispetto alla $R$.}
+  \caption{Schema circuitale di un amplificatore differenziale. Per $m$ si intende un fattore moltiplicativo rispetto alla $R$.}
   \label{cir5:diff_amp_teo}
 \end{wrapfigure}
 
@@ -183,16 +183,16 @@ In laboratorio abbiamo utilizzato come sorgente di noise il generatore di forme 
 
 Come vediamo, il rumore è stato completamente eliminato dall'amplificatore differenziale. Abbiamo successivamente provato a sbilanciare il circuito, per vedere l'effetto del rumore sul segnale in uscita. E' stata dunque variata la resistenza con trimmer e abbiamo utilizzato un rumore con dei picchi molto accentuati, così da vedere bene gli effetti sul segnale in uscita (l'output è in Figura \ref{gr5:sbil_amp_diff}). 
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=0.85\textwidth]{../E05/latex/amp_diff.pdf}}
+   {\includegraphics[width=0.7\textwidth]{../E05/latex/amp_diff.pdf}}
  \caption{Come vediamo dal grafico, il rumore che abbiamo simulato ha un'ampiezza di 20 Volt picco-picco (sinusoide in nero). Nonostante ciò, l'uscita (in verde) non è affatto influenzata e risulta amplificata di 2 volte, come stimato precedentemente dai calcoli teorici. }
  \label{gr5:amp_diff}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=0.85\textwidth]{../E05/latex/sbil_amp_diff.pdf}}
+   {\includegraphics[width=0.7\textwidth]{../E05/latex/sbil_amp_diff.pdf}}
  \caption{Dopo lo sbilanciamento del circuito non è più garantita la soppressione del rumore in modo comune. Come vediamo, il segnale in uscita risulta distorto. E' dunque necessario calibrare bene il circuito prima di effettuare esperimenti nei quali si vuole eliminare un rumore comune ad entrambi i segnali in ingresso.}
  \label{gr5:sbil_amp_diff}
 \end{figure}
@@ -203,6 +203,12 @@ Inoltre, il guadagno può essere cambiato solo se si cambiano 2 resistenze nel c
 
 \subsubsection*{Circuito didattico con opamp}
 
+
+
+Il circuito visto al paragrafo precedente presenta dei problemi, nonostante abbatta in maniera abbastanza efficiente i segnali di modo comune. Per prima cosa l'impedenza in ingresso vista da un eventuale generatore di segnale è bassa, e ciò rende necessaria una potenza maggiore da parte del generatore per mantenere la tensione ai suoi capi; il secondo luogo, il guadagno non è impostabile (se non cambiando le resistenze ad ogni applicazione: procedura scomoda nelle applicazioni pratiche).
+
+Per ovviare a questi problemi, valutiamo l'amplificatore differenziale in Figura \ref{cir5:instr_amplif}. Si nota subito che l'impedenza in ingresso è molto alta, in quanto gli amplificatori operazionali hanno un valore di impedenza molto alta ai loro ingressi (non a caso sono usati in configurazione follower per adattare le impedenze).
+
 \begin{wrapfigure}[17]{r}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.350\textwidth]{../E05/latex/c_INA.pdf}
@@ -211,9 +217,6 @@ Inoltre, il guadagno può essere cambiato solo se si cambiano 2 resistenze nel c
   \label{cir5:instr_amplif}
 \end{wrapfigure}
 
-Il circuito visto al paragrafo precedente presenta dei problemi, nonostante abbatta in maniera abbastanza efficiente i segnali di modo comune. Per prima cosa l'impedenza in ingresso vista da un eventuale generatore di segnale è bassa, e ciò rende necessaria una potenza maggiore da parte del generatore per mantenere la tensione ai suoi capi; il secondo luogo, il guadagno non è impostabile (se non cambiando le resistenze ad ogni applicazione: procedura scomoda nelle applicazioni pratiche).
-
-Per ovviare a questi problemi, valutiamo l'amplificatore differenziale in Figura \ref{cir5:instr_amplif}. Si nota subito che l'impedenza in ingresso è molto alta, in quanto gli amplificatori operazionali hanno un valore di impedenza molto alta ai loro ingressi (non a caso sono usati in configurazione follower per adattare le impedenze).
 
 Verifichiamo invece che la resistenza posta in mezzo varia effettivamente il guadagno del circuito. Dividiamo il circuito in due parti, calcolandoci prima la tensione fra il punto A e B\footnote{Si noti che un circuito che abbia come $V_{out}$ la differenza fra questi due punti sarebbe flottante sull'uscita. Infatti, una eventuale resistenza di carico messa fra il punto A e B non avrebbe un riferimento di comune.}, per poi la tensione di uscita dell'intero circuito. Per la prima parte, considerando i due operazionali ideali, otteniamo che le tensione agli ingressi invertenti sono $V_{OP_1}^- = V_1$ e $V_{OP_2}^- = V_2$. Dunque ai capi di $R_g$ è presente una differenza di potenziale $V_2-V_1 = \Delta V_{in}$; per l'idealità degli OPAMP, abbiamo inoltre che la corrente che passa per le resistenze $R_1$ ed $R_g$ sono uguali. Otteniamo dunque, sommando le cadute di potenziale
 $$\Delta V_{AB} = \frac{\Delta V_{in}}{R_g} R_g + \frac{\Delta V_{in}}{R_g} R_1 + \frac{\Delta V_{in}}{R_g} R_2$$
@@ -315,12 +318,7 @@ Combinando le due equazioni precedenti si ottiene la dipendenza del valore di re
 R = R_0 \left[ 1 + \alpha \left( T - T_0 \right) \right]
 \end{equation}
 
-\begin{wrapfigure}[17]{l}{0.45\textwidth}
-\centering
-\includegraphics[width=.3\textwidth]{../E05/latex/c_PT100_4wire.pdf}
-\caption{Configurazione di misura a quattro fili: nella maglia esterna scorre la corrente data dal generatore mentre nella maglia interna non scorre corrente. Il voltmetro ha un'impedenza idealmente infinita.}
-\label{cir5:4wire}
-\end{wrapfigure}
+
 
 Invertendo la formula si ottiene:
 \begin{equation}
@@ -334,6 +332,14 @@ I circuito che simulava questa situazione è riportato in Figura \ref{cir5:2wire
 
 Abbiamo notato subito che le misure ricavate con questo circuito soffrivano dell'errore sistematico dato dalle resistenze in serie da \SI{10}{\ohm}.
 Infatti il valore di resistenza letto dall'ohmetro era di \SI{130}{\ohm}, che dava in risultato una temperatura ambiente di $\approx$ \SI{78}{\degreeCelsius}, evidentemente errata.
+
+
+\begin{wrapfigure}[14]{l}{0.45\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{../E05/latex/c_PT100_4wire.pdf}
+\caption{Configurazione di misura a quattro fili: nella maglia esterna scorre la corrente data dal generatore mentre nella maglia interna non scorre corrente. Il voltmetro ha un'impedenza idealmente infinita.}
+\label{cir5:4wire}
+\end{wrapfigure}
 
 Per evitare questo tipo di problemi abbiamo effettuato una misura a quattro fili.
 In questa modalità il multimetro funzionava come generatore di corrente costante tramite due boccole e da voltmetro con le altre due boccole utilizzate.
@@ -357,5 +363,4 @@ In questa esperienza abbiamo studiato alcuni circuiti utili a trasformare un seg
 Successivamente abbiamo studiato il cosiddetto amplificatore da strumentazione, in un circuito didattico costruito con un $\mu$A741 le cui limitazioni sono date dal guadagno fisso e dalla bassa impedenza in entrata e integrato in un dual inline package (AD622).
 Ne abbiamo testato il funzionamento misurando lo sbilanciamento di un ponte di Wheatstone.
 
-Infine abbiamo studiato una problematica di una misura a distanza data dalla lunghezza dei cavi.
-Abbiamo risolto il problema con una misura a quattro fili.
+Infine abbiamo studiato le problematiche di una misura di temperatura a distanza data dalla lunghezza dei cavi. Abbiamo risolto utilizzando un sistema di misura a quattro fili.
