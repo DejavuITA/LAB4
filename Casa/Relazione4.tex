@@ -20,8 +20,6 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 
 \subsection{Verifica del funzionamento di un comparatore}
 
-In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 come comparatore.
-
 \begin{wrapfigure}[18]{r}{0.4\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E04/latex/LM311.pdf}
@@ -30,9 +28,11 @@ In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un 
   \label{cir4:piedinatura_LM311}
 \end{wrapfigure}
 
+In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 come comparatore.
+
 Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$A741, lo slew rate particolarmente elevato permette di confrontare più velocemente i segnali.
-Il funzionamento di questo integrato può essere semplificato, se valutato in configurazione di open loop, schematizzandone il funzionamento con un transistor BJT a collettore aperto, in il collettore del transistor rappresenta l'output dell'opamp e l'emettitore è collegato a comune (Figura \ref{cir4:open_collector}).
-Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa
+Il funzionamento di questo integrato può essere semplificato schematizzandone il funzionamento con un transistor BJT a collettore aperto come in Figura \ref{cir4:open_collector}.
+Se colleghiamo anche una resistenza $R$ fra una tensione arbitraria $V_C$, la funzione di output dell'operazionale diventa (se consideriamo il comparatore in configurazione non invertente)
 
 \begin{equation}
 V_{out} = \bigg \{
@@ -64,7 +64,7 @@ da cui è facile mostrare che la tensione di uscita è proprio (\ref{eq4:compara
   \label{cir4:open_collector}
 \end{wrapfigure}
 
-Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm}) e non c'è caduta ai capi di $R$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R$.
+Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm} e il collegamento con la comune del transistor è interdetto) e non c'è caduta ai capi di $R_p$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R_p$ (definita \textit{resistenza di pullup}).
 
 Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su un ingresso con quella all'altro ingresso. Ad esempio, poniamo l'ingresso invertente ad una tensione di soglia $V_{ref}=0$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$. Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}. Il grafico in Figura \ref{gr4:comparatore} mostra la tensione in entrata e in uscita.
 
@@ -96,7 +96,7 @@ Quando nel segnale è presente un rumore è possibile che il valore di tensione 
 Infatti, l'ampiezza in tensione del rumore può essere tale da passare sopra e sotto la tensione di soglia, invertendo la $V_{out}$ più volte, in accordo con (\ref{eq4:comparatore}).
 
 Per ovviare a questo problema si sfrutta la retroazione positiva dell'amplificatore operazionale per riportare parte della $V_{out}$ sull'ingresso non invertente: ciò permette di creare un offset positivo sulla tensione all'ingresso non invertente quando $V_{in}>0$ e viceversa.
-Quindi, durante il confronto del segnale con la tensione di riferimento, il segnale in entrata risulterà aumentato o diminuito di una certa quantità a seconda di $V_{out}$.
+Quindi, durante il confronto con la tensione di riferimento, il segnale in entrata risulterà aumentato o diminuito di una certa quantità a seconda di $V_{out}$.
 
 Valutiamo queste tensioni di soglia nel trigger di Schmitt non invertente (grafico in Figura \ref{cir4:schmitt}).
 Per fare ciò cerchiamo la dipendenza di $V_{in}$ da $V_{out}$ e da $V^+$ (tensione all'ingresso non invertente). Utilizzando la legge di Kirchhoff sul nodo dell'ingresso non invertente
@@ -106,18 +106,17 @@ da cui otteniamo
 V_{in} = V^+ \frac{R_1+R_2}{R_2} - V_{out} \frac{R_1}{R_2}
 \label{eq4:v_in_parte2}
 \end{equation}
-Dunque otteniamo i valori di soglia (che sono valori di $V_{in}$) ponendo la tensione $V^+=V^-=V_{ref}=0$, cioè il punto di tensione di inversione del comportamento del LM311 a collettore comune, e considerando i due valori possibili di $V_{out}$ dati dalla (\ref{eq4:comparatore}), cioè $V_{out}^{inf}=0$ e $V_{out}^{sup}=V_{C}=5$\si{\volt}:
-$$V_{soglia}^{sup} = - V_{out}^{inf} \frac{R_1}{R_2} = 0 \qquad V_{soglia}^{inf} = - V_{out}^{sup} \frac{R_1}{R_2} = - (0.46 \pm 0.01) \si{\volt}$$
+Otteniamo i valori di soglia (che sono valori di $V_{in}$) ponendo la tensione $V^+=V^-=V_{ref}=0$, cioè il punto di tensione di inversione del comportamento del LM311 a collettore comune, e considerando i due valori possibili di $V_{out}$ dati dalla (\ref{eq4:comparatore}), cioè $V_{out}^{inf}=0$ e $V_{out}^{sup}=V_{C}=5$\si{\volt}:
+\begin{equation}
+V_{soglia}^{sup} = - V_{out}^{inf} \frac{R_1}{R_2} = 0 \qquad V_{soglia}^{inf} = - V_{out}^{sup} \frac{R_1}{R_2} = - (0.46 \pm 0.01) \si{\volt}
+\label{eq4:punti}
+\end{equation}
 da cui è possibile definire la tensione di \textit{isteresi} (cioè la tensione massima in cui un segnale può oscillare attorno alla tensione di riferimento prima di ribaltare l'output del LM311)
 $$V_{isteresi} = |\Delta V| = |V_{soglia}^{sup} - V_{soglia}^{inf}| = V_{out}^{sup} \frac{R_1}{R_2} = (0.46 \pm 0.01) \si{\volt}$$
 
-I punti così calcolati sono visibili nel grafico di isteresi in Figura \ref{gr4:isteresi}.
+Bisogna tener presente che, come già anticipato, i valori calcolati sono quelli che effettivamente deve raggiungere la $V_{in}$ nel riferimento del generatore di forme d'onda per invertire l'uscita dell'operazionale: infatti non è la tensione di riferimento a cambiare (rimane a comune come si vede nel circuito) come potrebbe succedere in una configurazione invertente, ma il segnale stesso ad essere "alzato" di una tensione data dai valori calcolati. Nel nostro caso, il segnale viene "alzato" di $-V_{inf}^{soglia}>0$ una volta che $V_{in}$ raggiunge $V_{ref}=0$: per cambiare nuovamente l'uscita (porla a 0) sarà il segnale "alzato" a dovere la tensione di riferimento, dunque nel riferimento del generatore di forme d'onda la tensione di inversione sarà negativa e uguale a $V_{inf}^{soglia}<0$.
 
-Notiamo però che vi sono alcune incongruenze rispetto al grafico ideale di isteresi: le rette $V_{in}=V_{soglia}$ (per entrambe le soglie) in realtà non sono perpendicolari alle ascisse, e abbiamo ipotizzato che tale comportamento sia imputabile all'entrata dell'opamp in regione lineare, uscendo dalla saturazione.
-Inoltre la tensione di uscita massima non è $5$ \si{\volt} perché, a differenza del comparatore in Figura \ref{cir4:comparatore}, la corrente quando Q è interdetto può passare attraverso il circuito di retroazione, provocando una caduta di potenziale sulla resistenza $R$.
-Tale corrente dipende inoltre dalla tensione in entrata, dunque è spiegata la pendenza della retta $V_{out}^{sup}$.
-
-Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha portato, come ci aspettavamo dalla relazione (\ref{eq4:v_in_parte2}) (si ricorda che $V^+=V_{ref}$), ad una traslazione del grafico in Figura \ref{gr4:isteresi} di un valore dato dall'offset impostato. Infine, durante l'esperienza, abbiamo anche variato $R_1$ per valutare diverse tensioni di isteresi.
+I punti ottenuti in \ref{eq4:punti} sono visibili nel grafico di isteresi in Figura \ref{gr4:isteresi}.
 
 \begin{figure}[ht]
  \centering
@@ -126,11 +125,15 @@ Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha po
  \label{gr4:isteresi}
 \end{figure}
 
-\newpage
+Notiamo però che vi sono alcune incongruenze rispetto al grafico ideale di isteresi: le rette $V_{in}=V_{soglia}$ (per entrambe le soglie) in realtà non sono perpendicolari alle ascisse, e abbiamo ipotizzato che tale comportamento sia imputabile all'entrata dell'opamp in regione lineare, uscendo dalla saturazione.
+Inoltre la tensione di uscita massima non è $5$ \si{\volt} perché, a differenza del comparatore in Figura \ref{cir4:comparatore}, la corrente quando Q è interdetto può passare attraverso il circuito di retroazione, provocando una caduta di potenziale sulla resistenza $R$.
+Tale corrente dipende inoltre dalla tensione in entrata, dunque è spiegata la pendenza della retta $V_{out}^{sup}$.
+
+Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha portato, come ci aspettavamo dalla relazione (\ref{eq4:v_in_parte2}) (si ricorda che $V^+=V_{ref}$), ad una traslazione del grafico in Figura \ref{gr4:isteresi} di un valore dato dall'offset impostato. Infine, durante l'esperienza, abbiamo anche variato $R_1$ per valutare diverse tensioni di isteresi.
 
 \subsection{Oscillatore a rilassamento}
 
-\begin{wrapfigure}[15]{r}{0.45\textwidth}
+\begin{wrapfigure}[16]{r}{0.45\textwidth}
   \begin{center}
     \includegraphics[width=0.30\textwidth]{../E04/latex/c_rilassamento.pdf}
   \end{center}
@@ -140,11 +143,50 @@ Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha po
 
 In questa parte dell'esperienza studieremo il funzionamento di un oscillatore a rilassamento. Tale circuito sfrutta l'instabilità della retroazione positiva per generare un segnale oscillante con una frequenza determinata dai componenti stessi del circuito. In Figura \ref{cir4:oscillatore} è riportato lo schema circuitale. 
 
-L'elemento circuitale fondamentale per il funzionamento dell'oscillatore a rilassamento è il condensatore C. Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro switch della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato analiticamente risolvendo il circuito. Il valore che si ottiene è $T=2RCln(1+\frac{2R_1}{R_2})$.  
+L'elemento circuitale fondamentale per il funzionamento dell'oscillatore a rilassamento è il condensatore C.  Sfruttando il trigger di Schmitt dato dalle resistenze $R_1$ ed $R_2$, la tensione di riferimento (cioè la tensione $V_+$ all'ingresso non invertente) cambia al cambiare di $V_{out}$ come segue
+$$
+V_{+} = \bigg \{
+\begin{array}{rl}
+\beta V_{cc} & \mathrm{se} \quad V_+ > V_- \quad \mathrm{ovvero} \quad V_{out}=V_{cc}\\
+-\beta V_{cc} & \mathrm{se} \quad V_+ < V_- \quad \mathrm{ovvero} \quad V_{out}=-V_{cc}\\
+\end{array}
+$$
+dove $\beta=\frac{R_1}{R_1+R_2}$ è dato dal partitore fra $R_1$ ed $R_2$.
+Nel nostro caso, la capacità renderà la tensione $V_-$ all'ingresso invertente crescente (verso $V_{cc}$) quando $V_{out}=V_{cc}$ e decrescente nel caso opposto. Inoltre, $V_-$ invertirà il segno della derivata una volta raggiunta la tensione $\pm \beta V_{cc}$.
+
+Infatti, supponiamo ad esempio che la tensione $V_-$ stia crescendo. Ciò significa, per quanto detto, che la tensione di riferimento è data dal trigger, cioè $V_+=\beta V_{cc}$. Dunque, una volta raggiunta e superata tale tensione il confronto fra le due invertirà la tensione di uscita e $V_-$ inizierà a decrescere fino a $-\beta V_{cc}$, per poi invertirsi di nuovo. Tale processo porta quindi ad una oscillazione a rilassamento, cioè verso una stabilizzazione a $\pm V_{cc}$ che però non può avvenire per la presenza del trigger. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
+%Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro switch della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
+
+A tal fine consideriamo la parte del circuito costituita dalla capacità C e dalla resistenza R per valutarne la risposta al gradino (cioè quando la tensione in uscita dal $\mu$741 passa da $-V_{cc}$ a $V_{cc}$) e lo schematizziamo con in Figura \ref{cir4:oscillatore_spi}, in quanto è il comportamento della capacità che ci interessa per il calcolo del periodo $T$.
+
+\begin{wrapfigure}[23]{l}{0.28\textwidth}
+  \begin{center}
+    \includegraphics[width=0.26\textwidth]{../E04/latex/c_rilassamento_spi.pdf}
+  \end{center}
+  \caption{}
+  \label{cir4:oscillatore_spi}
+\end{wrapfigure}
+
+Per la legge di Kirkhhoff sulle correnti vale
+$$\frac{u(t)V_{cc} - V(t)}{R} - C \frac{dV(t)}{dt} = 0$$
+con $u(t)=1$ per $t>0$ e $V(t)=V_-$ la differenza di potenziale del condensatore. Quindi otteniamo
+$$\frac{1}{V_{cc} - V(t)} \frac{dV(t)}{dt} = \frac{1}{RC}$$
+L'equazione differenziale ha come soluzione
+$$V(t)=V_{cc} - a e^{-\frac{t}{RC}}$$
+Per trovare la costante $a$ dobbiamo considerare il grafico in Figura \ref{gr4:osc10k} e impostare $V(t=0)=-\beta V_{cc}$. Quindi si ricava che
+\begin{equation}
+V(t)=V_{cc} - V_{cc} (1+ \beta) e^{-\frac{t}{RC}}
+\label{eq4:osc_vt}
+\end{equation}
+Sempre dal grafico sperimentale in Figura \ref{gr4:osc10k} è possibile imporre che $V(T/2)=\beta V_{cc}$. Imponendo l'uguaglianza di questa condizione con (\ref{eq4:osc_vt}) e svolgendo i calcoli il valore che si ottiene per il periodo è
+\begin{equation}
+T=2RCln\left(1+\frac{2R_1}{R_2}\right)
+\label{eq4:periodo_osc}
+\end{equation}  
 
 Nel grafico in Figura \ref{gr4:osc10k} sono riportati i risultati ottenuti per valori di $R=\SI{9.99(1)}{\kohm}$. Come vediamo, carica e scarica del condensatore tendono a $\pm V_{sat}$.
 
-Nella seguente tabella riportiamo i valori teorici e sperimentali di periodo dell'oscillatore a rilassamento.
+Nella seguente tabella riportiamo i valori del periodo teorici calcolati con (\ref{eq4:periodo_osc}), e sperimentali. Osserviamo che i due valori sono compatibili.
 
 \begin{center}
 {\renewcommand{\arraystretch}{1.2}%
@@ -163,7 +205,7 @@ Nella seguente tabella riportiamo i valori teorici e sperimentali di periodo del
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=14.5cm]{../E04/latex/osc10k.pdf}}
- \caption{Circuito oscillatore a rilassamento con $C=\SI{85.0(5)}{\nano\farad}$, $R=\SI{9.99(1)}{\kohm}$, $R_2= \SI{9.96(1)}{\kohm}$ e $R_2=\SI{9.98(1)}{\kohm}$.}
+ \caption{Tensione di output del circuito oscillatore a rilassamento in funzione del tempo. I valori degli elementi circuitali sono: $C=\SI{85.0(5)}{\nano\farad}$, $R=\SI{9.99(1)}{\kohm}$, $R_2= \SI{9.96(1)}{\kohm}$ e $R_2=\SI{9.98(1)}{\kohm}$.}
  \label{gr4:osc10k}
 \end{figure}
 

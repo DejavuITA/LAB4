@@ -45,7 +45,7 @@ La capacità è utilizzata come serbatoio di cariche per attenuare fenomeni di r
 
 Inizialmente abbiamo posto la frequenza a $f=1$\si{\kilo\hertz} e la tensione picco picco a $V_{pp}=10$ \si{\volt}; con la funzione cursore dell'oscilloscopio abbiamo poi misurato $\Delta V = (8.07 \pm 0.01)$ \si{\volt} fra il 10\% e il 90\% del valore di tensione picco picco in uscita e la relativa $\Delta t = (15.9 \pm 0.1)$ \si{\micro\second}, ottenendo uno $SR=(0.507 \pm 0.003)$ \si{\volt\per\micro\second}.
 
-Come però si può vedere dal grafico in Figura \ref{gr3:slew_rate} si nota che nella parte vicina al 10\% è presente una parte di segnale affetta da rumore che potrebbe rendere poco precisa la nostra misura. Infatti siamo interessati al rapporto fra i $\Delta$; dunque portare il limite inferiore ad un valore percentuale più alto, dato il rumore, rende più precisa la misura. Portando dunque la percentuale del limite inferiore al 25\% abbiamo ottenuto i seguenti valori: $\Delta V = (6.48 \pm 0.01)$ \si{\volt} e $\Delta t = (14.5 \pm 0.1)$ \si{\micro\second}, dunque $SR = (0.447 \pm 0.003)$ \si{\volt\per\micro\second}. Durante l'esperienza utilizzeremo questo valore come riferimento per lo Slew Rate del nostro amplificatore.
+Come però si può vedere dal grafico in Figura \ref{gr3:slew_rate} nella parte vicina al 10\% è presente una parte di segnale affetta da rumore che potrebbe rendere poco precisa la nostra misura. Infatti siamo interessati al rapporto fra i $\Delta$; dunque portare il limite inferiore ad un valore percentuale più alto, dato il rumore, rende più precisa la misura. Portando dunque la percentuale del limite inferiore al 25\% abbiamo ottenuto i seguenti valori: $\Delta V = (6.48 \pm 0.01)$ \si{\volt} e $\Delta t = (14.5 \pm 0.1)$ \si{\micro\second}, dunque $SR = (0.447 \pm 0.003)$ \si{\volt\per\micro\second}. Durante l'esperienza utilizzeremo questo valore come riferimento per lo Slew Rate del nostro amplificatore.
 
 Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abbia derivata $dV/dt$ positiva o negativa (grafico in Figura \ref{gr3:slew_rate}, immagine di destra). Nel secondo caso, infatti, abbiamo ottenuto i seguenti valori: $\Delta V = (8.00 \pm 0.01)$ \si{\volt} e $\Delta t = (23.2 \pm 0.1)$ \si{\micro\second}, quindi $SR = (0.345 \pm 0.004)$ \si{\volt\per\micro\second}.
 
@@ -59,7 +59,7 @@ Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abb
   \label{cir3:max_current}
 \end{wrapfigure}
 
-L'amplificatore operazionale ha un valore massimo di corrente erogabile in uscita. Dunque, se montiamo un circuito di feedback come in Figura \ref{cir3:max_current}, la tensione massima ai capi di $R$ sarà fissata dalla corrente massima e dal valore della resistenza stessa, da questa relazione:
+L'amplificatore operazionale ha un valore massimo di corrente erogabile in uscita. Dunque, se montiamo un circuito come in Figura \ref{cir3:max_current}, la tensione massima ai capi di $R$ sarà fissata dalla corrente massima e dal valore della resistenza stessa, da questa relazione:
 \begin{equation*}
 	I_{max} = \frac{V_{clip}}{R}
 \end{equation*}
@@ -99,7 +99,7 @@ Esaminiamo dapprima il circuito, calcolandone la funzione di trasferimento. Per 
 V_{out}=A(s) (V^+-V^-)
 \label{eq3:regola_opamp}
 \end{equation}
-con il guadagno, come detto sopra, che in generale dipende da $s=j\omega$ (e quindi dalla frequenza). Consideriamo
+con il guadagno, come detto sopra, che in generale dipende da $s=j\omega$, e quindi dalla frequenza (non consideriamo $s=\sigma + j\omega$ in quanto siamo interessati alla risposta in frequenza del circuito). Consideriamo
 $$V^+ = V_{in} \qquad V^-=V_{out} \frac{R_1}{R_1+R_2}$$
 dove $V^-$ è ricavato dalla solita formula per l'amplificatore non invertente $(V^+-V^-)/R_1 + (V_{out}-V^-)/R_2 =0$. Definiamo
 $$\beta = \frac{R_1}{R_1+R_2} = \frac{1}{G}$$
@@ -262,7 +262,7 @@ I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad 
 
 \subsection*{Conclusioni}
 
-In questa esperienza siamo riusciti a stimare lo "slew rate" di un amplificatore operazionale $\mu$A741 e la massima corrente erogata. Tali valori sono risultati compatibili con quelli riportati sul datasheet del costruttore. 
+In questa esperienza siamo riusciti a stimare lo \textit{slew rate} di un amplificatore operazionale $\mu$A741 e la massima corrente erogata. Tali valori sono risultati compatibili con quelli riportati sul datasheet del costruttore. 
 
 Successivamente abbiamo verificato la banda passante per un circuito non invertente retroazionato negativamente con guadagno G=11 e G=101. Dai diagrammi di Bode abbiamo visto come aumentando il Gain diminuiva la banda passante (ovvero GBWP=const).
 

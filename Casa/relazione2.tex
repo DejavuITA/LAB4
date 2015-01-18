@@ -24,7 +24,7 @@ In un amplificatore ideale accade che, quando gli ingressi sono entrambi collega
 
 \subsubsection{Configurazione senza retroazione}
 
-Quando colleghiamo entrambi gli ingressi a comune (come in Figura \ref{cir:open_loop}) l'op-amp vede all'ingresso una differenza di potenziale (ovviamente, fra gli ingressi non c'è, in quanto collegati entrambi a comune) la quale viene amplificata dal guadagno a maglia aperta: come $V_{out}$ avremo dunque un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-14.3}{\volt}): ciò implica che l'op-amp si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso da \SI{-15}{\volt} utilizzati come alimentazione in quanto il valore di tensione massimo $|V_{out}|$ è leggermente inferiore a alla tensione di alimentazione $-V_{CC}$.
+Quando colleghiamo entrambi gli ingressi a comune (come in Figura \ref{cir:open_loop}) l'op-amp si comporta come se vedesse una differenza di potenziale fra gli ingressi (ovviamente, fra gli ingressi non c'è realmente, in quanto collegati entrambi a comune): questa viene amplificata dal guadagno a maglia aperta, e dunque avremo come $V_{out}$ un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-14.3}{\volt}): ciò implica che l'op-amp si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso da \SI{-15}{\volt} utilizzati come alimentazione: il valore di tensione massimo $|V_{out}|$ è dunque leggermente inferiore a alla tensione di alimentazione $-V_{CC}$ (si può ipotizzare che tale discrepanza sia dovuta alle cadute di potenziale nella circuiteria interna).
 
 \begin{figure}[ht]
         \centering
@@ -54,7 +54,7 @@ da cui si ricava che
 
 $$V_{out}=\left(1+\frac{R_2}{R_1}\right) V_{off}$$
 
-Analogamente si tratta il caso \textbf{non invertente}, assumendo che $V_B=-V_{off}$ e $V_A=0$. L'analisi risulta dunque identica a quella di un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente. 
+Analogamente si tratta il caso \textbf{non invertente}, assumendo che $V_B=V_{off}$ e $V_A=0$: l'analisi risulta dunque identica a quella di un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente. 
 
 Riportiamo nella seguente tabella i valori di offset calcolati, definendo il guadagno come Gain$=1+R_2/R_1$. 
 
@@ -79,32 +79,48 @@ $119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
   \label{cir2:trimmer}
 \end{wrapfigure}
 
+\subsubsection{Azzeramento della tensione di offset}
+
 Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp (appositamente posti dal produttore a questo scopo), e collegandola a $V^-$ come in Figura \ref{cir2:trimmer}. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} (oltre che uno da \SI{5}{\kilo\ohm}, che è risultato di valore troppo basso) ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\approx 0$. Abbiamo poi controllato che l'offset fosse effettivamente stato minimizzato riutilizzando il circuito in Figura \ref{cir:open_loop} e ottenendo $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
+
+\subsubsection{Effetto delle correnti di polarizzazione}
 
 Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo gli op-amp. Infatti ingresso invertente e non invertente sono collegati alle basi di alcuni transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset.
 
-\begin{wrapfigure}[13]{r}{0.55\textwidth}
+\begin{wrapfigure}[14]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E02/latex/current_correction.pdf}
   \end{center}
-  \caption{Circuito utilizzato per la stima di $V_{off}$ con la correzione sulle correnti data da $R_C$.}
+  \caption{Circuito utilizzato per la stima di $V_{off}$ con la correzione sulle correnti data da $R_C$, calcolata con l'equazione (\ref{eq2:R_C}).}
   \label{cir2:current_correction}
 \end{wrapfigure}
 
 Queste correnti di bias, per quanto piccole (\si{\nano\ampere}), giocano un ruolo sull'offset totale. Per minimizzare il loro impatto sul valore della tensione di offset abbiamo inserito fra l'ingresso non invertente e comune una resistenza di compensazione $R_C$ tale da annullare il contributo delle correnti di offset sulla tensione di uscita.
 
-Il valore opportuno di $R_C$ può essere stimato nel modo che segue. Consideriamo la tensione di uscita, che in funzione delle correnti di polarizzazione è
+Il valore opportuno di $R_C$ volto a minimizzare il contributo su $V_{out}$ delle correnti di polarizzazione può essere stimato utilizzando il principio di sovrapposizione sul circuito in Figura \ref{cir2:current_correction}. Avremo dunque due contributi: uno dato dalla corrente di polarizzazione all'ingresso invertente e uno a quello non invertente.
+
+Consideriamo quindi, per il principio di sovrapposizione, che $I_{b^+}$ sia nulla e sia presente solo  $I_{b^-}$; quest'ultima causa una caduta di potenziale su $R_2$ che va a influire sulla tensione di uscita come
+$$V_{out}^{I_{b^-}}=-R_2 I_{b^-}$$
+Invece, con $ I_{b^-}=0$ e valutando solo l'effetto di $I_{b^+}$, otteniamo (per l'equazione \ref{eq:regola_V} e la legge di Kirkhhoff per le correnti sul nodo dell'ingresso invertente)
+$$\frac{I_{b^+}R_C}{R_1}+\frac{I_{b^+}R_C-V_{out}^{I_{b^+}}}{R_2}=0$$
+da cui si ricava il contributo di $I_{b^+}$ sulla tensione di uscita
+$$V_{out}^{I_{b^+}}=I_{b^+} R_C \left( 1+ \frac{R_2}{R_1}\right)$$
+
+Dunque l'effetto delle due correnti su $V_{out}$ è dato da
 
 \begin{equation}
-V_{out}^{C} = \left( 1+\frac{R_2}{R_1} \right)\left[ \frac{I_{b^-}R_2}{\frac{R_1+R_2}{R_1}} - I_{b^+} R_B\right]
+V_{out}^{C} = V_{out}^{I_{b^+}} + V_{out}^{I_{b^-}}= \left( 1+\frac{R_2}{R_1} \right)\left( I_{b^+} R_C - \frac{I_{b^-}R_2}{1+\frac{R_2}{R_1}}\right)
 \label{eq2:Vout_currents}
 \end{equation}
 
-Si ricava che, supponendo $I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$ e ponendo $V_{out}^{C}=0$ (annullando così il contributo delle correnti di polarizzazione alla tensione di uscita),
+Si ricava che, supponendo $I_{off} = |I_{b^+}|-|I_{b^-}| \approx 0$ e ponendo $V_{out}^{C}=0$ (annullando così il contributo delle correnti di polarizzazione alla tensione di uscita)
 
-$$R_C=\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}} = R_1 // R_2$$
+\begin{equation}
+R_C=\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}} = R_1 // R_2
+\label{eq2:R_C}
+\end{equation}
 
-Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione (circuito in Figura \ref{cir2:current_correction}):
+Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione (circuito in Figura \ref{cir2:current_correction}).
 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c}
@@ -124,7 +140,7 @@ In questa parte dell'esperienza abbiamo progettato diversi circuiti per misurare
 
 \subsubsection{Configurazione senza retroazione}
 
-Nel circuito mostrato in figura abbiamo posto la resistenza all'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e, misurando la caduta di potenziale ai capi della stessa con il multimetro, possiamo ottenere il valore di corrente desiderato applicando semplicemente la legge di Ohm
+Nel circuito mostrato in Figura \ref{circuito:rel2_correnti_senzaretroazione} abbiamo posto la resistenza all'ingresso non invertente (analogamente si può fare con l'ingresso invertente) e, misurando la caduta di potenziale ai capi della stessa con il multimetro, possiamo ottenere il valore di corrente desiderato applicando semplicemente la legge di Ohm
 
 $$V=I_{b^+} R$$
 
@@ -140,35 +156,27 @@ Per far ciò, dato che attendevamo una corrente dell'ordine dei \si{\nano\ampere
 
 Durante la procedura abbiamo però notato che, a causa di rumori ambientali, il valore di tensione sul multimetro fluttuava sulla prima cifra, rendendo nostra misurazione ovviamente non quantitativa (al massimo poteva stimarci l'ordine di grandezza della corrente). Per ovviare, abbiamo inserito in parallelo alla resistenza un condensatore che caricandosi si portava alla stessa ddp dei capi della resistenza. In questo modo abbiamo potuto ottenere un valore meno fluttuante, che si attestava a $V=(-80 \pm 2)$ \si{\milli\volt}, cioè $I_{b^+}=(7.7 \pm 0.2)$ \si{\nano\ampere}.
 
-Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogno considerare che il rumore non permette di avere una stima qualitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Successivamente progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
+Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore della corrente. Di contro bisogna considerare che il rumore non permette di avere una stima quantitativa ed inoltre la resistenza, scaldandosi, modifica il suo valore e potrebbe portare ad un errore sulla misura. Successivamente progetteremo dunque un circuito che, sfruttando l'amplificazione data dall'amplificatore operazionale, minimizzerà questi errori.
 
-Analizziamo ora una possibile causa della  fluttuazione della misura.
-
-\subsubsection*{Rumore termico}
-
-Abbiamo considerato che la fluttuazione della misura sia dovuta ad un possibile effetto del rumore termico sulla nostra resistenza da \SI{10}{\mega\ohm}. Considerando la larghezza di banda del multimetro $\Delta f = \SI{1}{\hertz}$ e siano $k_B = \SI{1.38e-23}{\joule\per\kelvin}$ la costante di Boltzmann, $T$ la temperatura assoluta e $R$ il valore della resistenza presa in considerazione
-
-\begin{equation}
-	V_{eff}^2 = 4 k_B T R \Delta f
-\end{equation}
-
-da cui, ovviamente, si ottiene che il possibile rumore termico è 5 ordini di grandezza inferiore della tensione misurata
-
-\begin{equation}
-	V_{eff} = \sqrt{4 k_B T R \Delta f} \simeq 4 \times 10^{-7} \si{\volt}
-\end{equation}
-
-ed è pertanto ininfluente. Dunque il rumore presente è sicuramente imputabile ad altre cause ambientali.
+%Analizziamo ora una possibile causa della  fluttuazione della misura.
+%
+%\subsubsection*{Rumore termico}
+%
+%Abbiamo considerato che la fluttuazione della misura sia dovuta ad un possibile effetto del rumore termico sulla nostra resistenza da \SI{10}{\mega\ohm}. Considerando la larghezza di banda del multimetro $\Delta f = \SI{1}{\hertz}$ e siano $k_B = \SI{1.38e-23}{\joule\per\kelvin}$ la costante di Boltzmann, $T$ la temperatura assoluta e $R$ il valore della resistenza presa in considerazione
+%
+%\begin{equation}
+%	V_{eff}^2 = 4 k_B T R \Delta f
+%\end{equation}
+%
+%da cui, ovviamente, si ottiene che il possibile rumore termico è 5 ordini di grandezza inferiore della tensione misurata
+%
+%\begin{equation}
+%	V_{eff} = \sqrt{4 k_B T R \Delta f} \simeq 4 \times 10^{-7} \si{\volt}
+%\end{equation}
+%
+%ed è pertanto ininfluente. Dunque il rumore presente è sicuramente imputabile ad altre cause ambientali.
 
 \subsubsection{Configurazione con retroazione negativa}
-
-\begin{wrapfigure}[15]{l}{0.55\textwidth}
-  \begin{center}
-    \includegraphics[width=0.35\textwidth]{../E02/latex/inv_current.pdf}
-  \end{center}
-  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=(98.9\pm0.1)$ \si{\ohm}, $R_2=(99.4\pm0.1)$ \si{\kilo\ohm} e $R_B=(99.4\pm0.1)$ \si{\kilo\ohm}.}
-  \label{circuito:rel2_correnti_retroazione_inv}
-\end{wrapfigure}
 
 Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
 
@@ -177,6 +185,14 @@ Sfruttando un modello simile a quello utilizzato per trovare la tensione di offs
 Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V_{-}$ la tensione al capo di $R_B$ collegato all'OPAMP e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
 
 $$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
+
+\begin{wrapfigure}[15]{l}{0.55\textwidth}
+  \begin{center}
+    \includegraphics[width=0.35\textwidth]{../E02/latex/inv_current.pdf}
+  \end{center}
+  \caption{Schema del circuito retro-azionato utilizzato per stimare la corrente di polarizzazione $I_{b^-}$. Le resistenze utilizzate sono $R_1=(98.9\pm0.1)$ \si{\ohm}, $R_2=(99.4\pm0.1)$ \si{\kilo\ohm} e $R_B=(99.4\pm0.1)$ \si{\kilo\ohm}.}
+  \label{circuito:rel2_correnti_retroazione_inv}
+\end{wrapfigure}
 
 Dato che l'amplificatore operazionale è considerato già stabilizzato per quanto riguarda la tensione di offset, possiamo considerare la tensione all'ingresso invertente uguale all'ingresso non invertente. Vale dunque che $V_{in}=V_{-}=0$ e si trova (considerando $I_{b^-} R_B = V^*$):
 
