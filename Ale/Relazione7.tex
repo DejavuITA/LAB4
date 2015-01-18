@@ -17,12 +17,12 @@ In questa esperienza ingegneristica costruiremo un circuito per effettuare un el
 		\item Paziente (umano).
 \end{itemize}
 
-\begin{wrapfigure}[20]{r}{0.24\textwidth}
-\centering
-\includegraphics[width=.18\textwidth]{../E07/latex/human.pdf}%human.pdf}%doge.pdf}
-\caption{Connessioni al corpo poco umano di uno degli sperimentatori.}
-\label{fig7:human}
-\end{wrapfigure}
+%\begin{wrapfigure}[20]{r}{0.24\textwidth}
+%\centering
+%\includegraphics[width=.18\textwidth]{../E07/latex/human.pdf}%human.pdf}%doge.pdf}
+%\caption{Connessioni al corpo poco umano di uno degli sperimentatori.}
+%\label{fig7:human}
+%\end{wrapfigure}
 
 \subsection{Premesse}
 
@@ -31,7 +31,7 @@ Per progettare un circuito che legga il segnale elettrico del nostro battito car
 	\item Sulla superficie del corpo il segnale ECG è normalmente di circa \SI{1}{mV} (al massimo raggiunge i \SI{4}{mV}) ed ha una frequenza di circa \SI{1.25}{\Hz}.
 	\item Gli elettrodi a nostra disposizione, che realizzano il collegamento tra la strumentazione e il corpo, creano un potenziale di circa \SI{700}{\mV}, quindi circa \num{200} volte maggiore del segnale cardiaco.
 	\item Il segnale da misurare è piccolo, quindi dobbiamo porre particolare attenzione alle fonti di rumore elettromagnetico dati da effetti capacitivi e/o induttivi. Inoltre dobbiamo evitare che i cavi e il paziente si muovano durante la misurazione.
-	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco, per evitare problemi di giri di massa.
+	\item È necessario che il paziente sia isolato dal lato di elaborazione del segnale, alimentato dall'alimentatore da banco, per evitare problemi di giri di massa e pericoli per il paziente stesso dovuti a guasti degli apparecchi elettrici.
 \end{itemize}
 
 Tenendo conto di ciò, nei paragrafi successivi analizzeremo gli aspetti legati all'abbattimento dei rumori e all'amplificazione del segnale in ingresso.

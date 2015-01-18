@@ -15,7 +15,7 @@ Ricordiamo che in ogni schema sono stati sottintesi la circuitazione di alimenta
 \item Un amplificatore operazionale $\mu$A741;
 \item Resistenze e capacità di vari valori;
 %\item un trimmer (potenziometro);
-\item Breadboard e cablaggi vari.
+\item Breadboard e cablaggi.
 \end{itemize}
 
 \subsection{Misura dello Slew Rate}
@@ -171,13 +171,7 @@ Infine, i valori di frequenza di taglio possono essere calcolati dalla legge al 
 \subsection{Guadagno Open Loop}
 \label{par3:open}
 
-\begin{wrapfigure}[17]{r}{0.45\textwidth}
-  \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
-  \end{center}
-  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$. I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)$ \si{\ohm},  $(9.6\pm0.1)$ \si{\ohm}, $(101.3\pm 0.1)$ \si{\ohm} e $(998.2\pm 0.1)$ \si{\ohm} mentre $R_1=\SI{98\pm1}{\kohm}$, $R_2=\SI{97\pm1}{\kohm}$ e $R_3=\SI{98\pm1}{\kohm}$.}
-  \label{cir3:low_frequency}
-\end{wrapfigure}
+
 
 In questa ultima parte dell'esperienza abbiamo cercato di misurare il guadagno $A_{ol}$ del nostro amplificatore reale.
 Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque trovare un modo per misurarlo.
@@ -185,6 +179,14 @@ Come sappiamo, tale guadagno è una funzione della frequenza e dobbiamo dunque t
 Fino alla frequenza di circa \SI{8}{\hertz} il guadagno di un opamp $\mu$A741 è costante a circa \num{2E5}.
 Oltre tale frequenza abbiamo una caduta di circa \SI{20}{\decibel}/decade.
 Non risulta dunque possibile effettuare misure a loop aperto in quanto piccolissime variazioni di tensione ai due ingressi causerebbero grandi effetti in uscita.
+
+\begin{wrapfigure}[17]{r}{0.45\textwidth}
+  \begin{center}
+    \includegraphics[width=0.280\textwidth]{../E03/latex/LF_ol.pdf}
+  \end{center}
+  \caption{Circuito utilizzato per misurare il guadagno $A_{ol}$. I valori di $R_4$ utilizzati sono $(5.2\pm 0.1)$ \si{\ohm},  $(9.6\pm0.1)$ \si{\ohm}, $(101.3\pm 0.1)$ \si{\ohm} e $(998.2\pm 0.1)$ \si{\ohm} mentre $R_1=\SI{98\pm1}{\kohm}$, $R_2=\SI{97\pm1}{\kohm}$ e $R_3=\SI{98\pm1}{\kohm}$.}
+  \label{cir3:low_frequency}
+\end{wrapfigure}
 
 Abbiamo dunque progettato un circuito per controllare la tensione in uscita così da non mandare in saturazione il nostro opamp.
 In Figura \ref{cir3:low_frequency} è riportato lo schema circuitale da noi utilizzato.

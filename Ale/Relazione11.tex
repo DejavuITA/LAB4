@@ -60,7 +60,7 @@ Ciò sarà presente nel circuito successivo.}.
 		\hline
 		1 & 0 & 0 & 1 &  1  &  0\\
 		\hline
-		1 & 1 & 0 & 0 & 1 & 1\\
+		1 & 1 & 0 & 0 & ? & ?\\
 		\hline
 		\end{tabular}}
 		\label{tab11:FFSR}
@@ -108,7 +108,7 @@ La tabella di verità può essere ricavata con considerazioni analoghe al paragr
 		\hline
 		1&1 & 0 & 1 & 0\\
 		\hline
-		1&1 & 1 & "1" & "1"\\
+		1&1 & 1 & ? & ?\\
 		\hline
 		\end{tabular}}
 		\caption{}
@@ -240,7 +240,7 @@ Il circuito, come sempre, è stato verificato utilizzado la basetta a led.
 		\caption{}
 		\label{cir11:no-rimb}
         \end{subfigure}
-\caption{Schema circuitale di un interruttore semplice a sinistra, in centro e a destra tabella di verità e schema circuitale di un interruttore anti-rimbalzo.}
+\caption{Schema circuitale di un interruttore semplice, tabella di verità e schema circuitale di un interruttore anti-rimbalzo.}
 \end{figure}
 
 %\begin{wrapfigure}[14]{l}{0.45\textwidth}
@@ -307,7 +307,7 @@ Dobbiamo ricordarci di non mettere mai contemporaneamente a 0 logico sia Marcia 
 Come ultima parte dell'esperienza abbiamo realizzato un divisore di frequenze servendoci dell'integrato 74LS109, che contiene 2 FF di tipo JK.
 I FF di tipo JK opportunamente alimentati diventano dei FF di tipo T (Toggle).
 
-\begin{wrapfigure}[12]{r}{0.45\textwidth}
+\begin{wrapfigure}[11]{r}{0.45\textwidth}
 	\centering
 	\includegraphics[width=.30\textwidth]{../E11/latex/frequency-divider.pdf}
 	\caption{Schema circuitale del divisore di frequenza.}
@@ -322,16 +322,20 @@ Osservando il circuito riportato in Figura \ref{cir11:freq-div}, possiamo notare
 Poiché $J_1$ è sempre a 1, $D_1$ cambierà di stato solo ad ogni fronte di salita del clock.
 Questo ragionamento è lo stesso anche per il secondo FF e pertanto, ogni FF impostato in questo modo produce in uscita un'onda quadra di frequenza dimezzata rispetto al clock che riceve.
 
-\begin{figure}[htpc]
+\begin{figure}[H]
 \centering
 	\includegraphics[width=.98\textwidth]{../E11/latex/gfreq.pdf}
-	\caption{}
+	\caption{Risposta del divisore di frequenze da noi realizzato.}
 	\label{gr11:freq}
 \end{figure}
 
+
 \subsection*{Conclusioni}
 
-In questa esperienza abbiamo realizzato diversi circuiti logici partendo dalle porte logiche singole, ad esclusione del divisore di frequenze.
-In particolare abbiamo analizzato in funzionamento di diverse tipologie di Flip-Flop completando la tabella di verità.
-Inoltre abbiamo osservato il funzionamento di un interruttore con e senza un dispositivo di antirimbalzo, creato con porte logiche.
-Infine abbiamo realizzato un divisore di frequenze ponendo in serie due (o più) Flip-Flop di tipo JK.
+
+In questa esperienza abbiamo realizzato diversi circuiti a logica binaria utilizzando delle porte e dei Flip-Flop JK. Abbiamo implementato un circuito anti-rimbalzo e un divisore di frequenze.
+
+%In questa esperienza abbiamo realizzato diversi circuiti logici partendo dalle porte logiche singole, ad esclusione del divisore di frequenze.
+%In particolare abbiamo analizzato in funzionamento di diverse tipologie di Flip-Flop completando la tabella di verità.
+%Inoltre abbiamo osservato il funzionamento di un interruttore con e senza un dispositivo di antirimbalzo, creato con porte logiche.
+%Infine abbiamo realizzato un divisore di frequenze ponendo in serie due (o più) Flip-Flop di tipo JK.

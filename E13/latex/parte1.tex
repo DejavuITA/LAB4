@@ -39,12 +39,12 @@ Come vediamo, il valore digitale è compatibile con quello analogico ottenuto mi
 		\caption{}
 		\label{gr13:zoom}
         \end{subfigure}
-\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. Se inseriamo altri partitori, la tensione avrà dunque delle fluttuazioni. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
+\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
 \end{figure}
 
 \subsection{Teorema del campionamento}
 
-Il teorema del campionamento (o teorema di Nyquist-Shannon) è enunciato come segue. Per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $f_c$ deve essere il doppio della frequenza massima $f_s$ del segnale da campionare.
+Il teorema del campionamento afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $f_c$ deve essere il doppio della frequenza massima $f_s$ del segnale da campionare.
 
 Bisogna però tenere presente che tale teorema è valido solo se la trasformata di Fourier del segnale da campionare è limitata nel dominio delle frequenze, cioè esiste solo una banda di frequenze in cui la trasformata non è nulla.
 
@@ -73,25 +73,25 @@ Le ipotesi del teorema del campionamento sono dunque verificate e possiamo studi
 
 \subsubsection{$f_c \gg f_s$}
 
-In questo caso abbiamo utilizzato una $\nu_0=$ e $\nu_c=$. Siamo ampiamente entro le ipotesi del teorema e dunque la ricostruzione del segnale, come è visibile nel grafico, è molto buona. Ricordiamo che la trasformata di Fourier è eseguita sui dati utilizzando la una funzione chiamata FFT (Fast Fourier Transform). Il risultato, non avendo un set di dati continuo e infinito nel dominio non potrà ovviamente coincidere con quello ottenuto matematicamente. Tuttavia osserviamo un picco molto accentuato sulla frequenza $\nu_0$. Ciò ovviamente è corretto in quanto stiamo analizzando un funzione sinusoidale.
+In questo caso abbiamo utilizzato una $\nu_0=100 \si{\hertz}$ e $\nu_c=20 \si{\kilo\hertz}$. Siamo ampiamente entro le ipotesi del teorema e dunque la ricostruzione del segnale, come è visibile nel grafico, è molto buona. Ricordiamo che la trasformata di Fourier è eseguita sui dati utilizzando la una funzione chiamata FFT (Fast Fourier Transform). Il risultato, non avendo un set di dati continuo e infinito nel dominio non potrà ovviamente coincidere con quello ottenuto matematicamente. Tuttavia osserviamo un picco molto accentuato sulla frequenza $\nu_0$. Ciò ovviamente è corretto in quanto stiamo analizzando un funzione sinusoidale.
 
 
 
 \subsubsection{ $f_s<f_c<2f_s$}
 
 
-In questo caso abbiamo utilizzato una $\nu_0=$ e $\nu_c=$. Ci troviamo in una situazione in cui il segnale si riesce ancora a ricostruire ma risulta distorto. Anche la trasformata di Fourier è molto distorta. Un campionamento così fatto fa perdere informazioni al segnale con la conseguenza che non potrà essere ricostruito correttamente.
+In questo caso abbiamo utilizzato una $\nu_0=100 \si{\hertz}$ e $\nu_c=$. Ci troviamo in una situazione in cui il segnale si riesce ancora a ricostruire ma risulta distorto. Anche la trasformata di Fourier è molto distorta. Un campionamento così fatto fa perdere informazioni al segnale con la conseguenza che non potrà essere ricostruito correttamente.
 
 $$**grafico**$$
 
 \subsubsection{ $f_c = f_s$}
 
-In questo caso abbiamo utilizzato una $\nu_0=\nu_c=$. Il segnale risulta irriconoscibile e non si può sapere quale segnale sia stato campionato. Nemmeno la FFT porta informazioni in quanto abbiamo picchi distribuiti senza alcuna correlazione. Non si riesce dunque a ricavare nessuna informazione dal campionamento
+In questo caso abbiamo utilizzato una $\nu_0=100 \si{\hertz}$ e $\nu_c=$. Il segnale risulta irriconoscibile e non si può sapere quale segnale sia stato campionato. Nemmeno la FFT porta informazioni in quanto abbiamo picchi distribuiti senza alcuna correlazione. Non si riesce dunque a ricavare nessuna informazione dal campionamento
 
 $$**grafico**$$
 
 \subsubsection{ $f_c \approx f_s$}
-In questo caso abbiamo utilizzato una $\nu_0=\nu_c=$. Notiamo che avendo utilizzato una frequenza di campionamento più bassa, otteniamo un forma d'onda che in realtà non esiste. Il campionamento fatto con queste frequenze infatti perde più di un periodo della sinusoidale ad ogni punto, e dunque otteniamo una forma d'onda che non porta informazioni rispetto a quella in ingresso.
+In questo caso abbiamo utilizzato una $\nu_0=100 \si{\hertz}$ e $\nu_c=$. Notiamo che avendo utilizzato una frequenza di campionamento più bassa, otteniamo un forma d'onda che in realtà non esiste. Il campionamento fatto con queste frequenze infatti perde più di un periodo della sinusoidale ad ogni punto, e dunque otteniamo una forma d'onda che non porta informazioni rispetto a quella in ingresso.
 
 $$**grafico**$$
 
@@ -118,7 +118,7 @@ Lo sviluppo in serie di Fourier risulta dunque:
 f(t)=\sum_{n=0}^{+\infty}\frac{4}{(2n+1)\pi}sin (\frac{2\pi(2n+1)}{\tau}t)
 \end{equation}
 
-Vediamo immediatamente come nella serie compaiano solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=\frac{2n+1}\nu_0$. Ciò è effettivamente verificato dalla FFT dei dati da noi campionati.
+Vediamo immediatamente come nella serie compaiano solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=(2n+1)\nu_0$. Ciò è effettivamente verificato dalla FFT dei dati da noi campionati.
 
 Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze non è limitato. Dunque non vale il teorema del campionamento. Tuttavia, essendo i coefficienti di fourier proporzionali a $\frac{1}{n}$, è evidente che le armoniche con frequenze alte avranno un impatto sulla ricostruzione del segnale minore che le prime armoniche. È dunque sufficiente, per ottenere un buon campionamento, utilizzare una frequenza di qualche fattore maggiore rispetto alle prime armoniche. 
 
@@ -150,7 +150,7 @@ Lo sviluppo in serie di Fourier di tale funzione è:
 f(t)=\sum_{n=0}^{+\infty}\frac{8}{(2n+1)^2\pi^2}cos (\frac{2\pi(2n+1)}{\tau}t)
 \end{equation}
 
-Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=\frac{2n+1}\nu_0$. Osservando la FFT dei dati vediamo che ciò è corretto. Anche in questo caso non vale il teorema del campionamento.
+Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=(2n+1)\nu_0$. Osservando la FFT dei dati vediamo che ciò è corretto. Anche in questo caso non vale il teorema del campionamento.
 
 $$**grafico**$$
 
@@ -165,7 +165,7 @@ $$f(t):= \frac{2}{\tau}t \quad -\frac{\tau}{2}<t<\frac{\tau}{2}$$
 Lo sviluppo in serie di Fourier è dunque:
 
 \begin{equation}
-f(t)=\sum_{n=1}^{+\infty}\frac{(-1)^{n-1}}{n\pi}sin (\frac{2\pi n}{\tau}t)
+f(t)=2\sum_{n=1}^{+\infty}\frac{(-1)^{n-1}}{n\pi}sin (\frac{2\pi n}{\tau}t)
 \end{equation}
 
 
@@ -179,7 +179,7 @@ In questa ultima parte abbiamo analizzato un segnale radio FM con $\nu_0=$ e fre
 
 $$**grafico**$$
 
-Osservando la FFT vediamo come i vi sia la presenza di una frequenza principale (detta portante) e di altre frequenze che la modulano. 
+Osservando la FFT vediamo come vi sia la presenza di una frequenza principale (detta portante) e di altre frequenze che la modulano. 
 
 $$**finire**$$
 
