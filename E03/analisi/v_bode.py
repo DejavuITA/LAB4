@@ -45,7 +45,7 @@ slope = f1.errorbar(x=np.logspace(0,7,num=500),
 	fmt='--', c='0.5')
 f1.text(140000, 34, u'approx slope:', size=13, va='center', ha='center')
 f1.text(140000, 32, u'$-20\,dB/decade$', size=13, va='center', ha='center')
-f1.text(140000, 30, u'$-8\,dB/ottava$', size=13, va='center', ha='center')
+f1.text(140000, 30, u'$-6\,dB/ottava$', size=13, va='center', ha='center')
 
 A3=185900;
 b3=1/11;

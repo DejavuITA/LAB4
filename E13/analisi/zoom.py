@@ -47,11 +47,11 @@ f1.set_xlim((0.14,0.32))
 f1.set_ylabel(u'd.d.p. [$V$]', labelpad=0, fontsize=14)
 f1.set_xlabel(u'Tempo [$s$]', labelpad=0, fontsize=14)
 
-f1.legend((g1, g2 ), (r'$V_{DAC,input}$', r'$V_{DAC,output}$'), 'upper right', prop={'size': 15})
+f1.legend((g1, g2 ), (r'$V_{ADC,\,input}$', r'$V_{ADC,\,output}$'), 'lower right', prop={'size': 15})
     
 ######
 
 # questo imposta i bordi del grafico
-fig1.subplots_adjust(left=0.10, right=0.98, top=0.93, bottom=0.09, hspace=0.085, wspace=0.05)
+fig1.subplots_adjust(left=0.105, right=0.965, top=0.93, bottom=0.09, hspace=0.085, wspace=0.05)
 # mostra grafico
 plt.show()
