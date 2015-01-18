@@ -39,12 +39,12 @@ In questa esperienza costruiremo un termometro elettronico utilizzando una Pt100
 
 \subsection{Termometro elettronico}
 
-\begin{wrapfigure}[6]{r}{0.6\textwidth}
-\centering
-\includegraphics[width=.6\textwidth]{../E06/latex/s1.pdf}
-\caption{Schema logico del termometro elettronico.}
-\label{fig6:scheme1}
-\end{wrapfigure}
+%\begin{wrapfigure}[6]{r}{0.6\textwidth}
+%\centering
+%\includegraphics[width=.6\textwidth]{../E06/latex/s1.pdf}
+%\caption{Schema logico del termometro elettronico.}
+%\label{fig6:scheme1}
+%\end{wrapfigure}
 
 In questa prima parte vogliamo realizzare un termometro elettronico.
 Per far ciò usiamo una termoresistenza Pt100 di resistenza 100\si{\ohm} a zero gradi Celsius.
@@ -52,7 +52,7 @@ Per far ciò usiamo una termoresistenza Pt100 di resistenza 100\si{\ohm} a zero 
 
 
 Realizzeremo il nostro circuito blocchi, in modo da testarne il funzionamento singolarmente ed evitare pertanto di dover effettuare alla fine la ricerca di eventuali errori su tutto il circuito.
-Inoltre posizioneremo dei punti tra i blocchi appositamente per effettuare misure intermedie.
+%Inoltre posizioneremo dei punti tra i blocchi appositamente per effettuare misure intermedie.
 
 \subsubsection{Convertitore Resistenza-Tensione}
 Per convertire la variazione di resistenza della Pt100 -- generata a sua volta da una variazione in temperatura della stessa -- in tensione, dobbiamo far scorrere in essa una corrente.
@@ -165,7 +165,7 @@ Dobbiamo ora identificare i blocchi relativi al sistema di controllo proporziona
 Affidiamo il compito del blocco di retroazione al circuito finora costruito: questo restituisce un valore di tensione proporzionale alla temperatura letta dalla termoresistenza, che dovrà essere confrontato con la soglia.
 Successivamente, il blocco di controllo deve fare la differenza fra questi due valori e, una volta raggiunto un valore impostabile, diminuire il valore della corrente fornita alla resistenza di potenza in maniera proporzionale ad E.
 Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale.
-Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor BJT.
+Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor BJT di potenza.
 \vspace{-2mm}
 \subsubsection{Confronto [Blocco 4]}
 

@@ -10,7 +10,7 @@ Inoltre, tramite una scheda di acquisizione collegata al pc, verificheremo i ris
 	\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
 	\item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
 	\item Multimetro Agilent 34410A a sei cifre e mezza;
-	\item Circuito montato e valutato nell'esperienza precedente (si veda il Convertitore digitale-analogico in Relazione \ref{rel12:label});
+	\item Circuito montato e valutato nell'esperienza precedente;
 %	\item Un integrato 7400, composto di quattro porte logiche TTL NAND; % '00;
 %	\item Un integrato 74LS02, composto di quattro porte logiche NOR;
 %	\item Un integrato 74LS109;
@@ -63,12 +63,12 @@ Come vediamo, il valore digitale è compatibile con quello analogico ottenuto mi
 		\caption{}
 		\label{gr13:zoom}
         \end{subfigure}
-\caption{Come vediamo la presenza dell'isteresi comporta una variazione nella tensione $V_{in}$. Ciò è dovuto al fatto che la tensione è ottenuta da un partitore. L'utilizzo della resistenza da \SI{10}{\mega\ohm} riduce drasticamente tale problema.}
+\caption{Come vediamo la tensione si stabilizza attorno al valore $V_{in}$. Come già detto, l'oscillazione di 4 bit è dovuta ai ritardi sul Clock introdotti dal controllo automatico di salita/discesa.}
 \end{figure}
 
 \subsection{Teorema del campionamento}
 
-Il teorema del campionamento afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $f_c$ deve essere il doppio della frequenza massima $f_s$ del segnale da campionare.
+Il teorema del campionamento afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $\nu_c$ deve essere il doppio della frequenza massima $\nu_s$ del segnale da campionare.
 
 Bisogna però tenere presente che tale teorema è valido solo se la trasformata di Fourier del segnale da campionare è limitata nel dominio delle frequenze, cioè esiste solo una banda di frequenze in cui la trasformata non è nulla.
 
@@ -95,7 +95,7 @@ Le ipotesi del teorema del campionamento sono dunque verificate e possiamo studi
 
 %Basta usare la formula commentata sotto e si ottiene subito il risultato. Io lascio i calcoli espliciti per rompere il cazzo a chi lo corregge.
 
-\subsubsection{$f_c \gg f_s$}
+\subsubsection{$\nu_c \gg \nu_s$}
 
 In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=20 \si{\kilo\hertz}$. Siamo ampiamente entro le ipotesi del teorema e dunque la ricostruzione del segnale, come è visibile nel grafico, è molto buona. Ricordiamo che la trasformata di Fourier è eseguita sui dati utilizzando la una funzione chiamata FFT (Fast Fourier Transform). Il risultato, non avendo un set di dati continuo e infinito nel dominio non potrà ovviamente coincidere con quello ottenuto matematicamente. Tuttavia osserviamo un picco molto accentuato sulla frequenza $\nu_0$. Ciò ovviamente è corretto in quanto stiamo analizzando un funzione sinusoidale.
 
@@ -116,7 +116,7 @@ In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=20 \si{\kilo\
 %In questo caso abbiamo utilizzato una $\nu_0=100 \si{\hertz}$ e $\nu_c=$. Ci troviamo in una situazione in cui il segnale si riesce ancora a ricostruire ma risulta distorto. Anche la trasformata di Fourier è molto distorta. Un campionamento così fatto fa perdere informazioni al segnale con la conseguenza che non potrà essere ricostruito correttamente.
 
 
-\subsubsection{ $f_c = f_s$}
+\subsubsection{ $\nu_c = \nu_s$}
 
 In questo caso abbiamo utilizzato $\nu_0=\nu_c=100 \si{\hertz}$. Il segnale risulta irriconoscibile e non si può sapere quale segnale sia stato campionato. Nemmeno la FFT porta informazioni in quanto abbiamo picchi distribuiti senza alcuna correlazione. Non si riesce dunque a ricavare nessuna informazione dal campionamento
 
@@ -127,7 +127,7 @@ In questo caso abbiamo utilizzato $\nu_0=\nu_c=100 \si{\hertz}$. Il segnale risu
 	\label{sin2}
 \end{figure}
 
-\subsubsection{ $f_c \approx f_s$}
+\subsubsection{ $\nu_c \approx \nu_s$}
 In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=97 \si{\hertz}$. Notiamo che avendo utilizzato una frequenza di campionamento più bassa, otteniamo un forma d'onda che in realtà non esiste. Il campionamento fatto con queste frequenze infatti perde più di un periodo della sinusoidale ad ogni punto, e dunque otteniamo una forma d'onda che non porta informazioni rispetto a quella in ingresso.
 
 \begin{figure}[H]

@@ -1,4 +1,4 @@
-\section{3.12.2014 - Registro a scorrimento, contatore e convertitore digitale-analogico}
+\section{3.12.2014 - Registro a scorrimento ad anello, contatore e convertitore digitale-analogico}
 
 \label{rel12:label}
 
@@ -23,7 +23,7 @@ In questa esperienza studieremo il funzionamento di alcuni circuiti basati sui F
 
 \subsection{Registro a scorrimento ad anello}
 
-La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizza di FF J-K in modalità D. Tale circuito, come visto a lezione, permette di trasmettere ad ogni fronte di salita del Clock il segnale memorizzato in un FF al successivo. Essendo l'ultimo collegato al primo, il segnale continua a circolare nel nostro circuito. Proprio per questo tale registro viene chiamato ad anello. Lo schema circuitale è riportato in Figura \ref{cir12:shift}.
+La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizzo di FF J-K in modalità D. Tale circuito, come visto a lezione, permette di trasmettere ad ogni fronte di salita del Clock il segnale memorizzato in un FF al successivo. Essendo l'ultimo collegato al primo, il segnale continua a circolare nel nostro circuito. Proprio per questo tale registro viene chiamato ad anello. Lo schema circuitale è riportato in Figura \ref{cir12:shift}.
 
 \begin{figure}[htpc]
 \centering
@@ -34,7 +34,7 @@ La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizz
 
 Per memorizzare gli 1 e 0 logici utilizziamo le linee di Preset e Clear presenti nei FF. La linea RC connessa al Preset del nostro primo FF e ai Clear di tutti gli altri permette di caricare inizialmente un 1 nel primo FF e 0 in tutti gli altri. Ad ogni ciclo di Clock il nostro 1 passerà al successivo e così facendo avremo un segnale alto che cicla all'infinito.
 
-Il motivo per cui è stato messa una linea RC è quella di permettere un set automatico del nostro dispositivo all'accensione. Infatti il nostro generatore di tensione impiegherà un certo $\delta t$ a portarsi a regime (\SI{5}{\volt}). A $t=0^+$ la tensione $V_c$ sarà zero e dunque setterà i nostri bit con un 1 nel primo FF e 0 negli altri (ricordiamo che Clear e Preset sono attivi bassi). Ma essendoci un RC, la tensione in $V_c$ cresce più lentamente della tensione fornita dal generatore. Dopo un tempo adeguato in base al circuito RC (solitamente è sufficiente $4\tau$) la nostra tensione $V_c$ sarà praticamente la tensione di alimentazione e dunque avremo disattivate il Clear e Preset. Dovremo dunque attendere un tempo pari a circa $4\tau$ prima di inviare un segnale di Clock. Dai nostri calcoli risulta che il $\tau$ del nostro circuito è circa $\SI{545}{\milli\second}$ da cui otteniamo che il tempo che dobbiamo attendere è di circa $\SI{545}{\milli\second}$.
+Il motivo per cui è stato messa una linea RC è quella di permettere un set automatico del nostro dispositivo all'accensione. Infatti il nostro generatore di tensione impiegherà un certo $\delta t$ a portarsi a regime (\SI{5}{\volt}). A $t=0^+$ la tensione $V_c$ sarà zero e dunque setterà i nostri bit con un 1 nel primo FF e 0 negli altri (ricordiamo che Clear e Preset sono attivi bassi). Ma essendoci un RC, la tensione in $V_c$ cresce più lentamente della tensione fornita dal generatore. Dopo un tempo adeguato in base al circuito RC (solitamente è sufficiente $4\tau$) la nostra tensione $V_c$ sarà praticamente la tensione di alimentazione e dunque avremo disattivate il Clear e Preset. Dovremo dunque attendere un tempo pari a circa $4\tau$ prima di inviare un segnale di Clock. Avendo usato una $R=10\si{\kilo\ohm}$ e una $C=0.47\si{\micro\farad}$ risulta che il $\tau$ del nostro circuito è circa $\SI{4.7}{\milli\second}$ da cui otteniamo che il tempo che dobbiamo attendere è di circa $\SI{20}{\milli\second}$.
 
 Abbiamo dunque verificato tale circuito con la solita schedina al led. 
 
@@ -54,7 +54,7 @@ Ne abbiamo verificato il funzionamento utilizzando la basetta al led, provando a
 
 \subsection{Convertitore Digitale-Analogico}
 
-In questo parte dell'esperienza convertiremo un segnale digitale  in un segnale analogico il cui valore è dato dalla conversione numerica di un numero da binario a decimale. Per far ciò utilizziamo il DAC, un integrato contenente il R-2R ladder e facente funzione di convertitore. Tale circuito è essenziale se vogliamo convertire un segnale con molti bit. Se volessimo convertire utilizzando un semplice sommatore pesato dovremmo utilizzare resistenze che scalano come $\frac{1}{2^N}$. Le incertezze su tali resistenze quando aumentiamo il numero di bit portano ad una somma di errori sistematici che rendono impossibile convertire in modo corretto il segnale. Nel DAC le resistenze utilizzate sono tutte dello stesso taglio, e avranno dunque una incertezza confrontabile. 
+In questo parte dell'esperienza convertiremo un segnale digitale  in un segnale analogico il cui valore è dato dalla conversione numerica di un numero da binario a decimale. Per far ciò utilizziamo il DAC, un integrato contenente il R-2R ladder e facente funzione di convertitore. Tale circuito è essenziale se vogliamo convertire un segnale con molti bit. Se volessimo convertire utilizzando un semplice sommatore pesato dovremmo utilizzare resistenze che scalano come $\frac{1}{2^N}$. Le incertezze su tali resistenze quando aumentiamo il numero di bit portano ad una somma di errori sistematici che rendono impossibile convertire in modo corretto il segnale. Il DAC è stato progettato in modo da risolvere tale problematica dovuta alle incertezze sulle resistenze.
 
 \begin{figure}[htpc]
 \centering
