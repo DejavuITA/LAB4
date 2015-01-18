@@ -1,20 +1,15 @@
-\section{14.10.2014 - Raddrizzatore, Amplificatori e Termoresistenza}
+\section{Raddrizzatore, Amplificatori e Termoresistenza - 14.10.2014}
 
 In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile anche per segnali di bassa tensione). Dopodiché valuteremo la capacità di un amplificatore differenziale e dell'integrato $AD622$ di abbattere i guadagni di modo comune. Infine utilizzeremo una termoresistenza per ricavare la temperatura in alcune situazioni.
 
 \subsection*{Strumenti e materiali}
 
 \begin{itemize} [noitemsep]
-\item Oscilloscopio Agilent DSO-X 2002A (bandwidth \SI{70}{\mega\hertz}, sample rate \num{2} GSa/s);
-\item Generatore di tensione continua Agilent E3631A (max $\pm \, \SI{25}{\volt}$ o $\pm \, \SI{6}{\volt}$);
-\item Generatore di forme d'onta Agilent 33120A con range di frequenza da \SI{100}{\micro\hertz} a \SI{15}{\mega\hertz};
-\item Multimetro Agilent 34410A a sei cifre e mezza;
 \item Un amplificatore operazionale $\mu$A741;
 \item Un integrato AD622;
 \item Una termoresistenza PT100;
 \item Resistenze e capacità di vari valori;
 \item Due trimmer multigiro da \SI{10}{\kilo\ohm};
-\item Breadboard e cablaggi vari.
 \end{itemize}
 
 \subsection{Raddrizzatore di precisione}
@@ -25,9 +20,9 @@ I raddrizzatori sono dei circuiti il cui scopo è quello di effettuare il modulo
 
 \subsubsection{Raddrizzatore}
 
-\begin{wrapfigure}[16]{r}{0.5\textwidth}
+\begin{wrapfigure}[14]{r}{0.35\textwidth}
   \begin{center}
-    \includegraphics[width=0.350\textwidth]{../E05/latex/c_rectifier_A.pdf}
+    \includegraphics[width=0.30\textwidth]{../E05/latex/c_rectifier_A.pdf}
   \end{center}
   \caption{Circuito del raddrizzatore con un diodo. La resistenza di carico è $R_L=10$ \si{\kilo\ohm}.}
   \label{cir5:raddrizz_1}
@@ -61,33 +56,35 @@ V_{out}=\frac{1}{1+A} (A V_{in} - V_d) \approx V_{in} \qquad V_{A} \approx V_{in
 \label{eq5:leggi_1.1}
 \end{equation}
 
-In Figura \ref{gr5:primo_raddrizzatore} presentiamo i grafici delle tensioni in funzione del tempo alla frequenza di $50$ \si{\hertz}.
+In Figura \ref{gr5:primo_raddrizzatore} presentiamo i grafici delle tensioni in funzione del tempo alla frequenza di \SI{50}{\Hz}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=19.5cm]{../E05/latex/unite_tempo.pdf}}
+   {\includegraphics[width=\textwidth]{../E05/latex/unite_tempo.pdf}}
  \caption{Grafici delle tensioni in funzione del tempo. Il primo grafico è quello relativo alla tensione all'uscita del circuito $V_{out}$, il secondo alla tensione in uscita dall'OPAMP $V_A$, dove è facile vedere che l'operazionale entra in saturazione negativa.}
  \label{gr5:primo_raddrizzatore}
 \end{figure}
 
 In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle tensioni come funzioni di $V_{in}$
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
-   {\includegraphics[width=19.5cm]{../E05/latex/u_risposta.pdf}}
+   {\includegraphics[width=\textwidth]{../E05/latex/u_risposta.pdf}}
  \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'OPAMP in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici le (\ref{eq5:leggi_1.1}).}
  \label{gr5:primo_raddrizzatore_vin}
 \end{figure}
 
-\begin{figure}[ht]
+%\begin{figure}[ht]
+\begin{wrapfigure}[22]{r}{0.7\textwidth}
  \centering
-   {\includegraphics[width=14.5cm]{../E05/latex/zoom.pdf}}
+   {\includegraphics[width=0.62\textwidth]{../E05/latex/zoom.pdf}}
  \caption{Grafico della tensione in entrata (tratteggiata) e della tensione in uscita dal circuito (in verde) in funzione del tempo. Si nota il fenomeno esposto nel paragrafo.}
  \label{gr5:problema}
-\end{figure}
+\end{wrapfigure}
 
 Dal plot del segnale in entrata ed in uscita in funzione del tempo alla frequenza di 2 \si{\kilo\hertz} (grafico in Figura \ref{gr5:problema}), possiamo notare un troncamento della forma d'onda del segnale in uscita. Abbiamo ipotizzato che tale fenomeno fosse dovuto alla limitata velocità che i transistor all'interno dell'operazionale hanno di passare dalla saturazione all'interdizione; tale fenomeno è anche amplificato dal fatto che, quando il diodo è interdetto, $V_{A} \approx -V_{CC}$: il segnale deve quindi passare da una tensione di saturazione negativa alla tensione necessaria per raddrizzare il segnale in uscita in un tempo troppo breve, e ad alte frequenze ciò risulta in un troncamento. Per risolvere tale problema utilizziamo il circuito esposto al sottoparagrafo successivo.
 
+\newpage
 \subsubsection{Raddrizzatore ottimizzato}
 
 \begin{wrapfigure}[16]{l}{0.5\textwidth}
@@ -124,11 +121,12 @@ In Figura \ref{gr5:secondo_raddrizzatore} presentiamo il grafico della tensione.
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E05/latex/radd_ott.pdf}}
+   {\includegraphics[width=.7\textwidth]{../E05/latex/radd_ott.pdf}}
  \caption{Grafico delle tensioni in funzione del tempo. Notiamo che il guadagno negativo quando $V_{in}<0$, plausibile con (\ref{eq5:v_out_ottimizzato}).}
  \label{gr5:secondo_raddrizzatore}
 \end{figure}
 
+\break
 \subsection{Amplificatore differenziale}
 
 \begin{wrapfigure}[14]{l}{0.5\textwidth}
@@ -171,9 +169,9 @@ L'amplificatore differenziale ci permette dunque di eliminare in modo efficace i
 
 Inoltre, abbiamo posto come resistenza collegata tra comune e $V_+$ un trimmer per impostare la tensione di modo comune al più basso valore possibile. Infatti, le resistenze non sono in realtà esattamente uguali e prima di utilizzare il circuito è necessario bilanciarlo in modo da ottenere un segnale il più piccolo possibile quando i segnali in ingresso sono uguali.
 
-\begin{wrapfigure}[17]{r}{0.5\textwidth}
+\begin{wrapfigure}[16]{r}{0.5\textwidth}
   \begin{center}
-    \includegraphics[width=0.33\textwidth]{../E05/latex/c_diff_amp.pdf}
+    \includegraphics[width=0.35\textwidth]{../E05/latex/c_diff_amp.pdf}
   \end{center}
   \caption{Grafico dell'amplificatore differenziale utilizzato durante l'esperienza. $R_4$ è un trimmer multigiro di resistenza variabile.}
   \label{cir5:diff_amp}
@@ -185,27 +183,28 @@ Come vediamo, il rumore è stato completamente eliminato dall'amplificatore diff
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=0.85\textwidth]{../E05/latex/amp_diff.pdf}}
+   {\includegraphics[width=0.75\textwidth]{../E05/latex/amp_diff.pdf}}
  \caption{Come vediamo dal grafico, il rumore che abbiamo simulato ha un'ampiezza di 20 Volt picco-picco (sinusoide in nero). Nonostante ciò, l'uscita (in verde) non è affatto influenzata e risulta amplificata di 2 volte, come stimato precedentemente dai calcoli teorici. }
  \label{gr5:amp_diff}
 \end{figure}
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=0.85\textwidth]{../E05/latex/sbil_amp_diff.pdf}}
+   {\includegraphics[width=0.75\textwidth]{../E05/latex/sbil_amp_diff.pdf}}
  \caption{Dopo lo sbilanciamento del circuito non è più garantita la soppressione del rumore in modo comune. Come vediamo, il segnale in uscita risulta distorto. E' dunque necessario calibrare bene il circuito prima di effettuare esperimenti nei quali si vuole eliminare un rumore comune ad entrambi i segnali in ingresso.}
  \label{gr5:sbil_amp_diff}
 \end{figure}
 
 Inoltre, il guadagno può essere cambiato solo se si cambiano 2 resistenze nel circuito. Una soluzione efficace che inoltre rimedia alla bassa impedenza in ingresso è quella di utilizzare un Amplificatore per Strumentazione, il cui funzionamento è esposto al paragrafo successivo.
 
+\newpage
 \subsection{Instrumentation Amplifier}
 
 \subsubsection*{Circuito didattico con opamp}
 
-\begin{wrapfigure}[17]{r}{0.5\textwidth}
+\begin{wrapfigure}[20]{r}{0.55\textwidth}
   \begin{center}
-    \includegraphics[width=0.350\textwidth]{../E05/latex/c_INA.pdf}
+    \includegraphics[width=0.5\textwidth]{../E05/latex/c_INA.pdf}
   \end{center}
   \caption{Circuito dell'amplificatore per strumentazione.}
   \label{cir5:instr_amplif}
@@ -234,6 +233,7 @@ Uguagliando $V^-$ e $V^+$ (OPAMP ideale), tenendo conto della (\ref{eq5:TEMP_cal
 $$V_{out}=-\Delta V_{in} \left(1+\frac{2R_1}{R_g}\right)\frac{R_3}{R_2}$$
 Modificando la resistenza $R_g$ possiamo dunque controllare il guadagno del circuito.
 
+\newpage
 \subsubsection{Integrato AD622}
 
 \begin{wrapfigure}[14]{l}{0.5\textwidth}
@@ -245,7 +245,10 @@ Modificando la resistenza $R_g$ possiamo dunque controllare il guadagno del circ
 \end{wrapfigure}
 
 In realtà, nell'esperienza abbiamo utilizzato un circuito integrato (più precisamente l'AD622, la cui piedinatura è esposta in Figura \ref{cir5:ad622_piedinatura}) che ha come qualità il fatto di avere un'alta precisione sul valore delle resistenze (abbiamo visto nel precedente circuito che uno squilibrio anche minimo fra i valori di resistenze che dovrebbero essere uguali può portare ad un guadagno diverso da quello teorico). Il suo guadagno è dato dall'equazione, fornita dal costruttore
-$$G=1+\frac{50.5 \si{\kilo\ohm}}{R_g}$$
+\begin{equation}
+	G=1+\frac{50.5 \si{\kilo\ohm}}{R_g}
+	\label{eq5:AD622_gain}
+\end{equation}
 
 Una possibile applicazione di questo integrato è di utilizzarlo per individuare variazioni di tensione all'interno di un ponte di resistenze. Allo scopo, utilizziamo il circuito in Figura \ref{cir5:ad622_ponte}, con l'accortezza di portare una resistenza del ponte lontana dalle altre, così da poter modificarne la temperatura senza influenzare anche le altre.
 
@@ -256,7 +259,7 @@ Sperimentalmente, si osserva però che una differenza di potenziale è già pres
 Inoltre, la relazione che lega la variazione di tensione alla resistenza può essere calcolata considerando il ponte come l'insieme di due partitori (non scorre alcuna corrente verso l'amplificatore), cioè vale che
 $$\Delta V = V^+ - V^- = V_d \left(\frac{R_4}{R_2+R_4}-\frac{R_2}{R_1+R_3}\right)$$
 
-\begin{wrapfigure}[20]{r}{0.5\textwidth}
+\begin{wrapfigure}[19]{r}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E05/latex/c_func_INA.pdf}
   \end{center}
@@ -277,7 +280,7 @@ dove $V_{b}$ è la tensione di alimentazione del ponte (come in Figura \ref{cir5
 
 Presentiamo ora la tabella dei valori sperimentali con la modalità di variazione della temperatura. I valori di $\Delta V$ sono osservati, $\Delta R$ e $\Delta T$ sono calcolati rispettivamente con (\ref{eq5:delta_R}) e (\ref{eq5:delta_T}).
 
-$$$$
+\vspace{10mm}
 
 \begin{center}
 {\renewcommand{\arraystretch}{1.2}%
@@ -293,6 +296,7 @@ $$$$
 }
 \end{center}
 
+\newpage
 \subsection{Misure di temperatura}
 
 \begin{wrapfigure}[13]{r}{0.45\textwidth}
@@ -315,7 +319,7 @@ Combinando le due equazioni precedenti si ottiene la dipendenza del valore di re
 R = R_0 \left[ 1 + \alpha \left( T - T_0 \right) \right]
 \end{equation}
 
-\begin{wrapfigure}[17]{l}{0.45\textwidth}
+\begin{wrapfigure}[16]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=.3\textwidth]{../E05/latex/c_PT100_4wire.pdf}
 \caption{Configurazione di misura a quattro fili: nella maglia esterna scorre la corrente data dal generatore mentre nella maglia interna non scorre corrente. Il voltmetro ha un'impedenza idealmente infinita.}
