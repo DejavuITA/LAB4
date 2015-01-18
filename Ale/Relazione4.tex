@@ -22,12 +22,20 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 
 In questa prima parte dell'esperienza abbiamo verificato il funzionamento di un amplificatore operazionale LM311 utilizzato come comparatore.
 
-\begin{wrapfigure}[18]{r}{0.4\textwidth}
+%\begin{wrapfigure}[18]{r}{0.4\textwidth}
+ % \begin{center}
+  %  \includegraphics[width=0.280\textwidth]{../E04/latex/LM311.pdf}
+%  \end{center}
+ % \caption{Piedinatura dell'operazionale LM311.}
+ % \label{cir4:piedinatura_LM311}
+%\end{wrapfigure}
+
+\begin{wrapfigure}[16]{l}{0.5\textwidth}
   \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E04/latex/LM311.pdf}
+    \includegraphics[width=0.280\textwidth]{../E04/latex/c_LM311.pdf}
   \end{center}
-  \caption{Piedinatura dell'operazionale LM311.}
-  \label{cir4:piedinatura_LM311}
+  \caption{Schema a collettore aperto dell'amplificatore operazionale LM311.}
+  \label{cir4:open_collector}
 \end{wrapfigure}
 
 Questo amplificatore ha uno slew rate molto alto e lavora sull'ordine dei nanosecondi: rispetto agli $0.5$\si{\volt\per\micro\second} del $\mu$A741, lo slew rate particolarmente elevato permette di confrontare più velocemente i segnali.
@@ -56,13 +64,7 @@ Q : \bigg \{
 
 da cui è facile mostrare che la tensione di uscita è proprio (\ref{eq4:comparatore}).
 
-\begin{wrapfigure}[16]{l}{0.5\textwidth}
-  \begin{center}
-    \includegraphics[width=0.280\textwidth]{../E04/latex/c_LM311.pdf}
-  \end{center}
-  \caption{Schema a collettore aperto dell'amplificatore operazionale LM311.}
-  \label{cir4:open_collector}
-\end{wrapfigure}
+
 
 Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm}) e non c'è caduta ai capi di $R$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R$.
 
@@ -81,6 +83,8 @@ Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su
  \caption{Grafico della tensione in entrata (onda sinusoidale con $V_{pp}=2$ \si{\volt} e $f=500$\si{\hertz}, tratteggiata) e in uscita (verde) in funzione del tempo. Notiamo che l'uscita rispetta (\ref{eq4:comparatore}).}
  \label{gr4:comparatore}
 \end{figure}
+
+\newpage
 
 \subsection{Trigger di Schmitt non-invertente}
 
@@ -185,7 +189,7 @@ Tale corrente è però difficilmente manipolabile, pertanto abbiamo deciso di ut
 
 \begin{figure}[ht]
  \centering
-   {\includegraphics[width=14.5cm]{../E04/latex/neon.pdf}}
+   {\includegraphics[width=13.5cm]{../E04/latex/neon.pdf}}
  \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
  \label{gr4:neon}
 \end{figure}

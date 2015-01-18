@@ -55,7 +55,7 @@ Abbiamo anche notato che lo Slew Rate è differente a seconda che il segnale abb
   \begin{center}
     \includegraphics[width=0.26\textwidth]{../E03/latex/max_current.pdf}
   \end{center}
-  \caption{Schema del circuito utilizzato per misurare la corrente massima. La resistenza utilizzata è $R=98.47\pm0.01$\si{\ohm}; il generatore fornisce un'onda triangolare di $f=1$ \si{\kilo\hertz} e $5 V_{pp}$.}
+  \caption{Schema del circuito utilizzato per misurare la corrente massima. La resistenza utilizzata è $R=(98.47\pm0.01)$\si{\ohm}; il generatore fornisce un'onda triangolare di $f=1$ \si{\kilo\hertz} e $5 V_{pp}$.}
   \label{cir3:max_current}
 \end{wrapfigure}
 
@@ -70,7 +70,7 @@ Per misurare $I_{max}$ abbiamo dunque sfruttato questo fatto, ponendo una resist
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=\textwidth]{../E03/latex/clip.pdf}}
- \caption{Grafico della tensione in uscita (verde) ed in entrata (nero) in funzione del tempo. Si nota subito che il clip a tensioni negative avviene a tensioniin modulo maggiori.}
+ \caption{Grafico della tensione in uscita (verde) ed in entrata (nero) in funzione del tempo. Si nota subito l'asimmetria del clip tra tensioni positive e negative.}
  \label{gr3:clip}
 \end{figure}
 
@@ -141,7 +141,7 @@ V_{in}<\frac{0.35 \si{\volt\per\micro\second}}{2 \pi G f_0} = \frac{0.35 \si{\vo
 \end{equation}
 Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i valori di tensione da usare nei due casi è di circa $V_{in}^{11\mathrm{x}} = 100$ \si{\milli\volt}$= V_{in}^{101\mathrm{x}}$. Si nota che la regola \ref{eq3:tensione_max} è valida quando il guadagno non dipende dalla frequenza: infatti dopo la frequenza di taglio il guadagno del circuito $G$ cala e dunque i valori di tensione ammessi risultano di valore maggiore.
 
-\subsubsection*{Grafici di Bode}
+\subsubsection*{Diagrammi di Bode}
 \label{par3:sub_bode}
 
 \begin{figure}[ht]
@@ -151,7 +151,7 @@ Considerando $f_0$ come la frequenza di taglio stimata prima, otteniamo che i va
  \label{gr3:bode}
 \end{figure}
 
-Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i grafici di Bode (Figura \ref{gr3:bode}).
+Utilizzando una forma d'onda sinusoidale abbiamo dunque misurato la tensione di uscita del circuito e la fase fra i segnali, per poi plottare i diagrammi di Bode (Figura \ref{gr3:bode}).
 
 Dalla funzione di trasferimento (\ref{eq3:funzione_trasferimento}) possiamo inoltre trovare le relazioni fra il guadagno e la fase con la frequenza. Sappiamo infatti che il guadagno è dato $V_{out}/V_{in}$, ed in generale queste due tensioni possono essere considerate come complesse. Se siamo dunque interessati al guadagno dobbiamo considerare piuttosto il rapporto dei moduli, ed otteniamo la seguente relazione
 \begin{equation}
@@ -237,11 +237,10 @@ I dati ottenuti sono riportati nel seguente grafico.
 
 Anche in questo caso, considerando l'operazionale come un semplice passa basso, possiamo utilizzare l'equazione (\ref{eq3:passa_basso}) e trovare la relazione fra il guadagno e la frequenza. Otteniamo
 \begin{equation}
-\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=\sqrt{\frac{A_{ol}^2 \omega_0^2}{\omega^2 + \omega_0^2}}
+\mathrm{Gain}=\frac{|V_{out}|}{|V_{in}|}=\frac{A_{ol} \omega_0}{\sqrt{\omega^2 + \omega_0^2}}
 \label{eq3:fit_gain_ol}
 \end{equation}
 
-Per un fit e i parametri si veda il paragrafo successivo.
 
 \subsection{Calcolo di $A_{ol}$}
 \label{par3:A_ol}
@@ -260,7 +259,7 @@ e considerando la frequenza $f_0$ ricavata dal fit. Si ottiene un valore teorico
 Con il fit dalla (\ref{eq3:fit_gain_ol}) otteniamo i seguenti valori
 $$A_{ol}=(2.0\pm0.1)\times 10^5 \qquad f_0=(5.8\pm0.2)\si{\hertz}$$
 
-I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad errori parassiti non ben identificati.
+Confrontando i risultati ottenuti con i 2 fit vediamo subito che sono compatibili tra loro. 
 
 \subsection*{Conclusioni}
 
