@@ -2,7 +2,7 @@
 
 In questa esperienza studieremo il funzionamento, procedendo anche al montaggio, di un convertitore analogico-digitale ad inseguimento.
 
-Inoltre, tramite una scheda di acquisizione collegata al pc, verificheremo i risultati del teorema di Shannon, campionando diverse forme d'onda.
+Inoltre, tramite una scheda di acquisizione collegata al pc, verificheremo i risultati del teorema di Nyquist-Shannon, campionando diverse forme d'onda.
 
 \subsection*{Strumenti e materiali}
 
@@ -23,7 +23,8 @@ Inoltre, tramite una scheda di acquisizione collegata al pc, verificheremo i ris
 \end{itemize}
 
 \subsection{ADC ad inseguimento}
-Abbiamo realizzato il circuito riportato in Fig.(\ref{cir13:ADC}).
+
+Abbiamo realizzato il circuito riportato in Figura \ref{cir13:ADC}.
 
 \begin{figure}[htpc]
 \centering
@@ -66,9 +67,9 @@ Come vediamo, il valore digitale è compatibile con quello analogico ottenuto mi
 \caption{Come vediamo la tensione si stabilizza attorno al valore $V_{in}$. Come già detto, l'oscillazione di 4 bit è dovuta ai ritardi sul Clock introdotti dal controllo automatico di salita/discesa.}
 \end{figure}
 
-\subsection{Teorema del campionamento}
+\subsection{Teorema di Nyquist-Shannon}
 
-Il teorema del campionamento afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $\nu_c$ deve essere il doppio della frequenza massima $\nu_s$ del segnale da campionare.
+Il teorema di Nyquist-Shannon, o teorema del campionamento, afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $\nu_c$ deve essere il doppio della frequenza massima $\nu_s$ del segnale da campionare.
 
 Bisogna però tenere presente che tale teorema è valido solo se la trasformata di Fourier del segnale da campionare è limitata nel dominio delle frequenze, cioè esiste solo una banda di frequenze in cui la trasformata non è nulla.
 
