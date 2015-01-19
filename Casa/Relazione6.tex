@@ -54,8 +54,7 @@ Inoltre posizioneremo dei punti tra i blocchi appositamente per effettuare misur
 \subsubsection{Convertitore Resistenza-Tensione}
 Per convertire la variazione di resistenza della Pt100 -- generata a sua volta da una variazione in temperatura della stessa -- in tensione, dobbiamo far scorrere in essa una corrente.
 Per evitare surriscaldamenti abbiamo scelto una corrente di \SI{1}{\milli\ampere}.
-%
-%\subsubsection*{
+
 \paragraph{Generatore di corrente costante [Blocco 1]\newline}
 
 \begin{wrapfigure}[13]{r}{0.4\textwidth}
@@ -75,10 +74,7 @@ Così facendo, utilizzando un amperometro in serie, possiamo tarare con precisio
 Durante questa fase non utilizzeremo la termoresistenza\footnote{non utilizzeremo la termoresistenza per evitare di rovinarla in quanto è un componente particolarmente costoso.}, ma una comune resistenza di valore nominale \SI{100}{\ohm}.
 
 Con una corrente scelta di \SI{1}{\milli\ampere}, la potenza dissipata per effetto Joule dalla nostra termoresistenza è $P=I^2 R \cong \SI{.1}{\mW}$.
-%
-%STIMA DELL'ERRORE DATO DALL'AUTORISCALDAMENTO
 
-%\subsubsection*{
 \paragraph{Generatore di tensione costante\newline}
 
 Per alimentare il blocco 1 con un segnale $V_{in}$ stabile, abbiamo scelto di usare l'integrato REF02, rappresentato in figura \ref{cir6:REF02}.
@@ -90,7 +86,6 @@ Una volta convertito il segnale in tensione, vogliamo che esso scali con una $\D
 Inoltre vogliamo ottenere una lettura di tensione pari a \num{0} quando la temperatura ambientale è di \SI{0}{\celsius}.
 Per fare ciò introduciamo in serie al blocco 1 due blocchi di alimentazione e di condizionamento.
 
-%\subsubsection*{
 \paragraph{Amplificazione [Blocco 2]\newline}
 
 \begin{wrapfigure}[12]{r}{0.4\textwidth}
@@ -108,7 +103,6 @@ Per tarare il Gain del nostro amplificatore (che ovviamente dovrà essere G=\num
 Abbiamo utilizzato una resistenza di feedback di \SI{100}{\kilo\ohm} mentre la resistenza all'ingresso invertente è stata costruita mettendo in serie una resistenza nominale da \SI{1.5}{\kilo\ohm} e un trimmer multigiro da \SI{1}{\kilo\ohm}.
 Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, che evidentemente si ha quando la tensione in uscita è \SI{5}{\volt}. 
 
-%\subsubsection*{
 \paragraph{Condizionamento [Blocco 3]\newline}
 
 \begin{wrapfigure}[13]{r}{0.4\textwidth}
@@ -148,7 +142,7 @@ Abbiamo verificato il buon funzionamento del circuito raffreddando e riscaldando
 \end{figure}
 
 \newpage
-\vspace{-2mm}
+
 \subsection{Sistema di controllo proporzionale}
 
 \begin{wrapfigure}[12]{r}{0.5\textwidth}
@@ -173,8 +167,8 @@ Affidiamo il compito del blocco di retroazione al circuito finora costruito: que
 Successivamente, il blocco di controllo deve fare la differenza fra questi due valori e, una volta raggiunto un valore impostabile, diminuire il valore della corrente fornita alla resistenza di potenza in maniera proporzionale ad E.
 Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale.
 Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor BJT.
-\vspace{-2mm}
-\subsubsection{Confronto [Blocco 4]}
+
+\paragraph{Confronto [Blocco 4]\newline}
 
 \begin{wrapfigure}[13]{r}{0.37\textwidth}
 \centering
@@ -201,7 +195,7 @@ V_{U4}^{sat}\approx 15 \si{\volt} & \mathrm{se} \quad \Delta V>0.15 \si{\volt} \
 \label{eq6:exit_opamp}
 \end{equation}
 
-\subsubsection{Sistema [Blocco 5]}
+\paragraph{Sistema [Blocco 5]\newline}
 
 \begin{wrapfigure}[17]{r}{0.2\textwidth}
 \centering
@@ -212,11 +206,6 @@ V_{U4}^{sat}\approx 15 \si{\volt} & \mathrm{se} \quad \Delta V>0.15 \si{\volt} \
 
 Per progettare il sistema di riscaldamento proporzionale, dobbiamo fornire potenza (ad una resistenza capace di dissipare molta energia e quindi di sopportare alti valori di corrente, detta \textit{resistenza di potenza}) in maniera proporzionale ad E, cioè $\Delta T$.
 Per fare ciò, utilizzeremo un transistor 2N2222A con emettitore collegato a comune, le cui caratteristiche sono le seguenti
-%$$\begin{array}{rl}
-%\beta = \frac{I_c}{I_b} = 75\\
-%V_{CE}^{sat}=0.4 \si{\volt}\\
-%V_{BE}^{pol}=1.3 \si{\volt}\\
-%\end{array}$$
 $$\beta=\frac{I_c}{I_b}=75 \qquad V_{CE}^{sat}=\SI{.4}{\volt} \qquad V_{BE}^{pol}=\SI{1.3}{\volt}$$
 Vale che, con una resistenza di potenza $R_{P} = \SI{27}{\ohm}$ e impostata una tensione di $5$ \si{\volt} costante ad uno dei suoi capi\footnote{Il REF02 non avrebbe potuto erogare la corrente necessaria a mantenere invariata la tensione ai capi della resistenza.
 Dunque, per gestire questa tensione, abbiamo utilizzato il generatore di tensione costante Agilent E3631A.

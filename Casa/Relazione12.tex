@@ -28,7 +28,7 @@ La realizzazione di un registro a scorrimento a ricircolazione prevede l'utilizz
 \begin{figure}[htpc]
 \centering
 	\includegraphics[width=.85\textwidth]{../E12/latex/shift_register.pdf}
-	\caption{}
+	\caption{Schema circuitale di uno shift register ad anello.}
 	\label{cir12:shift}
 \end{figure}
 
@@ -53,18 +53,26 @@ Come vediamo abbiamo messo una linea RC come nel caso del circuito precedente pe
 Ne abbiamo verificato il funzionamento utilizzando la basetta al led, provando a contare sia indietro che in avanti. 
 
 \subsection{Convertitore Digitale-Analogico}
+\label{par12:dac}
 
-In questo circuito convertiremo un segnale digitale (dunque una sequenza di zeri e uno logici) in un segnale analogico il cui valore è dato dalla conversione numerica di un numero in binario in decimale. Per far ciò, una prima opzione possibile potrebbe essere quella di utilizzare un sommatore (come quello in Figura \ref{sommatore_pesato}), le cui resistenze saranno tali da rendere i pesi $\phi_i = 2 \phi_{i -1}$. Se prendiamo però svariati bit, la problematica che si incontra è relativa all'incertezza sulle resistenze diventa non trascurabile. Infatti, se considero solo i bit più estremi (LSB e MSB), abbiamo che
-$$V_{out}=V_{ref} R_f \left( \frac{1}{R (1 + \epsilon)} + \frac{1}{2^{n-1}R}\right) \approx V_{ref} R_f \left( \frac{1 - \epsilon}{R} + \frac{1}{2^{n-1}R}\right)$$
+In questo circuito convertiremo un segnale digitale (dunque una sequenza di zeri e uno logici) in un segnale analogico il cui valore è dato dalla conversione numerica di un numero in binario in decimale. Per far ciò, una prima opzione possibile potrebbe essere quella di utilizzare un sommatore (come quello in Figura \ref{sommatore_pesato}), le cui resistenze saranno tali da rendere i pesi $\phi_i = 2 \phi_{i -1}$. Se prendiamo però svariati bit, la problematica che si incontra è relativa all'incertezza sulle resistenze, che diventa non trascurabile. Infatti, se considero solo i bit più estremi (LSB e MSB), abbiamo che
+$$V_{out}=V_{ref} R_f \left( \frac{1}{R (1 + \epsilon)} + \frac{1}{2^{n-1}R}\right) \approx V_{ref} R_f \left( \frac{1 - \epsilon}{R} + \frac{1}{2^{n-1}R}\right)=V_{ref} \frac{R_f}{R} \left[ 1+\left(\frac{1}{2^{n-1}}-\epsilon\right)\right]$$
 con $\epsilon$ l'incertezza relativa di $R$ più piccola. Si nota dunque che otterrei il risultato desiderato solo se il contributo dato da $\epsilon$ sia molto minore del contributo dato da $1/2^{n-1}$: ma già per qualche punto percentuale di incertezza sulla resistenza, per un numero di bit maggiore di 8, otterrei che i contributi dei pesi più grandi sarebbe sovrastato da $\epsilon$!
+
+\begin{figure}[htpc]
+\centering
+	\includegraphics[width=.65\textwidth]{../E12/latex/DAC.pdf}
+	\caption{Schema circuitale del convertitore da digitale ad analogico (DAC).}
+	\label{cir12:dac}
+\end{figure}
 
 Dobbiamo dunque trovare un'alternativa, che ci è data dal DAC, integrato contenente il R-2R ladder e facente funzione di convertitore. Tale circuito è essenziale per eliminare i problemi dati dalla preponderanza delle incertezze sulle resistenze di valore minore. Infatti, le resistenze utilizzate sono tutte dello stesso taglio, e nel processo costruttivo si ritroveranno ad avere una incertezza confrontabile.
 
 \begin{figure}[htpc]
 \centering
-	\includegraphics[width=.65\textwidth]{../E12/latex/DAC.pdf}
-	\caption{}
-	\label{cir12:dac}
+	\includegraphics[width=.55\textwidth]{../E12/latex/sega.pdf}
+	\caption{Grafico della tensione in funzione del tempo. Con questa scala il segnale sembrerebbe essere una retta ma, avendo utilizzato due contatori a 4 bit, abbiamo 256 stati intermedi di onda quadra. Tali stati hanno una tensione fra i due picchi di $\approx 16 \si{\milli \volt}$ (affermazione verificata sui dati).}
+	\label{fig12:sega}
 \end{figure}
 
 Inseriamo dunque il DAC all'uscita del circuito discusso al paragrafo precedente come in Figura \ref{cir12:dac} (dove per uscita intendiamo i valori di 0 e 1 logico in uscita dai due contatori). Essendo l'uscita di un contatore, il valore di tensione che ci aspettiamo di osservare sarà variabile (forma a dente di sega) dallo zero ad un valore impostabile. Per trovare tale valore bisogna tener conto del fatto che questo integrato lavora con correnti di riferimento. Per impostarla basta porre una corrente entrante al piedino 14: nel nostro caso abbiamo utilizzato una corrente
@@ -74,21 +82,14 @@ $$I_{fs}=\frac{2^n-1}{2^n} I_{ref} = \frac{255}{256} I_{ref} \approx 2 \si{\mill
 
 \begin{figure}[htpc]
 \centering
-	\includegraphics[width=.65\textwidth]{../E12/latex/sega.pdf}
-	\caption{Grafico della tensione in funzione del tempo. Con questa scala il segnale sembra una retta ma, avendo utilizzato due contatori a 4 bit, abbiamo 256 stati intermedi di onda quadra. Tali stati hanno una tensione fra i due picchi di $\approx 16 \si{\milli \volt}$ (affermazione verificata sui dati).}
-	\label{fig12:sega}
+	\includegraphics[width=.55\textwidth]{../E12/latex/triangolare.pdf}
+	\caption{Grafico della tensione in funzione del tempo. Come per il grafico in Figura \ref{fig12:sega}, anche in questo caso la tensione non è continua.}
+	\label{fig12:triangolare}
 \end{figure}
 
 Dunque se poniamo all'uscita del DAC una resistenza di $2 \si{\kilo\ohm}$\footnote{Il costruttore richiedeva l'utilizzo di resistenze di valore più elevato; ma, vista l'impedenza in entrata dell'oscilloscopio, se avessimo inserito tale valore avremmo fatto passare corrente anche nell'oscilloscopio, rompendo l'approssimazione di partitore all'uscita.} messa a comune, ai suoi capi la caduta di tensione a fondo scala sarà di circa $4 \si{\volt}$. Come si vede nel grafico in Figura \ref{fig12:sega}, il valore atteso così calcolato è rispettato: infatti, il valore minimo di tensione ottenuto è stato di $-4 \si{\volt}$ (se colleghiamo l'oscilloscopio a $I_{out}$ la corrente è entrante nel DAC).
 
 Se vogliamo invece ottenere una forma d'onda triangolare dobbiamo far si che, al posto dell'interruttore per controllare la discesa e la salita, ci sia un dispositivo che inverta il valore logico in entrata nel JK quando c'è un massimo o un minimo. A tal fine, ci viene in aiuto un piedino dell'integrato che diventa uno nel massimo e nel minimo del segnale: ponendolo come clock di un JK in modalità toggle, questo invertirà Q sul fronte di salita (appunto quando c'è un massimo o un minimo). Il risultato è in Figura \ref{fig12:triangolare}.
-
-\begin{figure}[htpc]
-\centering
-	\includegraphics[width=.65\textwidth]{../E12/latex/triangolare.pdf}
-	\caption{}
-	\label{fig12:triangolare}
-\end{figure}
 
 \subsection*{Conclusioni}
 

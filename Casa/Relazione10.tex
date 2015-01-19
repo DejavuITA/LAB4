@@ -36,7 +36,7 @@ Come vediamo, se non esistesse il ritardo l'uscita sarebbe sempre ad 1 logico ($
 A causa del ritardo, però, quando il segnale in ingresso commuta da 0 ad 1, la serie di porte NOT non riuscità instantaneamente a passare da 1 a 0 e dunque, per un breve intervallo entrambi gli ingressi saranno ad 1 logico il che implica un uscita a 0 logico.
 Abbiamo utilizzato in ingresso un'onda quadra ($V_{pp}=\SI{5}{\volt}$, $V_{off}=+\SI{2.5}{\volt}$, $\nu=\SI{100}{\kilo\hertz}$).
 Notiamo che la presenza della porta NAND in uscita non da contributo al ritardo totale in quanto essa provoca solo uno shift temporale, non un aumento del delay.
-Il valore ch stimeremo dal grafico dovrà dunque essere diviso per 3, in modo da ottenere il tempo di propagazione di una singola porta.
+Il valore che stimeremo dal grafico dovrà dunque essere diviso per 3, in modo da ottenere il tempo di propagazione di una singola porta.
 
 \begin{figure}[htpc]
 \centering
@@ -49,7 +49,7 @@ Come vediamo il segnale non è perfettamente un'onda quadra, nè in ingresso nè
 Ciò è dovuto alle impedenze parassite e alle correnti assorbite dalla porta.
 Abbiamo dunque deciso di prendere i valori temporali al 50\% dell'ampiezza massima.
 I valori ottenuti sono \SI{26\pm 2}{\nano\second}.
-Il valore Per la singola porta è dunque \SI{9\pm 1}{\nano\second}, valore compatibile con i valori riportati sul datasheet.
+Il valore per la singola porta è dunque \SI{9\pm 1}{\nano\second}, valore compatibile con i valori riportati sul datasheet.
 
 \subsection{Verifica di una porta NOT TTL Open Collector }
 
@@ -67,12 +67,10 @@ Nel nostro caso, abbiamo utilizzato una porta TTL (0/+5 \si{\volt}) e abbiamo co
 Per la verifica abbiamo deciso di utilizzare un led luminoso.
 Lo schema circuitale è riportato in Figura \ref{cir10:open_collector}.
 
-Considerando una caduta di circa \SI{1.5}{\volt} sul led e una corrente di \SI{5}{\milli\ampere}, e una caduta data dal transistor della porta di circa \SI{0.5}{\volt} possiamo facilmente calcolare, usando la legge di Ohm, la resistenza necessaria.
-Il valore scelto alla fine anche per comodità è di \SI{1.5}{\kilo\ohm}.
+Considerando una caduta di circa \SI{1.5}{\volt} sul led, una corrente di \SI{5}{\milli\ampere} e una caduta data dal transistor della porta di circa \SI{0.5}{\volt} possiamo facilmente calcolare, usando la legge di Ohm, la resistenza necessaria. Il valore scelto alla fine (anche per comodità nel reperirla) è di \SI{1.5}{\kilo\ohm}.
 
 Ricordiamo che il transistor che compone la nostra porta sarà in saturazione quando la tensione in ingresso è alta, e dunque avremo un'uscita bassa.
 Invece, quando all'ingresso avremo uno zero logico, il transistor sarà interdetto e dunque avremo una tensione alta in uscita.
-
 
 Il circuito è stato verificato infine utilizzando l'oscilloscopio.
 I dati sono riportati nel seguente grafico.
@@ -92,7 +90,7 @@ Tale valore, ovviamente, è dovuto al fatto che abbiamo una caduta sia sul diodo
 
 Abbiamo provato a misurare, utilizzando l'amperometro, la corrente che scorre nel ramo di collettore.
 Il risultato ottenuto è che la corrente è dell'ordine dei \si{\micro\ampere}, cosa aspettata  in quanto il transistor è in interdizione.
-Non siamo riusciti a capire perchè il diodo provocasse una caduta in tensione di $\approx \SI{1.5}{\volt}$ anche quando attraverso esso non scorreva corrente.
+Non siamo riusciti a capire perché ci fosse una caduta in tensione di $\approx \SI{1.5}{\volt}$ anche quando attraverso il diodo non scorreva corrente.
 
 \newpage
 \subsection{Verifica di una porta buffer TTL 3State}
@@ -104,7 +102,7 @@ Non siamo riusciti a capire perchè il diodo provocasse una caduta in tensione d
 \label{cir10:3state}
 \end{wrapfigure}
 
-In questa parte abbiamo realizzato un circuito per trasmissione half-duplex tramite porte 3State.
+In questa parte abbiamo realizzato un circuito per trasmissione half-duplex tramite porte tri-state.
 Il fine di tale operazione è quello di condividere lo stesso canale per la trasmissione dei dati.
 Possiamo dunque, semplicemente cambiando il segnale di controllo, decidere quale segnale deve essere trasmesso.
 Ciò, come si vedrà nella seguente sezione, è particolarmente utile nel caso in cui si abbiano molti segnali da trasmettere.
@@ -116,18 +114,18 @@ Il circuito è stato testato utilizzando la schedina a led.
 
 \subsection{Trasmissione di segnali}
 
-In questa parte dell'esperienza ci occuperemo di effettuare la trasmissione di segnali attraverso un circuito logico.
-Ovviamente potremmo dedicare ad ogni segnale un filo: dunque, se volessimo trasportare $N$ segnali dovremmo utilizzare $N$ fili.
+In questa parte dell'esperienza ci occuperemo di effettuare la trasmissione di segnali (cioè di bit) attraverso un circuito logico.
+Ovviamente potremmo dedicare ad ogni segnale un filo: ma se volessimo trasportare $N$ biti dovremmo utilizzare $N$ fili.
 
-\begin{wrapfigure}[13]{l}{0.5\textwidth}
+\begin{wrapfigure}[14]{l}{0.5\textwidth}
 \centering
 \includegraphics[width=.38\textwidth]{../E10/latex/selector.pdf}
 \caption{Schema circuitale della parte dedicata alla selezione del canale in utilizzo per la comunicazione.}
 \label{cir10:selector}
 \end{wrapfigure}
 
-Un modo più efficiente è segnalare a chi deve ricevere il segnale quale di questi $N$ segnali stia passando su un unico cavo di trasmissione.
-Dobbiamo quindi predisporre una circuiteria dedicata al \textit{segnale di selezione} e dovremmo portare tanti cavi quanti siano necessari ad identificare univocamente tutti gli $N$ segnali.
+Un modo più efficiente è segnalare a chi deve ricevere il segnale quale di questi $N$ bit stia passando su un unico cavo di trasmissione.
+Dobbiamo quindi predisporre una circuiteria dedicata al \textit{segnale di selezione} e dovremmo portare tanti cavi quanti necessari ad identificare univocamente tutti gli $N$ segnali.
 
 Ad esempio, nel nostro caso abbiamo bisogno di mandare quattro segnali distinti, quindi avremo bisogno di due segnali di selezione (infatti le combinazioni di 1 e 0 logici possibili sono abbastanza per assegnare ad ognuno dei quattro segnali un codice logico di due cifre).
 Dunque, insieme al cavo dedicato alla trasmissione dati e a quello di terra (abbiamo bisogno di un riferimento comune per i nostri stati logici), costruiremo un circuito di trasmissione che utilizzerà quattro cavi e avrà bisogno di blocchi per la selezione e blocchi per la trasmissione.
