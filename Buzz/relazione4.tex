@@ -145,7 +145,46 @@ Abbiamo infine provato ad inserire un offset all'ingresso invertente: ciò ha po
 
 In questa parte dell'esperienza studieremo il funzionamento di un oscillatore a rilassamento. Tale circuito sfrutta l'instabilità della retroazione positiva per generare un segnale oscillante con una frequenza determinata dai componenti stessi del circuito. In Figura \ref{cir4:oscillatore} è riportato lo schema circuitale. 
 
-L'elemento circuitale fondamentale per il funzionamento dell'oscillatore a rilassamento è il condensatore C. Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro switch della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato analiticamente risolvendo il circuito. Il valore che si ottiene è $T=2RCln(1+\frac{2R_1}{R_2})$.  
+L'elemento circuitale fondamentale per il funzionamento dell'oscillatore a rilassamento è il condensatore C.  Sfruttando il trigger di Schmitt dato dalle resistenze $R_1$ ed $R_2$, la tensione di riferimento (cioè la tensione $V_+$ all'ingresso non invertente) cambia al cambiare di $V_{out}$ come segue
+$$
+V_{+} = \bigg \{
+\begin{array}{rl}
+\beta V_{cc} & \mathrm{se} \quad V_+ > V_- \quad \mathrm{ovvero} \quad V_{out}=V_{cc}\\
+-\beta V_{cc} & \mathrm{se} \quad V_+ < V_- \quad \mathrm{ovvero} \quad V_{out}=-V_{cc}\\
+\end{array}
+$$
+dove $\beta=\frac{R_1}{R_1+R_2}$ è dato dal partitore fra $R_1$ ed $R_2$.
+Nel nostro caso, la capacità renderà la tensione $V_-$ all'ingresso invertente crescente (verso $V_{cc}$) quando $V_{out}=V_{cc}$ e decrescente nel caso opposto. Inoltre, $V_-$ invertirà il segno della derivata una volta raggiunta la tensione $\pm \beta V_{cc}$.
+
+Infatti, supponiamo ad esempio che la tensione $V_-$ stia crescendo. Ciò significa, per quanto detto, che la tensione di riferimento è data dal trigger, cioè $V_+=\beta V_{cc}$. Dunque, una volta raggiunta e superata tale tensione il confronto fra le due invertirà la tensione di uscita e $V_-$ inizierà a decrescere fino a $-\beta V_{cc}$, per poi invertirsi di nuovo. Tale processo porta quindi ad una oscillazione a rilassamento, cioè verso una stabilizzazione a $\pm V_{cc}$ che però non può avvenire per la presenza del trigger. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
+%Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro switch della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
+
+A tal fine consideriamo la parte del circuito costituita dalla capacità C e dalla resistenza R per valutarne la risposta al gradino (cioè quando la tensione in uscita dal $\mu$741 passa da $-V_{cc}$ a $V_{cc}$), schematizzandolo come in Figura \ref{cir4:oscillatore_spi}, in quanto è il comportamento della capacità che ci interessa per il calcolo del periodo $T$.
+
+\begin{wrapfigure}[18]{l}{0.22\textwidth}
+  \begin{center}
+    \includegraphics[width=0.20\textwidth]{../E04/latex/c_rilassamento_spi.pdf}
+  \end{center}
+  \caption{}
+  \label{cir4:oscillatore_spi}
+\end{wrapfigure}
+
+Per la legge di Kirchhoff sulle correnti vale
+$$\frac{u(t)V_{cc} - V(t)}{R} - C \frac{dV(t)}{dt} = 0$$
+con $u(t)=1$ per $t>0$ e $V(t)=V_-$ la differenza di potenziale del condensatore. Quindi otteniamo
+$$\frac{1}{V_{cc} - V(t)} \frac{dV(t)}{dt} = \frac{1}{RC}$$
+L'equazione differenziale ha come soluzione
+$$V(t)=V_{cc} - a \mathrm{e}^{-\frac{t}{RC}}$$
+Per trovare la costante $a$ dobbiamo considerare il grafico in Figura \ref{gr4:osc10k} e impostare $V(t=0)=-\beta V_{cc}$. Quindi si ricava che
+\begin{equation}
+V(t)=V_{cc} - V_{cc} (1+ \beta) \mathrm{e}^{-\frac{t}{RC}}
+\label{eq4:osc_vt}
+\end{equation}
+Sempre dal grafico sperimentale in Figura \ref{gr4:osc10k} è possibile imporre che $V(T/2)=\beta V_{cc}$. Imponendo l'uguaglianza di questa condizione con (\ref{eq4:osc_vt}) e svolgendo i calcoli il valore che si ottiene per il periodo è
+\begin{equation}
+T=2RCln\left(1+\frac{2R_1}{R_2}\right)
+\label{eq4:periodo_osc}
+\end{equation}  
 
 Nel grafico in Figura \ref{gr4:osc10k} sono riportati i risultati ottenuti per valori di $R=\SI{9.99(1)}{\kohm}$. Come vediamo, carica e scarica del condensatore tendono a $\pm V_{sat}$.
 
