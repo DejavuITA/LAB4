@@ -75,8 +75,8 @@ Per isolare ulteriormente il circuito ed evitare giri di massa abbiamo anche uti
 
 \begin{figure}[tpc]
 \centering
-\includegraphics[width=.6\textwidth]{../E07/latex/circuito.pdf}
-\caption{Schema del circuito da noi utilizzato per acquisire l'elettrocardiogramma. Il diverso colore della comune serve a rendere evidente l'indipendenza delle comuni fra il circuito e il collegamento all'oscilloscopio.}
+\includegraphics[width=.60\textwidth]{../E07/latex/circuito.pdf}
+\caption{Schema del circuito utilizzato per acquisire l'elettrocardiogramma. Il diverso colore della comune serve a rendere evidente l'indipendenza delle comuni fra il circuito e il collegamento all'oscilloscopio.}
 \label{cir7:elettro-cardiogramma}
 \end{figure}
 
@@ -93,13 +93,15 @@ Con la sua frequenza di taglio di circa \SI{3}{\Hz}, il filtro passa alto in cod
 $$G_2=\frac{2 \pi R_1 C_1 \times \SI{1.25}{\Hz}}{\sqrt{1+(2 \pi R_1 C_1 \times \SI{1.25}{\Hz})^2}}\approx 0.35$$
 
 \subsubsection*{Operazionale U4}
-Questo operazionale è posto in un blocco con retroazione negativa non invertente. Dunque il suo guadagno è dato da
-$$G_3=1+\frac{R_2}{R_3} \approx 11$$
+Questo operazionale è posto in un blocco con retroazione negativa invertente. Se svolgiamo i calcoli otteniamo il guadagno in funzione della frequenza
+$$G_3(\omega) = \frac{R_3}{R_2} \frac{1}{\sqrt{1+\omega^2 R_3^2 C_2^2}}$$
+Dunque, ad alte frequenze il guadagno tenderà a zero (quindi con questo opamp introduciamo un ulteriore stato di abbattimento dei rumori ad alte frequenze); mentre, per basse frequenze (in particolare vale anche per $\omega=2\times\pi\times1.25$ \si{\radian\per\second}) abbiamo
+$$G_3\approx\frac{R_2}{R_3} \approx 10$$
+
+\subsubsection*{Amplificazione totale}
 
 L'amplificazione totale è dunque
-$$G = G_1 \times G_2 \times G_3 \approx 450$$
-
-La capacità di \SI{10}{\nano\farad} inserita è un ulteriore stadio di abbattimento dei rumori ad alte frequenze.
+$$G = G_1 \times G_2 \times G_3 \approx 410$$
 
 \subsection{Grafico dell'ECG}
 
@@ -107,7 +109,7 @@ Presentiamo ora in Figura \ref{fig7:ecg_output} l'elettrocardiogramma di uno deg
 
 \begin{figure}[htpc]
 \centering
-\includegraphics[width=.7\textwidth]{../E07/latex/g4.pdf}
+\includegraphics[width=.61\textwidth]{../E07/latex/g4.pdf}
 \caption{Grafico della tensione registrata dall'oscilloscopio in funzione del tempo (ECG).}
 \label{fig7:ecg_output}
 \end{figure}
