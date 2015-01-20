@@ -30,7 +30,7 @@ Ricordiamo che in ogni schema sono stati sottintesi la circuitazione di alimenta
 
 Uno dei parametri che caratterizzano l'amplificatore operazionale è lo Slew Rate, definito come
 $$SR = \mathrm{max}\left[\frac{\Delta V}{\Delta t}\right]$$
-che indica la velocità massima con cui l'amplificatore operazionale può far variare la tensione in uscita nell'unità di tempo. Ciò significa che, per segnali in entrata con derivata temporale superiore ad SR dell'OPAMP, avremo un segnale distorto in uscita.
+che indica la velocità massima con cui l'amplificatore operazionale può far variare la tensione in uscita nell'unità di tempo. Ciò significa che, per segnali in entrata con derivata temporale superiore ad SR dell'opamp, avremo un segnale distorto in uscita.
 
 Nel nostro caso abbiamo utilizzato un generatore caratterizzato da uno Slew Rate di $SR_{gen}=\SI{315}{\volt\per\micro\second}$ per creare il segnale in ingresso (onda quadra) e valutato la forma d'onda del segnale in uscita utilizzando il circuito in Figura \ref{cir3:slew_rate}.
 Dati i diversi ordini di grandezza fra $SR_{gen}$ e il valore atteso di $SR$ ($\approx \SI{0.5}{\volt\per\micro\second} $) possiamo considerare il generatore come avente uno slew rate pressoché infinito.
@@ -112,7 +112,7 @@ H(s)=\frac{V_{out}}{V_{in}}=\frac{1}{\beta}\frac{1}{1+\frac{1}{A(s) \beta}}
 \end{equation}
 da cui è facile notare che per $A(s) \rightarrow + \infty$ (approssimazione di amplificatore ideale), $H(s)=\frac{1}{\beta}=1+\frac{R_2}{R_1}=G$, equazione che diventa indipendente dal guadagno a maglia aperta.
 
-Schematizziamo l'OPAMP come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
+Schematizziamo l'opamp come un filtro passa basso. Abbiamo che il guadagno a maglia aperta varia con la frequenza secondo la legge
 \begin{equation}
 A(j\omega)=\frac{A_{ol}}{1+j\frac{\omega}{\omega_0}}
 \label{eq3:passa_basso}
@@ -127,7 +127,7 @@ da cui si nota che la nuova frequenza di taglio è data da
 \omega_t=(1+A_{ol}\beta)\omega_0
 \label{eq3:freq_taglio}
 \end{equation}
-Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare la costante \textit{gain-bandwidth product} GBWP $=f_t G$, costante dell'amplificatore operazionale.
+Nel circuito in Figura \ref{cir3:banda} avevamo un guadagno $G$ retro-azionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perché cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare ora frequenze di taglio senza essere certi del valore di $A_{ol}$.} frequenze di taglio, per l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$. Per fare una stima delle frequenze di taglio era anche possibile sfruttare la costante \textit{gain-bandwidth product} GBWP $=f_t G$, costante dell'amplificatore operazionale.
 
 \subsubsection*{Effetto dello Slew Rate}
 
@@ -217,7 +217,7 @@ Durante le misurazioni abbiamo deciso di variare la resistenza $R_4$ suddividend
 Per non dover utilizzare resistenze $R_4$ troppo grandi ad alte frequenze ($>$ \SI{70}{\kilo\hertz}), abbiamo provato ad effettuare le misure direttamente ad open-loop, dato che il guadagno è contenuto (\num{<100}).
 Tuttavia il generatore di forme d'onda non emette un segnale pulito alla sola frequenza voluta, in quanto anch'esso è uno strumento reale e dunque affetto da errori.
 Esso potrebbe dunque emettere segnali a frequenze basse o addirittura un piccolo offset.
-Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
+Poiché per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
 Non è da sottovalutare poi la presenza dei residui dell'offset dell'opamp.
 Esso infatti dipende anche dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta ad ogni temperatura.
 Misurare il guadagno $A_{ol}$ effettivamente a open-loop è particolarmente problematico.
@@ -229,7 +229,7 @@ I dati ottenuti sono riportati nel seguente grafico.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{../E03/latex/gol.pdf}
-	\caption{Grafico semilogaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}). La legge plottata è la (\ref{eq3:fit_gain_ol}).}
+	\caption{Grafico semi-logaritmico del guadagno (in $dB$) in funzione della frequenza. Ad ogni forma dei punti (e relativo colore) corrisponde una diversa resistenza $R_4$ utilizzata. Per quanto riguarda $R_4=\infty$, intendiamo la mancanza del collegamento fra ingresso invertente e non invertente (circuito in Figura \ref{cir3:high_frequency}). La legge plottata è la (\ref{eq3:fit_gain_ol}).}
   \label{cir3:gain_open_loop}
 \end{figure}
 
@@ -264,6 +264,6 @@ I dati ottenuti non risultano compatibili ma riteniamo tale fatto sia dovuto ad 
 
 In questa esperienza siamo riusciti a stimare lo \textit{slew rate} di un amplificatore operazionale $\mu$A741 e la massima corrente erogata. Tali valori sono risultati compatibili con quelli riportati sul datasheet del costruttore. 
 
-Successivamente abbiamo verificato la banda passante per un circuito non invertente retroazionato negativamente con guadagno G=11 e G=101. Dai diagrammi di Bode abbiamo visto come aumentando il Gain diminuiva la banda passante (ovvero GBWP=const).
+Successivamente abbiamo verificato la banda passante per un circuito non invertente retro-azionato negativamente con guadagno G=11 e G=101. Dai diagrammi di Bode abbiamo visto come aumentando il Gain diminuiva la banda passante (ovvero GBWP=const).
 
 Infine abbiamo valutato il guadagno open-loop a diverse frequenze, utilizzando dei circuiti che ci permettevano un controllo del guadagno effettivo e dunque di evitare problemi quali la saturazione dell'amplificatore operazionale. Il guadagno open-loop per tensioni costanti è stato stimato essere un valore compreso fra \num{1.8E5} e \num{2.0E5}, valore compatibile con quelli forniti dal costruttore.

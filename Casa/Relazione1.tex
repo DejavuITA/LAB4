@@ -45,7 +45,7 @@ Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=6cm]{../E01/latex/alimentazione.pdf}}
- \caption{Grafico dell'alimentazione dell'OPAMP. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=(0.112 \pm 0.001)$ \si{\micro\farad}, $C_2=(0.095\pm0.001)$ \si{\micro\farad}. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
+ \caption{Grafico dell'alimentazione dell'opamp. La tensione di alimentazione è fornita con il generatore di tensione costante, mentre le capacità sono $C_1=(0.112 \pm 0.001)$ \si{\micro\farad}, $C_2=(0.095\pm0.001)$ \si{\micro\farad}. Per maggiore chiarezza negli schemi circuitali, questa configurazione sarà nascosta negli schemi successivi, ma comunque presente sulla breadboard.}
  \label{gr:costante}
 \end{figure}
 
@@ -53,13 +53,13 @@ Inoltre, al fine di evitare problemi di rumore durante l'alimentazione, abbiamo 
 
 In questo circuito abbiamo assemblato un generatore di corrente costante, cioè un dispositivo in grado di erogare una corrente costante ai capi di una resistenza (che definiremo \textit{resistenza di carico} $R_c$), indipendentemente dal valore di quest'ultima. Per valutare questa caratteristica abbiamo dunque utilizzato come $R_c=R_2$ una resistenza variabile di tipo \textit{trimmer}. Lo schema circuitale è in Figura \ref{gen_continua}.
 
-Risolviamo ora il circuito, considerando la tensione fornita dal generatore di tensione continua come $V_{gen}$ e la tensione in uscita dall'OPAMP come $V_{out}$. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo.
+Risolviamo ora il circuito, considerando la tensione fornita dal generatore di tensione continua come $V_{gen}$ e la tensione in uscita dall'opamp come $V_{out}$. Dato che B si trova a potenziale di comune, per (\ref{eq:regola_V}) anche A sarà allo stesso potenziale, che considereremo nullo.
 
 \begin{wrapfigure}[25]{r}{0.55\textwidth}
   \begin{center}
     \includegraphics[width=0.40\textwidth]{../E01/latex/c1.pdf}
   \end{center}
-  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=(3.85 \pm 0.01)$ \si{\kilo\ohm} e $V_{gen}=3.85$ \si{\volt}, mentre $R_2$ è variabile. Come amperometro è utilizzato il multimetro, mentre per alimentare l'OPAMP e come generatore di tensione costante in figura, abbiamo utillizzato il generatore Agilent E3631A.}
+  \caption{Schema del generatore di corrente costante. Come valori abbiamo utilizzato $R1=(3.85 \pm 0.01)$ \si{\kilo\ohm} e $V_{gen}=3.85$ \si{\volt}, mentre $R_2$ è variabile. Come amperometro è utilizzato il multimetro, mentre per alimentare l'opamp e come generatore di tensione costante in figura, abbiamo utilizzato il generatore Agilent E3631A.}
   \label{gen_continua}
 \end{wrapfigure}
 
@@ -69,13 +69,13 @@ V_{gen} - V_A = V_{gen} = I_1 R_1
 \label{eq:gen_1}
 \end{equation}
 $$V_{out} - V_A = V_{out} = I_2 R_2$$
-Per (\ref{eq:regola_I}) e la legge di Kirkhhoff sui nodi, avremo invece che la corrente passante per la resistenza di carico è uguale alla corrente di (\ref{eq:gen_1}) in modulo e varrà: $I=I_1=-I_2$.
+Per (\ref{eq:regola_I}) e la legge di Kirchhoff sui nodi, avremo invece che la corrente passante per la resistenza di carico è uguale alla corrente di (\ref{eq:gen_1}) in modulo e varrà: $I=I_1=-I_2$.
 
-Otteniamo dunque che la tensione di output si modificherà, ad opera dell'OPAMP, in modo da far passare sempre lo stesso valore di corrente attraverso $R_2$; ciò avviene per il fenomeno di retroazione negativa, che ci permette di controllare la tensione di output tramite la resistenza di feedback, che in questo caso è $R_2$, e di ottenere dunque una corrente costante passante per il circuito di feedback. Imponendo l'uguaglianza della corrente possiamo inoltre trovare il valore della tensione di uscita
+Otteniamo dunque che la tensione di output si modificherà, ad opera dell'opamp, in modo da far passare sempre lo stesso valore di corrente attraverso $R_2$; ciò avviene per il fenomeno di retroazione negativa, che ci permette di controllare la tensione di output tramite la resistenza di feedback, che in questo caso è $R_2$, e di ottenere dunque una corrente costante passante per il circuito di feedback. Imponendo l'uguaglianza della corrente possiamo inoltre trovare il valore della tensione di uscita
 
 $$V_{out}=-\frac{R_2}{R_1} V_{gen}$$
 
-Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'OPAMP e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1$ \si{\milli\ampere}, discostandoci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20$ \si{\milli\ampere}); e avendo a disposizione una resistenza $R_1=(3.85 \pm 0.01)$ \si{\kilo\ohm}, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85$ \si{\volt}. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1$ \si{\milli\ampere}.
+Durante l'esperienza abbiamo però deciso di misurare la corrente passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'opamp e la resistenza di carico $R_2$. Come valore di corrente abbiamo scelto $1$ \si{\milli\ampere}, discostandoci dalla corrente massima in cui l'amplificatore operazionale potrebbe non comportarsi più in maniera ideale ($10/20$ \si{\milli\ampere}); e avendo a disposizione una resistenza $R_1=(3.85 \pm 0.01)$ \si{\kilo\ohm}, per (\ref{eq:gen_1}), abbiamo utilizzato una tensione continua di $3.85$ \si{\volt}. Di seguito proponiamo alcuni valori sperimentali che confermano la capacità del circuito da noi creato di fornire alla resistenza di carico una corrente costante di $1$ \si{\milli\ampere}.
 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
@@ -159,4 +159,4 @@ Dunque, se consideriamo $\nu_1 + \nu_2 >> |\nu_1 - \nu_2|$, otteniamo il battime
 
 \subsection*{Conclusioni}
 
-In questa esperienza siamo riusciti a valutare il comportamento dell'OPAMP considerandolo ideale, in configurazione di generatore di corrente e sommatore pesato. In entrambi i casi, dati i valori di corrente e tensione, e avendo retrozionato l'OPAMP, abbiamo notato l'idealità dell'amplificatore.
+In questa esperienza siamo riusciti a valutare il comportamento dell'opamp considerandolo ideale, in configurazione di generatore di corrente e sommatore pesato. In entrambi i casi, dati i valori di corrente e tensione, e avendo retro-azionato l'opamp, abbiamo notato l'idealità dell'amplificatore.

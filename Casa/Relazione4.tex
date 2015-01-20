@@ -11,10 +11,10 @@ In questa esperienza studieremo dei circuiti comparatori con retroazione positiv
 \item Multimetro Agilent 34410A a sei cifre e mezza;
 \item Un amplificatore operazionale $\mu$A741;
 \item Un amplificatore operazionale LM311;
-\item Fototransistor OP550;
+\item Foto-transistor OP550;
 \item Resistenze e capacità di vari valori;
 \item Un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm};
-\item Un trimmer multigiro da \SI{10}{\kilo\ohm};
+\item Un trimmer multi-giro da \SI{10}{\kilo\ohm};
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
@@ -64,7 +64,7 @@ da cui è facile mostrare che la tensione di uscita è proprio (\ref{eq4:compara
   \label{cir4:open_collector}
 \end{wrapfigure}
 
-Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm} e il collegamento con la comune del transistor è interdetto) e non c'è caduta ai capi di $R_p$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R_p$ (definita \textit{resistenza di pullup}).
+Infatti, quando Q è interdetto il generatore di tensione che fornisce $V_C$ non eroga corrente (l'impedenza dell'oscilloscopio è \SI{1}{\Mohm} e il collegamento con la comune del transistor è interdetto) e non c'è caduta ai capi di $R_p$, dunque $V_{out}=V_C$; quando Q è in saturazione la tensione di uscita (tensione di collettore) si porta circa alla tensione di emettitore, dunque a zero\footnote{In realtà la tensione di uscita risulterà qualche centinaio di \si{\milli\volt} sopra lo $0$. Tale tensione serve a polarizzare il transistor affinché vada in saturazione oltre, ovviamente, alle cadute nelle altre parti della circuiteria interna dell'amplificatore.}. Si noti che la tensione di uscita può essere controllata solo grazie alla presenza della resistenza $R_p$ (definita \textit{resistenza di pull-up}).
 
 Sfruttando questa funzione possiamo dunque confrontare la tensione in entrata su un ingresso con quella all'altro ingresso. Ad esempio, poniamo l'ingresso invertente ad una tensione di soglia $V_{ref}=0$: se vale la (\ref{eq4:comparatore}), ponendo un segnale in alternata sull'ingresso non invertente, l'operazionale restituirà una $V_{out}$ nulla se $V_{in}<V_{ref}$, altrimenti $V_C$. Valutiamo dunque il funzionamento del circuito ipotizzato, il cui schema circuitale è in Figura \ref{cir4:comparatore}, ponendo $V_{C}=5$\si{\volt}. Il grafico in Figura \ref{gr4:comparatore} mostra la tensione in entrata e in uscita.
 
@@ -157,7 +157,7 @@ Nel nostro caso, la capacità renderà la tensione $V_-$ all'ingresso invertente
 Infatti, supponiamo ad esempio che la tensione $V_-$ stia crescendo. Ciò significa, per quanto detto, che la tensione di riferimento è data dal trigger, cioè $V_+=\beta V_{cc}$. Dunque, una volta raggiunta e superata tale tensione il confronto fra le due invertirà la tensione di uscita e $V_-$ inizierà a decrescere fino a $-\beta V_{cc}$, per poi invertirsi di nuovo. Tale processo porta quindi ad una oscillazione a rilassamento, cioè verso una stabilizzazione a $\pm V_{cc}$ che però non può avvenire per la presenza del trigger. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
 %Per comodità a $t=0$ assumiamolo scarico e $V_{out}=+V_{sat}$. Ovviamente, per effetto della retroazione negativa, la tensione all'ingresso invertente tenderà ad aumentare ($V_{inv}$ è determinata da quanta carica è accumulata sul condensatore). Non appena $|V_{inv}|>|V_{ninv}|$, avremo uno switch della tensione in uscita, ovvero $+V_{sat} \rightarrow -V_{sat}$. Il condensatore inizierà dunque a scaricarsi. Successivamente avremo un altro switch della tensione in uscita e il ciclo si ripeterà. Il periodo di tale oscillazione può essere calcolato risolvendo il circuito.
 
-A tal fine consideriamo la parte del circuito costituita dalla capacità C e dalla resistenza R per valutarne la risposta al gradino (cioè quando la tensione in uscita dal $\mu$741 passa da $-V_{cc}$ a $V_{cc}$) e lo schematizziamo con in Figura \ref{cir4:oscillatore_spi}, in quanto è il comportamento della capacità che ci interessa per il calcolo del periodo $T$.
+A tal fine consideriamo la parte del circuito costituita dalla capacità C e dalla resistenza R per valutarne la risposta al gradino (cioè quando la tensione in uscita dal $\mu$741 passa da $-V_{cc}$ a $V_{cc}$), schematizzandolo come in Figura \ref{cir4:oscillatore_spi}, in quanto è il comportamento della capacità che ci interessa per il calcolo del periodo $T$.
 
 \begin{wrapfigure}[23]{l}{0.28\textwidth}
   \begin{center}
@@ -167,7 +167,7 @@ A tal fine consideriamo la parte del circuito costituita dalla capacità C e dal
   \label{cir4:oscillatore_spi}
 \end{wrapfigure}
 
-Per la legge di Kirkhhoff sulle correnti vale
+Per la legge di Kirchhoff sulle correnti vale
 $$\frac{u(t)V_{cc} - V(t)}{R} - C \frac{dV(t)}{dt} = 0$$
 con $u(t)=1$ per $t>0$ e $V(t)=V_-$ la differenza di potenziale del condensatore. Quindi otteniamo
 $$\frac{1}{V_{cc} - V(t)} \frac{dV(t)}{dt} = \frac{1}{RC}$$
@@ -216,19 +216,19 @@ Nell'ultima parte dell'esperienza abbiamo assemblato un interruttore crepuscolar
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=12.5cm]{../E04/latex/c_crepuscolare.pdf}}
- \caption{Circuito dell'interruttore crepuscolare. Come vediamo chiaramente, la parte con l'op-amp $\mu$A741 è un semplice amplificatore in tensione ($R_F = \SI{1}{\Mohm}$) La seconda parte del circuito è un comparatore con isteresi, settata dal rapporto $R_1/R_2$ ($R_1 = \SI{50}{\kohm}$ e $R_2 = \SI{100}{\kohm}$). La tensione di riferimento deve essere scelta in modo da decidere con quanta luminosità si vuole che l'interruttore scatti. Per far ciò abbiamo usato un partitore utilizzando un trimmer ($R_S$) da \SI{10}{\kohm}. La resistenza di pull-up è stata scelta di  \SI{1}{\kohm}, così da avere una corrente sufficiente per far accendere il led.}
+ \caption{Circuito dell'interruttore crepuscolare. Come vediamo chiaramente, la parte con l'opamp $\mu$A741 è un semplice amplificatore in tensione ($R_F = \SI{1}{\Mohm}$) La seconda parte del circuito è un comparatore con isteresi, settata dal rapporto $R_1/R_2$ ($R_1 = \SI{50}{\kohm}$ e $R_2 = \SI{100}{\kohm}$). La tensione di riferimento deve essere scelta in modo da decidere con quanta luminosità si vuole che l'interruttore scatti. Per far ciò abbiamo usato un partitore utilizzando un trimmer ($R_S$) da \SI{10}{\kohm}. La resistenza di pull-up è stata scelta di  \SI{1}{\kohm}, così da avere una corrente sufficiente per far accendere il led.}
  \label{cir4:crepuscolare}
 \end{figure}
 
-Un circuito di questo tipo necessità di almeno due componenti: il sensore di luminosità (fototransistor OP550) che fornisce la variabile circuitale collegata alla luminosità ambientale e un blocco di comparazione che \textit{decide} se alimentare o meno il carico confrontando il segnale dato dal primo blocco con un segnale di riferimento.
+Un circuito di questo tipo necessità di almeno due componenti: il sensore di luminosità (foto-transistor OP550) che fornisce la variabile circuitale collegata alla luminosità ambientale e un blocco di comparazione che \textit{decide} se alimentare o meno il carico confrontando il segnale dato dal primo blocco con un segnale di riferimento.
 
-Il componente principale del primo blocco è il fototransistor OP550 che agisce come una sorgente di corrente, generando una corrente dell'ordine del \si{\uA} se esposto alla luce.
+Il componente principale del primo blocco è il foto-transistor OP550 che agisce come una sorgente di corrente, generando una corrente dell'ordine del \si{\uA} se esposto alla luce.
 Tale corrente è però difficilmente manipolabile, pertanto abbiamo deciso di utilizzare un convertitore corrente-tensione per trasformare e amplificare il segnale in modo tale da poter essere utilizzata come segnale di ingresso del secondo blocco.
 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=14.5cm]{../E04/latex/neon.pdf}}
- \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul fototransistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
+ \caption{Rumore ambientale determinato dalla luce delle lampade al neon del laboratorio incidente sul foto-transistor e amplificato dall'opamp $\mu$A741. I dati sono stati ricavati separando i due blocchi del circuito e misurando la tensione all'uscita dell'opamp $\mu$A741.}
  \label{gr4:neon}
 \end{figure}
 
@@ -238,13 +238,13 @@ In questo modo, la tensione in uscita dell'opamp sarà legata alla corrente che 
 \begin{equation}
 	V_{out} = R_F \,\, I_{OP550}
 \end{equation}
-dove $R_F$ è la resistenza posta sul ramo di retroazione (nel nostro caso $R_F = \SI{1}{\Mohm}$) e $I_{OP550}$ è il modulo della corrente passante nel fototransistor.
+dove $R_F$ è la resistenza posta sul ramo di retroazione (nel nostro caso $R_F = \SI{1}{\Mohm}$) e $I_{OP550}$ è il modulo della corrente passante nel foto-transistor.
 
 Il secondo blocco del circuito è invece composto da un opamp LM311 utilizzato come comparatore con isteresi (o trigger di Schmitt).
-Sul ramo di retroazione e tra il terminale positivo e l'ingresso del segnale - che corrisponde all'uscita dell'opamp $\mu$A741 - sono state poste due resistenze per creare l'isteresi affinché eventuali rumori di fondo non disturbassero il funzionamento del circuito.
+Sul ramo di retroazione e tra il terminale positivo e l'ingresso del segnale (che corrisponde all'uscita dell'opamp $\mu$A741) sono state poste due resistenze per creare l'isteresi affinché eventuali rumori di fondo non disturbassero il funzionamento del circuito.
 Nel nostro caso abbiamo utilizzato due resistenze $R_1 =$ \SI{5}{\kohm} e $R_2=$ \SI{100}{\kohm} in modo da avere un ampio margine di sicurezza.
 
-Come si può notare dal grafico in Figura \ref{gr4:neon} il rumore ambientale dato dalle lampade al neon ha una forma d'onda sinusoidale di frequenza \SI{100}{\hertz} e ampiezza picco-picco \SI{80}{\mV}, pertanto sarebbe stata sufficiente un'isteresi di appena $\frac{V_{CC}}{100} \approx \SI{150}{\mV}$
+Come si può notare dal grafico in Figura \ref{gr4:neon} il rumore ambientale dato dalle lampade al neon ha una forma d'onda sinusoidale di frequenza \SI{100}{\hertz} e ampiezza picco-picco \SI{80}{\mV}, pertanto sarebbe stata sufficiente una isteresi di appena $\frac{V_{CC}}{100} \approx \SI{150}{\mV}$
 
 Per impostare la tensione di soglia, invece, abbiamo creato un partitore collegando i due connettori esterni di un trimmer resistivo da \SI{10}{\kohm} a +\SI{15}{\V} e a comune, mentre abbiamo collegato il terminale centrale del trimmer all'ingresso invertente del LM311.
 In questo modo potevamo scegliere la tensione di soglia girando semplicemente un cacciavite.
@@ -254,12 +254,12 @@ Infine abbiamo posto il carico da alimentare tra l'alimentazione positiva +\SI{1
 \subsection*{Conclusioni}
 
 In questa esperienza abbiamo analizzato il funzionamento di circuiti comparatori, molto utili quando vogliamo confrontare due segnali ottenendo un semplice valore digitale (on-off).
-Tuttavia, vista la sensibilità degli op-amp, abbiamo bisogno di un modo per evitare che il rumore influenzi le nostre comparazioni.
+Tuttavia, vista la sensibilità degli opamp, abbiamo bisogno di un modo per evitare che il rumore influenzi le nostre comparazioni.
 Per far questo abbiamo introdotto i circuiti con isteresi, ovvero con feedback-positivo.
 
 Durante l'esperienza abbiamo anche costruito un oscillatore a rilassamento: la peculiarità di tale circuito è che esso oscilla tra $+V_{sat}$ e $-V_{sat}$ sebbene sia alimentato con tensioni continue.
 La frequenza di tale oscillatore è univocamente determinata dai valori delle componenti circuitali.
 
 È stato poi realizzato un interruttore crepuscolare.
-Questi interruttori, contenenti un fototransistor, permettono ad esempio l'accensione (e spegnimento) delle luci stradali quando tramonta il sole.
-Non volendo però che una semplice nuvola passeggera faccia accendere le luci, abbiamo introdotto la retroazione positiva per creare un'isteresi che renda il circuito insensibile al rumore (la nuvola).
+Questi interruttori, contenenti un foto-transistor, permettono ad esempio l'accensione (e spegnimento) delle luci stradali quando tramonta il sole.
+Non volendo però che una semplice nuvola passeggera faccia accendere le luci, abbiamo introdotto la retroazione positiva per creare una isteresi che renda il circuito insensibile al rumore (la nuvola).

@@ -13,18 +13,18 @@ Ricordiamo che il circuito di alimentazione e di riduzione dei rumori (Figura \r
 \item Un amplificatore operazionale $\mu$A741;
 \item Resistenze e capacità di vari valori;
 \item un trimmer a un giro da \SI{5}{\kilo\ohm} e uno da \SI{10}{\kilo\ohm}, utilizzati per una prima prova;
-\item un trimmer multigiro da \SI{10}{\kilo\ohm};
+\item un trimmer multi-giro da \SI{10}{\kilo\ohm};
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
 \subsection{Tensione di offset}
 \label{par2:offset}
 
-In un amplificatore ideale accade che, quando gli ingressi sono entrambi collegati a comune, la tensione di uscita è pari a $0$. Questo fatto si spiega solo se consideriamo all'interno dell'op-amp una perfetta simmetria, attuabile solo se i transistor della circuiteria interna sono uguali in ogni caratteristica. Ovviamente, è impossibile creare degli elementi circuitali che siano perfettamente identici, e ciò causa la perdita della simmetria e l'instaurarsi di una tensione di offset. In questa parte dell'esperienza cercheremo di valutarla.
+In un amplificatore ideale accade che, quando gli ingressi sono entrambi collegati a comune, la tensione di uscita è pari a $0$. Questo fatto si spiega solo se consideriamo all'interno dell'opamp una perfetta simmetria, attuabile solo se i transistor della circuiteria interna sono uguali in ogni caratteristica. Ovviamente, è impossibile creare degli elementi circuitali che siano perfettamente identici, e ciò causa la perdita della simmetria e l'instaurarsi di una tensione di offset. In questa parte dell'esperienza cercheremo di valutarla.
 
 \subsubsection{Configurazione senza retroazione}
 
-Quando colleghiamo entrambi gli ingressi a comune (come in Figura \ref{cir:open_loop}) l'op-amp si comporta come se vedesse una differenza di potenziale fra gli ingressi (ovviamente, fra gli ingressi non c'è realmente, in quanto collegati entrambi a comune): questa viene amplificata dal guadagno a maglia aperta, e dunque avremo come $V_{out}$ un valore diverso da zero. Nel nostro caso l'op-amp andava in saturazione negativa (\SI{-14.3}{\volt}): ciò implica che l'op-amp si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso da \SI{-15}{\volt} utilizzati come alimentazione: il valore di tensione massimo $|V_{out}|$ è dunque leggermente inferiore a alla tensione di alimentazione $-V_{CC}$ (si può ipotizzare che tale discrepanza sia dovuta alle cadute di potenziale nella circuiteria interna).
+Quando colleghiamo entrambi gli ingressi a comune (come in Figura \ref{cir:open_loop}) l'opamp si comporta come se vedesse una differenza di potenziale fra gli ingressi (ovviamente, fra gli ingressi non c'è realmente, in quanto collegati entrambi a comune): questa viene amplificata dal guadagno a maglia aperta, e dunque avremo come $V_{out}$ un valore diverso da zero. Nel nostro caso l'opamp andava in saturazione negativa (\SI{-14.3}{\volt}): ciò implica che l'opamp si comporta come se la tensione all'ingresso invertente fosse maggiore di quella all'ingresso non invertente. Inoltre il valore $V_{out}$ è diverso da \SI{-15}{\volt} utilizzati come alimentazione: il valore di tensione massimo $|V_{out}|$ è dunque leggermente inferiore a alla tensione di alimentazione $-V_{CC}$ (si può ipotizzare che tale discrepanza sia dovuta alle cadute di potenziale nella circuiteria interna).
 
 \begin{figure}[ht]
         \centering
@@ -75,17 +75,17 @@ $119.8\pm0.1$ & $99.35\pm0.01$ & $830.3\pm0.7$ &$ -1025 \pm 2$ & $-1.2 \pm0.1$\\
   \begin{center}
     \includegraphics[width=0.280\textwidth]{../E02/latex/trimmer_correction.pdf}
   \end{center}
-  \caption{Circuito a guadagno unitario, con trimmer sui piedini 1 e 5 dell'OPAMP per compensare l'offset.}
+  \caption{Circuito a guadagno unitario, con trimmer sui piedini 1 e 5 dell'opamp per compensare l'offset.}
   \label{cir2:trimmer}
 \end{wrapfigure}
 
 \subsubsection{Azzeramento della tensione di offset}
 
-Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'op-amp (appositamente posti dal produttore a questo scopo), e collegandola a $V^-$ come in Figura \ref{cir2:trimmer}. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} (oltre che uno da \SI{5}{\kilo\ohm}, che è risultato di valore troppo basso) ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multigiro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\approx 0$. Abbiamo poi controllato che l'offset fosse effettivamente stato minimizzato riutilizzando il circuito in Figura \ref{cir:open_loop} e ottenendo $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
+Per risolvere il problema dell'offset possiamo servirci di una resistenza variabile ($trimmer$) che posizioneremo tra i piedini 1 e 5 dell'opamp (appositamente posti dal produttore a questo scopo), e collegandola a $V^-$ come in Figura \ref{cir2:trimmer}. Regolando tale resistenza andremo a generare una contro tensione che bilancerà l'offset. Durante l'esperienza abbiamo provato ad utilizzare trimmer ad un giro da \SI{10}{\kilo\ohm} (oltre che uno da \SI{5}{\kilo\ohm}, che è risultato di valore troppo basso) ma la sensibilità meccanica era troppo bassa per poter azzerare l'offset (la tensione di uscita infatti passava da $\approx$\SI{-14}{\volt} a $\approx$\SI{+14}{\volt}). Abbiamo dunque utilizzato un trimmer multi-giro da \SI{10}{\kilo\ohm}, con il quale abbiamo raggiunto la tensione $V_{out}\approx 0$. Abbiamo poi controllato che l'offset fosse effettivamente stato minimizzato riutilizzando il circuito in Figura \ref{cir:open_loop} e ottenendo $V_{out}= (1.3\pm0.2)\si{\volt}$. Ricordando che il guadagno a maglia aperta è di 100-120dB, si nota il buon bilanciamento della tensione di offset.
 
 \subsubsection{Effetto delle correnti di polarizzazione}
 
-Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo gli op-amp. Infatti ingresso invertente e non invertente sono collegati alle basi di alcuni transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset.
+Come sappiamo la tensione di offset non è però l'unico problema che incontriamo quando usiamo gli opamp. Infatti ingresso invertente e non invertente sono collegati alle basi di alcuni transistor e, ovviamente, per polarizzarli serve una corrente di base. Gli effetti di tale corrente si sommeranno dunque a quelli dovuti all'offset.
 
 \begin{wrapfigure}[14]{r}{0.55\textwidth}
   \begin{center}
@@ -101,7 +101,7 @@ Il valore opportuno di $R_C$ volto a minimizzare il contributo su $V_{out}$ dell
 
 Consideriamo quindi, per il principio di sovrapposizione, che $I_{b^+}$ sia nulla e sia presente solo  $I_{b^-}$; quest'ultima causa una caduta di potenziale su $R_2$ che va a influire sulla tensione di uscita come
 $$V_{out}^{I_{b^-}}=-R_2 I_{b^-}$$
-Invece, con $ I_{b^-}=0$ e valutando solo l'effetto di $I_{b^+}$, otteniamo (per l'equazione \ref{eq:regola_V} e la legge di Kirkhhoff per le correnti sul nodo dell'ingresso invertente)
+Invece, con $ I_{b^-}=0$ e valutando solo l'effetto di $I_{b^+}$, otteniamo (per l'equazione \ref{eq:regola_V} e la legge di Kirchhoff per le correnti sul nodo dell'ingresso invertente)
 $$\frac{I_{b^+}R_C}{R_1}+\frac{I_{b^+}R_C-V_{out}^{I_{b^+}}}{R_2}=0$$
 da cui si ricava il contributo di $I_{b^+}$ sulla tensione di uscita
 $$V_{out}^{I_{b^+}}=I_{b^+} R_C \left( 1+ \frac{R_2}{R_1}\right)$$
@@ -124,11 +124,11 @@ Riportiamo nella seguente tabella i nuovi valori in questa nuova configurazione 
 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c}
-$R_C [\si{\ohm}]$& $R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & Gain & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
+$R_1[\si{\ohm}]$ & $R_2[\si{\kilo\ohm}]$ & $R_C [\si{\ohm}]$ & Gain & $V_{out}' [\si{\milli\volt}]$ & $V_{off}' [\si{\milli\volt}]$ & $|V_{off}-V_{off}'|[\si{\milli\volt}]$ \\ 
 \hline 
-$119.4\pm0.1$ & $119.8\pm0.1$ & $9.911\pm0.001$  & $83.73 \pm 0.07$ & $-105.5 \pm 0.5$ & $-1.26 \pm0.01$ & $0.02\pm0.01$ \\
+ $119.8\pm0.1$ & $9.911\pm0.001$  & $118.4\pm0.1$ & $83.73 \pm 0.07$ & $-105.5 \pm 0.5$ & $-1.26 \pm0.01$ & $0.02\pm0.01$ \\
 \hline
-$119.4\pm0.1$ & $119.8\pm0.1$ & $99.35\pm0.01$  & $830.3\pm0.7$ &$ -1038 \pm 5$ & $-1.2 \pm 0.1$ & $\approx 0$\\
+$119.8\pm0.1$ & $99.35\pm0.01$  &$119.6\pm0.1$ & $830.3\pm0.7$ &$ -1038 \pm 5$ & $-1.2 \pm 0.1$ & $\approx 0$\\
 \end{tabular}
 \end{center}
 
@@ -178,11 +178,11 @@ Con questo metodo semplice abbiamo potuto ottenere una prima stima del valore de
 
 \subsubsection{Configurazione con retroazione negativa}
 
-Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'OPAMP, possiamo ottenere una misura indiretta della corrente di polarizzazione.
+Sfruttando un modello simile a quello utilizzato per trovare la tensione di offset, abbiamo montato i circuiti come in figura. Data la tensione in uscita, grazie alle proprietà di amplificazione dei segnali in ingresso dell'opamp, possiamo ottenere una misura indiretta della corrente di polarizzazione.
 
 \subsubsection*{Misura di $I_{b^-}$}
 
-Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V_{-}$ la tensione al capo di $R_B$ collegato all'OPAMP e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
+Risolviamo il circuito per trovare la corrente di polarizzazione $I_{b^-}$ in funzione della tensione di uscita. Considerando $V_{-}$ la tensione al capo di $R_B$ collegato all'opamp e $V^*$ quello opposto, vale in quel punto la legge di Kirchhoff sui nodi
 
 $$\frac{V^* - V_{in}}{R_1} + \frac{V^*-V_{out}}{R_2} + \frac{V^*-V_{-}}{R_B}=0$$
 
@@ -236,7 +236,7 @@ $$I_{b^+} = \frac{R_1}{R_B(R_1+R_2)}(I_{b^-} R_2-V_{out})$$
 ed inserendo i valori otteniamo $I_{b^+} = - (37.2 \pm 0.2)$ \si{\nano\ampere}, compatibile con il risultato precedente.
 
 \subsection*{Conclusioni}
-In questa esperienza abbiamo potuto osservare come gli OPAMP, sebbene siano dei circuiti abbastanza precisi, abbiano delle imperfezioni, date dalla loro composizione circuitale (sono presenti dei transistor BJT al loro interno).
-Le discrepanze tra il modello ideale e l'OPAMP reale sono date principalmente dallo sbilanciamento della risposta dello stesso ($V_{offset}$) e dalle correnti di polarizzazione (\textit{bias currents}).
-Per nostra fortuna spesso gli OPAMP presentano dei connettori predisposti a minimizzare la tensione di offset con circuiti di compensazione: nel nostro caso un trigger collegato ai piedini di offset e all'alimentazione negativa.
+In questa esperienza abbiamo potuto osservare come gli opamp, sebbene siano dei circuiti abbastanza precisi, abbiano delle imperfezioni, date dalla loro composizione circuitale (sono presenti dei transistor BJT al loro interno).
+Le discrepanze tra il modello ideale e l'opamp reale sono date principalmente dallo sbilanciamento della risposta dello stesso ($V_{offset}$) e dalle correnti di polarizzazione (\textit{bias currents}).
+Per nostra fortuna spesso gli opamp presentano dei connettori predisposti a minimizzare la tensione di offset con circuiti di compensazione: nel nostro caso un trigger collegato ai piedini di offset e all'alimentazione negativa.
 Una volta bilanciato l'opamp, abbiamo misurato le correnti di polarizzazione e abbiamo potuto osservare che esse sono dell'ordine dei \si{\nano\ampere}, quindi trascurabili per gli utilizzi più comuni.

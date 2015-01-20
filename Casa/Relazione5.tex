@@ -1,6 +1,6 @@
-\section{14.10.2014 - Raddrizzatore, Amplificatori e Termoresistenza}
+\section{14.10.2014 - Raddrizzatore, Amplificatori e Termo-resistenza}
 
-In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile anche per segnali di bassa tensione). Dopodiché valuteremo la capacità di un amplificatore differenziale e dell'integrato $AD622$ di abbattere i guadagni di modo comune. Infine utilizzeremo una termoresistenza per ricavare la temperatura in alcune situazioni.
+In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile anche per segnali di bassa tensione). Dopodiché valuteremo la capacità di un amplificatore differenziale e dell'integrato $AD622$ di abbattere i guadagni di modo comune. Infine utilizzeremo una termo-resistenza per ricavare la temperatura in alcune situazioni.
 
 \subsection*{Strumenti e materiali}
 
@@ -11,9 +11,9 @@ In questa esperienza progetteremo un raddrizzatore di precisione (utilizzabile a
 \item Multimetro Agilent 34410A a sei cifre e mezza;
 \item Un amplificatore operazionale $\mu$A741;
 \item Un integrato AD622;
-\item Una termoresistenza PT100;
+\item Una termo-resistenza PT100;
 \item Resistenze e capacità di vari valori;
-\item Due trimmer multigiro da \SI{10}{\kilo\ohm};
+\item Due trimmer multi-giro da \SI{10}{\kilo\ohm};
 \item Breadboard e cablaggi vari.
 \end{itemize}
 
@@ -47,7 +47,7 @@ Valutiamo ora il circuito in due casi: $V_{in}<0$ e $V_{in}>0$\footnote{Grazie a
 
 \paragraph*{Caso $V_{in}<0$}
 
-Nel primo caso, l'OPAMP amplifica il segnale negativo in entrata sull'uscita rispettando la (\ref{eq5:regola_opamp_NOFREQDEP}) con $V_-=0$: infatti, essendo il diodo interdetto (il polo positivo è più negativo di quello negativo), non passa alcuna corrente per $R_L$ rendendo $V^-=V_{out}=0$. Inoltre, dato che l'OPAMP è in saturazione ($V^+-V^-$ diventa molto grande), $V_A \approx V_{CC}$.
+Nel primo caso, l'OPAMP amplifica il segnale negativo in entrata sull'uscita rispettando la (\ref{eq5:regola_opamp_NOFREQDEP}) con $V_-=0$: infatti, essendo il diodo interdetto (il polo positivo è più negativo di quello negativo), non passa alcuna corrente per $R_L$ rendendo $V^-=V_{out}=0$. Inoltre, dato che l'opamp è in saturazione ($V^+-V^-$ diventa molto grande), $V_A \approx V_{CC}$.
 
 \paragraph*{Caso $V_{in}>0$}
 
@@ -66,7 +66,7 @@ In Figura \ref{gr5:primo_raddrizzatore} presentiamo i grafici delle tensioni in 
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=19.5cm]{../E05/latex/unite_tempo.pdf}}
- \caption{Grafici delle tensioni in funzione del tempo. Il primo grafico è quello relativo alla tensione all'uscita del circuito $V_{out}$, il secondo alla tensione in uscita dall'OPAMP $V_A$, dove è facile vedere che l'operazionale entra in saturazione negativa.}
+ \caption{Grafici delle tensioni in funzione del tempo. Il primo grafico è quello relativo alla tensione all'uscita del circuito $V_{out}$, il secondo alla tensione in uscita dall'opamp $V_A$, dove è facile vedere che l'operazionale entra in saturazione negativa.}
  \label{gr5:primo_raddrizzatore}
 \end{figure}
 
@@ -75,7 +75,7 @@ In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle t
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=19.5cm]{../E05/latex/u_risposta.pdf}}
- \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'OPAMP in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici le (\ref{eq5:leggi_1.1}).}
+ \caption{Grafici rispettivamente (da sinistra a destra) della tensione in uscita dal circuito in funzione della tensione in entrata, e della tensione in uscita dall'opamp in funzione della tensione in ingresso. Le leggi plottate sono per i due grafici le (\ref{eq5:leggi_1.1}).}
  \label{gr5:primo_raddrizzatore_vin}
 \end{figure}
 
@@ -86,7 +86,7 @@ In Figura \ref{gr5:primo_raddrizzatore_vin} presentiamo invece i grafici delle t
  \label{gr5:problema}
 \end{figure}
 
-Dal plot del segnale in entrata ed in uscita in funzione del tempo alla frequenza di 2 \si{\kilo\hertz} (grafico in Figura \ref{gr5:problema}), possiamo notare un troncamento della forma d'onda del segnale in uscita. Abbiamo ipotizzato che tale fenomeno fosse dovuto alla limitata velocità che i transistor all'interno dell'operazionale hanno di passare dalla saturazione all'interdizione; tale fenomeno è anche amplificato dal fatto che, quando il diodo è interdetto, $V_{A} \approx -V_{CC}$: il segnale deve quindi passare da una tensione di saturazione negativa alla tensione necessaria per raddrizzare il segnale in uscita in un tempo troppo breve, e ad alte frequenze ciò risulta in un troncamento. Per risolvere tale problema utilizziamo il circuito esposto al sottoparagrafo successivo.
+Dal plot del segnale in entrata ed in uscita in funzione del tempo alla frequenza di 2 \si{\kilo\hertz} (grafico in Figura \ref{gr5:problema}), possiamo notare un troncamento della forma d'onda del segnale in uscita. Abbiamo ipotizzato che tale fenomeno fosse dovuto alla limitata velocità che i transistor all'interno dell'operazionale hanno di passare dalla saturazione all'interdizione; tale fenomeno è anche amplificato dal fatto che, quando il diodo è interdetto, $V_{A} \approx -V_{CC}$: il segnale deve quindi passare da una tensione di saturazione negativa alla tensione necessaria per raddrizzare il segnale in uscita in un tempo troppo breve, e ad alte frequenze ciò risulta in un troncamento. Per risolvere tale problema utilizziamo il circuito esposto al paragrafo successivo.
 
 \subsubsection{Raddrizzatore ottimizzato}
 
@@ -143,7 +143,7 @@ In questa parte dell'esperienza analizzeremo un amplificatore differenziale, il 
 
 Sfruttiamo il principio di sovrapposizione per valutare la tensione in uscita in funzione delle due di ingresso, ricordandoci che tale principio può essere applicato per sistemi lineari: ciò è molto utile in quanto ci permette di separare l'analisi circuitale e ricondurci a casi più semplici.
 
-Chiamiamo $V^-$ la tensione all'ingresso invertente e $V^+$ quella all'ingresso non invertente. Analizziamo prima il caso in cui $V_1=0$. La tensione nel punto $V_+$ sarà data dal partitore con $R$ ed $mR$ (verso l'op-amp non scorre corrente). Assumendo l'op-amp ideale, abbiamo $V^+=V^-$. Possiamo dunque scrivere:
+Chiamiamo $V^-$ la tensione all'ingresso invertente e $V^+$ quella all'ingresso non invertente. Analizziamo prima il caso in cui $V_1=0$. La tensione nel punto $V_+$ sarà data dal partitore con $R$ ed $mR$ (verso l'opamp non scorre corrente). Assumendo l'opamp ideale, abbiamo $V^+=V^-$. Possiamo dunque scrivere:
 
 \begin{equation}
 \begin{cases} V_+=V_-  \\ V_+=V_2\frac{mR}{R+mR} \\ V_-= V_{out2}\frac{R}{R+mR}\end{cases}  \Rightarrow V_{out2}=mV_2
@@ -157,7 +157,7 @@ Analogamente, poniamo $V_2=0$. Otteniamo le seguenti equazioni del circuito:
 \label{eq 5: vout1}
 \end{equation}
 
-Sommando ora (\ref{eq 5: vout2}) e (\ref{eq 5: vout2}) otteniamo $V_{out}=m(V_2-V_1)$.
+Sommando ora (\ref{eq 5: vout2}) e (\ref{eq 5: vout1}) otteniamo $V_{out}=V_{out2}+V_{out1}=m(V_2-V_1)$.
 
 Possiamo ora passare ad analizzare il circuito da cui siamo partiti, ovvero quello affetto da noise (da noi simulato con un'onda sinusoidale) riportato in Figura \ref{cir5:diff_amp}. Valgono dunque le seguenti equazioni
 
@@ -215,7 +215,7 @@ Il circuito visto al paragrafo precedente presenta dei problemi, nonostante abba
 
 Per ovviare a questi problemi, valutiamo l'amplificatore differenziale in Figura \ref{cir5:instr_amplif}. Si nota subito che l'impedenza in ingresso è molto alta, in quanto gli amplificatori operazionali hanno un valore di impedenza molto alta ai loro ingressi (non a caso sono usati in configurazione follower per adattare le impedenze).
 
-Verifichiamo invece che la resistenza posta in mezzo varia effettivamente il guadagno del circuito. Dividiamo il circuito in due parti, calcolandoci prima la tensione fra il punto A e B\footnote{Si noti che un circuito che abbia come $V_{out}$ la differenza fra questi due punti sarebbe flottante sull'uscita. Infatti, una eventuale resistenza di carico messa fra il punto A e B non avrebbe un riferimento di comune.}, per poi la tensione di uscita dell'intero circuito. Per la prima parte, considerando i due operazionali ideali, otteniamo che le tensione agli ingressi invertenti sono $V_{OP_1}^- = V_1$ e $V_{OP_2}^- = V_2$. Dunque ai capi di $R_g$ è presente una differenza di potenziale $V_2-V_1 = \Delta V_{in}$; per l'idealità degli OPAMP, abbiamo inoltre che la corrente che passa per le resistenze $R_1$ ed $R_g$ sono uguali. Otteniamo dunque, sommando le cadute di potenziale
+Verifichiamo invece che la resistenza posta in mezzo varia effettivamente il guadagno del circuito. Dividiamo il circuito in due parti, calcolandoci prima la tensione fra il punto A e B\footnote{Si noti che un circuito che abbia come $V_{out}$ la differenza fra questi due punti sarebbe flottante sull'uscita. Infatti, una eventuale resistenza di carico messa fra il punto A e B non avrebbe un riferimento di comune.}, per poi la tensione di uscita dell'intero circuito. Per la prima parte, considerando i due operazionali ideali, otteniamo che le tensione agli ingressi invertenti sono $V_{OP_1}^- = V_1$ e $V_{OP_2}^- = V_2$. Dunque ai capi di $R_g$ è presente una differenza di potenziale $V_2-V_1 = \Delta V_{in}$; per l'idealità degli opamp, abbiamo inoltre che la corrente che passa per le resistenze $R_1$ ed $R_g$ sono uguali. Otteniamo dunque, sommando le cadute di potenziale
 $$\Delta V_{AB} = \frac{\Delta V_{in}}{R_g} R_g + \frac{\Delta V_{in}}{R_g} R_1 + \frac{\Delta V_{in}}{R_g} R_2$$
 cioè
 \begin{equation}
@@ -225,12 +225,12 @@ cioè
 
 Valutiamo ora la seconda parte del circuito data da $OP_3$. Per quanto riguarda la tensione all'ingresso non invertente, questa è data da un semplice partitore (non scorre corrente nell'ingresso dell'opamp)
 $$V^+=V_B \frac{R_3}{R_3+R_2}$$
-All'ingresso non invertente vale invece la legge di Kirkhhoff per i nodi
+All'ingresso non invertente vale invece la legge di Kirchhoff per i nodi
 $$\frac{V_A-V^-}{R_2}+\frac{V_{out}-V^-}{R_3}=0$$
 da cui
 $$V^-=V_A \frac{R_3}{R_2+R_3} + V_{out} \frac{R_2}{R_2+R_3}$$
 
-Uguagliando $V^-$ e $V^+$ (OPAMP ideale), tenendo conto della (\ref{eq5:TEMP_calcoli}), otteniamo dunque
+Uguagliando $V^-$ e $V^+$ (opamp ideale), tenendo conto della (\ref{eq5:TEMP_calcoli}), otteniamo dunque
 $$V_{out}=-\Delta V_{in} \left(1+\frac{2R_1}{R_g}\right)\frac{R_3}{R_2}$$
 Modificando la resistenza $R_g$ possiamo dunque controllare il guadagno del circuito.
 
@@ -301,11 +301,11 @@ $$$$
 \begin{wrapfigure}[13]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=.25\textwidth]{../E05/latex/c_PT100_2wire.pdf}
-\caption{Circuito di controllo della temperatura a distanza: PT100 è il termoresistore al platino, l'ohmetro misura la resistenza in funzione della temperatura e le due resistenze da \SI{10}{\ohm} simulano i cavi lunghi.}
+\caption{Circuito di controllo della temperatura a distanza: PT100 è il termo-resistore al platino, l'ohmetro misura la resistenza in funzione della temperatura e le due resistenze da \SI{10}{\ohm} simulano i cavi lunghi.}
 \label{cir5:2wire}
 \end{wrapfigure}
 
-Nell'ultima parte dell'esperienza abbiamo eseguito misure di temperatura utilizzando una termoresistenza al platino PT100.
+Nell'ultima parte dell'esperienza abbiamo eseguito misure di temperatura utilizzando una termo-resistenza al platino PT100.
 Essa non è altro che una resistenza di cui sono noti con sufficiente precisione alcuni parametri: il valore ad una data temperatura e il coefficiente di temperatura $\alpha$.
 
 Sapendo che il valore di resistenza è dipendente dalla resistività elettrica del materiale $\rho$ che a sua volta dipende dalla temperatura (nel caso di metalli), secondo le seguenti relazioni:
@@ -332,7 +332,7 @@ T = T_0 + \frac{1}{\alpha}\left( \frac{R}{R_0}-1 \right)
 Nel nostro caso il costruttore ci ha fornito i dati relativi alla temperatura di riferimento $T_0 =$ \SI{0}{\degreeCelsius}:
 $$R_0 = \SI{100}{\ohm} \quad \quad \alpha = 0.003850\si{\per\degreeCelsius}$$
 
-Conoscendo il comportamento della termoresistenza abbiamo simulato il caso in cui si volesse controllare la temperatura di un laboratorio a distanza.
+Conoscendo il comportamento della termo-resistenza abbiamo simulato il caso in cui si volesse controllare la temperatura di un laboratorio a distanza.
 I circuito che simulava questa situazione è riportato in Figura \ref{cir5:2wire}
 
 Abbiamo notato subito che le misure ricavate con questo circuito soffrivano dell'errore sistematico dato dalle resistenze in serie da \SI{10}{\ohm}.
@@ -340,10 +340,10 @@ Infatti il valore di resistenza letto dall'ohmetro era di \SI{130}{\ohm}, che da
 
 Per evitare questo tipo di problemi abbiamo effettuato una misura a quattro fili.
 In questa modalità il multimetro funzionava come generatore di corrente costante tramite due boccole e da voltmetro con le altre due boccole utilizzate.
-Lo schema riportato in Figura \ref{cir5:4wire} mostra come la misura questa volta sia effettuata acquisendo la differenza di potenziale ai capi della termoresistenza data dalla corrente del generatore.
+Lo schema riportato in Figura \ref{cir5:4wire} mostra come la misura questa volta sia effettuata acquisendo la differenza di potenziale ai capi della termo-resistenza data dalla corrente del generatore.
 In questa configurazione non vi è l'errore sistematico della misura a due fili, in quanto grazie all'alta impedenza del voltmetro, nella maglia interna non scorre corrente e pertanto ai capi delle resistenze su tale maglia non vi è alcuna caduta di potenziale.
 
-Nella tabella seguente sono riportati i valori per $T_0 =$ 0, per due temperature vicine alla temperatura ambiente, per una temperatura ottenuta raffreddando con una bomboletta di refrigerante e riscaldando il termoresistore a temperatura corporea.
+Nella tabella seguente sono riportati i valori per $T_0 =$ 0, per due temperature vicine alla temperatura ambiente, per una temperatura ottenuta raffreddando con una bomboletta di refrigerante e riscaldando il termo-resistore a temperatura corporea.
 
 \begin{center}
 {\renewcommand{\arraystretch}{1.4}%

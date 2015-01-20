@@ -18,10 +18,10 @@ In questa esperienza costruiremo un termometro elettronico utilizzando una Pt100
 		\item Tre amplificatori operazionali OP07;
 		\item Un integrato AD622 e un REF02;
 		%\item Un integrato REF02;
-		\item Una termoresistenza PT100;
+		\item Una termo-resistenza PT100;
 		\item Transistor di potenza NPN 2N2222;
 		\item Resistenze e capacità di vari valori;
-		\item Trimmer multigiro da \SI{10}{\kilo\ohm} e \SI{1}{\kilo\ohm};
+		\item Trimmer multi-giro da \SI{10}{\kilo\ohm} e \SI{1}{\kilo\ohm};
 		\item Breadboard e cablaggi vari.
 %		\end{itemize}
 	\end{minipage}
@@ -46,7 +46,7 @@ In questa esperienza costruiremo un termometro elettronico utilizzando una Pt100
 \end{wrapfigure}
 
 In questa prima parte vogliamo realizzare un termometro elettronico.
-Per far ciò usiamo una termoresistenza Pt100 di resistenza 100\si{\ohm} a zero gradi Celsius.
+Per far ciò usiamo una termo-resistenza Pt100 di resistenza 100\si{\ohm} a zero gradi Celsius.
 
 Realizzeremo il nostro circuito blocchi, in modo da testarne il funzionamento singolarmente ed evitare pertanto di dover effettuare alla fine la ricerca di eventuali errori su tutto il circuito.
 Inoltre posizioneremo dei punti tra i blocchi appositamente per effettuare misure intermedie.
@@ -69,11 +69,11 @@ Come sappiamo, la tensione che scorre nel ramo di retroazione è univocamente de
 Dobbiamo stare attenti che il nostro opamp non vada in saturazione o avremo una dipendenza della corrente dal carico.
 
 Da una semplice analisi circuitale, otteniamo che $I=V_{in}/(\SI{4.7}{\kohm}+T_1)$.
-È stato scelto di utilizzare come resistenza all'ingresso invertente un resistenza da \SI{4.7}{\kilo\ohm} con in serie un trimmer multigiro da \SI{1}{\kilo\ohm}.
-Così facendo, utilizzando un amperometro in serie, possiamo tarare con precisione la corrente che scorre nel ramo di retroazione (e dunque nella nostra termoresistenza).
-Durante questa fase non utilizzeremo la termoresistenza\footnote{non utilizzeremo la termoresistenza per evitare di rovinarla in quanto è un componente particolarmente costoso.}, ma una comune resistenza di valore nominale \SI{100}{\ohm}.
+È stato scelto di utilizzare come resistenza all'ingresso invertente un resistenza da \SI{4.7}{\kilo\ohm} con in serie un trimmer multi-giro da \SI{1}{\kilo\ohm}.
+Così facendo, utilizzando un amperometro in serie, possiamo tarare con precisione la corrente che scorre nel ramo di retroazione (e dunque nella nostra termo-resistenza).
+Durante questa fase non utilizzeremo la termo-resistenza\footnote{Non utilizzeremo la termo-resistenza per evitare di rovinarla in quanto è un componente particolarmente costoso.}, ma una comune resistenza di valore nominale \SI{100}{\ohm}.
 
-Con una corrente scelta di \SI{1}{\milli\ampere}, la potenza dissipata per effetto Joule dalla nostra termoresistenza è $P=I^2 R \cong \SI{.1}{\mW}$.
+Con una corrente scelta di \SI{1}{\milli\ampere}, la potenza dissipata per effetto Joule dalla nostra termo-resistenza è $P=I^2 R \cong \SI{.1}{\mW}$.
 
 \paragraph{Generatore di tensione costante\newline}
 
@@ -100,7 +100,7 @@ Come prima cosa amplifichiamo tale segnale in modo che (con \SI{0}{\celsius}) la
 Così facendo, possiamo usare un comparatore con $V_{ref}=\SI{5}{\volt}$ che restituirà in uscita \SI{0}{\volt} per $T=\SI{0}{\celsius}$.
 
 Per tarare il Gain del nostro amplificatore (che ovviamente dovrà essere G=\num{-50}), abbiamo deciso di utilizzare un segnale DC di \SI{-100}{\mV} dall'Agilent E3631A portato all'ingresso invertente (l'ingresso non invertente è stato collegato a comune).
-Abbiamo utilizzato una resistenza di feedback di \SI{100}{\kilo\ohm} mentre la resistenza all'ingresso invertente è stata costruita mettendo in serie una resistenza nominale da \SI{1.5}{\kilo\ohm} e un trimmer multigiro da \SI{1}{\kilo\ohm}.
+Abbiamo utilizzato una resistenza di feedback di \SI{100}{\kilo\ohm} mentre la resistenza all'ingresso invertente è stata costruita mettendo in serie una resistenza nominale da \SI{1.5}{\kilo\ohm} e un trimmer multi-giro da \SI{1}{\kilo\ohm}.
 Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, che evidentemente si ha quando la tensione in uscita è \SI{5}{\volt}. 
 
 \paragraph{Condizionamento [Blocco 3]\newline}
@@ -113,26 +113,26 @@ Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, c
 \end{wrapfigure}
 
 Portando ora il segnale amplificato in uscita dal blocco 2 all'ingresso non invertente di un amplificatore per strumentazione (AD622) e utilizzando come riferimento i \SI{5}{\volt} forniti dal generatore di tensione REF02 si ottiene facilmente che, quando la temperatura dell'ambiente è di \SI{0}{\celsius}, l'AD622 avrà un'uscita nulla.
-Quando la temperatura è maggiore di zero anche l'uscita del blocco 3 sarà maggiore di zero, perchè la tensione all'ingresso non invertente (segnale della temperatura) è maggiore del riferimento ($5\si{\volt}$).
+Quando la temperatura è maggiore di zero anche l'uscita del blocco 3 sarà maggiore di zero, perché la tensione all'ingresso non invertente (segnale della temperatura) è maggiore del riferimento ($5\si{\volt}$).
 
 Dobbiamo ora decidere il guadagno dell'AD622.
 Per far ciò basta ricordare che vogliamo ottenere è un $\Delta V=\SI{100}{\milli\volt}/\si{\celsius}$, così da avere una conversione in gradi centigradi a meno di un fattore 10.
-Poiché il blocco 1 resistuisce una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$, il guadagno totale dev'essere di
+Poiché il blocco 1 restituisce una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$, il guadagno totale dev'essere di
 $$G\,=\,\frac{\SI{100}{\milli\volt}/\si{\celsius}}{\SI{0.385}{\milli\volt}/\si{\celsius}}=\num{259.740}$$
 (il segno meno è dato ancora una volta dalla configurazione invertente del blocco 1).
 Il guadagno totale è però determinato separatamente da U2 e U3 e deve valere $G= G_{U2}\cdot G_{U3}=-259.740$ .
 È dunque immediato verificare che imponendo $G_{U2}=-50$ deve valere $G_{U3}=5.195$.
 
 Utilizzando la formula $G_{U3}=1+\frac{50.5k\Omega}{R_g}$ possiamo ottenere il valore di resistenza di gain: $R_g=12.038\si{\kilo\ohm}$.
-Utilizzando dunque la serie tra una resistenza da $10\si{\kilo\ohm}$ e un trimmer multigiro da $10\si{\kilo\ohm}$, con l'ausilio del multimetro digitale, abbiamo tarato tale resistenza. 
+Utilizzando dunque la serie tra una resistenza da $10\si{\kilo\ohm}$ e un trimmer multi-giro da $10\si{\kilo\ohm}$, con l'ausilio del multimetro digitale, abbiamo tarato tale resistenza. 
 Per essere sicuri che il guadagno fosse esattamente quello cercato, abbiamo fornito all'ingresso non invertente una tensione di \SI{1}{\volt} e controllato che l'uscita fosse $V_{out}=\SI{5.195}{\V}$. 
 
-Controllati dunque tutti i moduli separatamente, abbiamo sostituito la resistenza da $100\si{\ohm}$ con la termoresistenza Pt100.
+Controllati dunque tutti i moduli separatamente, abbiamo sostituito la resistenza da $100\si{\ohm}$ con la termo-resistenza Pt100.
 La misura di tensione all'uscita è stata $V_{out}=(2.437\pm 0.002)\si{\volt}$.
 Come già detto, per ottenere la temperatura in gradi Celsius basta moltiplicare il valore di tensione per 10.
 La temperatura ambiente misurata risulta dunque $T=(24.37\pm0.02)^{\circ}C$.
 
-Abbiamo verificato il buon funzionamento del circuito raffreddando e riscaldando la termoresistenza e osservando che i valori di tensione variavano correttamente.
+Abbiamo verificato il buon funzionamento del circuito raffreddando e riscaldando la termo-resistenza e osservando che i valori di tensione variavano correttamente.
 
 \begin{figure}[ht]
  \centering
@@ -159,11 +159,11 @@ Osserviamo lo schema in Figura \ref{fig6:scheme2}: dati due segnali in ingresso 
 Quest'ultimo avrà dunque il compito di confrontare X ed R e verificare che la condizione, in generale funzione dei due segnali, sia rispettata.
 L'aggiornamento di tale condizione è invece affidato al blocco di retroazione, che varia R.
 
-Nel nostro caso, X è la tensione relativa alla temperatura di soglia ($T_{S}$) e R la tensione relativa alla temperatura misurata dalla termoresistenza ($T$).
+Nel nostro caso, X è la tensione relativa alla temperatura di soglia ($T_{S}$) e R la tensione relativa alla temperatura misurata dalla termo-resistenza ($T$).
 La nostra Y sarà una data potenza dissipata su una resistenza di potenza che, se posta vicino alla PT100, ne varierà il valore di resistenza e quindi la temperatura letta dal circuito.
 Dobbiamo ora identificare i blocchi relativi al sistema di controllo proporzionale e progettare quelli mancanti al circuito attuale.
 
-Affidiamo il compito del blocco di retroazione al circuito finora costruito: questo restituisce un valore di tensione proporzionale alla temperatura letta dalla termoresistenza, che dovrà essere confrontato con la soglia.
+Affidiamo il compito del blocco di retroazione al circuito finora costruito: questo restituisce un valore di tensione proporzionale alla temperatura letta dalla termo-resistenza, che dovrà essere confrontato con la soglia.
 Successivamente, il blocco di controllo deve fare la differenza fra questi due valori e, una volta raggiunto un valore impostabile, diminuire il valore della corrente fornita alla resistenza di potenza in maniera proporzionale ad E.
 Definiamo dunque E=X-R, e per effettuare tale operazione utilizziamo un amplificatore differenziale.
 Infine, per fornire la corrente necessaria alla resistenza, utilizzeremo un transistor BJT.
@@ -247,7 +247,7 @@ Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:pr
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=1\textwidth]{../E06/latex/grafico.pdf}}
- \caption{Il grafico riporta la temperatura misurata dalla termoresistenza (in nero) e la temperatura di riferimento (in verde). Come si può osservare la temperatura di riferimento ha una certa instabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp nel blocco 4. L'imperferzione di tale segnale è probabilmente imputabile non all'integrato REF02, bensì a rumori ambientali.}
+ \caption{Il grafico riporta la temperatura misurata dalla termoresistenza (in nero) e la temperatura di riferimento (in verde). Come si può osservare la temperatura di riferimento ha una certa instabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp nel blocco 4. L'imperfezione di tale segnale è probabilmente imputabile non all'integrato REF02, bensì a rumori ambientali.}
  \label{gr6:grafico}
 \end{figure}
 
@@ -260,20 +260,20 @@ Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:pr
 
 \subsection*{Conclusioni}
 
-In questa esperienza abbiamo affrontato diverse problematiche, tra cui quella di progettare e costruire un circuiro composto di molte componenti.
+In questa esperienza abbiamo affrontato diverse problematiche, tra cui quella di progettare e costruire un circuito composto di molte componenti.
 Per fare ciò è stato necessario testare il funzionamento di singole parti dello schema complessivo per rendere più facile l'individuazione di eventuali problemi.
 
-Nella prima parte dell'esperienza abbiamo assemblato un termometro elettronico utilizzando come sensore una termoresistenza PT100 e l'abbiamo tarato in modo tale che restituisse un valore di \SI{0}{\V} a \SI{0}{\celsius} e che scalasse di \SI{100}{\mV} ogni \SI{1}{\celsius}.
+Nella prima parte dell'esperienza abbiamo assemblato un termometro elettronico utilizzando come sensore una termo-resistenza PT100 e l'abbiamo tarato in modo tale che restituisse un valore di \SI{0}{\V} a \SI{0}{\celsius} e che scalasse di \SI{100}{\mV} ogni \SI{1}{\celsius}.
 
 Nella seconda parte dell'esperienza invece abbiamo costruito un circuito di controllo proporzionale della temperatura.
 Servendoci del primo circuito come fonte di informazione, abbiamo aggiunto due blocchi circuitali che facevano scorrere della corrente in una resistenza di potenza con il fine di riscaldare la resistenza PT100.
 Inoltre questi nuovi blocchi regolavano o spegnevano l'alimentazione di tale resistenza di potenza una volta raggiunta una soglia di temperatura, decisa a priori.
 In questo modo abbiamo creato un sistema termostatato ad una temperatura T da noi scelta.
 
-In Figura \ref{gr6:grafico} è rappresentato l'andamento temporale della temperatura misurata dalla termoresistenza (in nero) e della temperatura di riferimento (in verde).
-Come si può notare il tempo necessario alla resistenza di potenza per aumentare la temperatura da \SI{25}{\celsius} a \SI{32.5}{\celsius} dissipando energia per effeto Joule è di circa un minuto.
+In Figura \ref{gr6:grafico} è rappresentato l'andamento temporale della temperatura misurata dalla termo-resistenza (in nero) e della temperatura di riferimento (in verde).
+Come si può notare il tempo necessario alla resistenza di potenza per aumentare la temperatura da \SI{25}{\celsius} a \SI{32.5}{\celsius} dissipando energia per effetto Joule è di circa un minuto.
 Una volta raggiunta la temperatura (in realtà come abbiamo visto l'alimentazione viene prima diminuita e poi tolta completamente) il circuito esclude l'alimentazione della resistenza di potenza, ma la temperatura registrata dalla PT100 continua a salire per inerzia termica dei componenti.
-Dopo poco la temperatura registrata comincia a discendere verso la temperatura ambiente, ma, una volta scesa sotto la soglia, l'alimentazione della resistenza viene riattivata alzando nuovamente la temperatura della termoresistenza.
+Dopo poco la temperatura registrata comincia a discendere verso la temperatura ambiente, ma, una volta scesa sotto la soglia, l'alimentazione della resistenza viene riattivata alzando nuovamente la temperatura della termo-resistenza.
 Questi passaggi vengono ripetuti e la temperatura oscilla asintoticamente vicino alla temperatura di soglia.
 
-Si può osservare inoltre che la temperatura di riferimento ha una certa variabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp. Tale imperferzione è probabilmente generata da rumori ambientali.
+Si può osservare inoltre che la temperatura di riferimento ha una certa variabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp. Tale imperfezione è probabilmente generata da rumori ambientali.
