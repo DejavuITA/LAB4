@@ -63,14 +63,14 @@ V_{gen}=I R_1
 \end{equation}
 
 \begin{wrapfigure}[18]{r}{0.52\textwidth}
-  \caption{Schema del generatore di corrente costante. Abbiamo utilizzato $R1=\SI{3.85\pm0.01}{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utillizzato il generatore DC Agilent E3631A.}
+  \caption{Schema del generatore di corrente costante. Abbiamo utilizzato $R1=\SI{3.85\pm0.01}{\kilo\ohm}$ e $V_{gen}=3.85 V$, mentre $R_2$ è variabile. Come amperometro è stato utilizzato il multimetro, mentre sia per alimentare l'opamp sia come generatore di tensione costante, abbiamo utilizzato il generatore DC Agilent E3631A.}
   \begin{center}
     \includegraphics[width=0.38\textwidth]{../E01/latex/c1.pdf}
   \end{center}
 \label{cir1:gen_continua}
 \end{wrapfigure}
 
-Per la legge di Kirchhoff sui nodi e dalla eq. (\ref{eq1:regola_I}),z si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq1:gen_1}).
+Per la legge di Kirchhoff sui nodi e dalla eq. (\ref{eq1:regola_I}), si ottiene che la corrente passante per la resistenza di carico è uguale alla corrente $I$, definita dall'eq. (\ref{eq1:gen_1}).
 
 Come possiamo osservare, l'intensità di corrente passante per la resistenza $R_2$ è indipendente dal valore della resistenza stessa. Infatti la tensione di output dell'opamp verrà da esso stesso modificata in modo da far passare sempre lo stesso valore di corrente attraverso il carico.
 Ciò avviene grazie al fenomeno di \textit{negative feedback}, o retroazione negativa, che permette all'opamp di controllare la tensione di output in modo tale da verificare l'eq. (\ref{eq1:regola_V}).
@@ -80,7 +80,7 @@ $$V_{out}=-\frac{R_2}{R_1} V_{gen}$$
 
 Per quanto riguarda le misure da noi ricavate, abbiamo deciso di misurare la corrente $I$ passante per la resistenza piuttosto che la tensione di uscita, ponendo un amperometro fra l'uscita dell'opamp e la resistenza di carico $R_2$.
 Abbiamo scelto di progettare il circuito affinché fornisse \SI{1}{\milli\ampere}, in modo da rimanere nel range di funzionamento ideale dell'opamp (\SIrange{10}{20}{\milli\ampere}).
-Avendo a disposizione una resistenza $R_1=3.85 \pm 0.01\,\si{\kilo\ohm}$, per (\ref{eq1:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. A seguire sono riportati i valori sperimentali da noi ricavati (gli errori sono sottointesi essere unitari sull'ultima cifra significativa).
+Avendo a disposizione una resistenza $R_1=3.85 \pm 0.01\,\si{\kilo\ohm}$, per (\ref{eq1:gen_1}), abbiamo utilizzato una tensione continua di $3.85 V$. A seguire sono riportati i valori sperimentali da noi ricavati (gli errori sono sottintesi essere unitari sull'ultima cifra significativa).
 
 \begin{table}[H]
 \center
@@ -98,7 +98,7 @@ $I$ [\si{\milli\ampere}] & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002 & 1.002
 
 \subsection{Sommatore Pesato}
 
-Il secondo circuito che abbiamo preso in esame è un sommatore pesato: nel nostro caso il circuito aquisiva due segnali in ingresso e produceva in uscita un unico segnale ottenuto dalla somma pesata dei due ingressi. In particolare si osserva che il peso di ciascun segnale è dato dal rapporto tra la resistenza di feedback $R_f$ e la resistenza associata al canale di ingresso, $R_1$ e $R_2$. In Figura \ref{cir1:sommatore_pesato} è riportato lo schema del circuito.
+Il secondo circuito che abbiamo preso in esame è un sommatore pesato: nel nostro caso il circuito acquisiva due segnali in ingresso e produceva in uscita un unico segnale ottenuto dalla somma pesata dei due ingressi. In particolare si osserva che il peso di ciascun segnale è dato dal rapporto tra la resistenza di feedback $R_f$ e la resistenza associata al canale di ingresso, $R_1$ e $R_2$. In Figura \ref{cir1:sommatore_pesato} è riportato lo schema del circuito.
 
 \begin{wrapfigure}[21]{l}{0.55\textwidth}
   \begin{center}

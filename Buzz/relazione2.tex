@@ -21,7 +21,7 @@ Prima di tutto, osserviamo che la circuiteria di alimentazione dell'opamp è la 
 \label{par2:offset}
 
 Un opamp ideale possiede una risposta in uscita perfettamente simmetrica rispetto al caso in cui i due terminali invertente e non invertente sono allo stesso potenziale.
-In un opamp reale però, a causa dell'impossibilità di costruire transistor BJT con caratteristiche identiche in modo tale che la circuteria interna dell'integrato risulti simmetrica, è verificata l'esistenza di uno sbilanciamento della risposta in uscita.
+In un opamp reale però, a causa dell'impossibilità di costruire transistor BJT con caratteristiche identiche in modo tale che la circuiteria interna dell'integrato risulti simmetrica, è verificata l'esistenza di uno sbilanciamento della risposta in uscita.
 La tensione di \textit{offset} $V_{os}$ è definita come la differenza di potenziale tra i terminali di entrata necessaria affinché l'uscita dell'opamp sia nulla.
 
 \subsubsection{Configurazione senza retroazione}
@@ -75,7 +75,7 @@ Analogamente si tratta il caso non invertente, cioè si assume l'esistenza di un
 Anche in questo caso l'orientamento è ininfluente.
 
 Si avrà pertanto $V_B=0$, $V_+=V_{os}$ e pertanto $V_A=V_+=V_{os}$.
-L'analisi risulta dunque identica a quella del circuito un amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente, a meno di un fattore $-1$ derivante appunto dall'orientamento del generatore.
+L'analisi risulta dunque identica a quella del circuito con amplificatore non invertente, e si ottiene lo stesso risultato del caso invertente, a meno di un fattore $-1$ derivante appunto dall'orientamento del generatore.
 
 Riportiamo nella seguente tabella i valori di offset calcolati, definendo il guadagno come Gain$=1+R_2/R_1$.
 
@@ -153,9 +153,9 @@ Dai dati riportati in Tabella \ref{tab2:RC} notiamo che le differenze fra i valo
 \begin{tabular}{c|c|c|c|c|c|c}
 $R_1$ [\si{\ohm}] & $R_2$ [\si{\kilo\ohm}] & $R_C \approx (R_1 // R_2)$ [\si{\ohm}] & Gain & $V_{out}'$  [\si{\milli\volt}] & $V_{os}'$ [\si{\milli\volt}] & $|V_{os}-V_{os}'|$ [\si{\milli\volt}] \\ 
 \hline 
-$119.8\pm0.1$ & $9.911\pm0.001$ & $119.4\pm0.1$ & $83.73 \pm 0.07$ & $-105.5 \pm 0.5$ & $-1.26 \pm0.01$ & $0.02\pm0.01$ \\
+$119.8\pm0.1$ & $9.911\pm0.001$ & $118.4\pm0.1$ & $83.73 \pm 0.07$ & $-105.5 \pm 0.5$ & $-1.26 \pm0.01$ & $0.02\pm0.01$ \\
 \hline
-$119.8\pm0.1$ & $99.35\pm0.01$ & $119.4\pm0.1$ & $830.3\pm0.7$ &$ -1038 \pm 5$ & $-1.2 \pm 0.1$ & $\approx 0$\\
+$119.8\pm0.1$ & $99.35\pm0.01$ & $119.6\pm0.1$ & $830.3\pm0.7$ &$ -1038 \pm 5$ & $-1.2 \pm 0.1$ & $\approx 0$\\
 \end{tabular}}
 \end{center}
 \caption{Dati ricavati dal circuito con la resistenza $R_C$ collegata tra il terminale non invertente e comune.}
@@ -177,7 +177,7 @@ Una volta controbilanciata la caratteristica di offset del nostro opamp, abbiamo
 
 \subsubsection{Configurazione senza retroazione}
 
-Unn primo possibile modo di misurare il valore delle correnti di polarizzazione consiste in una misura indiretta che sfrutta la legge di Ohm.
+Un primo possibile modo di misurare il valore delle correnti di polarizzazione consiste in una misura indiretta che sfrutta la legge di Ohm.
 Come si può vedere dallo schema riportato in Figura \ref{cir2:correnti_senzaretroazione}, l'idea è quella di misurare tramite il multimetro la differenza di potenziale ai capi di una resistenza posta, in questo caso, tra il terminale non invertente e comune.
 
 Il valore di corrente cercato sarà dunque:

@@ -1,6 +1,6 @@
 \section{Porte logiche - 11.11.2014}
 
-In questa esperienza verificheremo il funzionamento di alune porte logiche TTL e semplici circuiti costruiti con esse.
+In questa esperienza verificheremo il funzionamento di lune porte logiche TTL e semplici circuiti costruiti con esse.
 
 \subsection*{Strumenti e materiali}
 
@@ -67,7 +67,7 @@ Abbiamo verificato il funzionamento di una porta NAND utilizzando, come già det
 Non avendo a disposizione una porta NOT, abbiamo utilizzato una porta NAND cortocircuitando i due ingressi tra loro.
 Così facendo otteniamo un'implementazione di una porta NOT.
 
-Ne abbiamo ininzialmente verificato il funzionamento collengandola alla scheda di visualizzazione led e fornendo un'onda quadra in ingresso ($V_{pp}=\SI{5}{\volt}$, $V_{off}=+\SI{2.5}{\volt}$, $\nu=\SI{2}{\hertz}$).
+Ne abbiamo inizialmente verificato il funzionamento collegandola alla scheda di visualizzazione led e fornendo un'onda quadra in ingresso ($V_{pp}=\SI{5}{\volt}$, $V_{off}=+\SI{2.5}{\volt}$, $\nu=\SI{2}{\hertz}$).
 Una volta eseguito questo test preliminare, abbiamo collegato ingresso ed uscita all'oscilloscopio e ne abbiamo analizzato la risposta per diverse tensioni costanti in ingresso.
 I dati ottenuti sono riportati in Tabella (\ref{tab9:risposta2}).
 Come vediamo, tra \SI{1}{\volt} e \SI{1.5}{\volt} la tensione varia in modo molto rapido.
@@ -95,7 +95,7 @@ Come vediamo dal grafico sotto riportato, sebbene stiamo lavorando con segnali d
 Avremo dunque tutta la serie di problemi già affrontati nella parte analogica del corso.
 Vediamo infatti che la tensione in uscita non è una funzione a gradino.
 Inoltre, per evitare che rumori molesti disturbino il segnale in uscita, avremo bisogno di una sorta di isteresi.
-Non esisterà dunque un valore ben definito di V alta e V bassa, ma delle bande di lavoro standard per la classe di circuiteria scelta (nel nostro caso TTL), riportate solitamente nel data-sheet.
+Non esisterà dunque un valore ben definito di V alta e V bassa, ma delle bande di lavoro standard per la classe di circuiteria scelta (nel nostro caso TTL), riportate solitamente nel datasheet.
 Lo standard TTL è riportato in Figura \ref{fig9:TTL}
 
 \begin{figure}[htpc]
@@ -323,4 +323,4 @@ Il circuito risulta quello nella seguente figura.
 \subsection*{Conclusioni}
 In questa esperienza abbiamo verificato il funzionamento di alcune porte, evidenziando il fatto che sebbene i segnali trattati siano digitali (0 e 1 logico, 0 e $+$\SI{5}{\V}), non possiamo trascurare la tecnologia analogica che sta alla base del funzionamento.
 Inoltre, abbiamo visto come con l'utilizzo delle più comuni porte NAND, possiamo implementare le altre porte.
-Infine, utilizzando le proprierà algebriche della logica booleana, abbiamo semplificato circuiti complessi e li abbiamo implementati con il solo utilizzo di porte NAND.
+Infine, utilizzando le proprietà algebriche della logica booleana, abbiamo semplificato circuiti complessi e li abbiamo implementati con il solo utilizzo di porte NAND.

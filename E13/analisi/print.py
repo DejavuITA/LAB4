@@ -5,22 +5,23 @@ import matplotlib
 from matplotlib import pyplot as plt
 import numpy as np
 
-if len(sys.argv)==1:
-	sys.exit()
+#if len(sys.argv)==1:
+#	sys.exit()
 
 	####  Qui vanno i dati 	####
-dataG1 = np.genfromtxt("../dati/scope_{}.csv".format(sys.argv[1]), delimiter=',')
+#dataG1 = np.genfromtxt("../dati/scope_{}.csv".format(sys.argv[1]), delimiter=',')
+dataG1 = np.genfromtxt("../dati/Programma_lab_4/se_provi_a_ricancellare_questi_dati_ti_fai_i_grafici_a_mano/sin100hz@100,100.csv", delimiter=',')
 
 t	= dataG1[2:,0]
 V_in	= dataG1[2:,1]
-V_ou	= dataG1[2:,2]
+#V_ou	= dataG1[2:,2]
 
 	####	####	####	####
 
 # Creo un grafico la dimensione è in pollici
 fig1 = plt.figure(figsize=(8, 5.5))
 # Titolo del grafico
-fig1.suptitle("File scope_{}.csv".format(sys.argv[1]), y=0.97, fontsize=15)
+fig1.suptitle("File scope_dsakj.csv", y=0.97, fontsize=15)
 
 ######
 # GRAFICO 1
@@ -31,9 +32,10 @@ g1 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
 	y=V_in,
 	fmt='-', c='black')
 
-g2 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
-	y=V_ou,
-	fmt='-', c='green')
+#g2 = f1.errorbar(x=t, #x=np.logspace(70,6E6,500),
+#	y=V_ou,
+#	fmt='-', c='green')
+#f1.plot(x=t, y=2.5+5*sin(t*(2*pi*100)))
     
 ##f1.text(-3.2, 0, u'Tensione [$V$]', size=14, va='center', ha='center',rotation='90')
 #f1.text(0, -1.67, r'Frequenza [$Hz$]', rotation='horizontal', ha='center', va='center', fontsize=15)

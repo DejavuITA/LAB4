@@ -105,11 +105,11 @@ Così facendo è stato possibile tarare perfettamente il guadagno a \num{-50}, c
 \end{wrapfigure}
 
 Portando ora il segnale amplificato in uscita dal blocco 2 all'ingresso non invertente di un amplificatore per strumentazione (AD622) e utilizzando come riferimento i \SI{5}{\volt} forniti dal generatore di tensione REF02 si ottiene facilmente che, quando la temperatura dell'ambiente è di \SI{0}{\celsius}, l'AD622 avrà un'uscita nulla.
-Quando la temperatura è maggiore di zero anche l'uscita del blocco 3 sarà maggiore di zero, perchè la tensione all'ingresso non invertente (segnale della temperatura) è maggiore del riferimento ($5\si{\volt}$).
+Quando la temperatura è maggiore di zero anche l'uscita del blocco 3 sarà maggiore di zero, perché la tensione all'ingresso non invertente (segnale della temperatura) è maggiore del riferimento ($5\si{\volt}$).
 
 Dobbiamo ora decidere il guadagno dell'AD622.
 Per far ciò basta ricordare che vogliamo ottenere è un $\Delta V=\SI{100}{\milli\volt}/\si{\celsius}$, così da avere una conversione in gradi centigradi a meno di un fattore 10.
-Poiché il blocco 1 resistuisce una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$, il guadagno totale dev'essere di
+Poiché il blocco 1 restituisce una variazione per ogni grado centigrado di $\Delta V=\SI{0.385}{\milli\volt}/\si{\celsius}$, il guadagno totale dev'essere di
 $$G\,=\,\frac{\SI{100}{\milli\volt}/\si{\celsius}}{\SI{0.385}{\milli\volt}/\si{\celsius}}=\num{259.740}$$
 (il segno meno è dato ancora una volta dalla configurazione invertente del blocco 1).
 Il guadagno totale è però determinato separatamente da U2 e U3 e deve valere $G= G_{U2}\cdot G_{U3}=-259.740$ .
@@ -206,7 +206,7 @@ Per fare ciò, utilizzeremo un transistor 2N2222A con emettitore collegato a com
 $$\beta=\frac{I_c}{I_b}=75 \qquad V_{CE}^{sat}=\SI{.4}{\volt} \qquad V_{BE}^{pol}=\SI{1.3}{\volt}$$
 Vale che, con una resistenza di potenza $R_{P} = \SI{27}{\ohm}$ e impostata una tensione di $5$ \si{\volt} costante ad uno dei suoi capi\footnote{Il REF02 non avrebbe potuto erogare la corrente necessaria a mantenere invariata la tensione ai capi della resistenza.
 Dunque, per gestire questa tensione, abbiamo utilizzato il generatore di tensione costante Agilent E3631A.
-Inoltre, per questo motivo, la comune utilizzata per questo blocco è stata posta indipendentemente per poi essere collegata a quella degli altri blocchi.} come in Figura \ref{gr6:proporzionale},
+Inoltre, per questo motivo, il comune utilizzata per questo blocco è stata posta indipendentemente per poi essere collegata a quella degli altri blocchi.} come in Figura \ref{gr6:proporzionale},
 $$I_{C}=\frac{5 \si{\volt}- V_{CE}^{sat}}{R_P}=170 \si{\milli\ampere}$$
 quindi $I_B=I_{C}/\beta=\SI{2.27}{\mA}$, da cui otteniamo il valore per cui il transistor si trova in saturazione (cioè quando la tensione base emettitore è pari a $V_{BE}^{pol}$ e la tensione base collettore è uguale a $V_{CE}^{sat}$)
 $$R_B=\frac{V_{err} - V_{BE}^{pol}}{I_B}=2.2 \si{\kilo\ohm}$$
@@ -244,7 +244,7 @@ Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:pr
 \begin{figure}[ht]
  \centering
    {\includegraphics[width=1\textwidth]{../E06/latex/grafico.pdf}}
- \caption{Il grafico riporta la temperatura misurata dalla termoresistenza (in nero) e la temperatura di riferimento (in verde). Come si può osservare la temperatura di riferimento ha una certa instabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp nel blocco 4. L'imperferzione di tale segnale è probabilmente imputabile non all'integrato REF02, bensì a rumori ambientali.}
+ \caption{Il grafico riporta la temperatura misurata dalla termoresistenza (in nero) e la temperatura di riferimento (in verde). Come si può osservare la temperatura di riferimento ha una certa instabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp nel blocco 4. L'imperfezione di tale segnale è probabilmente imputabile non all'integrato REF02, bensì a rumori ambientali.}
  \label{gr6:grafico}
 \end{figure}
 
@@ -257,7 +257,7 @@ Tale particolare si può osservare nello schema circuitale in Figura \ref{gr6:pr
 
 \subsection*{Conclusioni}
 
-In questa esperienza abbiamo affrontato diverse problematiche, tra cui quella di progettare e costruire un circuiro composto di molte componenti.
+In questa esperienza abbiamo affrontato diverse problematiche, tra cui quella di progettare e costruire un circuito composto di molte componenti.
 Per fare ciò è stato necessario testare il funzionamento di singole parti dello schema complessivo per rendere più facile l'individuazione di eventuali problemi.
 
 Nella prima parte dell'esperienza abbiamo assemblato un termometro elettronico utilizzando come sensore una termoresistenza PT100 e l'abbiamo tarato in modo tale che restituisse un valore di \SI{0}{\V} a \SI{0}{\celsius} e che scalasse di \SI{100}{\mV} ogni \SI{1}{\celsius}.
@@ -268,9 +268,9 @@ Inoltre questi nuovi blocchi regolavano o spegnevano l'alimentazione di tale res
 In questo modo abbiamo creato un sistema termostatato ad una temperatura T da noi scelta.
 
 In Figura \ref{gr6:grafico} è rappresentato l'andamento temporale della temperatura misurata dalla termoresistenza (in nero) e della temperatura di riferimento (in verde).
-Come si può notare il tempo necessario alla resistenza di potenza per aumentare la temperatura da \SI{25}{\celsius} a \SI{32.5}{\celsius} dissipando energia per effeto Joule è di circa un minuto.
+Come si può notare il tempo necessario alla resistenza di potenza per aumentare la temperatura da \SI{25}{\celsius} a \SI{32.5}{\celsius} dissipando energia per effetto Joule è di circa un minuto.
 Una volta raggiunta la temperatura (in realtà come abbiamo visto l'alimentazione viene prima diminuita e poi tolta completamente) il circuito esclude l'alimentazione della resistenza di potenza, ma la temperatura registrata dalla PT100 continua a salire per inerzia termica dei componenti.
 Dopo poco la temperatura registrata comincia a discendere verso la temperatura ambiente, ma, una volta scesa sotto la soglia, l'alimentazione della resistenza viene riattivata alzando nuovamente la temperatura della termoresistenza.
 Questi passaggi vengono ripetuti e la temperatura oscilla asintoticamente vicino alla temperatura di soglia.
 
-Si può osservare inoltre che la temperatura di riferimento ha una certa variabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp. Tale imperferzione è probabilmente generata da rumori ambientali.
+Si può osservare inoltre che la temperatura di riferimento ha una certa variabilità data dall'instabilità della tensione all'ingresso non invertente dell'opamp. Tale imperfezione è probabilmente generata da rumori ambientali.

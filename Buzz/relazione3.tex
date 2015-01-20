@@ -145,7 +145,7 @@ da cui si nota che la nuova frequenza di taglio è data da
 \omega_t=(1+A_{ol}\beta)\omega_0
 \label{eq3:freq_taglio}
 \end{equation}
-Nel circuito in Figura \ref{cir3:banda} abbiamo impostato un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perchè cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare le frequenze di taglio supponendo certo $A_{ol}$.} frequenze di taglio, ricavate con l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$.
+Nel circuito in Figura \ref{cir3:banda} abbiamo impostato un guadagno $G$ retroazionato di $11$ e $101$, quindi ci aspettiamo\footnote{Questi valori sono approssimati perché cercheremo di calcolare $A_{ol}$ con le frequenze a nostra disposizione, ricavate con l'analisi della banda, piuttosto che calcolare le frequenze di taglio supponendo certo $A_{ol}$.} frequenze di taglio, ricavate con l'equazione precedente, rispettivamente sull'ordine dei $10^5$ e $10^4$.
 
 Un secondo modo per fare una stima delle frequenze di taglio è quello di sfruttare la costante \textit{gain-bandwidth product} GBWP $= \omega_t G$.
 
@@ -241,7 +241,7 @@ I dati ricavati sono esposti nel grafico in Figura \ref{cir3:gain_open_loop}.
 Per non dover utilizzare resistenze $R_4$ troppo grandi ad alte frequenze ($>$ \SI{70}{\kilo\hertz}), abbiamo provato ad effettuare le misure direttamente ad open-loop, dato che il guadagno è contenuto (\num{<100}).
 Tuttavia il generatore di forme d'onda non emette un segnale pulito alla sola frequenza voluta, in quanto anch'esso è uno strumento reale e dunque affetto da errori.
 Esso potrebbe dunque emettere segnali a frequenze basse o addirittura un piccolo offset.
-Poichè per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
+Poiché per tali frequenze il guadagno dell'amplificatore operazionale è enorme, il segnale in uscita viene immediatamente distorto da tali rumori indesiderati.
 Non è da sottovalutare poi la presenza dei residui dell'offset dell'opamp.
 Esso infatti dipende anche dalla temperatura e dunque la sua compensazione non potrà mai essere perfetta ad ogni temperatura.
 Misurare il guadagno $A_{ol}$ effettivamente a open-loop è particolarmente problematico.

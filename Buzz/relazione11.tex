@@ -23,7 +23,7 @@ In questa esperienza studieremo il funzionamento dei Flip-Flop e di alcuni circu
 %	\label{cir11:FF-SR-a}
 %\end{wrapfigure}
 
-In questa prima parte dell'esperienza abbiamo construito il FF SR utilizzando delle porte NAND.
+In questa prima parte dell'esperienza abbiamo costruito il FF SR utilizzando delle porte NAND.
 Il circuito è riportato in Figura \ref{cir11:FF-SR-a} e, come gli altri circuiti logici, il funzionamento è stato verificato con la basetta a LED.
 
 Analizziamo ora il circuito logico.
@@ -252,7 +252,7 @@ Infatti lo switch meccanico dell'interruttore non è istantaneo in quanto compos
 Nel momento in cui la linguetta passa da un contatto all'altro abbiamo dei rimbalzi di tensione.
 Un modo per risolvere questo problema è quello di utilizzare un interruttore a transistor oppure inserire appena dopo l'interruttore meccanico un circuito di anti-rimbalzo.
 Lo schema è riportato in Figura \ref{cir11:no-rimb}.
-Tale circuito ci permette di evitare i rimbalzi poichè quando la linguetta è scollegata sia dal SET che dal RESET abbiamo il circuito in configurazione memoria.
+Tale circuito ci permette di evitare i rimbalzi poiché quando la linguetta è scollegata sia dal SET che dal RESET abbiamo il circuito in configurazione memoria.
 Ciò è dovuto al fatto che abbiamo inserito delle resistenze di \textit{pull-up} che portano gli ingressi delle NAND a 1 logico.
 
 Dopo averne studiato le caratteristiche dal punto di vista teorico, ne abbiamo verificato il funzionamento sperimentalmente.
@@ -292,7 +292,7 @@ La forma d'onda in uscita non è perfettamente a scalino in quanto i generatori 
 
 Possiamo apportare delle utili modifiche al circuito anti-rimbalzo separando il comando Marcia/Arresto.
 Così facendo possiamo avere un circuito che può essere messo nella condizione di memoria.
-Il circuito è riportato in fugura (\ref{cir11:marcia}).
+Il circuito è riportato in figura (\ref{cir11:marcia}).
 
 Dobbiamo ricordarci di non mettere mai contemporaneamente a 0 logico sia Marcia che Arresto in quanto avremmo una condizione di indeterminazione che ovviamente non vogliamo.
 
