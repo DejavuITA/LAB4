@@ -63,7 +63,7 @@ Come vediamo, il valore digitale è compatibile con quello analogico ottenuto mi
 
 \subsection{Teorema del campionamento}
 
-Il teorema del campionamento afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $\nu_c$ deve essere il doppio della frequenza massima $\nu_s$ del segnale da campionare.
+Il teorema del campionamento (Nyquist-Shannon) afferma che per effettuare il campionamento di un segnale senza perdita di informazione ed evitando il fenomeno dell'aliasing, la frequenza di campionamento $\nu_c$ deve essere il doppio della frequenza massima $\nu_s$ del segnale da campionare.
 
 Bisogna però tenere presente che tale teorema è valido solo se la trasformata di Fourier del segnale da campionare è limitata nel dominio delle frequenze, cioè esiste solo una banda di frequenze in cui la trasformata non è nulla.
 
@@ -113,8 +113,8 @@ In questo caso abbiamo utilizzato $\nu_c=\SI{70}{\Hz} < \nu_0 =\SI{100}{\Hz}$. I
 \end{figure}
 
 \subsection{Campionamento di altre forme d'onda}
-Abbiamo campionato altre forme d'onda, ricordando l'importante condizione $\nu_c>2\nu_s$. Nella ricostruzione delle forme d'onda con serie di Fourier è stata ovviamente trascurata una costante A che può essere aggiunta alla fine per linearità. Ciò non è essenziale comunque per le osservazione che faremo noi.
-
+Tenendo bene in considerazione che la frequenza $\nu_c$ dovesse essere almeno due volte la frequenza massima $\nu_s$ presente nella forma d'onda, abbiamo campionato altre forme d'onda.
+Tuttavia, alcune forme non hanno una frequenza massima definita e pertanto non è stato possibile verificare le condizioni del teorema di Nyquist-Shannon.
 
 \subsubsection{onda quadra}
 Abbiamo utilizzato un'onda quadra di frequenza $\nu_0=100 \si{\hertz}$ e una frequenza di campionamento di $\nu_c=20\si{\kilo\hertz}$. Come vediamo, la forma d'onda è stata campionata senza distorsioni sebbene il teorema del campionamento non sia valido. Infatti lo spettro di frequenze non è limitato, come mostreremo in seguito.
@@ -137,15 +137,7 @@ f(t)=\sum_{n=0}^{+\infty}\frac{4}{(2n+1)\pi}sin (\frac{2\pi(2n+1)}{\tau}t)
 
 Vediamo immediatamente come nella serie compaiano solo le armoniche dispari, ovvero $\nu_n=\frac{2n+1}{\tau}=(2n+1)\nu_0$. Ciò è effettivamente verificato dalla FFT dei dati da noi campionati.
 
-Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze non è limitato. Dunque non vale il teorema del campionamento. Tuttavia, essendo i coefficienti di fourier proporzionali a $\frac{1}{n}$, è evidente che le armoniche con frequenze alte avranno un impatto sulla ricostruzione del segnale minore che le prime armoniche. È dunque sufficiente, per ottenere un buon campionamento, utilizzare una frequenza di qualche fattore maggiore rispetto alle prime armoniche. 
-
-%Per completezza ricordiamo che è possibile anche ottenere lo spettro della $f(t)$ utilizzando direttamete le trasformate di Fourier. È infatti sufficiente ricordare che la trasformata di Fourier di una funzione periodica con periodo $2\pi$ è semplicemente:
-
-%$$F(f(t))(\omega)=2\pi \sum_{n=-\infty}^{+\infty} c_n \delta(\omega-n ) $$
-
-%dove i coefficienti $c_n=\frac{1}{2\pi}\int_{-\pi}^{+\pi} f(t)e^{-int}dt$.
-
-%Il risultato è lo stesso di quello sopra calcolato. Notiamo inoltre che le $\nu_n$ sono quantizzate.
+Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze non è limitato. Dunque non vale il teorema del campionamento. Tuttavia, essendo i coefficienti di fourier proporzionali a $\frac{1}{n}$, è evidente che le armoniche con frequenze alte avranno un impatto sulla ricostruzione del segnale minore che le prime armoniche. È dunque sufficiente, per ottenere un buon campionamento, utilizzare una frequenza di qualche fattore maggiore rispetto alle prime armoniche.
 
 \begin{figure}[H]
 \centering
@@ -182,7 +174,6 @@ Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu
 \end{figure}
 
 \subsubsection{onda dente di sega}
-
 Abbiamo utilizzato un'onda a dente di sega di frequenza $\nu_0=100 \si{\hertz}$ e una frequenza di campionamento di $\nu_c=20\si{\kilo\hertz}$. Sebbene non valga il teorema del campionamento abbiamo ottenuto un segnale non distorto. Ciò è dovuto, come ai casi sopra, alla preponderanza delle prime armoniche.
 
 Scriviamo l'onda a dente di sega come: 
@@ -206,7 +197,6 @@ In questo caso abbiamo sia armoniche pari che dispari. Infatti $\nu_n=\frac{n}{\
 \end{figure}
 
 \subsubsection{onda AM}
-
 In questa ultima parte abbiamo analizzato un segnale radio AM con $\nu_0=1\si{\kilo\hertz}$ e frequenza di campionamento $\nu_c=20\si{\kilo\hertz}$. Ovviamente il segnale è stato ricostruito senza distorsioni. Tuttavia in questo caso non è semplice calcolare la serie di Fourier sebbene sia possibile in quanto la funzione è periodica. 
 
 \begin{figure}[H]
@@ -220,8 +210,5 @@ Osservando la FFT vediamo come vi sia la presenza di tre frequenze principali. T
 
 La presenza di diverse frequenze si traduce in una modulazione dell'ampiezza del segnale portante.
 
-
-
 \subsection*{Conclusioni}
-
 Abbiamo verificato il corretto funzionamento del convertitore analogico-digitale (ADC) e la validità del teorema del campionamento. Abbiamo inoltre verificato che in alcuni casi sebbene il teorema non sia valido in quanto non sono soddisfatte le ipotesi, è possibile ottenere comunque dei buoni campionamenti.
