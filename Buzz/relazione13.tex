@@ -10,7 +10,8 @@ Inoltre, tramite una scheda di acquisizione collegata al pc, verificheremo i ris
 	\item Circuito montato e valutato nell'esperienza precedente;
 \item Un integrato LM311;
 \item Resistenze (trimmer e non) aggiuntive di vari valori;
-\item Breadboard e cablaggi vari.
+\item Breadboard e cablaggi vari;
+\item Scheda di acquisizione 6024.
 \end{itemize}
 
 \subsection{ADC ad inseguimento}
@@ -29,7 +30,7 @@ In questo caso abbiamo però aggiunto un comparatore veloce con isteresi (LM311)
 Così facendo abbiamo limitato l'effetto che l'uscita del LM311 ha sull'ingresso non invertente, in quanto partitore di tensione.
 Avendo collegato l'uscita del comparatore al JK, abbiamo un sistema automatico di controllo up/down del contatore.
 Il segnale in uscita dal convertitore digitale-analogico oscillerà dunque attorno al valore di tensione in ingresso.
-Infatti se il segnale $V_{in}$ è minore di quello in uscita dal DAC, avremo in uscita dal comparatore una tensione negativa e dunque gli ingressi del FF-JK saranno a zero logico.
+Infatti se il segnale $V_{in}$ è minore di quello in uscita dal DAC, avremo in uscita dal comparatore una tensione nulla e dunque gli ingressi del FF-JK saranno a zero logico.
 Il contatore sarà  dunque in modalità DOWN.
 Viceversa, se il segnale del convertitore DAC è minore di quello in ingresso, in contatore sarà in modalità UP. 
 
@@ -68,8 +69,8 @@ Bisogna però tenere presente che tale teorema è valido solo se la trasformata 
 
 \subsection{Campionamento di una funzione sinusoidale}
 
-Consideriamo una funzione $f(t)=Asin(\omega_0 t)$ con costante $A=\SI{5}{\V}$.
-È possibile ottenere lo spettro della $f(t)$ utilizzando le trasformate di Fourier.
+Consideriamo una funzione $f(t)=Asin(\omega_0 t)+K$ con costanti $A=\SI{5}{\V}$ e $K=\SI{2.5}{\V}$.\\
+Utilizzando le trasformate di Fourier è possibile ottenere, ignorando la costante $K$, lo spettro della $f(t)$.
 È infatti sufficiente ricordare che la trasformata di Fourier di una funzione periodica con periodo $2\pi$ è semplicemente:
 $$F(f(t))(\omega)=2\pi \sum_{n=-\infty}^{+\infty} c_n \delta(\omega-n ) $$
 dove i coefficienti $c_n=\frac{1}{2\pi}\int_{-\pi}^{+\pi} f(t)e^{-int}dt$.
@@ -85,7 +86,7 @@ Notiamo inoltre che le $\nu_n=\frac{\omega_n}{2\pi}$ sono quantizzate.
 \end{figure}
 
 In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=20 \si{\kilo\hertz}$. Siamo ampiamente entro le ipotesi del teorema e dunque la ricostruzione del segnale, come è visibile nel grafico in Figura \ref{sin1}, è molto buona.
-Ricordiamo che la trasformata di Fourier è eseguita sui dati utilizzando la una funzione chiamata FFT (Fast Fourier Transform).
+Ricordiamo che la trasformata di Fourier è eseguita sui dati utilizzando la funzione chiamata FFT (Fast Fourier Transform).
 Il risultato, non avendo un set di dati continuo e infinito nel dominio non potrà ovviamente coincidere con quello ottenuto matematicamente.
 Tuttavia osserviamo un picco molto accentuato sulla frequenza $\nu_0$.
 Ciò ovviamente è corretto in quanto stiamo analizzando un funzione sinusoidale.
@@ -96,7 +97,7 @@ In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=97 \si{\hertz
 \begin{figure}[H]
 \centering
 	\includegraphics[width=.65\textwidth]{../E13/latex/sin100hz@100,97_crop.pdf}
-	\caption{Come vediamo dal grafico, la forma d'onda campionata è una sinusoide con una frequenza di alcuni Hz. Ciò è dovuto al fatto che la frequenza di campionamento è leggermente inferiore alla frequenza del segnale in ingresso e dunque abbiamo un piccolo ritardo che si propaga a cascata su ogni dati successivo. Il risultato è una forma d'onda con una frequenza circa uguale alla differenza tra $\nu_0$ e $\nu_c$.}
+	\caption{Come vediamo dal grafico, la forma d'onda campionata è una sinusoide con una frequenza di alcuni Hz. Ciò è dovuto al fatto che la frequenza di campionamento è leggermente inferiore alla frequenza del segnale in ingresso e dunque abbiamo un piccolo ritardo che si propaga a cascata su ogni dati successivo. Il risultato è una forma d'onda sinusoidale con una frequenza molto minore a $\nu_0$.}
 	\label{sin3}
 \end{figure}
 
