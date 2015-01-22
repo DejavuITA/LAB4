@@ -91,7 +91,7 @@ Il risultato, non avendo un set di dati continuo e infinito nel dominio non potr
 Tuttavia osserviamo un picco molto accentuato sulla frequenza $\nu_0$.
 Ciò ovviamente è corretto in quanto stiamo analizzando un funzione sinusoidale.
 
-\subsubsection{ $\nu_c \approx \nu_s$}
+\subsubsection{$\nu_c \approx \nu_s$}
 In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=97 \si{\hertz}$. Notiamo che avendo utilizzato una frequenza di campionamento più bassa, otteniamo un forma d'onda che in realtà non esiste. Il campionamento fatto con queste frequenze infatti perde più di un periodo della sinusoidale ad ogni punto, e dunque otteniamo una forma d'onda che non porta informazioni rispetto a quella in ingresso.
 
 \begin{figure}[H]
@@ -101,14 +101,14 @@ In questo caso abbiamo utilizzato $\nu_0=100 \si{\hertz}$ e $\nu_c=97 \si{\hertz
 	\label{sin3}
 \end{figure}
 
-\subsubsection{ $\nu_c < \nu_s$}
+\subsubsection{$\nu_c < \nu_s$}
 
 In questo caso abbiamo utilizzato $\nu_c=\SI{70}{\Hz} < \nu_0 =\SI{100}{\Hz}$. Il segnale risulta irriconoscibile e non si può sapere quale segnale sia stato campionato. Nemmeno la FFT porta informazioni in quanto abbiamo picchi distribuiti senza alcuna correlazione. Non si riesce dunque a ricavare nessuna informazione dal campionamento
 
 \begin{figure}[H]
 \centering
 	\includegraphics[width=.65\textwidth]{../E13/latex/sin100hz@100,70_crop.pdf}
-	\caption{Come già accennato i dati raccolti utilizzando una frequenza di campionamento uguale a quella del segnale in ingresso non permettono una ricostruzione corretta del segnale. }
+	\caption{Anche in questo caso non è rispettato il teorema del campionamento ($\nu_c < \nu_s$): ciò provoca, come si vede dal grafico in alto, una distorsione nella ricostruzione del segnale.}
 	\label{sin2}
 \end{figure}
 
@@ -116,7 +116,7 @@ In questo caso abbiamo utilizzato $\nu_c=\SI{70}{\Hz} < \nu_0 =\SI{100}{\Hz}$. I
 Tenendo bene in considerazione che la frequenza $\nu_c$ dovesse essere almeno due volte la frequenza massima $\nu_s$ presente nella forma d'onda, abbiamo campionato altre forme d'onda.
 Tuttavia, alcune forme non hanno una frequenza massima definita e pertanto non è stato possibile verificare le condizioni del teorema di Nyquist-Shannon.
 
-\subsubsection{onda quadra}
+\subsubsection{Onda quadra}
 Abbiamo utilizzato un'onda quadra di frequenza $\nu_0=100 \si{\hertz}$ e una frequenza di campionamento di $\nu_c=20\si{\kilo\hertz}$. Come vediamo, la forma d'onda è stata campionata senza distorsioni sebbene il teorema del campionamento non sia valido. Infatti lo spettro di frequenze non è limitato, come mostreremo in seguito.
 
 Essendo un'onda periodica possiamo calcolarne direttamente la serie di Fourier. Osserviamo anzitutto che la funzione è dispari se consideriamo l'onda quadra come: 
@@ -147,7 +147,7 @@ Notiamo che $n$ è definito da 0 ad infinito. Dunque lo spettro delle frequenze 
 \end{figure}
 
 
-\subsubsection{onda triangolare}
+\subsubsection{Onda triangolare}
 Abbiamo utilizzato un'onda triangolare di frequenza $\nu_0=100 \si{\hertz}$ e una frequenza di campionamento di $\nu_c=20\si{\kilo\hertz}$. Come vediamo, la forma d'onda è stata anche in questo caso campionata senza distorsioni. La funzione può essere scritta sfruttando la simmetria come:
 
 \begin{displaymath}
@@ -173,7 +173,7 @@ Come vediamo anche in questo caso abbiamo solo le armoniche dispari, ovvero $\nu
 	\label{triangolare}
 \end{figure}
 
-\subsubsection{onda dente di sega}
+\subsubsection{Onda dente di sega}
 Abbiamo utilizzato un'onda a dente di sega di frequenza $\nu_0=100 \si{\hertz}$ e una frequenza di campionamento di $\nu_c=20\si{\kilo\hertz}$. Sebbene non valga il teorema del campionamento abbiamo ottenuto un segnale non distorto. Ciò è dovuto, come ai casi sopra, alla preponderanza delle prime armoniche.
 
 Scriviamo l'onda a dente di sega come: 
@@ -196,7 +196,7 @@ In questo caso abbiamo sia armoniche pari che dispari. Infatti $\nu_n=\frac{n}{\
 	\label{sega}
 \end{figure}
 
-\subsubsection{onda AM}
+\subsubsection{Onda AM}
 In questa ultima parte abbiamo analizzato un segnale radio AM con $\nu_0=1\si{\kilo\hertz}$ e frequenza di campionamento $\nu_c=20\si{\kilo\hertz}$. Ovviamente il segnale è stato ricostruito senza distorsioni. Tuttavia in questo caso non è semplice calcolare la serie di Fourier sebbene sia possibile in quanto la funzione è periodica. 
 
 \begin{figure}[H]
