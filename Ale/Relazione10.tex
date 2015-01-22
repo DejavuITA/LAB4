@@ -209,7 +209,7 @@ Il circuito di multiplexing è riportato in Figura \ref{cir10:mult}.
 
 Portando i segnali $S_0$ ed $S_1$ di chi invia il segnale ad un selettore (uguale al precedente), il ricevente può costruire un circuito che passi in uscita il dato inviato.
 
-Per far ciò, dobbiamo innanzitutto negare i segnali $Q_i$ (si veda tabella del selettore) per poi inviarli separatamente ad una porta AND: considerandola come un interruttore, e collegando le altre entrate al cavo di trasmissione, avremo in uscita dedicata solo il dato richiesto, e sugli altri lo 0 logico.
+Per far ciò, dobbiamo innanzitutto negare i segnali $Q_i$ e inviarli separatamente ad una porta AND. Comportandosi come un Gate, avremo tutti i $D_i$ a zero tranne quello abilitato dal selettore, che dunque trasmetterà il dato. 
 Il circuito di de-multiplexing è in Figura \ref{cir10:demult}.
 
 
